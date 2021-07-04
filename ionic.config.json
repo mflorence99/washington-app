@@ -1,0 +1,7 @@
+{
+  "name": "washington-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
