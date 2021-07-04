@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
         </ion-toolbar>
       </ion-header>
 
-      <img src="assets/east.jpeg" />
+      <img src="assets/washington.jpeg" />
     </ion-content> `
 })
 export class HomePage {
