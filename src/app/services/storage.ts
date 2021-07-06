@@ -1,0 +1,53 @@
+import { AsyncStorageEngine } from '@ngxs-labs/async-storage-plugin';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Storage } from '@ionic/storage-angular';
+
+import { from } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+
+@Injectable({ providedIn: 'root' })
+export class StorageService implements AsyncStorageEngine {
+  private storage$: Observable<Storage>;
+
+  constructor(storage: Storage) {
+    this.storage$ = from(storage.create()).pipe(
+      tap(() => console.error('Singleton storage DB created')),
+      shareReplay()
+    );
+  }
+
+  clear(): void {
+    this.storage$
+      .pipe(mergeMap((storage) => from(storage.clear())))
+      .subscribe();
+  }
+
+  getItem(key: any): Observable<any> {
+    return this.storage$.pipe(mergeMap((storage) => from(storage.get(key))));
+  }
+
+  key(val: number): Observable<string> {
+    return this.storage$.pipe(
+      mergeMap((storage) => from(storage.keys().then((keys) => keys[val])))
+    );
+  }
+
+  length(): Observable<number> {
+    return this.storage$.pipe(mergeMap((storage) => from(storage.length())));
+  }
+
+  removeItem(key: any): void {
+    this.storage$
+      .pipe(mergeMap((storage) => from(storage.remove(key))))
+      .subscribe();
+  }
+
+  setItem(key: any, value: any): void {
+    this.storage$
+      .pipe(mergeMap((storage) => from(storage.set(key, value))))
+      .subscribe();
+  }
+}

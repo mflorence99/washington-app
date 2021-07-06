@@ -18,11 +18,24 @@
 @import '~@ionic/angular/css/typography.css';
 @import '~@ionic/angular/css/display.css';
 
-/* Optional CSS utils that can be commented out */
-@import '~@ionic/angular/css/padding.css';
-@import '~@ionic/angular/css/float-elements.css';
-@import '~@ionic/angular/css/text-alignment.css';
-@import '~@ionic/angular/css/text-transformation.css';
-@import '~@ionic/angular/css/flex-utils.css';
-
+/* colors to match map maker */
 @import 'colors.scss';
+
+:root {
+  --app-scale: 0;
+  --app-translate-x: 0;
+  --app-translate-y: 0;
+}
+
+// TEMPORARY
+
+img {
+  cursor: move;
+  max-width: none;
+  touch-action: none;
+  transform: scale(var(--app-scale))
+    translate(
+      calc(var(--app-translate-x) * 1px),
+      calc(var(--app-translate-y) * 1px)
+    );
+}
