@@ -1,4 +1,5 @@
 import { HammerConfig } from './services/hammer';
+import { ModelState } from './state/model';
 import { RootPage } from './root';
 import { RootRouting } from './routing';
 import { StorageService } from './services/storage';
@@ -35,11 +36,11 @@ import { RouteReuseStrategy } from '@angular/router';
       name: 'washington',
       driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
     }),
-    NgxsModule.forRoot([ViewState], {
+    NgxsModule.forRoot([ModelState, ViewState], {
       developmentMode: !environment.production
     }),
     NgxsAsyncStoragePluginModule.forRoot(StorageService, {
-      key: ['view']
+      key: ['map', 'view']
     }),
     NgxsDataPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot({
