@@ -45,6 +45,7 @@ import { ViewChild } from '@angular/core';
           (panstart)="translateInit()"
           [src]="model.snapshot.map.src"
         />
+        <app-lots></app-lots>
       </ion-content>
 
       <ion-footer>

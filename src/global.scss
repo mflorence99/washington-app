@@ -96,10 +96,8 @@
 
 // TEMPORARY
 
+app-lots,
 img {
-  cursor: move;
-  max-width: none;
-  touch-action: none;
   transform: scale(var(--app-scale))
     translate(
       calc(var(--app-translate-x) * 1px),
@@ -107,4 +105,27 @@ img {
     );
   transform-origin: calc(var(--app-origin-x) * 1px)
     calc(var(--app-origin-x) * 1px);
+}
+
+app-lots {
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: var(--offset-top);
+
+  g path {
+    fill: none;
+    stroke: none;
+  }
+
+  g path[id='1-1'] {
+    stroke: var(--mat-red-500);
+    stroke-width: 3;
+  }
+}
+
+img {
+  cursor: move;
+  max-width: none;
+  touch-action: none;
 }

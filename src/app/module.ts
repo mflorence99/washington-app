@@ -7,10 +7,12 @@ import { ViewState } from './state/view';
 
 import { environment } from '../environments/environment';
 
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { Drivers } from '@ionic/storage';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
@@ -20,7 +22,6 @@ import { NgxsDataPluginModule } from '@ngxs-labs/data';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { RouteReuseStrategy } from '@angular/router';
-
 @NgModule({
   bootstrap: [RootPage],
 
@@ -29,8 +30,10 @@ import { RouteReuseStrategy } from '@angular/router';
   entryComponents: [],
 
   imports: [
+    AngularSvgIconModule.forRoot(),
     BrowserModule,
     HammerModule,
+    HttpClientModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: 'washington',
