@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
+    "analytics": "26551f59-b2de-4dab-9bdc-70288c232db7",
     "defaultCollection": "@ionic/angular-toolkit"
   },
   "defaultProject": "app",

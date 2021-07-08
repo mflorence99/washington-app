@@ -1,13 +1,13 @@
-import { lots } from './lots';
+import { LOTS } from './lots';
 
 export interface Lot {
   address: string;
   id: string;
 }
 
-export const parcelsByID: Record<string, Lot> = Object.keys(lots).reduce(
+export const PARCELS_BY_ID: Record<string, Lot> = Object.keys(LOTS).reduce(
   (acc, id) => {
-    acc[id] = { ...lots[id], id };
+    acc[id] = { ...LOTS[id], id };
     return acc;
   },
   {}

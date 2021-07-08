@@ -1,4 +1,4 @@
-export const lots = {
+export const LOTS = {
   '248-9000': {
     address: '342 LONG POND ROAD'
   },
