@@ -1,6 +1,7 @@
 import { Map } from './maps';
 import { MAPS } from './maps';
 
+import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
 import { Injectable } from '@angular/core';
 import { NgxsAfterBootstrap } from '@ngxs/store';
@@ -32,5 +33,11 @@ export class ModelState
   @DataAction({ insideZone: true })
   switchTo(@Payload('ModelState.switchTo') map: Map): void {
     this.ctx.setState(patch({ map }));
+  }
+
+  // accessors
+
+  @Computed() get map(): Map {
+    return this.snapshot.map;
   }
 }

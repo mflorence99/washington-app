@@ -20,7 +20,6 @@
 
 /* theme colors */
 @import 'colors.scss';
-@import 'theme/variables.scss';
 
 :root {
   // @see states/view.ts
@@ -56,10 +55,10 @@ app-lots {
   }
 
   // just for testing
-  // g polygon[id='14-148'] {
-  //   stroke: var(--mat-red-500);
-  //   stroke-width: 3;
-  // }
+  g polygon[id='1-1'] {
+    stroke: var(--mat-red-500);
+    stroke-width: 3;
+  }
 }
 
 img {

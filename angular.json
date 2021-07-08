@@ -63,7 +63,7 @@
             "polyfills": "src/polyfills.ts",
             "scripts": [],
             "sourceMap": true,
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": ["src/global.scss"],
             "tsConfig": "src/tsconfig.json",
             "vendorChunk": true
           }

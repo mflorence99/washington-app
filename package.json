@@ -12,6 +12,7 @@
   "scripts": {
     "build": "ng build",
     "clean:deps": "rm -rf node_modules && rm package-lock.json && npm install",
+    "deploy": "cp -R www/* ../mflorence99.github.io",
     "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve"

@@ -33,7 +33,7 @@ import { ViewChild } from '@angular/core';
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-title>{{ model.snapshot.map.title }}</ion-title>
+          <ion-title>{{ model.map.title }}</ion-title>
         </ion-toolbar>
       </ion-header>
 
@@ -41,19 +41,19 @@ import { ViewChild } from '@angular/core';
         <img
           #theMap
           (pan)="translate($event)"
-          (panend)="translateInit()"
-          (panstart)="translateInit()"
-          [src]="model.snapshot.map.src"
+          (panend)="gestureInit()"
+          (panstart)="gestureInit()"
+          (pinch)="scale($event)"
+          (pinchend)="gestureInit()"
+          (pinchstart)="gestureInit()"
+          [src]="model.map.src"
         />
         <app-lots></app-lots>
       </ion-content>
 
       <ion-footer>
         <ion-toolbar>
-          <ion-searchbar
-            [animated]="true"
-            (ionChange)="xxx($event)"
-          ></ion-searchbar>
+          <ion-searchbar [animated]="true"></ion-searchbar>
         </ion-toolbar>
       </ion-footer>
     </main>`
@@ -68,35 +68,38 @@ export class HomePage {
 
   constructor(public model: ModelState, public view: ViewState) {}
 
-  // NOTE: not currently used
-  scale(event: HammerInput): void {
+  gestureInit(): void {
+    this.xlate = this.view.view.translate;
+    this.zoom = this.view.view.scale;
+  }
+
+  // NOTE: doesn't really work
+  scale({ scale, center }): void {
     if (this.zoom) {
       const element = this.theMap.nativeElement;
       const minX = element.parentElement.offsetWidth / element.offsetWidth;
       const minY = element.parentElement.offsetHeight / element.offsetHeight;
       const minScale = Math.max(minX, minY);
       // clamp scale to what fits in container
-      const scale = Math.min(1, Math.max(minScale, event.scale * this.zoom));
-      if (this.zoom !== scale)
-        this.view.scale(scale, [event.center.x, event.center.y]);
+      const zoom = Math.min(1, Math.max(minScale, scale * this.zoom));
+      if (this.zoom !== zoom) this.view.scale(zoom, [center.x, center.y]);
     }
   }
 
   switchTo(map: Map): void {
-    this.view.translate([0, 0]);
     this.model.switchTo(map);
     this.xlate = null;
     this.zoom = null;
   }
 
-  translate(event: HammerInput): void {
+  translate({ deltaX, deltaY }): void {
     if (this.xlate) {
       const element = this.theMap.nativeElement;
-      let translateX = event.deltaX / this.zoom + this.xlate[0];
+      let translateX = deltaX / this.zoom + this.xlate[0];
       const maxX =
         (element.parentElement.offsetWidth - element.offsetWidth * this.zoom) /
         this.zoom;
-      let translateY = event.deltaY / this.zoom + this.xlate[1];
+      let translateY = deltaY / this.zoom + this.xlate[1];
       const maxY =
         (element.parentElement.offsetHeight -
           element.offsetHeight * this.zoom) /
@@ -107,14 +110,5 @@ export class HomePage {
       if (this.xlate[0] !== translateX && this.xlate[1] !== translateY)
         this.view.translate([translateX, translateY]);
     }
-  }
-
-  translateInit(): void {
-    this.xlate = this.view.snapshot.translate;
-    this.zoom = this.view.snapshot.scale;
-  }
-
-  xxx(event): void {
-    console.log(event);
   }
 }

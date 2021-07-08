@@ -5,9 +5,9 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-lots',
-  template: `<svg-icon [src]="model.snapshot.map.lots"></svg-icon>`
+  template: `<svg-icon [src]="model.map.lots"></svg-icon>`
 })
 export class LotsComponent {
   constructor(public model: ModelState, public view: ViewState) {}
