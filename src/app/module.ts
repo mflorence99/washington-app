@@ -37,7 +37,7 @@ import { RouteReuseStrategy } from '@angular/router';
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: 'washington',
-      driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
+      driverOrder: [Drivers.LocalStorage]
     }),
     NgxsModule.forRoot([ModelState, ViewState], {
       developmentMode: !environment.production

@@ -22,7 +22,7 @@ export interface ViewStateModel {
   name: 'view',
   defaults: {
     origin: [0, 0],
-    scale: 1,
+    scale: 1 / window.devicePixelRatio,
     translate: [0, 0]
   }
 })

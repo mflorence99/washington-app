@@ -18,8 +18,9 @@
 @import '~@ionic/angular/css/typography.css';
 @import '~@ionic/angular/css/display.css';
 
-/* colors to match map maker */
+/* theme colors */
 @import 'colors.scss';
+@import 'theme/variables.scss';
 
 :root {
   // @see states/view.ts
@@ -54,10 +55,11 @@ app-lots {
     stroke: none;
   }
 
-  g polygon[id='14-148'] {
-    stroke: var(--mat-red-500);
-    stroke-width: 3;
-  }
+  // just for testing
+  // g polygon[id='14-148'] {
+  //   stroke: var(--mat-red-500);
+  //   stroke-width: 3;
+  // }
 }
 
 img {
