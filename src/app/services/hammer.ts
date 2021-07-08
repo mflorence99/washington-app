@@ -7,7 +7,11 @@ import Hammer from 'hammerjs';
 
 @Injectable()
 export class HammerConfig extends HammerGestureConfig {
-  events = ['pan', 'panend', 'panstart', 'pinch', 'pinchend', 'pinchstart'];
+  events = [
+    'pan',
+    'panend',
+    'panstart' /* , 'pinch', 'pinchend', 'pinchstart' */
+  ];
   overrides = {
     pan: {
       direction: Hammer.DIRECTION_ALL,
@@ -15,7 +19,8 @@ export class HammerConfig extends HammerGestureConfig {
       pointers: 1,
       threshold: 1
     },
-    pinch: { enable: true, pointers: 2 },
+    // pinch: { enable: true, pointers: 2 },
+    pinch: { enable: false },
     press: { enable: false },
     rotate: { enable: false },
     swipe: { enable: false },
