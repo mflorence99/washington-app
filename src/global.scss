@@ -22,17 +22,29 @@
 @import 'colors.scss';
 
 :root {
-  // @see states/view.ts
   --app-origin-x: 0;
   --app-origin-y: 0;
   --app-scale: 0;
   --app-translate-x: 0;
   --app-translate-y: 0;
+  // land use color shading
+  // @see https://www.gismanual.com/style/ColorConventions.pdf
+  // @see map-maker
+  --shade-u11: var(--mat-brown-300);
+  --shade-u12: var(--mat-brown-500);
+  --shade-u17: var(--mat-red-200);
+  --shade-u19: var(--mat-yellow-200);
+  --shade-u22: var(--mat-orange-200);
+  --shade-u26: var(--mat-purple-200);
+  --shade-u27: var(--mat-gray-300);
+  --shade-u33: var(--mat-blue-200);
+  --shade-u58: var(--mat-teal-200);
+  --shade-u100: #d9e697;
+  --shade-u101: #acd19e;
 }
 
-article {
-  background: rgba(var(--rgb-gray-500), 0.5);
-  color: var(--mat-gray-500);
+article.backdrop {
+  background-color: rgba(var(--ion-color-medium-rgb), 0.5);
   display: grid;
   font-size: 4rem;
   height: 100%;
@@ -40,21 +52,60 @@ article {
   position: absolute;
   visibility: hidden;
   width: 100%;
+
+  &.loading {
+    color: rgba(var(--ion-color-light-rgb), 0.75);
+    visibility: visible;
+  }
 }
 
-article.loading {
-  visibility: visible;
+ion-menu ul.legend {
+  list-style: none;
+  padding-left: 2rem;
+
+  li {
+    display: flex;
+    margin-bottom: 0.5rem;
+
+    .code {
+      height: 1rem;
+      width: 1rem;
+    }
+  }
+}
+
+ion-searchbar.searchbar {
+  --background: rgba(var(--ion-color-medium-rgb), 0.5);
+  --border-radius: 0.5rem;
+  --color: var(--ion-color-light);
+  --icon-color: var(--ion-color-light);
+
+  height: 2.5rem;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: calc(var(--offset-top) + 1rem);
+  width: 15rem;
 }
 
 img.map,
-svg.lots {
-  transform: scale(var(--app-scale))
-    translate(
+svg-icon.lots svg {
+  // NOTE: translate must come before scale,
+  // but then prettier indents incorrectly
+  /* stylelint-disable indentation */
+  transform: translate(
       calc(var(--app-translate-x) * 1px),
       calc(var(--app-translate-y) * 1px)
-    );
+    )
+    scale(var(--app-scale));
+  /* stylelint-enable indentation */
   transform-origin: calc(var(--app-origin-x) * 1px)
     calc(var(--app-origin-x) * 1px);
+}
+
+img.map.animating,
+svg-icon.lots.animating svg {
+  transition: transform 0.5s linear;
 }
 
 img.map {
@@ -63,7 +114,7 @@ img.map {
   touch-action: none;
 }
 
-svg.lots {
+svg-icon.lots svg {
   left: 0;
   pointer-events: none;
   position: absolute;
@@ -72,11 +123,5 @@ svg.lots {
   g polygon {
     fill: none;
     stroke: none;
-  }
-
-  // just for testing
-  g polygon[id='1-1'] {
-    stroke: var(--mat-red-500);
-    stroke-width: 3;
   }
 }
