@@ -52,7 +52,7 @@ export class SelectionState
 {
   ngxsAfterBootstrap(): void {
     super.ngxsAfterBootstrap();
-    if (this.lots.length > 0) this.found(this.lots);
+    setTimeout(() => this.found(this.lots), 0);
   }
 
   // actions
@@ -71,7 +71,7 @@ export class SelectionState
     if (byAddress) lots = PARCELS_BY_ADDRESS[byAddress];
     const byLotID = this.isLotID(text);
     if (byLotID) lots = PARCELS_BY_ID[byLotID];
-    this.found(lots ? lots : []);
+    setTimeout(() => this.found(lots ? lots : []), 0);
   }
 
   // accessors

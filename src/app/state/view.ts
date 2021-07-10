@@ -1,17 +1,13 @@
 import { ModelState } from './model';
 
-import { Actions } from '@ngxs/store';
 import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
 import { Injectable } from '@angular/core';
-import { NgxsAfterBootstrap } from '@ngxs/store';
 import { NgxsDataRepository } from '@ngxs-labs/data/repositories';
-import { NgxsOnInit } from '@ngxs/store';
 import { Payload } from '@ngxs-labs/data/decorators';
 import { State } from '@ngxs/store';
 import { StateRepository } from '@ngxs-labs/data/decorators';
 
-import { filter } from 'rxjs/operators';
 import { patch } from '@ngxs/store/operators';
 
 export interface View {
@@ -28,12 +24,9 @@ export type ViewStateModel = Record<string, View>;
   name: 'view',
   defaults: {}
 })
-export class ViewState
-  extends NgxsDataRepository<ViewStateModel>
-  implements NgxsAfterBootstrap, NgxsOnInit
-{
+export class ViewState extends NgxsDataRepository<ViewStateModel> {
   //
-  constructor(public actions$: Actions, public model: ModelState) {
+  constructor(public model: ModelState) {
     super();
   }
 
@@ -43,16 +36,6 @@ export class ViewState
       scale: 1 / window.devicePixelRatio,
       translate: [0, 0]
     };
-  }
-
-  ngxsAfterBootstrap(): void {
-    super.ngxsAfterBootstrap();
-    this.setProperties();
-  }
-
-  ngxsOnInit(): void {
-    super.ngxsOnInit();
-    this.handleActions$();
   }
 
   // actions
@@ -66,12 +49,14 @@ export class ViewState
     if (!this.ctx.getState()[mapID])
       this.ctx.setState(patch({ [mapID]: ViewState.defaultView() }));
     this.ctx.setState(patch({ [mapID]: patch({ origin: [x, y], scale }) }));
-    // set CSS variables
-    const style = document.body.style;
-    style.setProperty('--app-origin-x', `${x}`);
-    style.setProperty('--app-origin-y', `${y}`);
-    style.setProperty('--app-scale', `${scale}`);
+    setTimeout(() => this.scaled(scale, [x, y]), 0);
   }
+
+  @DataAction({ insideZone: true })
+  scaled(
+    @Payload('ViewState.scaled') _scale: number,
+    [_x, _y]: [number, number]
+  ): void {}
 
   @DataAction({ insideZone: true })
   translate(@Payload('ViewState.translate') [x, y]: [number, number]): void {
@@ -81,39 +66,17 @@ export class ViewState
     this.ctx.setState(
       patch({ [mapID]: patch({ origin: [0, 0], translate: [x, y] }) })
     );
-    // set CSS variables
-    const style = document.body.style;
-    style.setProperty('--app-origin-x', `${this.view.origin[0]}`);
-    style.setProperty('--app-origin-y', `${this.view.origin[1]}`);
-    style.setProperty('--app-translate-x', `${x}`);
-    style.setProperty('--app-translate-y', `${y}`);
+    setTimeout(() => this.translated([x, y]), 0);
   }
+
+  @DataAction({ insideZone: true })
+  translated(
+    @Payload('ViewState.translated') [_x, _y]: [number, number]
+  ): void {}
 
   // accessors
 
   @Computed() get view(): View {
     return this.snapshot[this.model.map.id] ?? ViewState.defaultView();
-  }
-
-  // private methods
-
-  private handleActions$(): void {
-    this.actions$
-      .pipe(
-        filter(
-          ({ action, status }) =>
-            action['ModelState.switchTo'] && status === 'SUCCESSFUL'
-        )
-      )
-      .subscribe(() => this.setProperties());
-  }
-
-  private setProperties(): void {
-    const style = document.body.style;
-    style.setProperty('--app-origin-x', `${this.view.origin[0]}`);
-    style.setProperty('--app-origin-y', `${this.view.origin[1]}`);
-    style.setProperty('--app-scale', `${this.view.scale}`);
-    style.setProperty('--app-translate-x', `${this.view.translate[0]}`);
-    style.setProperty('--app-translate-y', `${this.view.translate[1]}`);
   }
 }

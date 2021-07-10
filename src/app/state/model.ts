@@ -28,12 +28,21 @@ export class ModelState
   extends NgxsDataRepository<ModelStateModel>
   implements NgxsAfterBootstrap
 {
+  ngxsAfterBootstrap(): void {
+    super.ngxsAfterBootstrap();
+    setTimeout(() => this.switchedTo(this.map), 0);
+  }
+
   // actions
 
   @DataAction({ insideZone: true })
   switchTo(@Payload('ModelState.switchTo') map: Map): void {
     this.ctx.setState(patch({ map }));
+    setTimeout(() => this.switchedTo(map), 0);
   }
+
+  @DataAction({ insideZone: true })
+  switchedTo(@Payload('ModelState.switchedTo') _map: Map): void {}
 
   // accessors
 

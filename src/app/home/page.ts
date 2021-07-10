@@ -90,7 +90,7 @@ interface Point {
       <ion-content [fullscreen]="true" [scrollX]="false" [scrollY]="false">
         <img
           #map
-          (load)="loading = false"
+          (load)="loaded()"
           (pan)="translate($event)"
           (panend)="translateEnd()"
           (panstart)="translateBegin()"
@@ -106,7 +106,7 @@ interface Point {
 
         <ion-searchbar
           #searchbar
-          (ionChange)="selection.searchFor($event.detail.value)"
+          (ionChange)="searchFor($event.detail.value)"
           [debounce]="500"
           [value]="selection.text"
           class="searchbar"
@@ -146,6 +146,13 @@ export class HomePage implements OnInit {
 
   legend(): [string, string][] {
     return Object.entries(DESC_BY_USAGE);
+  }
+
+  loaded(): void {
+    console.error('LOADED');
+    this.loading = false;
+    if (this.selection.text) this.searchFor(this.selection.text);
+    this.setProperties();
   }
 
   maxTranslate(): [number, number] {
@@ -202,12 +209,21 @@ export class HomePage implements OnInit {
     this.scale({ scale: 1.1, center: this.centerOfView() });
   }
 
+  searchFor(text: string): void {
+    if (!this.loading) {
+      console.error(`SEARCH FOR ${text}`);
+      this.selection.searchFor(text);
+    }
+  }
+
   switchTo(map: Map): void {
-    this.loading = true;
+    if (map.id !== this.model.map.id) {
+      this.loading = true;
+      this.xlate = null;
+      this.zoom = null;
+      this.model.switchTo(map);
+    }
     this.menu.close(true);
-    this.model.switchTo(map);
-    this.xlate = null;
-    this.zoom = null;
   }
 
   trackByMap(index: number, map: Map): string {
@@ -290,11 +306,17 @@ export class HomePage implements OnInit {
     this.actions$
       .pipe(
         takeUntil(this.destroy$),
-        filter(({ status }) => status === 'SUCCESSFUL')
+        filter(({ status }) => !this.loading && status === 'SUCCESSFUL')
       )
       .subscribe(({ action }) => {
-        const lots = action['SelectionState.found'];
-        if (lots != null) {
+        if (
+          action['ModelState.switchedTo'] ||
+          action['ViewState.scaled'] ||
+          action['ViewState.translated']
+        ) {
+          this.setProperties();
+        } else if (action['SelectionState.found']) {
+          const lots = action['SelectionState.found'];
           this.clearLots();
           if (lots.length > 0) this.selectLots(lots);
         }
@@ -329,5 +351,16 @@ export class HomePage implements OnInit {
       // TODO: get ready for a pan-initiated translate
       setTimeout(() => (this.xlate = this.view.view.translate), 100);
     }
+  }
+
+  private setProperties(): void {
+    const style = document.body.style;
+    const view = this.view.view;
+    console.table(view);
+    style.setProperty('--app-origin-x', `${view.origin[0]}`);
+    style.setProperty('--app-origin-y', `${view.origin[1]}`);
+    style.setProperty('--app-scale', `${view.scale}`);
+    style.setProperty('--app-translate-x', `${view.translate[0]}`);
+    style.setProperty('--app-translate-y', `${view.translate[1]}`);
   }
 }

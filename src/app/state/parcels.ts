@@ -16,8 +16,6 @@ export const PARCELS_BY_ADDRESS: Record<string, Lot[]> = Object.keys(
   return acc;
 }, {});
 
-console.log(PARCELS_BY_ADDRESS);
-
 export const PARCELS_BY_ID: Record<string, Lot[]> = Object.keys(LOTS).reduce(
   (acc, id) => {
     const lot = { ...LOTS[id], id };
