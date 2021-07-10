@@ -5,7 +5,6 @@ import { PARCELS_BY_ID } from './parcels';
 import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
 import { Injectable } from '@angular/core';
-import { NgxsAfterBootstrap } from '@ngxs/store';
 import { NgxsDataRepository } from '@ngxs-labs/data/repositories';
 import { Payload } from '@ngxs-labs/data/decorators';
 import { State } from '@ngxs/store';
@@ -46,18 +45,9 @@ export interface SelectionStateModel {
     text: ''
   }
 })
-export class SelectionState
-  extends NgxsDataRepository<SelectionStateModel>
-  implements NgxsAfterBootstrap
-{
-  ngxsAfterBootstrap(): void {
-    super.ngxsAfterBootstrap();
-    setTimeout(() => this.found(this.lots), 0);
-  }
-
+export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   // actions
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   @DataAction({ insideZone: true })
   found(@Payload('SelectionState.found') lots: Lot[]): void {
     this.ctx.setState(patch({ lots }));
@@ -67,10 +57,12 @@ export class SelectionState
   searchFor(@Payload('SelectionState.searchFor') text: string): void {
     this.ctx.setState(patch({ text }));
     let lots;
-    const byAddress = this.isAddress(text);
-    if (byAddress) lots = PARCELS_BY_ADDRESS[byAddress];
-    const byLotID = this.isLotID(text);
-    if (byLotID) lots = PARCELS_BY_ID[byLotID];
+    if (text) {
+      const byAddress = this.isAddress(text);
+      if (byAddress) lots = PARCELS_BY_ADDRESS[byAddress];
+      const byLotID = this.isLotID(text);
+      if (byLotID) lots = PARCELS_BY_ID[byLotID];
+    }
     setTimeout(() => this.found(lots ? lots : []), 0);
   }
 

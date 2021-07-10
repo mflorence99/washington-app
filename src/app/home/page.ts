@@ -4,6 +4,7 @@ import { Lot } from '../state/parcels';
 import { Map } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
+import { Point } from '../state/maps';
 import { SelectionState } from '../state/selection';
 import { ViewState } from '../state/view';
 
@@ -18,11 +19,6 @@ import { filter } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 
 import centroid from 'polygon-centroid';
-
-interface Point {
-  x: number;
-  y: number;
-}
 
 // NOTE: we tried to support pinch to zoom but it wasn't satisfactory
 
@@ -87,22 +83,29 @@ interface Point {
         </ion-toolbar>
       </ion-header>
 
-      <ion-content [fullscreen]="true" [scrollX]="false" [scrollY]="false">
-        <img
-          #map
-          (load)="loaded()"
-          (pan)="translate($event)"
-          (panend)="translateEnd()"
-          (panstart)="translateBegin()"
-          [ngClass]="{ animating: animating }"
-          [src]="model.map.src"
-          class="map"
-        />
+      <ion-content
+        [fullscreen]="true"
+        [scrollX]="false"
+        [scrollY]="false"
+        class="main"
+      >
+        <section class="content">
+          <img
+            #map
+            (load)="ready()"
+            (pan)="translate($event)"
+            (panend)="translateEnd()"
+            (panstart)="translateBegin()"
+            [ngClass]="{ animating: animating }"
+            [src]="model.map.src"
+            class="map"
+          />
 
-        <svg-icon
-          [ngClass]="{ animating: animating, lots: true }"
-          [src]="model.map.lots"
-        ></svg-icon>
+          <svg-icon
+            [ngClass]="{ animating: animating, lots: true }"
+            [src]="model.map.lots"
+          ></svg-icon>
+        </section>
 
         <ion-searchbar
           #searchbar
@@ -148,19 +151,13 @@ export class HomePage implements OnInit {
     return Object.entries(DESC_BY_USAGE);
   }
 
-  loaded(): void {
-    console.error('LOADED');
-    this.loading = false;
-    if (this.selection.text) this.searchFor(this.selection.text);
-    this.setProperties();
-  }
-
   maxTranslate(): [number, number] {
     const element = this.map?.nativeElement;
     if (element) {
+      const scale = this.view.view.scale;
       return [
-        element.parentElement.offsetWidth - element.offsetWidth * this.zoom,
-        element.parentElement.offsetHeight - element.offsetHeight * this.zoom
+        element.parentElement.offsetWidth - element.offsetWidth * scale,
+        element.parentElement.offsetHeight - element.offsetHeight * scale
       ];
     } else return [0, 0];
   }
@@ -187,31 +184,44 @@ export class HomePage implements OnInit {
     this.createStylesheet();
   }
 
+  // TODO: we have no way of tracking whether the SVG loaded
+  // and this seems to cause some anomalies
+  ready(): void {
+    console.error(`Ready for ${this.model.map.id}`);
+    this.loading = false;
+    // TODO: why wait so long? why not next tick?
+    setTimeout(() => {
+      // make sure view is initialized
+      this.initializeView();
+      // re-search for any past search
+      this.searchFor(this.selection.text);
+    }, 500);
+  }
+
   // NOTE: this was designed to be called by the pinch event
-  scale({ scale, center }): void {
-    if (this.zoom && center) {
+  scale({ scale }): void {
+    if (this.zoom) {
       const zoom = Math.min(
         this.maxScale(),
         Math.max(this.minScale(), scale * this.zoom)
       );
-      this.view.scale(zoom, [0, 0]);
-      // TODO: this.view.scale(zoom, [center.x / this.zoom, center.y / this.zoom]);
+      this.view.scale(zoom);
     }
   }
 
   scaleDown(): void {
     this.zoom = this.view.view.scale;
-    this.scale({ scale: 0.9, center: this.centerOfView() });
+    this.scale({ scale: 0.9 });
   }
 
   scaleUp(): void {
     this.zoom = this.view.view.scale;
-    this.scale({ scale: 1.1, center: this.centerOfView() });
+    this.scale({ scale: 1.1 });
   }
 
   searchFor(text: string): void {
     if (!this.loading) {
-      console.error(`SEARCH FOR ${text}`);
+      console.error(`Searching for ${text}`);
       this.selection.searchFor(text);
     }
   }
@@ -273,7 +283,7 @@ export class HomePage implements OnInit {
           return { x: Number(x), y: Number(y) };
         });
         acc.push(centroid(points));
-      }
+      } else console.error(`Can't find polygon for ${lot.id}`);
       return acc;
     }, []);
     // return the center of the centers
@@ -282,7 +292,7 @@ export class HomePage implements OnInit {
     else return centroid(centers);
   }
 
-  private centerOfView(): Point {
+  private centerOfViewport(): Point {
     const element = this.map?.nativeElement;
     if (element) {
       return {
@@ -311,6 +321,7 @@ export class HomePage implements OnInit {
       .subscribe(({ action }) => {
         if (
           action['ModelState.switchedTo'] ||
+          action['ViewState.initialized'] ||
           action['ViewState.scaled'] ||
           action['ViewState.translated']
         ) {
@@ -321,6 +332,25 @@ export class HomePage implements OnInit {
           if (lots.length > 0) this.selectLots(lots);
         }
       });
+  }
+
+  private initializeView(): void {
+    const focus = this.model.map.focus;
+    const midPoint = this.centerOfViewport();
+    const max = this.maxTranslate();
+    const min = this.minTranslate();
+    const view = ViewState.defaultView();
+    const translate = [
+      -(Number(focus.x) - midPoint.x / view.scale) * view.scale,
+      -(Number(focus.y) - midPoint.y / view.scale) * view.scale
+    ];
+    this.view.initialize({
+      scale: view.scale,
+      translate: [
+        Math.max(max[0], Math.min(min[0], translate[0])),
+        Math.max(max[1], Math.min(min[1], translate[1]))
+      ]
+    });
   }
 
   private selectLots(lots: Lot[]): void {
@@ -336,7 +366,7 @@ export class HomePage implements OnInit {
     // put the center of the lots in the middle of the viewport
     this.zoom = this.view.view.scale;
     const center = this.centerOfLots(lots);
-    const midPoint = this.centerOfView();
+    const midPoint = this.centerOfViewport();
     if (center && midPoint) {
       const max = this.maxTranslate();
       const min = this.minTranslate();
@@ -350,15 +380,12 @@ export class HomePage implements OnInit {
       ]);
       // TODO: get ready for a pan-initiated translate
       setTimeout(() => (this.xlate = this.view.view.translate), 100);
-    }
+    } else console.error(`Can't select lots ${JSON.stringify(lots)}`);
   }
 
   private setProperties(): void {
     const style = document.body.style;
     const view = this.view.view;
-    console.table(view);
-    style.setProperty('--app-origin-x', `${view.origin[0]}`);
-    style.setProperty('--app-origin-y', `${view.origin[1]}`);
     style.setProperty('--app-scale', `${view.scale}`);
     style.setProperty('--app-translate-x', `${view.translate[0]}`);
     style.setProperty('--app-translate-y', `${view.translate[1]}`);

@@ -22,8 +22,6 @@
 @import 'colors.scss';
 
 :root {
-  --app-origin-x: 0;
-  --app-origin-y: 0;
   --app-scale: 0;
   --app-translate-x: 0;
   --app-translate-y: 0;
@@ -88,19 +86,28 @@ ion-searchbar.searchbar {
   width: 15rem;
 }
 
+section.content {
+  height: calc(100% - (var(--offset-top) + 1rem));
+  position: absolute;
+  top: calc(var(--offset-top) + 1rem);
+  transform: scale(var(--app-scale));
+  transform-origin: 50% 50%;
+  transition: transform 0.5s linear;
+  width: 100%;
+}
+
+img.map,
+svg-icon.lots {
+  display: block;
+  position: absolute;
+}
+
 img.map,
 svg-icon.lots svg {
-  // NOTE: translate must come before scale,
-  // but then prettier indents incorrectly
-  /* stylelint-disable indentation */
   transform: translate(
-      calc(var(--app-translate-x) * 1px),
-      calc(var(--app-translate-y) * 1px)
-    )
-    scale(var(--app-scale));
-  /* stylelint-enable indentation */
-  transform-origin: calc(var(--app-origin-x) * 1px)
-    calc(var(--app-origin-x) * 1px);
+    calc(var(--app-translate-x) * 1px),
+    calc(var(--app-translate-y) * 1px)
+  );
 }
 
 img.map.animating,
@@ -114,11 +121,8 @@ img.map {
   touch-action: none;
 }
 
-svg-icon.lots svg {
-  left: 0;
+svg-icon.lots {
   pointer-events: none;
-  position: absolute;
-  top: var(--offset-top);
 
   g polygon {
     fill: none;

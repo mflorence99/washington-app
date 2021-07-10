@@ -4,7 +4,6 @@ import { MAPS } from './maps';
 import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
 import { Injectable } from '@angular/core';
-import { NgxsAfterBootstrap } from '@ngxs/store';
 import { NgxsDataRepository } from '@ngxs-labs/data/repositories';
 import { Payload } from '@ngxs-labs/data/decorators';
 import { State } from '@ngxs/store';
@@ -24,15 +23,7 @@ export interface ModelStateModel {
     map: MAPS[0]
   }
 })
-export class ModelState
-  extends NgxsDataRepository<ModelStateModel>
-  implements NgxsAfterBootstrap
-{
-  ngxsAfterBootstrap(): void {
-    super.ngxsAfterBootstrap();
-    setTimeout(() => this.switchedTo(this.map), 0);
-  }
-
+export class ModelState extends NgxsDataRepository<ModelStateModel> {
   // actions
 
   @DataAction({ insideZone: true })
