@@ -36,7 +36,8 @@
             "style": "camelCase",
             "type": "attribute"
           }
-        ]
+        ],
+        "no-console": "off"
       }
     },
     {

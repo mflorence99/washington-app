@@ -52,9 +52,13 @@ article.backdrop {
   width: 100%;
 
   &.loading {
-    color: rgba(var(--ion-color-light-rgb), 0.75);
+    color: rgba(var(--ion-color-light-rgb), 0.66);
     visibility: visible;
   }
+}
+
+ion-content.main {
+  --background: var(--ion-color-dark);
 }
 
 ion-menu ul.legend {
@@ -87,19 +91,39 @@ ion-searchbar.searchbar {
 }
 
 section.content {
-  height: calc(100% - (var(--offset-top) + 1rem));
+  height: calc(100% - var(--offset-top));
   position: absolute;
-  top: calc(var(--offset-top) + 1rem);
+  top: var(--offset-top);
   transform: scale(var(--app-scale));
   transform-origin: 50% 50%;
   transition: transform 0.5s linear;
   width: 100%;
 }
 
+// NOTE: svg-icon.lots selector is used in code
+// @see page.ts
+
 img.map,
 svg-icon.lots {
   display: block;
   position: absolute;
+}
+
+img.map {
+  border: 1px solid black;
+  box-sizing: content-box;
+  cursor: move;
+  max-width: none;
+  touch-action: none;
+}
+
+svg-icon.lots {
+  pointer-events: none;
+
+  g polygon {
+    fill: none;
+    stroke: none;
+  }
 }
 
 img.map,
@@ -113,19 +137,4 @@ svg-icon.lots svg {
 img.map.animating,
 svg-icon.lots.animating svg {
   transition: transform 0.5s linear;
-}
-
-img.map {
-  cursor: move;
-  max-width: none;
-  touch-action: none;
-}
-
-svg-icon.lots {
-  pointer-events: none;
-
-  g polygon {
-    fill: none;
-    stroke: none;
-  }
 }

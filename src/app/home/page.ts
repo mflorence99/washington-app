@@ -4,6 +4,7 @@ import { Lot } from '../state/parcels';
 import { Map } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
+import { PARCELS_BY_ID } from '../state/parcels';
 import { Point } from '../state/maps';
 import { SelectionState } from '../state/selection';
 import { ViewState } from '../state/view';
@@ -19,6 +20,7 @@ import { filter } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 
 import centroid from 'polygon-centroid';
+import classifyPoint from 'robust-point-in-polygon';
 
 // NOTE: we tried to support pinch to zoom but it wasn't satisfactory
 
@@ -41,7 +43,7 @@ import centroid from 'polygon-centroid';
         </ion-list>
 
         <ul class="legend">
-          <li *ngFor="let usage of legend()">
+          <li *ngFor="let usage of usages(); trackByUsage">
             <div
               class="code"
               style="background-color: var(--shade-u{{ usage[0] }})"
@@ -89,11 +91,11 @@ import centroid from 'polygon-centroid';
         [scrollY]="false"
         class="main"
       >
-        <section class="content">
+        <section (tap)="selectLot($event.center)" class="content">
           <img
             #map
             (load)="ready()"
-            (pan)="translate($event)"
+            (pan)="translate($event.deltaX, $event.deltaY)"
             (panend)="translateEnd()"
             (panstart)="translateBegin()"
             [ngClass]="{ animating: animating }"
@@ -135,9 +137,9 @@ export class HomePage implements OnInit {
   loading = true;
   maps: Map[] = MAPS;
 
+  private scales = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3];
   private stylesheet: CSSStyleSheet;
   private xlate: [number, number];
-  private zoom: number;
 
   constructor(
     private actions$: Actions,
@@ -147,17 +149,12 @@ export class HomePage implements OnInit {
     public view: ViewState
   ) {}
 
-  legend(): [string, string][] {
-    return Object.entries(DESC_BY_USAGE);
-  }
-
   maxTranslate(): [number, number] {
     const element = this.map?.nativeElement;
     if (element) {
-      const scale = this.view.view.scale;
       return [
-        element.parentElement.offsetWidth - element.offsetWidth * scale,
-        element.parentElement.offsetHeight - element.offsetHeight * scale
+        element.parentElement.offsetWidth - element.offsetWidth,
+        element.parentElement.offsetHeight - element.offsetHeight
       ];
     } else return [0, 0];
   }
@@ -167,7 +164,7 @@ export class HomePage implements OnInit {
   }
 
   maxScale(): number {
-    return 2;
+    return this.scales[this.scales.length - 1];
   }
 
   minScale(): number {
@@ -175,8 +172,9 @@ export class HomePage implements OnInit {
     if (element) {
       const minX = element.parentElement.offsetWidth / element.offsetWidth;
       const minY = element.parentElement.offsetHeight / element.offsetHeight;
-      return Math.max(minX, minY);
-    } else return 0;
+      // NOTE: make sure that scale is always represented in scales
+      return Math.round(Math.max(minX, minY, this.scales[0]) * 10) / 10;
+    } else return this.scales[0];
   }
 
   ngOnInit(): void {
@@ -198,25 +196,15 @@ export class HomePage implements OnInit {
     }, 500);
   }
 
-  // NOTE: this was designed to be called by the pinch event
-  scale({ scale }): void {
-    if (this.zoom) {
-      const zoom = Math.min(
-        this.maxScale(),
-        Math.max(this.minScale(), scale * this.zoom)
-      );
-      this.view.scale(zoom);
-    }
-  }
-
   scaleDown(): void {
-    this.zoom = this.view.view.scale;
-    this.scale({ scale: 0.9 });
+    const ix = this.scales.findIndex((scale) => scale === this.view.view.scale);
+    if (ix > 0) this.view.scale(this.scales[ix - 1]);
   }
 
   scaleUp(): void {
-    this.zoom = this.view.view.scale;
-    this.scale({ scale: 1.1 });
+    const ix = this.scales.findIndex((scale) => scale === this.view.view.scale);
+    if (ix < this.scales.length - 1 && ix !== -1)
+      this.view.scale(this.scales[ix + 1]);
   }
 
   searchFor(text: string): void {
@@ -226,11 +214,48 @@ export class HomePage implements OnInit {
     }
   }
 
+  // NOTE: this works because we scale the "tap" surface on its center
+  selectLot(point: Point): void {
+    const center = this.centerOfViewport();
+    const origin = this.originOfViewport();
+    const translate = this.view.view.translate;
+    const scale = this.view.view.scale;
+    if (center && origin) {
+      const xlate = {
+        x: -translate[0],
+        y: -translate[1]
+      };
+      // cx            the distance of a point from the center
+      // cx/scale      the actual distance in unscaled units
+      // cx - cx/scale the delta from scaling
+      // so ...
+      // x += cx - cx/scale
+      // y += cy - cy/scale
+      const cx = center.x - point.x;
+      const dx = cx - cx / scale;
+      const ox = origin.x / scale;
+      point.x += dx - ox + xlate.x;
+      const cy = center.y - point.y;
+      const dy = cy - cy / scale;
+      const oy = origin.y / scale;
+      point.y += dy - oy + xlate.y;
+      const polygon = this.whichPolygon(point);
+      // find the lots selected
+      if (polygon?.id) {
+        const lots = PARCELS_BY_ID[polygon.id];
+        if (lots) {
+          this.unhighlightLots();
+          this.highlightLots(lots, 'var(--ion-color-danger)');
+        }
+      }
+      console.log(polygon?.id);
+    }
+  }
+
   switchTo(map: Map): void {
     if (map.id !== this.model.map.id) {
       this.loading = true;
       this.xlate = null;
-      this.zoom = null;
       this.model.switchTo(map);
     }
     this.menu.close(true);
@@ -240,15 +265,16 @@ export class HomePage implements OnInit {
     return map.id;
   }
 
+  trackByUsage(index: number, usage: [string, string]): string {
+    return usage[0];
+  }
+
   // NOTE: this is designed to be called by the pan event
-  translate({ deltaX, deltaY }): void {
+  translate(deltaX: number, deltaY: number): void {
     if (this.xlate) {
       const max = this.maxTranslate();
       const min = this.minTranslate();
-      const translate = [
-        deltaX / this.zoom + this.xlate[0],
-        deltaY / this.zoom + this.xlate[1]
-      ];
+      const translate = [deltaX + this.xlate[0], deltaY + this.xlate[1]];
       this.view.translate([
         Math.max(max[0], Math.min(min[0], translate[0])),
         Math.max(max[1], Math.min(min[1], translate[1]))
@@ -260,17 +286,39 @@ export class HomePage implements OnInit {
   translateBegin(): void {
     this.animating = false;
     this.xlate = this.view.view.translate;
-    this.zoom = this.view.view.scale;
   }
 
   // NOTE: this is designed to be called by the panend event
   translateEnd(): void {
     this.animating = true;
     this.xlate = this.view.view.translate;
-    this.zoom = this.view.view.scale;
+  }
+
+  usages(): [string, string][] {
+    return Object.entries(DESC_BY_USAGE);
   }
 
   // private methods
+
+  private centerLotsInViewport(lots: Lot[]): void {
+    // put the center of the lots in the middle of the viewport
+    const center = this.centerOfLots(lots);
+    const midPoint = this.centerOfViewport();
+    if (center && midPoint) {
+      const max = this.maxTranslate();
+      const min = this.minTranslate();
+      const translate = [
+        -(Number(center.x) - midPoint.x),
+        -(Number(center.y) - midPoint.y)
+      ];
+      this.view.translate([
+        Math.max(max[0], Math.min(min[0], translate[0])),
+        Math.max(max[1], Math.min(min[1], translate[1]))
+      ]);
+      // TODO: get ready for a pan-initiated translate
+      setTimeout(() => (this.xlate = this.view.view.translate), 100);
+    } else console.error(`Can't select lots ${JSON.stringify(lots)}`);
+  }
 
   private centerOfLots(lots: Lot[]): Point {
     // find the center of each lot
@@ -280,6 +328,7 @@ export class HomePage implements OnInit {
         const raw = polygon.getAttribute('points');
         const points = raw.split(' ').map((point) => {
           const [x, y] = point.split(',');
+          // NOTE: centroid wants points in Point format
           return { x: Number(x), y: Number(y) };
         });
         acc.push(centroid(points));
@@ -300,10 +349,6 @@ export class HomePage implements OnInit {
         y: element.parentElement.offsetHeight / 2
       };
     } else return null;
-  }
-
-  private clearLots(): void {
-    while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
   }
 
   private createStylesheet(): void {
@@ -328,10 +373,24 @@ export class HomePage implements OnInit {
           this.setProperties();
         } else if (action['SelectionState.found']) {
           const lots = action['SelectionState.found'];
-          this.clearLots();
-          if (lots.length > 0) this.selectLots(lots);
+          this.unhighlightLots();
+          if (lots.length > 0) {
+            this.highlightLots(lots, 'var(--ion-color-danger)');
+            this.centerLotsInViewport(lots);
+          }
         }
       });
+  }
+
+  private highlightLots(lots: Lot[], stroke: string): void {
+    // NOTE: pay attention to globals.scss
+    lots.forEach((lot) => {
+      const rule = `svg-icon.lots svg g polygon[id='${lot.id}'] {
+        stroke: ${stroke};
+        stroke-width: 3;
+      }`;
+      this.stylesheet.insertRule(rule);
+    });
   }
 
   private initializeView(): void {
@@ -340,10 +399,7 @@ export class HomePage implements OnInit {
     const max = this.maxTranslate();
     const min = this.minTranslate();
     const view = ViewState.defaultView();
-    const translate = [
-      -(Number(focus.x) - midPoint.x / view.scale) * view.scale,
-      -(Number(focus.y) - midPoint.y / view.scale) * view.scale
-    ];
+    const translate = [-(focus.x - midPoint.x), -(focus.y - midPoint.y)];
     this.view.initialize({
       scale: view.scale,
       translate: [
@@ -353,34 +409,14 @@ export class HomePage implements OnInit {
     });
   }
 
-  private selectLots(lots: Lot[]): void {
-    // add rules for selected lots
-    // NOTE: pay attention to globals.scss
-    lots.forEach((lot) => {
-      const rule = `svg-icon.lots svg g polygon[id='${lot.id}'] {
-        stroke: var(--ion-color-danger);
-        stroke-width: 3;
-      }`;
-      this.stylesheet.insertRule(rule);
-    });
-    // put the center of the lots in the middle of the viewport
-    this.zoom = this.view.view.scale;
-    const center = this.centerOfLots(lots);
-    const midPoint = this.centerOfViewport();
-    if (center && midPoint) {
-      const max = this.maxTranslate();
-      const min = this.minTranslate();
-      const translate = [
-        -(Number(center.x) - midPoint.x / this.zoom) * this.zoom,
-        -(Number(center.y) - midPoint.y / this.zoom) * this.zoom
-      ];
-      this.view.translate([
-        Math.max(max[0], Math.min(min[0], translate[0])),
-        Math.max(max[1], Math.min(min[1], translate[1]))
-      ]);
-      // TODO: get ready for a pan-initiated translate
-      setTimeout(() => (this.xlate = this.view.view.translate), 100);
-    } else console.error(`Can't select lots ${JSON.stringify(lots)}`);
+  private originOfViewport(): Point {
+    const element = this.map?.nativeElement;
+    if (element) {
+      return {
+        x: element.parentElement.offsetLeft,
+        y: element.parentElement.offsetTop
+      };
+    } else return null;
   }
 
   private setProperties(): void {
@@ -389,5 +425,23 @@ export class HomePage implements OnInit {
     style.setProperty('--app-scale', `${view.scale}`);
     style.setProperty('--app-translate-x', `${view.translate[0]}`);
     style.setProperty('--app-translate-y', `${view.translate[1]}`);
+  }
+
+  private unhighlightLots(): void {
+    while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
+  }
+
+  private whichPolygon(point: Point): SVGGeometryElement {
+    const polygons = Array.from(
+      document.querySelectorAll<SVGGeometryElement>('svg-icon.lots g polygon')
+    );
+    const polygon = polygons.find((e) => {
+      const raw = e.getAttribute('points');
+      const points = raw.split(' ').map((p) => p.split(','));
+      // TODO: points.length = points.length - 1;
+      // NOTE: classifyPoint wants points as tuples
+      return classifyPoint(points, [point.x, point.y]) <= 0;
+    });
+    return polygon;
   }
 }
