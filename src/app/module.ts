@@ -8,11 +8,14 @@ import { ViewState } from './state/view';
 
 import { environment } from '../environments/environment';
 
+import { AngularResizedEventModule } from 'angular-resize-event';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { Drivers } from '@ionic/storage';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
+import { HttpClientJsonpModule } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { IonicRouteStrategy } from '@ionic/angular';
@@ -31,10 +34,13 @@ import { RouteReuseStrategy } from '@angular/router';
   entryComponents: [],
 
   imports: [
+    AngularResizedEventModule,
     AngularSvgIconModule.forRoot(),
     BrowserModule,
+    GoogleMapsModule,
     HammerModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: 'washington',

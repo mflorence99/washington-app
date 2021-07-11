@@ -1,5 +1,6 @@
 import { DESC_BY_USAGE } from '../state/lots';
 import { DestroyService } from '../services/destroy';
+import { DetailsComponent } from './details';
 import { Lot } from '../state/parcels';
 import { Map } from '../state/maps';
 import { MAPS } from '../state/maps';
@@ -13,6 +14,7 @@ import { Actions } from '@ngxs/store';
 import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
 import { ElementRef } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 
@@ -144,6 +146,7 @@ export class HomePage implements OnInit {
   constructor(
     private actions$: Actions,
     private destroy$: DestroyService,
+    private mc: ModalController,
     public model: ModelState,
     public selection: SelectionState,
     public view: ViewState
@@ -246,9 +249,17 @@ export class HomePage implements OnInit {
         if (lots) {
           this.unhighlightLots();
           this.highlightLots(lots, 'var(--ion-color-danger)');
+          // TEMPORARY
+          console.log(polygon?.id);
+          this.mc
+            .create({
+              component: DetailsComponent,
+              componentProps: { lot: lots[0] },
+              cssClass: 'lot-details'
+            })
+            .then((modal) => modal.present());
         }
       }
-      console.log(polygon?.id);
     }
   }
 
@@ -317,7 +328,7 @@ export class HomePage implements OnInit {
       ]);
       // TODO: get ready for a pan-initiated translate
       setTimeout(() => (this.xlate = this.view.view.translate), 100);
-    } else console.error(`Can't select lots ${JSON.stringify(lots)}`);
+    } else console.error(`Can't select lots ${lots[0].id}`);
   }
 
   private centerOfLots(lots: Lot[]): Point {
@@ -387,7 +398,6 @@ export class HomePage implements OnInit {
     lots.forEach((lot) => {
       const rule = `svg-icon.lots svg g polygon[id='${lot.id}'] {
         stroke: ${stroke};
-        stroke-width: 3;
       }`;
       this.stylesheet.insertRule(rule);
     });

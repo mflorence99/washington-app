@@ -21,6 +21,17 @@
 /* theme colors */
 @import 'colors.scss';
 
+// NOTE: undo what ionic/typography hath wrought
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 :root {
   --app-scale: 0;
   --app-translate-x: 0;
@@ -39,6 +50,62 @@
   --shade-u58: var(--mat-teal-200);
   --shade-u100: #d9e697;
   --shade-u101: #acd19e;
+}
+
+app-details {
+  background-color: var(--ion-color-dark);
+  color: var(--ion-color-light);
+  padding: 0.5rem;
+
+  section {
+    display: grid;
+    grid-gap: 0.5rem;
+    height: 100%;
+    width: 100%;
+
+    .footer {
+      font-style: italic;
+      grid-area: footer;
+      text-align: right;
+    }
+
+    .header {
+      grid-area: header;
+    }
+
+    .map {
+      background-color: yellow;
+      display: block;
+      grid-area: map;
+      height: 100%;
+      width: 100%;
+    }
+
+    .table {
+      background-color: green;
+      grid-area: table;
+    }
+  }
+}
+
+app-details.landscape section {
+  grid-template-areas:
+    'header header'
+    'map table'
+    'footer footer';
+  grid-template-columns: 0.5fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+app-details.portrait section,
+app-details.square section {
+  grid-template-areas:
+    'header'
+    'map'
+    'table'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 1fr auto;
 }
 
 article.backdrop {
@@ -123,6 +190,7 @@ svg-icon.lots {
   g polygon {
     fill: none;
     stroke: none;
+    stroke-width: calc(3 / var(--app-scale));
   }
 }
 
