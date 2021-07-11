@@ -1,29 +1,26 @@
+import { DESC_BY_USAGE } from '../state/lots';
+import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { HostBinding } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
-
-import { catchError } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-details',
   template: `<section (resized)="resize($event)">
     <header class="header">
-      <h1>Lot {{ lot.id }} &mdash; {{ lot.address }}</h1>
+      <h1>{{ lot.id }} &bull; {{ lot.address }}</h1>
     </header>
 
     <article class="map">
       <google-map
-        *ngIf="apiLoaded | async"
+        *ngIf="api.ready$ | async"
         [options]="mapOptions"
         height="100%"
         width="100%"
@@ -31,32 +28,72 @@ import { of } from 'rxjs';
       </google-map>
     </article>
 
-    <article class="table"></article>
+    <article class="table">
+      <table>
+        <tbody>
+          <tr>
+            <td>Area</td>
+            <td>{{ lot.area | number: '1.0-1' }} acres</td>
+          </tr>
+          <tr>
+            <td>Land Use</td>
+            <td>{{ useDescription() }}</td>
+          </tr>
+          <tr>
+            <td>CAMA Year</td>
+            <td>{{ lot.yearOfCAMA }}</td>
+          </tr>
+          <tr>
+            <td>Land Value</td>
+            <td>{{ lot.valueOfLand | currency: 'USD':'symbol':'1.0-0' }}</td>
+          </tr>
+          <tr>
+            <td>Improv Value</td>
+            <td>
+              {{ lot.valueOfImprovement | currency: 'USD':'symbol':'1.0-0' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Parcel Value</td>
+            <td>
+              {{ lot.valueOfParcel | currency: 'USD':'symbol':'1.0-0' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Last Update</td>
+            <td>{{ lot.updatedAt | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
 
-    <footer class="footer">Last updated: {{ lot.updatedAt | date }}</footer>
+    <div class="filler">&nbsp;</div>
+
+    <footer class="footer">
+      <a [href]="googleLink()" target="_blank">View on Google Maps</a>
+      <ion-button (click)="dismiss()" [strong]="true" color="primary"
+        >Done</ion-button
+      >
+    </footer>
   </section>`
 })
 export class DetailsComponent implements OnInit {
-  apiLoaded: Observable<boolean>;
-
   @HostBinding('class') cssClass: 'landscape' | 'portrait' | 'square' =
     'square';
 
   @Input() lot: Lot;
 
   // TODO: import @types/google
-  mapOptions = {};
+  mapOptions: google.maps.MapOptions = {};
 
-  constructor(http: HttpClient) {
-    this.apiLoaded = http
-      .jsonp(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAYavpwIUZOayj72XA3AZYJeYjlVscqvk',
-        'callback'
-      )
-      .pipe(
-        map(() => true),
-        catchError(() => of(false))
-      );
+  constructor(public api: GoogleService, private mc: ModalController) {}
+
+  dismiss(): void {
+    this.mc.dismiss();
+  }
+
+  googleLink(): string {
+    return `https://www.google.com/maps/@?api=1&map_action=map&center=${this.lot.centers[0].lat}%2c${this.lot.centers[0].lon}&basemap=satellite&zoom=16`;
   }
 
   ngOnInit(): void {
@@ -66,7 +103,9 @@ export class DetailsComponent implements OnInit {
       disableDefaultUI: false,
       fullscreenControl: false,
       keyboardShortcuts: false,
-      mapTypeId: 'hybrid'
+      mapTypeControl: false,
+      mapTypeId: 'hybrid',
+      zoom: 15
     };
   }
 
@@ -74,5 +113,9 @@ export class DetailsComponent implements OnInit {
     if (event.newWidth === event.newHeight) this.cssClass = 'square';
     else if (event.newWidth > event.newHeight) this.cssClass = 'landscape';
     else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
+  }
+
+  useDescription(): string {
+    return DESC_BY_USAGE[this.lot.usage];
   }
 }

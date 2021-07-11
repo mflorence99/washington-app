@@ -1,6 +1,10 @@
+// NOTE: a hack we can live ewith to accomodatedifferent Point types
 export interface Point {
-  x: number;
-  y: number;
+  lat?: number;
+  lng?: number;
+  lon?: number;
+  x?: number;
+  y?: number;
 }
 
 export interface Map {

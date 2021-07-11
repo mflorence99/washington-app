@@ -63,10 +63,15 @@ app-details {
     height: 100%;
     width: 100%;
 
+    .filler {
+      grid-area: filler;
+    }
+
     .footer {
-      font-style: italic;
+      align-items: center;
+      display: flex;
       grid-area: footer;
-      text-align: right;
+      justify-content: space-between;
     }
 
     .header {
@@ -74,16 +79,41 @@ app-details {
     }
 
     .map {
-      background-color: yellow;
-      display: block;
       grid-area: map;
       height: 100%;
       width: 100%;
     }
 
     .table {
-      background-color: green;
       grid-area: table;
+
+      td {
+        padding-bottom: 8px;
+        padding-right: 8px;
+      }
+
+      td:first-child {
+        font-weight: bold;
+        overflow: hidden;
+        position: relative;
+        width: 50%;
+
+        &::after {
+          content: '........................................................'
+            '........................................................'
+            '........................................................'
+            '........................................................';
+          position: absolute;
+        }
+      }
+
+      td:last-child {
+        padding-left: 8px;
+      }
+
+      tr {
+        vertical-align: top;
+      }
     }
   }
 }
@@ -92,20 +122,37 @@ app-details.landscape section {
   grid-template-areas:
     'header header'
     'map table'
-    'footer footer';
-  grid-template-columns: 0.5fr;
+    'map footer';
+  grid-template-columns: 1fr auto;
   grid-template-rows: auto 1fr auto;
+
+  .filler {
+    display: none;
+  }
 }
 
-app-details.portrait section,
-app-details.square section {
+app-details.portrait section {
   grid-template-areas:
     'header'
     'map'
     'table'
     'footer';
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 1fr auto;
+  grid-template-rows: auto 1fr auto auto;
+
+  .filler {
+    display: none;
+  }
+}
+
+app-details.square section {
+  grid-template-areas:
+    'header header'
+    'map map'
+    'table filler'
+    'table footer';
+  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-rows: auto 0.66fr 0.33fr auto;
 }
 
 article.backdrop {

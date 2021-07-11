@@ -448,7 +448,10 @@ export class HomePage implements OnInit {
     const polygon = polygons.find((e) => {
       const raw = e.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
-      // TODO: points.length = points.length - 1;
+      // NOTE: a polygon is supposed to close itself and doesn't need
+      // a closing point which ours have -- nonetheless, it doesn't
+      // seem to hurt to keep it in
+      // points.length = points.length - 1;
       // NOTE: classifyPoint wants points as tuples
       return classifyPoint(points, [point.x, point.y]) <= 0;
     });

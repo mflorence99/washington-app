@@ -1,10 +1,10 @@
 import { LOTS } from './lots';
+import { Point } from './maps';
 
 export interface Lot {
   address: string;
   area: number;
-  // TODO: type these points
-  centers: any[];
+  centers: Point[];
   id: string;
   updatedAt: string;
   usage: string;
