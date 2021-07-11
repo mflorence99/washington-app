@@ -40,6 +40,10 @@
             }
           },
           "options": {
+            "allowedCommonJsDependencies": [
+              "css-element-queries",
+              "robust-point-in-polygon"
+            ],
             "aot": false,
             "assets": [
               {
