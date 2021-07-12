@@ -67,23 +67,6 @@ import classifyPoint from 'robust-point-in-polygon';
           </ion-buttons>
 
           <ion-title>{{ model.map.title }}</ion-title>
-
-          <ion-buttons slot="end">
-            <ion-button
-              (click)="scaleUp()"
-              [disabled]="view.view.scale >= maxScale()"
-              color="dark"
-              shape="round"
-              ><ion-icon name="add-circle"></ion-icon
-            ></ion-button>
-            <ion-button
-              (click)="scaleDown()"
-              [disabled]="view.view.scale <= minScale()"
-              color="dark"
-              shape="round"
-              ><ion-icon name="remove-circle"></ion-icon
-            ></ion-button>
-          </ion-buttons>
         </ion-toolbar>
       </ion-header>
 
@@ -122,6 +105,27 @@ import classifyPoint from 'robust-point-in-polygon';
           placeholder="Lot # or address"
         ></ion-searchbar>
       </ion-content>
+
+      <ion-buttons class="scale">
+        <ion-button
+          (click)="scaleUp()"
+          [disabled]="view.view.scale >= maxScale()"
+          [strong]="true"
+          color="light"
+          expand="block"
+          fill="clear"
+          ><ion-icon name="add-sharp" size="large"></ion-icon
+        ></ion-button>
+        <ion-button
+          (click)="scaleDown()"
+          [disabled]="view.view.scale <= minScale()"
+          [strong]="true"
+          color="light"
+          expand="block"
+          fill="clear"
+          ><ion-icon name="remove-sharp" size="large"></ion-icon
+        ></ion-button>
+      </ion-buttons>
 
       <article [ngClass]="{ loading: loading }" class="backdrop">
         <ion-icon name="timer"></ion-icon>

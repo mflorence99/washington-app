@@ -168,6 +168,17 @@ article.backdrop {
   }
 }
 
+ion-buttons.scale {
+  background-color: rgba(var(--ion-color-dark-rgb), 0.75);
+  border: 1px solid var(--ion-color-light);
+  bottom: 1rem;
+  display: grid;
+  grid-template-columns: 3rem;
+  grid-template-rows: 3rem 3rem;
+  position: absolute;
+  right: 1rem;
+}
+
 ion-content.main {
   --background: var(--ion-color-dark);
 }
@@ -188,17 +199,17 @@ ion-menu ul.legend {
 }
 
 ion-searchbar.searchbar {
-  --background: rgba(var(--ion-color-medium-rgb), 0.5);
-  --border-radius: 0.5rem;
+  --background: rgba(var(--ion-color-dark-rgb), 0.75);
+  --border-radius: 0;
   --color: var(--ion-color-light);
   --icon-color: var(--ion-color-light);
 
-  height: 2.5rem;
+  height: 3rem;
   padding: 0;
   position: absolute;
   right: 1rem;
   top: calc(var(--offset-top) + 1rem);
-  width: 15rem;
+  width: min(calc(100% - 2rem), 20rem);
 }
 
 section.content {
@@ -234,7 +245,7 @@ svg-icon.lots {
   g polygon {
     fill: none;
     stroke: none;
-    stroke-width: calc(3 / var(--app-scale));
+    stroke-width: 3;
   }
 }
 

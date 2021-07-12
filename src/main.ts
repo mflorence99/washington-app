@@ -7,7 +7,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import LogRocket from 'logrocket';
 
-LogRocket.init('9taxee/washington-app');
+LogRocket.init('9taxee/washington-app', {
+  console: {
+    isEnabled: true
+  },
+  release: '0.0.0'
+});
 
 if (environment.production) {
   enableProdMode();
