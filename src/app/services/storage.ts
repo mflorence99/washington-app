@@ -14,7 +14,7 @@ export class StorageService implements AsyncStorageEngine {
 
   constructor(storage: Storage) {
     this.storage$ = from(storage.create()).pipe(
-      tap(() => console.error('Singleton storage DB created')),
+      tap(() => console.log('%cSingleton storage DB created', 'color: orange')),
       shareReplay()
     );
   }

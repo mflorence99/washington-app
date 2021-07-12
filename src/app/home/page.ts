@@ -232,7 +232,7 @@ export class HomePage implements OnInit {
   }
 
   ready(): void {
-    console.error(`Ready for ${this.model.map.id}`);
+    console.log(`Ready for map ${this.model.map.title}`, 'color: gold');
     this.loading = false;
     // TODO: why wait so long? why not next tick?
     setTimeout(() => {
@@ -262,7 +262,7 @@ export class HomePage implements OnInit {
 
   searchFor(text: string): void {
     if (!this.loading) {
-      console.error(`Searching for ${text}`);
+      console.log(`%cSearching for ${text}`, 'color: skyblue');
       this.selection.searchFor(text);
     }
   }
@@ -378,7 +378,7 @@ export class HomePage implements OnInit {
       ]);
       // TODO: get ready for a pan-initiated translate -- why so long?
       setTimeout(() => (this.xlate = this.view.view.translate), 100);
-    } else console.error(`Can't select lots ${lots[0].id}`);
+    } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
   }
 
   private centerOfLots(lots: Lot[]): Point {
@@ -393,7 +393,8 @@ export class HomePage implements OnInit {
           return { x: Number(x), y: Number(y) };
         });
         acc.push(centroid(points));
-      } else console.error(`Can't find polygon for ${lot.id}`);
+      } else
+        console.log(`%cCan't find polygon for ${lot.id}`, 'color: indianred');
       return acc;
     }, []);
     // return the center of the centers

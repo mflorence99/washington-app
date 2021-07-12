@@ -1,4 +1,5 @@
 import { HammerConfig } from './services/hammer';
+import { LogRocketPluginModule } from './state/plugins/logrocket';
 import { ModelState } from './state/model';
 import { RootPage } from './root';
 import { RootRouting } from './routing';
@@ -22,9 +23,9 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { NgModule } from '@angular/core';
 import { NgxsAsyncStoragePluginModule } from '@ngxs-labs/async-storage-plugin';
 import { NgxsDataPluginModule } from '@ngxs-labs/data';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { RouteReuseStrategy } from '@angular/router';
+
 @NgModule({
   bootstrap: [RootPage],
 
@@ -51,10 +52,7 @@ import { RouteReuseStrategy } from '@angular/router';
       key: ['map', 'selection', 'view']
     }),
     NgxsDataPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot({
-      collapsed: false,
-      logger: console
-    }),
+    LogRocketPluginModule.forRoot(),
     RootRouting
   ],
 

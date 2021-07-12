@@ -19,7 +19,12 @@ export class GoogleService {
         'callback'
       )
       .pipe(
-        tap(() => console.error('Singleton Google Maps API script loaded')),
+        tap(() =>
+          console.log(
+            '%cSingleton Google Maps API script loaded',
+            'color: tomato'
+          )
+        ),
         shareReplay(),
         map(() => true),
         catchError(() => of(false))

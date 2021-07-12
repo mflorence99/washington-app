@@ -17,6 +17,8 @@ LogRocket.init('9taxee/washington-app', {
   release: environment.package.version
 });
 
+export const reduxMiddleware = LogRocket.reduxMiddleware({});
+
 if (environment.production) {
   enableProdMode();
 }
