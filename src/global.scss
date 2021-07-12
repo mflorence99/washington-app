@@ -222,11 +222,11 @@ section.content {
   width: 100%;
 }
 
-// NOTE: svg-icon.lots selector is used in code
+// NOTE: .lots selector is used in code
 // @see page.ts
 
 img.map,
-svg-icon.lots {
+.lots {
   display: block;
   position: absolute;
 }
@@ -239,18 +239,8 @@ img.map {
   touch-action: none;
 }
 
-svg-icon.lots {
-  pointer-events: none;
-
-  g polygon {
-    fill: none;
-    stroke: none;
-    stroke-width: 3;
-  }
-}
-
 img.map,
-svg-icon.lots svg {
+.lots svg {
   transform: translate(
     calc(var(--app-translate-x) * 1px),
     calc(var(--app-translate-y) * 1px)
@@ -258,6 +248,16 @@ svg-icon.lots svg {
 }
 
 img.map.animating,
-svg-icon.lots.animating svg {
+.lots.animating svg {
   transition: transform 0.5s linear;
+}
+
+.lots {
+  pointer-events: none;
+}
+
+.lots svg g polygon {
+  fill: none;
+  stroke: none;
+  stroke-width: 3;
 }

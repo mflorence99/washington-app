@@ -9,7 +9,6 @@ import { ViewState } from './state/view';
 import { environment } from '../environments/environment';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { Drivers } from '@ionic/storage';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -35,7 +34,6 @@ import { RouteReuseStrategy } from '@angular/router';
 
   imports: [
     AngularResizedEventModule,
-    AngularSvgIconModule.forRoot(),
     BrowserModule,
     GoogleMapsModule,
     HammerModule,

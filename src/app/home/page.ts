@@ -16,6 +16,7 @@ import { Components } from '@ionic/core';
 import { ElementRef } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
+import { ResizedEvent } from 'angular-resize-event';
 import { ViewChild } from '@angular/core';
 
 import { filter } from 'rxjs/operators';
@@ -76,7 +77,11 @@ import classifyPoint from 'robust-point-in-polygon';
         [scrollY]="false"
         class="main"
       >
-        <section (tap)="selectLot($event.center)" class="content">
+        <section
+          (resized)="resize($event)"
+          (tap)="selectLot($event.center)"
+          class="content"
+        >
           <img
             #map
             (load)="ready()"
@@ -88,10 +93,37 @@ import classifyPoint from 'robust-point-in-polygon';
             class="map"
           />
 
-          <svg-icon
-            [ngClass]="{ animating: animating, lots: true }"
-            [src]="model.map.lots"
-          ></svg-icon>
+          <ng-container [ngSwitch]="model.map.id">
+            <app-center
+              *ngSwitchCase="'center'"
+              [ngClass]="{ animating: animating, lots: true }"
+            ></app-center>
+
+            <app-east
+              *ngSwitchCase="'east'"
+              [ngClass]="{ animating: animating, lots: true }"
+            ></app-east>
+
+            <app-highland
+              *ngSwitchCase="'highland'"
+              [ngClass]="{ animating: animating, lots: true }"
+            ></app-highland>
+
+            <app-island
+              *ngSwitchCase="'island'"
+              [ngClass]="{ animating: animating, lots: true }"
+            ></app-island>
+
+            <app-lae
+              *ngSwitchCase="'lae'"
+              [ngClass]="{ animating: animating, lots: true }"
+            ></app-lae>
+
+            <app-washington
+              *ngSwitchDefault
+              [ngClass]="{ animating: animating, lots: true }"
+            ></app-washington>
+          </ng-container>
         </section>
 
         <ion-searchbar
@@ -189,8 +221,6 @@ export class HomePage implements OnInit {
     this.createStylesheet();
   }
 
-  // TODO: we have no way of tracking whether the SVG loaded
-  // and this seems to cause some anomalies
   ready(): void {
     console.error(`Ready for ${this.model.map.id}`);
     this.loading = false;
@@ -200,7 +230,13 @@ export class HomePage implements OnInit {
       this.initializeView();
       // re-search for any past search
       this.searchFor(this.selection.text);
-    }, 500);
+    }, 1000);
+  }
+
+  resize(_event: ResizedEvent): void {
+    // NOTE: we leverage the side-effect of properly clamping the translate
+    this.xlate = this.view.view.translate;
+    this.translate(0, 0);
   }
 
   scaleDown(): void {
@@ -400,7 +436,7 @@ export class HomePage implements OnInit {
   private highlightLots(lots: Lot[], stroke: string): void {
     // NOTE: pay attention to globals.scss
     lots.forEach((lot) => {
-      const rule = `svg-icon.lots svg g polygon[id='${lot.id}'] {
+      const rule = `.lots svg g polygon[id='${lot.id}'] {
         stroke: ${stroke};
       }`;
       this.stylesheet.insertRule(rule);
@@ -447,7 +483,7 @@ export class HomePage implements OnInit {
 
   private whichPolygon(point: Point): SVGGeometryElement {
     const polygons = Array.from(
-      document.querySelectorAll<SVGGeometryElement>('svg-icon.lots g polygon')
+      document.querySelectorAll<SVGGeometryElement>('.lots svg g polygon')
     );
     const polygon = polygons.find((e) => {
       const raw = e.getAttribute('points');

@@ -38,7 +38,6 @@
     "@ngxs/logger-plugin": "^3",
     "@ngxs/store": "^3",
     "angular-resize-event": "^2",
-    "angular-svg-icon": "^12",
     "hammerjs": "^2",
     "logrocket": "^1",
     "polygon-centroid": "^1",
