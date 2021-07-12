@@ -232,7 +232,7 @@ export class HomePage implements OnInit {
   }
 
   ready(): void {
-    console.log(`Ready for map ${this.model.map.title}`, 'color: gold');
+    console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
     this.loading = false;
     // TODO: why wait so long? why not next tick?
     setTimeout(() => {
@@ -299,8 +299,6 @@ export class HomePage implements OnInit {
         if (lots) {
           this.unhighlightLots();
           this.highlightLots(lots, 'var(--ion-color-danger)');
-          // TEMPORARY
-          console.log(polygon?.id);
           this.mc
             .create({
               component: DetailsComponent,
