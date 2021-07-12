@@ -7,11 +7,14 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import LogRocket from 'logrocket';
 
+console.table(environment.package);
+console.table(environment.build);
+
 LogRocket.init('9taxee/washington-app', {
   console: {
     isEnabled: true
   },
-  release: '0.0.0'
+  release: environment.package.version
 });
 
 if (environment.production) {

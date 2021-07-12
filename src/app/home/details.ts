@@ -83,7 +83,6 @@ export class DetailsComponent implements OnInit {
 
   @Input() lot: Lot;
 
-  // TODO: import @types/google
   mapOptions: google.maps.MapOptions = {};
 
   constructor(public api: GoogleService, private mc: ModalController) {}

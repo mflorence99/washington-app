@@ -1,3 +1,4 @@
+import { Build } from '../state/build';
 import { DESC_BY_USAGE } from '../state/lots';
 import { DestroyService } from '../services/destroy';
 import { DetailsComponent } from './details';
@@ -10,17 +11,23 @@ import { Point } from '../state/maps';
 import { SelectionState } from '../state/selection';
 import { ViewState } from '../state/view';
 
+import { environment } from '../../environments/environment';
+
 import { Actions } from '@ngxs/store';
 import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
 import { ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
+import { ToastController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 
 import { filter } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 import centroid from 'polygon-centroid';
 import classifyPoint from 'robust-point-in-polygon';
@@ -182,9 +189,11 @@ export class HomePage implements OnInit {
   constructor(
     private actions$: Actions,
     private destroy$: DestroyService,
+    private http: HttpClient,
     private mc: ModalController,
     public model: ModelState,
     public selection: SelectionState,
+    private tc: ToastController,
     public view: ViewState
   ) {}
 
@@ -218,6 +227,7 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.handleActions$();
+    this.checkVersion();
     this.createStylesheet();
   }
 
@@ -230,7 +240,7 @@ export class HomePage implements OnInit {
       this.initializeView();
       // re-search for any past search
       this.searchFor(this.selection.text);
-    }, 1000);
+    }, 0);
   }
 
   resize(_event: ResizedEvent): void {
@@ -366,7 +376,7 @@ export class HomePage implements OnInit {
         Math.max(max[0], Math.min(min[0], translate[0])),
         Math.max(max[1], Math.min(min[1], translate[1]))
       ]);
-      // TODO: get ready for a pan-initiated translate
+      // TODO: get ready for a pan-initiated translate -- why so long?
       setTimeout(() => (this.xlate = this.view.view.translate), 100);
     } else console.error(`Can't select lots ${lots[0].id}`);
   }
@@ -400,6 +410,18 @@ export class HomePage implements OnInit {
         y: element.parentElement.offsetHeight / 2
       };
     } else return null;
+  }
+
+  // NOTE: interval must be MUCH longer than duration of toaster
+  private checkVersion(): void {
+    timer(5000, 120000)
+      .pipe(
+        takeUntil(this.destroy$),
+        mergeMap(() => this.http.get<Build>('../assets/build.json'))
+      )
+      .subscribe((build: Build) => {
+        if (build.id !== environment.build.id) this.wereToast();
+      });
   }
 
   private createStylesheet(): void {
@@ -479,6 +501,29 @@ export class HomePage implements OnInit {
 
   private unhighlightLots(): void {
     while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
+  }
+
+  private wereToast(): void {
+    this.tc
+      .create({
+        message: 'New version detected. Reload?',
+        duration: 5000,
+        color: 'light',
+        buttons: [
+          {
+            side: 'end',
+            text: 'Reload',
+            handler: (): void => {
+              window.location.reload();
+            }
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          }
+        ]
+      })
+      .then((toast) => toast.present());
   }
 
   private whichPolygon(point: Point): SVGGeometryElement {
