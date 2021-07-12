@@ -12,6 +12,8 @@ git push origin main
 
 npm version $version
 
+ionic build --prod
+
 cp -R www/* ../mflorence99.github.io
 
 cd ../mflorence99.github.io
