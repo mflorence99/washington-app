@@ -140,7 +140,7 @@ import classifyPoint from 'robust-point-in-polygon';
 
       <ion-buttons class="scale">
         <ion-button
-          (click)="scaleUp()"
+          (tap)="scaleUp()"
           [disabled]="view.view.scale >= maxScale()"
           [strong]="true"
           color="light"
@@ -149,7 +149,7 @@ import classifyPoint from 'robust-point-in-polygon';
           ><ion-icon name="add-sharp" size="large"></ion-icon
         ></ion-button>
         <ion-button
-          (click)="scaleDown()"
+          (tap)="scaleDown()"
           [disabled]="view.view.scale <= minScale()"
           [strong]="true"
           color="light"
