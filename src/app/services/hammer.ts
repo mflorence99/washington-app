@@ -17,7 +17,7 @@ export class HammerConfig extends HammerGestureConfig {
       direction: Hammer.DIRECTION_ALL,
       enable: true,
       pointers: 1,
-      threshold: 1
+      threshold: 10
     },
     // pinch: { enable: true, pointers: 2 },
     pinch: { enable: false },

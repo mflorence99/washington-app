@@ -273,5 +273,5 @@ img.map.animating,
 .lots svg g polygon {
   fill: none;
   stroke: none;
-  stroke-width: 3;
+  stroke-width: calc(3 / var(--app-scale));
 }

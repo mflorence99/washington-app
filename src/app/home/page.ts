@@ -160,10 +160,10 @@ export class HomePage implements OnInit {
       const dy = cy - cy / scale;
       const oy = origin.y / scale;
       point.y += dy - oy + xlate.y;
-      const polygon = this.whichPolygon(point);
+      const lotID = this.whichLotID(point);
       // find the lots selected
-      if (polygon?.id) {
-        const lots = PARCELS_BY_ID[polygon.id];
+      if (lotID) {
+        const lots = PARCELS_BY_ID[lotID];
         if (lots) {
           this.unhighlightLots();
           this.highlightLots(lots, 'var(--ion-color-danger)');
@@ -349,6 +349,24 @@ export class HomePage implements OnInit {
     });
   }
 
+  private nearestLotID(point: Point, lotIDs: string[]): string {
+    let lastDistance = Number.MAX_VALUE;
+    let nearestLotID = null;
+    const lots = lotIDs.flatMap((lotID) => PARCELS_BY_ID[lotID]);
+    lots.forEach((lot) => {
+      const center = this.centerOfLots([lot]);
+      const distance = Math.abs(
+        Math.hypot(point.x - center.x, point.y - center.y)
+      );
+      console.log(`Distance to ${lot.id} is ${distance}`);
+      if (distance < lastDistance) {
+        lastDistance = distance;
+        nearestLotID = lot.id;
+      }
+    });
+    return nearestLotID;
+  }
+
   private originOfViewport(): Point {
     const element = this.map?.nativeElement;
     if (element) {
@@ -394,11 +412,13 @@ export class HomePage implements OnInit {
       .then((toast) => toast.present());
   }
 
-  private whichPolygon(point: Point): SVGGeometryElement {
+  private whichLotID(point: Point): string {
     const polygons = Array.from(
       document.querySelectorAll<SVGGeometryElement>('.lots svg g polygon')
     );
-    const polygon = polygons.find((e) => {
+    // TODO: classifyPoint can get confused, emprically on the higher
+    // scales maps, so we look at ALL matches
+    const lots = polygons.filter((e) => {
       const raw = e.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
       // NOTE: a polygon is supposed to close itself and doesn't need
@@ -408,6 +428,16 @@ export class HomePage implements OnInit {
       // NOTE: classifyPoint wants points as tuples
       return classifyPoint(points, [point.x, point.y]) <= 0;
     });
-    return polygon;
+    // TODO: resolve ambiguous matches by finding the nearest
+    if (lots.length > 1) {
+      const lotIDs = lots.map((p) => p.id);
+      // TODO: temporary logging of matching lots
+      console.log(
+        `%cAmbiguous match: ${lotIDs.join(', ')}`,
+        'color: indianred'
+      );
+      return this.nearestLotID(point, lotIDs);
+    }
+    return lots[0]?.id;
   }
 }
