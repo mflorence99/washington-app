@@ -13,69 +13,7 @@ import { ResizedEvent } from 'angular-resize-event';
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-details',
-  template: `<section (resized)="resize($event)">
-    <header class="header">
-      <h1>{{ lot.id }} &bull; {{ lot.address }}</h1>
-    </header>
-
-    <article class="map">
-      <google-map
-        *ngIf="api.ready$ | async"
-        [options]="mapOptions"
-        height="100%"
-        width="100%"
-      >
-      </google-map>
-    </article>
-
-    <article class="table">
-      <table>
-        <tbody>
-          <tr>
-            <td>Area</td>
-            <td>{{ lot.area | number: '1.0-1' }} acres</td>
-          </tr>
-          <tr>
-            <td>Land Use</td>
-            <td>{{ useDescription() }}</td>
-          </tr>
-          <tr>
-            <td>CAMA Year</td>
-            <td>{{ lot.yearOfCAMA }}</td>
-          </tr>
-          <tr>
-            <td>Land Value</td>
-            <td>{{ lot.valueOfLand | currency: 'USD':'symbol':'1.0-0' }}</td>
-          </tr>
-          <tr>
-            <td>Improv Value</td>
-            <td>
-              {{ lot.valueOfImprovement | currency: 'USD':'symbol':'1.0-0' }}
-            </td>
-          </tr>
-          <tr>
-            <td>Parcel Value</td>
-            <td>
-              {{ lot.valueOfParcel | currency: 'USD':'symbol':'1.0-0' }}
-            </td>
-          </tr>
-          <tr>
-            <td>Last Update</td>
-            <td>{{ lot.updatedAt | date }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </article>
-
-    <div class="filler">&nbsp;</div>
-
-    <footer class="footer">
-      <a [href]="googleLink()" target="_blank">View on Google Maps</a>
-      <ion-button (click)="dismiss()" [strong]="true" color="primary"
-        >Done</ion-button
-      >
-    </footer>
-  </section>`
+  templateUrl: './details.html'
 })
 export class DetailsComponent implements OnInit {
   @HostBinding('class') cssClass: 'landscape' | 'portrait' | 'square' =

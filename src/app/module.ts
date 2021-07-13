@@ -9,9 +9,12 @@ import { ViewState } from './state/view';
 
 import { environment } from '../environments/environment';
 
+import * as Sentry from '@sentry/angular';
+
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { BrowserModule } from '@angular/platform-browser';
 import { Drivers } from '@ionic/storage';
+import { ErrorHandler } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
@@ -24,6 +27,7 @@ import { NgModule } from '@angular/core';
 import { NgxsAsyncStoragePluginModule } from '@ngxs-labs/async-storage-plugin';
 import { NgxsDataPluginModule } from '@ngxs-labs/data';
 import { NgxsModule } from '@ngxs/store';
+import { Router } from '@angular/router';
 import { RouteReuseStrategy } from '@angular/router';
 
 @NgModule({
@@ -58,10 +62,23 @@ import { RouteReuseStrategy } from '@angular/router';
 
   providers: [
     {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        logErrors: true,
+        showDialog: true
+      })
+    },
+    {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerConfig
     },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router]
+    }
   ]
 })
-export class RootModule {}
+export class RootModule {
+  constructor(private trace: Sentry.TraceService) {}
+}

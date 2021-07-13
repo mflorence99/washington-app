@@ -23,6 +23,7 @@ const routes: Routes = [
       useHash: true
     })
   ],
+
   exports: [RouterModule]
 })
 export class RootRouting {}

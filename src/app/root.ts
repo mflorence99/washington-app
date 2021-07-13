@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<ion-app>
-    <ion-router-outlet></ion-router-outlet>
-  </ion-app>`
+  templateUrl: './root.html'
 })
 export class RootPage {
   constructor() {}

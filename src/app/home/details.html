@@ -1,0 +1,59 @@
+<section (resized)="resize($event)">
+  <header class="header">
+    <h1>{{ lot.id }} &bull; {{ lot.address }}</h1>
+  </header>
+
+  <article *ngIf="api.ready$ | async; else noMap" class="map">
+    <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
+  </article>
+
+  <ng-template #noMap>
+    <article class="nomap">Google Maps not currently available</article>
+  </ng-template>
+
+  <article class="table">
+    <table>
+      <tbody>
+        <tr>
+          <td>Area</td>
+          <td>{{ lot.area | number: '1.0-1' }} acres</td>
+        </tr>
+        <tr>
+          <td>Land Use</td>
+          <td>{{ useDescription() }}</td>
+        </tr>
+        <tr>
+          <td>CAMA Year</td>
+          <td>{{ lot.yearOfCAMA }}</td>
+        </tr>
+        <tr>
+          <td>Land Value</td>
+          <td>{{ lot.valueOfLand | currency: 'USD':'symbol':'1.0-0' }}</td>
+        </tr>
+        <tr>
+          <td>Improv Value</td>
+          <td>
+            {{ lot.valueOfImprovement | currency: 'USD':'symbol':'1.0-0' }}
+          </td>
+        </tr>
+        <tr>
+          <td>Parcel Value</td>
+          <td>{{ lot.valueOfParcel | currency: 'USD':'symbol':'1.0-0' }}</td>
+        </tr>
+        <tr>
+          <td>Last Update</td>
+          <td>{{ lot.updatedAt | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+
+  <div class="filler">&nbsp;</div>
+
+  <footer class="footer">
+    <a [href]="googleLink()" target="_blank">View on Google Maps</a>
+    <ion-button (click)="dismiss()" [strong]="true" color="primary"
+      >Done</ion-button
+    >
+  </footer>
+</section>

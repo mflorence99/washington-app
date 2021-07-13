@@ -24,8 +24,10 @@ import { ResizedEvent } from 'angular-resize-event';
 import { ToastController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 
+import { catchError } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
 import { mergeMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
@@ -37,140 +39,7 @@ import classifyPoint from 'robust-point-in-polygon';
 @Component({
   providers: [DestroyService],
   selector: 'app-home',
-  template: `
-    <ion-menu #menu content-id="theContent" side="start">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Maps</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list *ngFor="let map of maps; trackBy: trackByMap">
-          <ion-item button (click)="switchTo(map)">
-            <ion-icon name="map" slot="start"></ion-icon>
-            <ion-label>{{ map.title }}</ion-label>
-          </ion-item>
-        </ion-list>
-
-        <ul class="legend">
-          <li *ngFor="let usage of usages(); trackByUsage">
-            <div
-              class="code"
-              style="background-color: var(--shade-u{{ usage[0] }})"
-            >
-              &nbsp;
-            </div>
-            &nbsp;
-            <div class="desc">{{ usage[1] }}</div>
-          </li>
-        </ul>
-      </ion-content>
-    </ion-menu>
-
-    <main class="ion-page" id="theContent">
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button color="dark"></ion-menu-button>
-          </ion-buttons>
-
-          <ion-title>{{ model.map.title }}</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <ion-content
-        [fullscreen]="true"
-        [scrollX]="false"
-        [scrollY]="false"
-        class="main"
-      >
-        <section
-          (resized)="resize($event)"
-          (tap)="selectLot($event.center)"
-          class="content"
-        >
-          <img
-            #map
-            (load)="ready()"
-            (pan)="translate($event.deltaX, $event.deltaY)"
-            (panend)="translateEnd()"
-            (panstart)="translateBegin()"
-            [ngClass]="{ animating: animating }"
-            [src]="model.map.src"
-            class="map"
-          />
-
-          <ng-container [ngSwitch]="model.map.id">
-            <app-center
-              *ngSwitchCase="'center'"
-              [ngClass]="{ animating: animating, lots: true }"
-            ></app-center>
-
-            <app-east
-              *ngSwitchCase="'east'"
-              [ngClass]="{ animating: animating, lots: true }"
-            ></app-east>
-
-            <app-highland
-              *ngSwitchCase="'highland'"
-              [ngClass]="{ animating: animating, lots: true }"
-            ></app-highland>
-
-            <app-island
-              *ngSwitchCase="'island'"
-              [ngClass]="{ animating: animating, lots: true }"
-            ></app-island>
-
-            <app-lae
-              *ngSwitchCase="'lae'"
-              [ngClass]="{ animating: animating, lots: true }"
-            ></app-lae>
-
-            <app-washington
-              *ngSwitchDefault
-              [ngClass]="{ animating: animating, lots: true }"
-            ></app-washington>
-          </ng-container>
-        </section>
-
-        <ion-searchbar
-          #searchbar
-          (ionChange)="searchFor($event.detail.value)"
-          [debounce]="500"
-          [value]="selection.text"
-          class="searchbar"
-          enterkeyhint="Search"
-          inputmode="search"
-          placeholder="Lot # or address"
-        ></ion-searchbar>
-      </ion-content>
-
-      <ion-buttons class="scale">
-        <ion-button
-          (tap)="scaleUp()"
-          [disabled]="view.view.scale >= maxScale()"
-          [strong]="true"
-          color="light"
-          expand="block"
-          fill="clear"
-          ><ion-icon name="add-sharp" size="large"></ion-icon
-        ></ion-button>
-        <ion-button
-          (tap)="scaleDown()"
-          [disabled]="view.view.scale <= minScale()"
-          [strong]="true"
-          color="light"
-          expand="block"
-          fill="clear"
-          ><ion-icon name="remove-sharp" size="large"></ion-icon
-        ></ion-button>
-      </ion-buttons>
-
-      <article [ngClass]="{ loading: loading }" class="backdrop">
-        <ion-icon name="timer"></ion-icon>
-      </article>
-    </main>
-  `
+  templateUrl: './page.html'
 })
 export class HomePage implements OnInit {
   @ViewChild('map') map: ElementRef<HTMLImageElement>;
@@ -234,7 +103,6 @@ export class HomePage implements OnInit {
   ready(): void {
     console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
     this.loading = false;
-    // TODO: why wait so long? why not next tick?
     setTimeout(() => {
       // make sure view is initialized
       this.initializeView();
@@ -416,7 +284,8 @@ export class HomePage implements OnInit {
     timer(5000, 120000)
       .pipe(
         takeUntil(this.destroy$),
-        mergeMap(() => this.http.get<Build>('../assets/build.json'))
+        mergeMap(() => this.http.get<Build>('../assets/build.json')),
+        catchError(() => of(environment.build))
       )
       .subscribe((build: Build) => {
         if (build.id !== environment.build.id) this.wereToast();
@@ -511,13 +380,13 @@ export class HomePage implements OnInit {
         buttons: [
           {
             side: 'end',
-            text: 'Reload',
+            text: 'Reload Now',
             handler: (): void => {
               window.location.reload();
             }
           },
           {
-            text: 'Cancel',
+            text: 'Maybe Later',
             role: 'cancel'
           }
         ]

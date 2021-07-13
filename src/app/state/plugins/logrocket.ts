@@ -1,5 +1,3 @@
-import { reduxMiddleware } from '../../../main';
-
 import { Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { InjectionToken } from '@angular/core';
@@ -9,6 +7,12 @@ import { NGXS_PLUGINS } from '@ngxs/store';
 import { NgxsPlugin } from '@ngxs/store';
 
 import { tap } from 'rxjs/operators';
+
+// NOTE: we're never going to use LogRocket as it's too expensive
+// for this vanity project -- but it made us think about NGXS plugins
+// and even thouigh this logger is a super hack, I like the output better
+
+// const reduxMiddleware = LogRocket.reduxMiddleware({});
 
 // @see https://www.ngxs.io/plugins/intro
 
@@ -23,7 +27,9 @@ export class LogRocketPlugin implements NgxsPlugin {
   // NOTE: these colors hacked to look OK in dark mode
 
   handle(state, action, next): any {
-    // decode the action
+    // NOTE: action is of class NgxsDataAction, which isn't a real
+    // exported class for some reason
+    // @see https://github.com/ngxs-labs/data/blob/5e8706bc43d671b05d227d05118ea0aaa821d769/lib/internals/src/utils/action/dynamic-action.ts
     const key = Object.keys(action)[0] ?? action.constructor.name;
     const payload = action[key];
 
@@ -35,9 +41,11 @@ export class LogRocketPlugin implements NgxsPlugin {
     // ... now we have the new state
     return next(state, action).pipe(
       tap((result) => {
-        console.log('%cnew', 'color: skyblue', state);
+        console.log('%cnew', 'color: skyblue', result);
         console.groupEnd();
-        reduxMiddleware({ getState: () => state })(() => result)(key);
+
+        // call LogRocket
+        // reduxMiddleware({ getState: () => state })(() => result)(key);
       })
     );
   }
