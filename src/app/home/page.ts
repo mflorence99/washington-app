@@ -32,7 +32,7 @@ import { takeUntil } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
 import centroid from 'polygon-centroid';
-import classifyPoint from 'robust-point-in-polygon';
+import pointInPoly from 'point-in-polygon-extended';
 
 // NOTE: we tried to support pinch to zoom but it wasn't satisfactory
 
@@ -416,8 +416,11 @@ export class HomePage implements OnInit {
     const polygons = Array.from(
       document.querySelectorAll<SVGGeometryElement>('.lots svg g polygon')
     );
-    // TODO: classifyPoint can get confused, emprically on the higher
-    // scales maps, so we look at ALL matches
+    // @see robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
+    // we tried them all and pointInPoly.pointInPolyWindingNumber
+    // was the most reliable -- looks like the ray cast algorithm
+    // gets confused
+    // TODO: we should do "find" but keep "filter" for now
     const lots = polygons.filter((e) => {
       const raw = e.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
@@ -425,8 +428,7 @@ export class HomePage implements OnInit {
       // a closing point which ours have -- nonetheless, it doesn't
       // seem to hurt to keep it in
       // points.length = points.length - 1;
-      // NOTE: classifyPoint wants points as tuples
-      return classifyPoint(points, [point.x, point.y]) <= 0;
+      return pointInPoly.pointInPolyWindingNumber([point.x, point.y], points);
     });
     // TODO: resolve ambiguous matches by finding the nearest
     if (lots.length > 1) {
