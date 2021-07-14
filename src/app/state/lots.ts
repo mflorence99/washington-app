@@ -12,6 +12,20 @@ export const DESC_BY_USAGE = {
   '101': 'Washington Town Forest'
 };
 
+export const USAGES = [
+  '11',
+  '12',
+  '19',
+  '22',
+  '100',
+  '101',
+  '17',
+  '33',
+  '26',
+  '58',
+  '27'
+];
+
 export const LOTS = {
   '248-9000': {
     address: '342 LONG POND ROAD',

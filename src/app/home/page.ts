@@ -13,6 +13,7 @@ import { Tile } from '../state/tiles';
 import { TILE_CONTAINERS } from '../state/tiles';
 import { TileContainer } from '../state/tiles';
 import { TILES } from '../state/tiles';
+import { USAGES } from '../state/lots';
 import { ViewState } from '../state/view';
 
 import { environment } from '../../environments/environment';
@@ -237,7 +238,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   usages(): [string, string][] {
-    return Object.entries(DESC_BY_USAGE);
+    return USAGES.map((usage) => [usage, DESC_BY_USAGE[usage]]);
   }
 
   // private methods
