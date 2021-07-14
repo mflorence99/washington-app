@@ -1,0 +1,116 @@
+app-home {
+  .content {
+    height: calc(100% - var(--offset-top));
+    position: absolute;
+    top: var(--offset-top);
+    transform: scale(var(--app-scale));
+    transform-origin: 50% 50%;
+    transition: transform 0.5s linear;
+    width: 100%;
+  }
+
+  .legend {
+    list-style: none;
+    padding: 1.5rem 0 0 1.5rem;
+
+    li {
+      display: flex;
+      margin-bottom: 0.5rem;
+
+      .code {
+        height: 1rem;
+        width: 1rem;
+      }
+    }
+  }
+
+  // NOTE: .lots selector is used in code
+  // @see page.ts
+
+  .lots,
+  .map {
+    display: block;
+    position: absolute;
+  }
+
+  .map {
+    border: 1px solid black;
+    box-sizing: content-box;
+    cursor: move;
+    position: relative;
+    touch-action: none;
+  }
+
+  .lots svg,
+  .map {
+    transform: translate(
+      calc(var(--app-translate-x) * 1px),
+      calc(var(--app-translate-y) * 1px)
+    );
+  }
+
+  .lots.animating svg,
+  .map.animating {
+    transition: transform 0.5s linear;
+  }
+
+  .lots {
+    pointer-events: none;
+    top: 0;
+  }
+
+  .lots svg g polygon {
+    fill: none;
+    stroke: none;
+    stroke-width: calc(3 / var(--app-scale));
+  }
+
+  .main {
+    --background: var(--ion-color-dark);
+  }
+
+  .scale {
+    background-color: rgba(var(--ion-color-dark-rgb), 0.75);
+    border: 1px solid var(--ion-color-light);
+    bottom: 1rem;
+    display: grid;
+    grid-template-columns: 3rem;
+    grid-template-rows: 3rem 3rem;
+    position: absolute;
+    right: 1rem;
+
+    .readout {
+      font-size: smaller;
+      text-align: center;
+    }
+  }
+
+  .searchbar {
+    --background: rgba(var(--ion-color-dark-rgb), 0.75);
+    --border-radius: 0;
+    --color: var(--ion-color-light);
+    --icon-color: var(--ion-color-light);
+
+    height: 3rem;
+    padding: 0;
+    position: absolute;
+    right: 1rem;
+    top: calc(var(--offset-top) + 1rem);
+    width: min(calc(100% - 2rem), 20rem);
+  }
+
+  .tile {
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+// NOTE: some overrides to compensate for platform issues
+
+.ios app-home {
+  // calc of stroke-width doesn't seem to work here
+  .lots svg g polygon {
+    stroke-width: 3;
+    // stroke-width: calc(3 / var(--app-scale));
+  }
+}

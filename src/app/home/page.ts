@@ -9,11 +9,16 @@ import { ModelState } from '../state/model';
 import { PARCELS_BY_ID } from '../state/parcels';
 import { Point } from '../state/maps';
 import { SelectionState } from '../state/selection';
+import { Tile } from '../state/tiles';
+import { TILE_CONTAINERS } from '../state/tiles';
+import { TileContainer } from '../state/tiles';
+import { TILES } from '../state/tiles';
 import { ViewState } from '../state/view';
 
 import { environment } from '../../environments/environment';
 
 import { Actions } from '@ngxs/store';
+import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
 import { ElementRef } from '@angular/core';
@@ -23,6 +28,7 @@ import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { ToastController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
@@ -37,18 +43,19 @@ import pointInPoly from 'point-in-polygon-extended';
 // NOTE: we tried to support pinch to zoom but it wasn't satisfactory
 
 @Component({
+  // NOTE: so that we can manipulate the actual stylesheet in code
+  encapsulation: ViewEncapsulation.None,
   providers: [DestroyService],
   selector: 'app-home',
+  styleUrls: ['./page.scss'],
   templateUrl: './page.html'
 })
-export class HomePage implements OnInit {
+export class HomePage implements AfterViewInit, OnInit {
   @ViewChild('map') map: ElementRef<HTMLImageElement>;
   @ViewChild('menu') menu: Components.IonMenu;
-  @ViewChild('searchbar') searchbar: Components.IonSearchbar;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   animating = true;
-  loading = true;
   maps: Map[] = MAPS;
 
   private scales = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3];
@@ -94,6 +101,10 @@ export class HomePage implements OnInit {
     } else return this.scales[0];
   }
 
+  ngAfterViewInit(): void {
+    this.ready();
+  }
+
   ngOnInit(): void {
     this.handleActions$();
     this.checkVersion();
@@ -102,7 +113,6 @@ export class HomePage implements OnInit {
 
   ready(): void {
     console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
-    this.loading = false;
     setTimeout(() => {
       // make sure view is initialized
       this.initializeView();
@@ -129,10 +139,8 @@ export class HomePage implements OnInit {
   }
 
   searchFor(text: string): void {
-    if (!this.loading) {
-      console.log(`%cSearching for ${text}`, 'color: skyblue');
-      this.selection.searchFor(text);
-    }
+    console.log(`%cSearching for ${text}`, 'color: skyblue');
+    this.selection.searchFor(text);
   }
 
   // NOTE: this works because we scale the "tap" surface on its center
@@ -181,11 +189,18 @@ export class HomePage implements OnInit {
 
   switchTo(map: Map): void {
     if (map.id !== this.model.map.id) {
-      this.loading = true;
       this.xlate = null;
       this.model.switchTo(map);
     }
-    this.menu.close(true);
+    this.menu?.close(true);
+  }
+
+  tileContainer(): TileContainer {
+    return TILE_CONTAINERS[this.model.map.id];
+  }
+
+  tiles(): Tile[] {
+    return TILES[this.model.map.id];
   }
 
   trackByMap(index: number, map: Map): string {
@@ -302,11 +317,13 @@ export class HomePage implements OnInit {
     this.actions$
       .pipe(
         takeUntil(this.destroy$),
-        filter(({ status }) => !this.loading && status === 'SUCCESSFUL')
+        filter(({ status }) => status === 'SUCCESSFUL')
       )
       .subscribe(({ action }) => {
-        if (
-          action['ModelState.switchedTo'] ||
+        if (action['ModelState.switchedTo']) {
+          this.setProperties();
+          this.ready();
+        } else if (
           action['ViewState.initialized'] ||
           action['ViewState.scaled'] ||
           action['ViewState.translated']
@@ -326,7 +343,7 @@ export class HomePage implements OnInit {
   private highlightLots(lots: Lot[], stroke: string): void {
     // NOTE: pay attention to globals.scss
     lots.forEach((lot) => {
-      const rule = `.lots svg g polygon[id='${lot.id}'] {
+      const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
         stroke: ${stroke};
       }`;
       this.stylesheet.insertRule(rule);
@@ -414,7 +431,9 @@ export class HomePage implements OnInit {
 
   private whichLotID(point: Point): string {
     const polygons = Array.from(
-      document.querySelectorAll<SVGGeometryElement>('.lots svg g polygon')
+      document.querySelectorAll<SVGGeometryElement>(
+        'app-home .lots svg g polygon'
+      )
     );
     // @see robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
     // we tried them all and pointInPoly.pointInPolyWindingNumber

@@ -15,8 +15,8 @@
     <ul class="legend">
       <li *ngFor="let usage of usages(); trackByUsage">
         <div
+          [ngStyle]="{ 'background-color': 'var(--shade-u' + usage[0] + ')' }"
           class="code"
-          style="background-color: var(--shade-u{{ usage[0] }})"
         >
           &nbsp;
         </div>
@@ -49,16 +49,27 @@
       (tap)="selectLot($event.center)"
       class="content"
     >
-      <img
-        #map
-        (load)="ready()"
-        (pan)="translate($event.deltaX, $event.deltaY)"
-        (panend)="translateEnd()"
-        (panstart)="translateBegin()"
-        [ngClass]="{ animating: animating }"
-        [src]="model.map.src"
-        class="map"
-      />
+      <ng-container *ngIf="tileContainer() as container">
+        <article
+          #map
+          (pan)="translate($event.deltaX, $event.deltaY)"
+          (panend)="translateEnd()"
+          (panstart)="translateBegin()"
+          [ngClass]="{ animating: animating }"
+          [ngStyle]="{ 'height.px': container.height, 'width.px': container.width }"
+          class="map"
+        >
+          <ng-container *ngIf="tiles() as tiles">
+            <ion-img
+              *ngFor="let tile of tiles"
+              [ngStyle]="{ 'left.px': tile.x, 'top.px': tile.y, 'height.px': tile.height, 'width.px': tile.width }"
+              [src]="tile.fileName"
+              class="tile"
+            >
+            </ion-img>
+          </ng-container>
+        </article>
+      </ng-container>
 
       <ng-container [ngSwitch]="model.map.id">
         <app-center
@@ -94,7 +105,6 @@
     </section>
 
     <ion-searchbar
-      #searchbar
       (ionChange)="searchFor($event.detail.value)"
       [debounce]="500"
       [value]="selection.text"
@@ -124,9 +134,6 @@
       fill="clear"
       ><ion-icon name="remove-sharp" size="large"></ion-icon
     ></ion-button>
+    <article class="readout">{{ view.view.scale | percent }}</article>
   </ion-buttons>
-
-  <article [ngClass]="{ loading: loading }" class="backdrop">
-    <ion-icon name="timer"></ion-icon>
-  </article>
 </main>
