@@ -31,7 +31,7 @@ export class ViewState extends NgxsDataRepository<ViewStateModel> {
 
   static defaultView(): View {
     return {
-      scale: 1 / window.devicePixelRatio,
+      scale: 1,
       translate: [0, 0]
     };
   }
