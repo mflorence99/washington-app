@@ -5,9 +5,16 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list *ngFor="let map of maps; trackBy: trackByMap">
-      <ion-item button (click)="switchTo(map)">
-        <ion-icon name="map" slot="start"></ion-icon>
+    <ion-list *ngFor="let map of maps; trackBy: trackByMap" class="menu-item">
+      <ion-item
+        (tap)="switchTo(map)"
+        [color]="map.id === model.map.id ? 'primary' : null"
+        button
+        lines="full"
+      >
+        <ion-avatar slot="start">
+          <img src="assets/favicon.png" />
+        </ion-avatar>
         <ion-label>{{ map.title }}</ion-label>
       </ion-item>
     </ion-list>

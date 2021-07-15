@@ -193,7 +193,8 @@ export class HomePage implements AfterViewInit, OnInit {
       this.xlate = null;
       this.model.switchTo(map);
     }
-    this.menu?.close(true);
+    // NOTE: close the menu later so the transition can be seen
+    setTimeout((): any => this.menu?.close(true), 0);
   }
 
   tileContainer(): TileContainer {
@@ -345,7 +346,11 @@ export class HomePage implements AfterViewInit, OnInit {
     // NOTE: pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
+        animation: FILL 1s ease-in-out;
+        fill: ${stroke};
+        fill-opacity: 0;
         stroke: ${stroke};
+        stroke-width: ${Math.max(3, 3 / this.view.view.scale)}
       }`;
       this.stylesheet.insertRule(rule);
     });

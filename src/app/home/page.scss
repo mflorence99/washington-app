@@ -59,14 +59,18 @@ app-home {
     top: 0;
   }
 
+  // NOTE: this is overridden in page.ts when lot is highlighted
   .lots svg g polygon {
     fill: none;
     stroke: none;
-    stroke-width: calc(3 / var(--app-scale));
   }
 
   .main {
     --background: var(--ion-color-dark);
+  }
+
+  .menu-item {
+    padding: 0;
   }
 
   .scale {
@@ -105,12 +109,14 @@ app-home {
   }
 }
 
-// NOTE: some overrides to compensate for platform issues
-
-.ios app-home {
-  // calc of stroke-width doesn't seem to work here
-  .lots svg g polygon {
-    stroke-width: 3;
-    // stroke-width: calc(3 / var(--app-scale));
+@keyframes FILL {
+  0% {
+    fill-opacity: 0;
+  }
+  50% {
+    fill-opacity: 0.25;
+  }
+  100% {
+    fill-opacity: 0;
   }
 }
