@@ -58,7 +58,7 @@ export class HomePage implements AfterViewInit, OnInit {
   animating = true;
   maps: Map[] = MAPS;
 
-  private scales = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3];
+  private scales = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
   private stylesheet: CSSStyleSheet;
   private xlate: [number, number];
 
@@ -184,6 +184,10 @@ export class HomePage implements AfterViewInit, OnInit {
         }
       }
     }
+  }
+
+  showMenu(): void {
+    this.menu?.open();
   }
 
   showInfo(): void {

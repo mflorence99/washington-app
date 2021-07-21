@@ -34,10 +34,11 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-menu-button color="dark"></ion-menu-button>
+        <ion-button (tap)="showMenu()" color="dark" fill="clear"
+          ><ion-icon name="menu-sharp" size="large"></ion-icon
+          ><strong>{{ model.map.title }}</strong></ion-button
+        >
       </ion-buttons>
-
-      <ion-title>{{ model.map.title }}</ion-title>
 
       <article
         [style.width.px]="model.map.cxScale * view.view.scale"

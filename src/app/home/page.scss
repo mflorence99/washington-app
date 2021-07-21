@@ -65,8 +65,7 @@ app-home {
     font-size: smaller;
     margin-right: 1rem;
     text-align: center;
-    // NOTE: title is not ellipsized if we do this
-    // transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
     width: 80px;
   }
 
