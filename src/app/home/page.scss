@@ -5,23 +5,8 @@ app-home {
     top: var(--offset-top);
     transform: scale(var(--app-scale));
     transform-origin: 50% 50%;
-    transition: transform 0.5s linear;
+    transition: transform 0.5s ease-in-out;
     width: 100%;
-  }
-
-  .legend {
-    list-style: none;
-    padding: 1.5rem 0 0 1.5rem;
-
-    li {
-      display: flex;
-      margin-bottom: 0.5rem;
-
-      .code {
-        height: 1rem;
-        width: 1rem;
-      }
-    }
   }
 
   // NOTE: .lots selector is used in code
@@ -51,7 +36,7 @@ app-home {
 
   .lots.animating svg,
   .map.animating {
-    transition: transform 0.5s linear;
+    transition: transform 0.5s ease-in-out;
   }
 
   .lots {
@@ -74,19 +59,15 @@ app-home {
   }
 
   .scale {
-    background-color: rgba(var(--ion-color-dark-rgb), 0.75);
-    border: 1px solid var(--ion-color-light);
-    bottom: 1rem;
-    display: grid;
-    grid-template-columns: 3rem;
-    grid-template-rows: 3rem 3rem;
-    position: absolute;
-    right: 1rem;
-
-    .readout {
-      font-size: smaller;
-      text-align: center;
-    }
+    border-color: var(--ion-color-dark);
+    border-style: solid;
+    border-width: 0 1px 1px 1px;
+    font-size: smaller;
+    margin-right: 1rem;
+    text-align: center;
+    // NOTE: title is not ellipsized if we do this
+    // transition: width 0.5s ease-in-out;
+    width: 80px;
   }
 
   .searchbar {
@@ -106,6 +87,22 @@ app-home {
   .tile {
     pointer-events: none;
     position: absolute;
+  }
+
+  .zoom {
+    background-color: rgba(var(--ion-color-dark-rgb), 0.75);
+    border: 1px solid var(--ion-color-light);
+    bottom: 1rem;
+    display: grid;
+    grid-template-columns: 3rem;
+    grid-template-rows: 3rem 3rem;
+    position: absolute;
+    right: 1rem;
+
+    .readout {
+      font-size: smaller;
+      text-align: center;
+    }
   }
 }
 

@@ -61,7 +61,7 @@ export const TILES: Tiles = ${JSON.stringify(tiles, null, 2)};
 from(['center', 'east', 'highland', 'island', 'lae', 'washington'])
   .pipe(
     concatMap((name) =>
-      loadImage(`src/assets/${name}.jpeg`).then((image) => {
+      loadImage(`/home/mflo/Downloads/${name}.png`).then((image) => {
         // make sure output path exists
         const path = `src/assets/${name}`;
         rimraf.sync(path);
@@ -89,7 +89,7 @@ from(['center', 'east', 'highland', 'island', 'lae', 'washington'])
 
             // draw a slice of the image into the canvas
             ctx.drawImage(image, x, y, width, height, 0, 0, width, height);
-            const buffer = canvas.toBuffer('image/jpeg', { quality: 1 });
+            const buffer = canvas.toBuffer('image/jpeg', { quality: 0.95 });
             writeFileSync(`${path}/tile-${ix}-${iy}.jpeg`, buffer);
 
             // accumulate tiles index

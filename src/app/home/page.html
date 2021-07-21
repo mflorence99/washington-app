@@ -5,8 +5,10 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list *ngFor="let map of maps; trackBy: trackByMap" class="menu-item">
+    <ion-list>
       <ion-item
+        *ngFor="let map of maps; trackBy: trackByMap"
+        class="menu-item"
         (tap)="switchTo(map)"
         [color]="map.id === model.map.id ? 'primary' : null"
         button
@@ -17,20 +19,14 @@
         </ion-avatar>
         <ion-label>{{ map.title }}</ion-label>
       </ion-item>
-    </ion-list>
 
-    <ul class="legend">
-      <li *ngFor="let usage of usages(); trackByUsage">
-        <div
-          [ngStyle]="{ 'background-color': 'var(--shade-u' + usage[0] + ')' }"
-          class="code"
-        >
-          &nbsp;
-        </div>
-        &nbsp;
-        <div class="desc">{{ usage[1] }}</div>
-      </li>
-    </ul>
+      <ion-item (tap)="showInfo()" class="menu-item" button lines="full">
+        <ion-avatar slot="start">
+          <img src="assets/help.png" />
+        </ion-avatar>
+        <ion-label>About</ion-label>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-menu>
 
@@ -42,6 +38,14 @@
       </ion-buttons>
 
       <ion-title>{{ model.map.title }}</ion-title>
+
+      <article
+        [style.width.px]="model.map.cxScale * view.view.scale"
+        class="scale"
+        slot="end"
+      >
+        {{ model.map.ftScale }}'
+      </article>
     </ion-toolbar>
   </ion-header>
 
@@ -62,15 +66,19 @@
           (pan)="translate($event.deltaX, $event.deltaY)"
           (panend)="translateEnd()"
           (panstart)="translateBegin()"
-          [ngClass]="{ animating: animating }"
-          [ngStyle]="{ 'height.px': container.height, 'width.px': container.width }"
+          [class.animating]="animating"
+          [style.height.px]="container.height"
+          [style.width.px]="container.width"
           class="map"
         >
           <ng-container *ngIf="tiles() as tiles">
             <ion-img
               *ngFor="let tile of tiles"
-              [ngStyle]="{ 'left.px': tile.x, 'top.px': tile.y, 'height.px': tile.height, 'width.px': tile.width }"
               [src]="tile.fileName"
+              [style.left.px]="tile.x"
+              [style.top.px]="tile.y"
+              [style.height.px]="tile.height"
+              [style.width.px]="tile.width"
               class="tile"
             >
             </ion-img>
@@ -81,32 +89,38 @@
       <ng-container [ngSwitch]="model.map.id">
         <app-center
           *ngSwitchCase="'center'"
-          [ngClass]="{ animating: animating, lots: true }"
+          [class.animating]="animating"
+          class="lots"
         ></app-center>
 
         <app-east
           *ngSwitchCase="'east'"
-          [ngClass]="{ animating: animating, lots: true }"
+          [class.animating]="animating"
+          class="lots"
         ></app-east>
 
         <app-highland
           *ngSwitchCase="'highland'"
-          [ngClass]="{ animating: animating, lots: true }"
+          [class.animating]="animating"
+          class="lots"
         ></app-highland>
 
         <app-island
           *ngSwitchCase="'island'"
-          [ngClass]="{ animating: animating, lots: true }"
+          [class.animating]="animating"
+          class="lots"
         ></app-island>
 
         <app-lae
           *ngSwitchCase="'lae'"
-          [ngClass]="{ animating: animating, lots: true }"
+          [class.animating]="animating"
+          class="lots"
         ></app-lae>
 
         <app-washington
           *ngSwitchDefault
-          [ngClass]="{ animating: animating, lots: true }"
+          [class.animating]="animating"
+          class="lots"
         ></app-washington>
       </ng-container>
     </section>
@@ -122,7 +136,7 @@
     ></ion-searchbar>
   </ion-content>
 
-  <ion-buttons class="scale">
+  <ion-buttons class="zoom">
     <ion-button
       (tap)="scaleUp()"
       [disabled]="view.view.scale >= maxScale()"
@@ -138,7 +152,6 @@
       [strong]="true"
       color="light"
       expand="block"
-      fill="clear"
       ><ion-icon name="remove-sharp" size="large"></ion-icon
     ></ion-button>
     <article class="readout">{{ view.view.scale | percent }}</article>

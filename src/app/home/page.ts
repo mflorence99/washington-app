@@ -1,7 +1,7 @@
 import { Build } from '../state/build';
-import { DESC_BY_USAGE } from '../state/lots';
 import { DestroyService } from '../services/destroy';
 import { DetailsComponent } from './details';
+import { InfoComponent } from './info';
 import { Lot } from '../state/parcels';
 import { Map } from '../state/maps';
 import { MAPS } from '../state/maps';
@@ -13,7 +13,6 @@ import { Tile } from '../state/tiles';
 import { TILE_CONTAINERS } from '../state/tiles';
 import { TileContainer } from '../state/tiles';
 import { TILES } from '../state/tiles';
-import { USAGES } from '../state/lots';
 import { ViewState } from '../state/view';
 
 import { environment } from '../../environments/environment';
@@ -59,7 +58,7 @@ export class HomePage implements AfterViewInit, OnInit {
   animating = true;
   maps: Map[] = MAPS;
 
-  private scales = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3];
+  private scales = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3];
   private stylesheet: CSSStyleSheet;
   private xlate: [number, number];
 
@@ -179,13 +178,22 @@ export class HomePage implements AfterViewInit, OnInit {
           this.mc
             .create({
               component: DetailsComponent,
-              componentProps: { lot: lots[0] },
-              cssClass: 'lot-details'
+              componentProps: { lot: lots[0] }
             })
             .then((modal) => modal.present());
         }
       }
     }
+  }
+
+  showInfo(): void {
+    this.mc
+      .create({
+        component: InfoComponent
+      })
+      .then((modal) => modal.present());
+    // NOTE: close the menu later so the transition can be seen
+    setTimeout((): any => this.menu?.close(true), 0);
   }
 
   switchTo(map: Map): void {
@@ -207,10 +215,6 @@ export class HomePage implements AfterViewInit, OnInit {
 
   trackByMap(index: number, map: Map): string {
     return map.id;
-  }
-
-  trackByUsage(index: number, usage: [string, string]): string {
-    return usage[0];
   }
 
   // NOTE: this is designed to be called by the pan event
@@ -236,10 +240,6 @@ export class HomePage implements AfterViewInit, OnInit {
   translateEnd(): void {
     this.animating = true;
     this.xlate = this.view.view.translate;
-  }
-
-  usages(): [string, string][] {
-    return USAGES.map((usage) => [usage, DESC_BY_USAGE[usage]]);
   }
 
   // private methods

@@ -4,6 +4,7 @@ import { EastComponent } from './east';
 import { HighlandComponent } from './highland';
 import { HomePage } from './page';
 import { HomeRouting } from './routing';
+import { InfoComponent } from './info';
 import { IslandComponent } from './island';
 import { LAEComponent } from './lae';
 import { WashingtonComponent } from './washington';
@@ -22,6 +23,7 @@ import { NgModule } from '@angular/core';
     DetailsComponent,
     EastComponent,
     HighlandComponent,
+    InfoComponent,
     IslandComponent,
     LAEComponent,
     WashingtonComponent

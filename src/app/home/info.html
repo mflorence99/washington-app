@@ -1,0 +1,47 @@
+<section (resized)="resize($event)">
+  <article class="credits">
+    <h2>Credits</h2>
+
+    <p>
+      Hillshade detail from
+      <a href="https://arcgis.com" target="_blank">ArcGIS Online</a>
+    </p>
+
+    <p>
+      Topographic map from
+      <a href="https://openstreetmap.org" target="_blank">OpenStreetMap</a>
+    </p>
+
+    <p>
+      Lot boundaries from
+      <a href="https://regrid.com" target="_blank">Regrid</a>
+    </p>
+
+    <p>
+      Version {{ env.package.version }} build {{ env.build.id }} {{
+      env.build.date | date }}
+    </p>
+  </article>
+
+  <article class="legend">
+    <h2>Legend</h2>
+    <ul>
+      <li *ngFor="let usage of usages(); trackByUsage">
+        <div
+          [style.background-color]="'var(--shade-u' + usage[0] + ')'"
+          class="code"
+        >
+          &nbsp;
+        </div>
+        &nbsp;
+        <div class="desc">{{ usage[1] }}</div>
+      </li>
+    </ul>
+  </article>
+
+  <footer class="footer">
+    <ion-button (tap)="dismiss()" [strong]="true" color="primary"
+      >Done</ion-button
+    >
+  </footer>
+</section>
