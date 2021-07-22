@@ -26,12 +26,14 @@ import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
+import { Subject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
+import { merge } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -58,6 +60,7 @@ export class HomePage implements AfterViewInit, OnInit {
   animating = true;
   maps: Map[] = MAPS;
 
+  private checkVersion$ = new Subject<void>();
   private scales = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5];
   private stylesheet: CSSStyleSheet;
   private xlate: [number, number];
@@ -118,7 +121,7 @@ export class HomePage implements AfterViewInit, OnInit {
       this.initializeView();
       // re-search for any past search
       this.searchFor(this.selection.text);
-    }, 0);
+    }, 100);
   }
 
   resize(_event: ResizedEvent): void {
@@ -304,8 +307,14 @@ export class HomePage implements AfterViewInit, OnInit {
   private checkVersion(): void {
     timer(5000, 120000)
       .pipe(
-        takeUntil(this.destroy$),
-        mergeMap(() => this.http.get<Build>('../assets/build.json')),
+        takeUntil(merge(this.checkVersion$, this.destroy$)),
+        mergeMap(() =>
+          this.http.get<Build>('../assets/build.json', {
+            params: {
+              x: Math.random()
+            }
+          })
+        ),
         catchError(() => of(environment.build))
       )
       .subscribe((build: Build) => {
@@ -419,20 +428,25 @@ export class HomePage implements AfterViewInit, OnInit {
   private wereToast(): void {
     this.tc
       .create({
-        message: 'New version detected. Reload?',
+        header: 'New version detected',
+        message: 'Reload?',
         duration: 5000,
         color: 'light',
         buttons: [
           {
             side: 'end',
-            text: 'Reload Now',
+            text: 'Now',
             handler: (): void => {
               window.location.reload();
             }
           },
           {
-            text: 'Maybe Later',
-            role: 'cancel'
+            text: 'Later',
+            role: 'cancel',
+            handler: (): void => {
+              this.checkVersion$.next();
+              this.checkVersion$.complete();
+            }
           }
         ]
       })
