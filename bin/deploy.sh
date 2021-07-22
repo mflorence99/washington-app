@@ -8,9 +8,10 @@ message=${2:-"Prepare new version for release"}
 
 git add . *
 git commit -m "$message"
-git push origin main
 
 npm version $version
+
+git push origin main
 
 ionic build --prod
 
