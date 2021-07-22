@@ -21,7 +21,7 @@ export const MAPS: Map[] = [
     cxScale: 87,
     ftScale: 1000,
     focus: { x: 2240.0000000000578, y: 2810.7771425096607 },
-    title: 'Washington'
+    title: 'Full Map'
   },
 
   {

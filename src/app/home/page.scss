@@ -54,6 +54,10 @@ app-home {
     --background: var(--ion-color-dark);
   }
 
+  .menu-icon {
+    font-size: 14px;
+  }
+
   .menu-item {
     padding: 0;
   }
@@ -86,6 +90,12 @@ app-home {
   .tile {
     pointer-events: none;
     position: absolute;
+  }
+
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   .zoom {

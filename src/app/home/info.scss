@@ -10,6 +10,34 @@ app-info {
 
     .credits {
       grid-area: credits;
+
+      table {
+        margin-top: 1rem;
+
+        td {
+          padding-bottom: 8px;
+          padding-right: 8px;
+        }
+
+        td:first-child {
+          overflow: hidden;
+          position: relative;
+          width: 40%;
+
+          &::after {
+            content: '........................................................';
+            position: absolute;
+          }
+        }
+
+        td:last-child {
+          padding-left: 8px;
+        }
+
+        tr {
+          vertical-align: top;
+        }
+      }
     }
 
     .footer {
@@ -27,8 +55,9 @@ app-info {
         margin-bottom: 0.5rem;
 
         .code {
-          height: 1rem;
-          width: 1rem;
+          border: 2px dotted var(--mat-blue-gray-500);
+          height: 1.25rem;
+          width: 1.25rem;
         }
       }
 
@@ -43,7 +72,7 @@ app-info {
 app-info.landscape section {
   grid-template-areas:
     'legend credits'
-    'footer footer';
+    'legend footer';
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
 }

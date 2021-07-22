@@ -2,25 +2,48 @@
   <article class="credits">
     <h2>Credits</h2>
 
-    <p>
-      Hillshade detail from
-      <a href="https://arcgis.com" target="_blank">ArcGIS Online</a>
-    </p>
+    <table>
+      <tr>
+        <td>Hillshade</td>
+        <td><a href="https://arcgis.com" target="_blank">ArcGIS Online</a></td>
+      </tr>
 
-    <p>
-      Topographic map from
-      <a href="https://openstreetmap.org" target="_blank">OpenStreetMap</a>
-    </p>
+      <tr>
+        <td>Topography</td>
+        <td>
+          <a href="https://openstreetmap.org" target="_blank">OpenStreetMap</a>
+        </td>
+      </tr>
 
-    <p>
-      Lot boundaries from
-      <a href="https://regrid.com" target="_blank">Regrid</a>
-    </p>
+      <tr>
+        <td>Lot lines</td>
+        <td><a href="https://regrid.com" target="_blank">Regrid</a></td>
+      </tr>
 
-    <p>
-      Version {{ env.package.version }} build {{ env.build.id }} {{
-      env.build.date | date }}
-    </p>
+      <tr>
+        <td>Author</td>
+        <td>{{ env.package.author }}</td>
+      </tr>
+
+      <tr>
+        <td>License</td>
+        <td>
+          <a [href]="env.package.repository.url" target="_blank"
+            >{{ env.package.license }}</a
+          >
+        </td>
+      </tr>
+
+      <tr>
+        <td>Version</td>
+        <td>{{ env.package.version }}</td>
+      </tr>
+
+      <tr>
+        <td>Build</td>
+        <td>{{ env.build.id }} {{ env.build.date | date }}</td>
+      </tr>
+    </table>
   </article>
 
   <article class="legend">

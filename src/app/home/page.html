@@ -24,7 +24,7 @@
         <ion-avatar slot="start">
           <img src="assets/help.png" />
         </ion-avatar>
-        <ion-label>About</ion-label>
+        <ion-label>Legend and Credits</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
@@ -35,8 +35,14 @@
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-button (tap)="showMenu()" color="dark" fill="clear"
-          ><ion-icon name="menu-sharp" size="large"></ion-icon
-          ><strong>{{ model.map.title }}</strong></ion-button
+          ><ion-icon
+            class="menu-icon"
+            name="menu-sharp"
+            slot="start"
+          ></ion-icon>
+          <header class="title" slot="end">
+            {{ model.map.title }}
+          </header></ion-button
         >
       </ion-buttons>
 

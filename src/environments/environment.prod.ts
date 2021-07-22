@@ -7,6 +7,11 @@ export const environment = {
     author: pkg.author,
     name: pkg.name,
     description: pkg.description,
+    license: pkg.license,
+    repository: {
+      type: pkg.repository.type,
+      url: pkg.repository.url
+    },
     version: pkg.version
   },
   build: {

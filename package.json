@@ -2,7 +2,7 @@
   "name": "washington-app",
   "version": "0.6.1",
   "private": false,
-  "description": "Town of Washington NH App",
+  "description": "Washington NH Interactive Parcel Map",
   "license": "MIT",
   "repository": {
     "type": "git",
