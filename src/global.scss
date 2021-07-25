@@ -36,18 +36,26 @@ h6 {
   --app-scale: 0;
   --app-translate-x: 0;
   --app-translate-y: 0;
+
   // land use color shading
   // @see https://www.gismanual.com/style/ColorConventions.pdf
   // @see map-maker
-  --shade-u11: var(--mat-brown-300);
-  --shade-u12: var(--mat-brown-500);
-  --shade-u17: var(--mat-red-200);
-  --shade-u19: var(--mat-yellow-200);
-  --shade-u22: var(--mat-orange-200);
-  --shade-u26: var(--mat-purple-200);
-  --shade-u27: var(--mat-gray-300);
-  --shade-u33: var(--mat-blue-200);
-  --shade-u58: var(--mat-teal-200);
-  --shade-u100: #d9e697;
-  --shade-u101: #acd19e;
+  --shade-u110: var(--mat-brown-300);
+  --shade-u120: var(--mat-brown-500);
+  --shade-u190: var(--mat-yellow-200);
+  --shade-u260: var(--mat-red-200);
+  --shade-u261: var(--mat-purple-200);
+  --shade-u300: var(--mat-cyan-200);
+  --shade-u400: var(--mat-orange-200);
+  --shade-u500: #d9e697;
+  --shade-u501: #acd19e;
+  --shade-u999: var(--mat-gray-300);
+
+  --shade-CUMH: var(--mat-brown-500);
+  --shade-CUMW: var(--mat-brown-500);
+  --shade-CUUH: var(--mat-brown-500);
+  --shade-CUUW: var(--mat-brown-500);
+
+  --shade-CUFL: var(--mat-green-500);
+  --shade-CUWL: var(--mat-blue-500);
 }

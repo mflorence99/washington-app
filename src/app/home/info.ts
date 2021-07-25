@@ -1,12 +1,13 @@
 import { DESC_BY_USAGE } from '../state/lots';
 import { USAGES } from '../state/lots';
 
+import { environment } from '../../environments/environment';
+
 import { Component } from '@angular/core';
 import { HostBinding } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
-import { environment } from '../../environments/environment';
 
 @Component({
   // NOTE: so that we can manipulate the actual stylesheet in code

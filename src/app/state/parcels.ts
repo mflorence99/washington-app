@@ -4,14 +4,17 @@ import { Point } from './maps';
 export interface Lot {
   address: string;
   area: number;
+  building$: number;
   centers: Point[];
+  cu$: number;
   id: string;
-  updatedAt: string;
+  land$: number;
+  neighborhood: string;
+  owner: string;
+  taxed$: number;
   usage: string;
-  valueOfImprovement: number;
-  valueOfLand: number;
-  valueOfParcel: number;
-  yearOfCAMA: number;
+  use: string;
+  zone: string;
 }
 
 export const PARCELS_BY_ADDRESS: Record<string, Lot[]> = Object.keys(

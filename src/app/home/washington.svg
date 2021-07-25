@@ -1,8 +1,4 @@
-<svg viewPort="0 0 4620 4626" width="4620" height="4626"><g><polygon id="248-9000" points="948,2614 929,2609 928,2611 928,2613 927,2616 926,2620 924,2622 923,2623 945,2619 948,2614"></polygon></g><!--bindings={
-  "ng-reflect-ng-if": "948,2614 929,2609 928,2611 928"
-}--><!--ng-container--><!--bindings={
-  "ng-reflect-ng-for-of": "[object Object],[object Object"
-}--><!--ng-container--><g><polygon id="8-36" points="2921,1732 2888,1734 2900,1819 2937,1850 2921,1732"></polygon></g><!--bindings={
+<svg viewPort="0 0 4620 4626" width="4620" height="4626"><g><polygon id="8-36" points="2921,1732 2888,1734 2900,1819 2937,1850 2921,1732"></polygon></g><!--bindings={
   "ng-reflect-ng-if": "2921,1732 2888,1734 2900,1819 "
 }--><!--ng-container--><!--bindings={
   "ng-reflect-ng-for-of": "[object Object],[object Object"
@@ -962,10 +958,6 @@
   "ng-reflect-ng-for-of": "[object Object],[object Object"
 }--><!--ng-container--><g><polygon id="11-45" points="1705,2953 1699,2956 1693,2959 1688,2960 1688,2970 1694,2972 1703,2978 1704,2978 1706,2978 1708,2976 1710,2974 1712,2970 1713,2969 1716,2969 1719,2967 1705,2953"></polygon></g><!--bindings={
   "ng-reflect-ng-if": "1705,2953 1699,2956 1693,2959 "
-}--><!--ng-container--><!--bindings={
-  "ng-reflect-ng-for-of": "[object Object],[object Object"
-}--><!--ng-container--><g><polygon id="248-8000" points="966,2615 966,2610 950,2614 947,2619 966,2615"></polygon></g><!--bindings={
-  "ng-reflect-ng-if": "966,2615 966,2610 950,2614 947"
 }--><!--ng-container--><!--bindings={
   "ng-reflect-ng-for-of": "[object Object],[object Object"
 }--><!--ng-container--><g><polygon id="12-129" points="3215,2938 3222,2900 3162,2900 3157,2926 3215,2938"></polygon></g><!--bindings={
@@ -8178,6 +8170,70 @@
   "ng-reflect-ng-for-of": "[object Object],[object Object"
 }--><!--ng-container--><g><polygon id="21-8" points="3411,4042 3411,4046 3414,4052 3419,4060 3419,4070 3419,4074 3414,4081 3408,4088 3403,4097 3397,4108 3393,4112 3389,4115 3387,4117 3383,4122 3380,4128 3377,4141 3376,4150 3375,4168 3374,4175 3377,4199 3378,4206 3377,4214 3372,4225 3370,4230 3367,4254 3364,4268 3378,4268 3374,4287 3364,4311 3450,4313 3445,4300 3443,4292 3437,4284 3435,4281 3435,4278 3437,4274 3494,4198 3503,4185 3497,4173 3496,4171 3492,4168 3483,4154 3478,4148 3469,4138 3463,4130 3454,4120 3449,4110 3440,4097 3432,4074 3423,4060 3421,4061 3418,4055 3411,4042"></polygon></g><!--bindings={
   "ng-reflect-ng-if": "3411,4042 3411,4046 3414,4052 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": ""
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": ""
+}--><!--ng-container--><g><polygon id="23-26" points="4171,2390 4166,2350 4182,2357 4198,2374 4205,2387 4181,2396 4171,2390"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "4171,2390 4166,2350 4182,2357 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="12-210" points="2486,2827 2490,2831 2494,2838 2499,2842 2503,2847 2502,2835 2503,2829 2487,2824 2486,2827"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "2486,2827 2490,2831 2494,2838 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="19-20" points="2034,3804 2172,3792 2176,3799 2173,3809 2045,3818 2034,3804"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "2034,3804 2172,3792 2176,3799 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="19-21" points="2028,3787 2164,3778 2173,3792 2034,3804 2030,3801 2028,3787"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "2028,3787 2164,3778 2173,3792 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="20-193" points="2839,3884 2852,3884 2852,3895 2838,3895 2839,3884"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "2839,3884 2852,3884 2852,3895 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="12-127" points="3137,2953 3150,2943 3196,2968 3190,2978 3186,2983 3181,2985 3178,2988 3137,2953 3137,2953"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "3137,2953 3150,2943 3196,2968 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="14-359" points="1110,3197 1130,3201 1133,3214 1112,3220 1110,3197"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1110,3197 1130,3201 1133,3214 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="14-117" points="1009,3338 1023,3334 1027,3350 1014,3353 1009,3338"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1009,3338 1023,3334 1027,3350 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="14-367" points="1170,3309 1191,3289 1196,3300 1180,3320 1170,3309"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1170,3309 1191,3289 1196,3300 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="14-371" points="1224,3282 1241,3281 1238,3309 1225,3304 1224,3282"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1224,3282 1241,3281 1238,3309 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="14-255" points="1238,3495 1249,3489 1259,3507 1246,3510 1238,3495"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1238,3495 1249,3489 1259,3507 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="14-259" points="1260,3508 1272,3505 1279,3525 1269,3527 1260,3508"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1260,3508 1272,3505 1279,3525 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="14-425" points="785,3531 794,3549 786,3552 778,3535 785,3531"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "785,3531 794,3549 786,3552 778"
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="7-24" points="1714,2198 1783,2208 1778,2242 1716,2212 1714,2198"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1714,2198 1783,2208 1778,2242 "
+}--><!--ng-container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--ng-container--><g><polygon id="19-26" points="1518,4013 1564,4012 1628,4178 1573,4183 1566,4165 1574,4162 1567,4145 1559,4145 1547,4114 1536,4114 1524,4065 1542,4060 1536,4048 1520,4051 1518,4013"></polygon></g><!--bindings={
+  "ng-reflect-ng-if": "1518,4013 1564,4012 1628,4178 "
 }--><!--ng-container--><!--bindings={
   "ng-reflect-ng-for-of": "[object Object],[object Object"
 }--><!--ng-container--><!--bindings={

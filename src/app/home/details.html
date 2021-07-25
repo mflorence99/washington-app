@@ -22,35 +22,6 @@
           <td>Land Use</td>
           <td>{{ useDescription() }}</td>
         </tr>
-        <tr>
-          <td>
-            <a
-              href="https://www.mass.gov/doc/guidelines-on-cama-system-acquisitions/download"
-              target="_blank"
-              >CAMA</a
-            >
-            Year
-          </td>
-          <td>{{ lot.yearOfCAMA }}</td>
-        </tr>
-        <tr>
-          <td>Land Value</td>
-          <td>{{ lot.valueOfLand | currency: 'USD':'symbol':'1.0-0' }}</td>
-        </tr>
-        <tr>
-          <td>Improv Value</td>
-          <td>
-            {{ lot.valueOfImprovement | currency: 'USD':'symbol':'1.0-0' }}
-          </td>
-        </tr>
-        <tr>
-          <td>Parcel Value</td>
-          <td>{{ lot.valueOfParcel | currency: 'USD':'symbol':'1.0-0' }}</td>
-        </tr>
-        <tr>
-          <td>Last Update</td>
-          <td>{{ lot.updatedAt | date }}</td>
-        </tr>
       </tbody>
     </table>
   </article>
