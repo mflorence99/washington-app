@@ -1,4 +1,5 @@
 import { DESC_BY_USAGE } from '../state/lots';
+import { DESC_BY_USE } from '../state/lots';
 import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
 
@@ -54,7 +55,11 @@ export class DetailsComponent implements OnInit {
     else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
   }
 
-  useDescription(): string {
+  usageDescription(): string {
     return DESC_BY_USAGE[this.lot.usage];
+  }
+
+  useDescription(): string {
+    return DESC_BY_USE[this.lot.use];
   }
 }

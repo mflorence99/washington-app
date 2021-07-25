@@ -14,13 +14,44 @@
   <article class="table">
     <table>
       <tbody>
+        <tr *ngIf="lot.owner">
+          <td>Owner</td>
+          <td>{{ lot.owner }}</td>
+        </tr>
+
         <tr>
           <td>Area</td>
           <td>{{ lot.area | number: '1.0-1' }} acres</td>
         </tr>
+
         <tr>
           <td>Land Use</td>
-          <td>{{ useDescription() }}</td>
+          <td>
+            {{ usageDescription() }}
+            <span *ngIf="lot.usage === '190' && useDescription()">
+              &bull; {{ useDescription() }}
+            </span>
+          </td>
+        </tr>
+
+        <tr *ngIf="lot.building$">
+          <td>Building</td>
+          <td>{{ lot.building$ | currency:'USD':'symbol':'1.0-0' }}</td>
+        </tr>
+
+        <tr *ngIf="lot.cu$">
+          <td>Current Use</td>
+          <td>{{ lot.cu$ | currency:'USD':'symbol':'1.0-0' }}</td>
+        </tr>
+
+        <tr *ngIf="lot.land$">
+          <td>Land</td>
+          <td>{{ lot.land$ | currency:'USD':'symbol':'1.0-0' }}</td>
+        </tr>
+
+        <tr *ngIf="lot.taxed$">
+          <td>Taxed</td>
+          <td>{{ lot.taxed$ | currency:'USD':'symbol':'1.0-0' }}</td>
         </tr>
       </tbody>
     </table>
