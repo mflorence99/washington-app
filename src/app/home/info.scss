@@ -40,13 +40,6 @@ app-info {
       }
     }
 
-    .footer {
-      align-self: end;
-      display: flex;
-      grid-area: footer;
-      justify-content: flex-end;
-    }
-
     .legend {
       grid-area: legend;
 
@@ -74,21 +67,18 @@ app-info {
 }
 
 app-info.landscape section {
-  grid-template-areas:
-    'legend credits'
-    'legend footer';
+  grid-template-areas: 'legend credits';
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr;
 }
 
 app-info.portrait section {
   grid-gap: 1rem;
   grid-template-areas:
     'legend'
-    'credits'
-    'footer';
+    'credits';
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 1fr auto;
+  grid-template-rows: 1fr 1fr;
 
   .filler {
     display: none;
@@ -96,9 +86,7 @@ app-info.portrait section {
 }
 
 app-info.square section {
-  grid-template-areas:
-    'legend credits'
-    'footer footer';
+  grid-template-areas: 'legend credits';
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr;
 }

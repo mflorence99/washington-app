@@ -181,7 +181,8 @@ export class HomePage implements AfterViewInit, OnInit {
           this.mc
             .create({
               component: DetailsComponent,
-              componentProps: { lot: lots[0] }
+              componentProps: { lot: lots[0] },
+              swipeToClose: true
             })
             .then((modal) => modal.present());
         }
@@ -196,7 +197,8 @@ export class HomePage implements AfterViewInit, OnInit {
   showInfo(): void {
     this.mc
       .create({
-        component: InfoComponent
+        component: InfoComponent,
+        swipeToClose: true
       })
       .then((modal) => modal.present());
     // NOTE: close the menu later so the transition can be seen

@@ -32,6 +32,7 @@ export class DetailsComponent implements OnInit {
     this.mc.dismiss();
   }
 
+  // NOTE: not currently used; instead you can click "Google" on the map
   googleLink(): string {
     return `https://www.google.com/maps/@?api=1&map_action=map&center=${this.lot.centers[0].lat}%2c${this.lot.centers[0].lon}&basemap=satellite&zoom=16`;
   }

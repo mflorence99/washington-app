@@ -57,12 +57,9 @@
     </table>
   </article>
 
-  <div class="filler">&nbsp;</div>
-
-  <footer class="footer">
-    <a [href]="googleLink()" target="_blank">View on Google Maps</a>
-    <ion-button (tap)="dismiss()" [strong]="true" color="primary"
-      >Done</ion-button
-    >
-  </footer>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (tap)="dismiss()" size="small">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </section>

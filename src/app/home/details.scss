@@ -9,18 +9,18 @@ app-details {
     height: 100%;
     width: 100%;
 
-    .filler {
-      grid-area: filler;
-    }
+    // .filler {
+    //   grid-area: filler;
+    // }
 
-    .footer {
-      align-items: center;
-      display: flex;
-      gap: 1rem;
-      grid-area: footer;
-      justify-content: space-between;
-      white-space: nowrap;
-    }
+    // .footer {
+    //   align-items: center;
+    //   display: flex;
+    //   gap: 1rem;
+    //   grid-area: footer;
+    //   justify-content: space-between;
+    //   white-space: nowrap;
+    // }
 
     .header {
       grid-area: header;
@@ -80,10 +80,9 @@ app-details {
 app-details.landscape section {
   grid-template-areas:
     'header header'
-    'map table'
-    'map footer';
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto 1fr auto;
+    'map table';
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: auto 1fr;
 
   .filler {
     display: none;
@@ -94,10 +93,9 @@ app-details.portrait section {
   grid-template-areas:
     'header'
     'map'
-    'table'
-    'footer';
+    'table';
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: auto 1fr auto;
 
   .filler {
     display: none;
@@ -106,10 +104,9 @@ app-details.portrait section {
 
 app-details.square section {
   grid-template-areas:
-    'header header'
-    'map map'
-    'table filler'
-    'table footer';
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto 1fr auto auto;
+    'header'
+    'map'
+    'table';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
 }
