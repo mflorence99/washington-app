@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import * as Sentry from '@sentry/angular';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { Drivers } from '@ionic/storage';
 import { ErrorHandler } from '@angular/core';
@@ -39,6 +40,7 @@ import { RouteReuseStrategy } from '@angular/router';
 
   imports: [
     AngularResizedEventModule,
+    AngularSvgIconModule.forRoot(),
     BrowserModule,
     GoogleMapsModule,
     HammerModule,

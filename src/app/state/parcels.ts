@@ -1,3 +1,5 @@
+import { DESC_BY_USAGE } from './lots';
+import { DESC_BY_USE } from './lots';
 import { LOTS } from './lots';
 import { Point } from './maps';
 
@@ -9,12 +11,10 @@ export interface Lot {
   cu$: number;
   id: string;
   land$: number;
-  neighborhood: string;
   owner: string;
   taxed$: number;
-  usage: string;
-  use: string;
-  zone: string;
+  usage: keyof typeof DESC_BY_USAGE;
+  use: keyof typeof DESC_BY_USE;
 }
 
 export const PARCELS_BY_ADDRESS: Record<string, Lot[]> = Object.keys(

@@ -1,4 +1,5 @@
 import { DESC_BY_USAGE } from '../state/lots';
+import { DESC_BY_USE } from '../state/lots';
 import { USAGES } from '../state/lots';
 
 import { environment } from '../../environments/environment';
@@ -23,6 +24,10 @@ export class InfoComponent {
   env = environment;
 
   constructor(private mc: ModalController) {}
+
+  descByUse(): Record<string, string> {
+    return DESC_BY_USE;
+  }
 
   dismiss(): void {
     this.mc.dismiss();

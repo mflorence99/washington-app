@@ -1,28 +1,27 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export const DESC_BY_USAGE = {
-  '110': 'Single Family Home',
-  '120': 'Multi Family Units',
+  '110': 'Single family residence',
+  '120': 'Two family residence',
   '190': 'Current Use',
   '260': 'Commercial/Industrial',
-  '261': 'Electric Utilities',
   '300': 'Town Property',
   '400': 'State Property',
   '500': 'Pilsbury State Park',
-  '501': 'Washington Town Forest',
-  '999': 'Unclassified'
+  '501': 'Washington Town Forest'
 };
 
-export const USAGES = [
-  '110',
-  '120',
-  '190',
-  '260',
-  // "261",
-  '300',
-  '400',
-  '500',
-  '501'
-  // "999"
-];
+export const DESC_BY_USE = {
+  CUFL: 'Farmland',
+  CUMH: 'Managed hardwood',
+  CUMW: 'Managed pine',
+  CUUH: 'Unmanaged hardwood',
+  CUUW: 'Unmanaged pine',
+  CUWL: 'Wetland'
+};
+
+export const USAGES = ['110', '120', '190', '260', '300', '400', '500', '501'];
+
+export const USES = ['CUMH', 'CUMW', 'CUUH', 'CUUW', 'CUFL', 'CUWL'];
 
 export const LOTS = {
   '8-36': {
@@ -37,12 +36,10 @@ export const LOTS = {
     ],
     cu$: 3700,
     land$: 37800,
-    neighborhood: 'C',
     owner: 'FITTON, ROBERT A.',
     taxed$: 41500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-56': {
     address: 'NO MAIN ST',
@@ -56,12 +53,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22700,
-    neighborhood: 'V',
     owner: 'MALLARD, KENNETH ANDREW',
     taxed$: 22700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '2-4': {
     address: 'BACK MT RD',
@@ -75,12 +70,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3201,
-    neighborhood: 'X',
     owner: 'YAGLOU, EDWARD P REVOCABLE TRU',
     taxed$: 3201,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '19-30': {
     address: 'KING ST',
@@ -94,12 +87,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12100,
-    neighborhood: 'C',
     owner: 'MAYHEW, CARROLL B & STEVEN C',
     taxed$: 12100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-19': {
     address: '265 WASHINGTON HGTS RD',
@@ -113,12 +104,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 31800,
-    neighborhood: 'A',
     owner: 'KING, BRUCE P',
     taxed$: 127500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-28': {
     address: '10 MARYS LN',
@@ -132,12 +121,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 29600,
-    neighborhood: 'C',
     owner: 'PISCOPO DONALD R.',
     taxed$: 214100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-29': {
     address: '66 MARYS LN',
@@ -151,12 +138,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 62400,
-    neighborhood: 'C',
     owner: 'BECKER,KATHRYN M',
     taxed$: 218700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-49': {
     address: 'NO MAIN ST',
@@ -170,12 +155,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 360,
-    neighborhood: 'V',
     owner: 'BARTON, THOMAS',
     taxed$: 360,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '7-51': {
     address: '601 NO MAIN ST',
@@ -189,12 +172,10 @@ export const LOTS = {
     ],
     cu$: 18800,
     land$: 39220,
-    neighborhood: 'D',
     owner: 'KRONE, CHRISTOPHER A',
     taxed$: 164420,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-58': {
     address: '892 LEMPSTER MT RD',
@@ -208,12 +189,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25900,
-    neighborhood: 'V',
     owner: 'KERRY, ROBERT AND LAUREN',
     taxed$: 25900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-8': {
     address: '1222 HALFMOON PD RD',
@@ -227,12 +206,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'BACON, MICHAEL & GERALDINE',
     taxed$: 25800,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '8-3': {
     address: '1289 HALFMOON PD RD',
@@ -246,12 +223,10 @@ export const LOTS = {
     ],
     cu$: 2800,
     land$: 34000,
-    neighborhood: 'D',
     owner: 'LIMA, DANIEL R',
     taxed$: 71200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-16': {
     address: 'HALFMOON PD RD',
@@ -265,12 +240,10 @@ export const LOTS = {
     ],
     cu$: 100,
     land$: 27600,
-    neighborhood: 'V',
     owner: 'HOWLETT, JACQUELINE C',
     taxed$: 27700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-15': {
     address: '1662 HALFMOON PD RD',
@@ -284,12 +257,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 29700,
-    neighborhood: 'V',
     owner: 'WOODWARD, JACQUELINE MARY',
     taxed$: 29700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-11': {
     address: '1530 HALFMOON PD RD',
@@ -303,12 +274,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 35358,
-    neighborhood: 'D',
     owner: 'WEST TRUST, KATHLEEN M REV',
     taxed$: 65558,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-26': {
     address: '271 MARTIN RD',
@@ -322,12 +291,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26100,
-    neighborhood: 'V',
     owner: 'SCHWARTZ, EMILY J',
     taxed$: 26100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-28': {
     address: '371 MARTIN RD',
@@ -341,12 +308,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 27200,
-    neighborhood: 'C',
     owner: 'SEEKAMP, MICHAEL',
     taxed$: 55000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-37': {
     address: '256 MARTIN RD',
@@ -360,12 +325,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 30000,
-    neighborhood: 'C',
     owner: 'MCCANN, WILLIAM',
     taxed$: 50400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-18': {
     address: '2570 E WASHINGTON RD',
@@ -379,12 +342,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'WASHINGTON HISTORICAL SOCIETY',
     taxed$: 79600,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '9-26-0C': {
     address: 'AYERS POND RD',
@@ -398,12 +359,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2824,
-    neighborhood: 'D',
     owner: 'PORTER, WILLIAM G',
     taxed$: 2824,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '10-15': {
     address: '983 ASHUELOT DR',
@@ -417,12 +376,10 @@ export const LOTS = {
     ],
     cu$: 4400,
     land$: 86200,
-    neighborhood: 'D',
     owner: 'NOLAN, HEIDI W',
     taxed$: 241300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-31': {
     address: '849 ASHUELOT DR',
@@ -436,12 +393,10 @@ export const LOTS = {
     ],
     cu$: 18100,
     land$: 192200,
-    neighborhood: 'D',
     owner: 'TRAILSMITH, PAMELA',
     taxed$: 318300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-24': {
     address: '547 LEMPSTER MT RD',
@@ -455,12 +410,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 54963,
-    neighborhood: 'E',
     owner: 'STEFANIAK, JOSEPH',
     taxed$: 256963,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-25': {
     address: '673 LEMPSTER MT RD',
@@ -474,12 +427,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 33003,
-    neighborhood: 'D',
     owner: 'JOYAL, RICHARD M',
     taxed$: 57203,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-47': {
     address: '646 MILLEN POND RD',
@@ -497,12 +448,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 151400,
-    neighborhood: 'F',
     owner: 'TURNBULL, NANCY C',
     taxed$: 191600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-48': {
     address: '648 MILLEN POND RD',
@@ -520,12 +469,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 150200,
-    neighborhood: 'F',
     owner: 'FEENEY, KEVIN J',
     taxed$: 300600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '11-70': {
     address: '320 FAXON HILL RD',
@@ -539,12 +486,10 @@ export const LOTS = {
     ],
     cu$: 7800,
     land$: 45600,
-    neighborhood: 'E',
     owner: 'BOUTIN, MARK D',
     taxed$: 123900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-75': {
     address: '152 VALLEY RD',
@@ -558,12 +503,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25200,
-    neighborhood: 'V',
     owner: 'SULLIVAN, FRANCIS X',
     taxed$: 25200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-77': {
     address: '78 VALLEY RD',
@@ -577,12 +520,10 @@ export const LOTS = {
     ],
     cu$: 13300,
     land$: 42400,
-    neighborhood: 'E',
     owner: 'SEVENTY-EIGHT VALLEY RD N R TR',
     taxed$: 103600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-3': {
     address: '141 HALFMOON PD RD',
@@ -596,12 +537,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39900,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - DPWH',
     taxed$: 77200,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-34': {
     address: '1024 HALFMOON PD RD',
@@ -615,12 +554,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18800,
-    neighborhood: 'E',
     owner: 'BATES III, JOHN',
     taxed$: 18800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-35': {
     address: '1406 LOVELL MT RD',
@@ -634,12 +571,10 @@ export const LOTS = {
     ],
     cu$: 10800,
     land$: 51500,
-    neighborhood: 'E',
     owner: 'BELLEMORE, TIMOTHY A.',
     taxed$: 62300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-78': {
     address: '707 WASHINGTON DR',
@@ -653,12 +588,10 @@ export const LOTS = {
     ],
     cu$: 10500,
     land$: 220400,
-    neighborhood: 'G',
     owner: 'CHEUVRONT, DAVID L',
     taxed$: 316500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-79': {
     address: '699 WASHINGTON DR',
@@ -672,12 +605,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 219900,
-    neighborhood: 'G',
     owner: 'GROSSO, IRREV TRUST',
     taxed$: 329800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-76': {
     address: 'WASHINGTON DR',
@@ -691,12 +622,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 146800,
-    neighborhood: 'V',
     owner: 'LARSON FAMILY REVOC TRUST',
     taxed$: 146800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-85': {
     address: '23 WALNUT CIR',
@@ -710,12 +639,10 @@ export const LOTS = {
     ],
     cu$: 39700,
     land$: 299600,
-    neighborhood: 'G',
     owner: 'FERLINS FAMILY COMPOUND TRUST',
     taxed$: 436400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-94': {
     address: '549 WASHINGTON DR',
@@ -729,12 +656,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 215000,
-    neighborhood: 'G',
     owner: 'BUDNE, PHILIP L',
     taxed$: 281300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-92': {
     address: 'WASHINGTON DR',
@@ -748,12 +673,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 54800,
-    neighborhood: 'V',
     owner: 'BODNAR, BERTRAM J',
     taxed$: 54800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-149': {
     address: 'WASHINGTON DR',
@@ -767,12 +690,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 185,
-    neighborhood: 'V',
     owner: 'KITTREDGE, KAREN J.',
     taxed$: 185,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '12-99': {
     address: '491 WASHINGTON DR',
@@ -786,12 +707,10 @@ export const LOTS = {
     ],
     cu$: 19800,
     land$: 226100,
-    neighborhood: 'G',
     owner: 'SHEEHY, JOHN',
     taxed$: 345800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-101': {
     address: '469 WASHINGTON DR',
@@ -805,12 +724,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 226300,
-    neighborhood: 'G',
     owner: 'REYNHOLDS, JEFFREY; REYNHOLDS,',
     taxed$: 290200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-97-01': {
     address: 'WASHINGTON DR',
@@ -824,12 +741,10 @@ export const LOTS = {
     ],
     cu$: 8800,
     land$: 189500,
-    neighborhood: 'G',
     owner: 'VAN PRAAGH, RICHARD REV TRUST',
     taxed$: 198300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-106': {
     address: '415 WASHINGTON DR',
@@ -843,12 +758,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 224500,
-    neighborhood: 'G',
     owner: 'MORSS JR, WATSON',
     taxed$: 334100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-110': {
     address: '289 WASHINGTON DR',
@@ -862,12 +775,10 @@ export const LOTS = {
     ],
     cu$: 5800,
     land$: 196700,
-    neighborhood: 'G',
     owner: 'YUNIS, BORGHILD',
     taxed$: 341200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-114': {
     address: '243 WASHINGTON DR',
@@ -881,12 +792,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 209000,
-    neighborhood: 'G',
     owner: 'REILLY FAMILY REALTY TRUST',
     taxed$: 310000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-115': {
     address: '235 WASHINGTON DR',
@@ -900,12 +809,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 215200,
-    neighborhood: 'G',
     owner: 'NISSEN, WILLIAM',
     taxed$: 266600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-123': {
     address: '330 WASHINGTON DR',
@@ -919,12 +826,10 @@ export const LOTS = {
     ],
     cu$: 43100,
     land$: 46700,
-    neighborhood: 'V',
     owner: 'GEBO LIVING TRUST',
     taxed$: 89800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-133': {
     address: '448 WASHINGTON DR',
@@ -938,12 +843,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33300,
-    neighborhood: 'V',
     owner: 'BUTCHER FAMILY REVOCABLE TRUST',
     taxed$: 33300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-135': {
     address: '500 WASHINGTON DR',
@@ -957,12 +860,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 28900,
-    neighborhood: 'V',
     owner: 'JACOBSON, THOMAS C. REVOCABLE ',
     taxed$: 28900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-142': {
     address: '650 WASHINGTON DR',
@@ -976,12 +877,10 @@ export const LOTS = {
     ],
     cu$: 23500,
     land$: 72000,
-    neighborhood: 'G',
     owner: 'ALVES, LOUIS A',
     taxed$: 168000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-143': {
     address: 'WASHINGTON DR',
@@ -995,12 +894,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33000,
-    neighborhood: 'V',
     owner: 'BODNAR, MICHAEL D',
     taxed$: 33000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-157': {
     address: '180 ISLAND POND RD',
@@ -1014,12 +911,10 @@ export const LOTS = {
     ],
     cu$: 5900,
     land$: 185500,
-    neighborhood: 'E',
     owner: 'GRAHAM FAM REAL ESTATE TRUST',
     taxed$: 236500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-158': {
     address: '160 ISLAND POND RD',
@@ -1033,12 +928,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 0,
-    neighborhood: 'E',
     owner: 'LYNCH REVOCABLE TRUST',
     taxed$: 42300,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '12-170': {
     address: '104 ISLAND POND RD',
@@ -1052,12 +945,10 @@ export const LOTS = {
     ],
     cu$: 9400,
     land$: 25300,
-    neighborhood: 'C',
     owner: 'COOK, R E & L T REV TRUST',
     taxed$: 34700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-181-03': {
     address: '143 VALLEY RD',
@@ -1071,12 +962,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42300,
-    neighborhood: 'E',
     owner: 'DAVIS, ADAM',
     taxed$: 126500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-180': {
     address: '248 SO MAIN ST',
@@ -1090,12 +979,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46900,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 46900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '13-19': {
     address: 'E WASHINGTON RD',
@@ -1109,12 +996,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1769,
-    neighborhood: 'V',
     owner: 'FRANCE, DAVID',
     taxed$: 1769,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '13-20': {
     address: 'E WASHINGTON RD',
@@ -1128,12 +1013,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 363,
-    neighborhood: 'V',
     owner: 'FRANCE, DAVID',
     taxed$: 363,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '13-21': {
     address: 'E WASHINGTON RD',
@@ -1147,12 +1030,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 638,
-    neighborhood: 'V',
     owner: 'KRAUS, DAVID B',
     taxed$: 638,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '13-26': {
     address: 'E WASHINGTON RD',
@@ -1166,12 +1047,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1870,
-    neighborhood: 'X',
     owner: 'BEAR HILL PROPERTY, LLC',
     taxed$: 1870,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '13-27': {
     address: 'E WASHINGTON RD',
@@ -1185,12 +1064,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 457,
-    neighborhood: 'X',
     owner: 'ECCARDT FARMS INC',
     taxed$: 457,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '13-29': {
     address: 'E WASHINGTON RD',
@@ -1204,12 +1081,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38400,
-    neighborhood: 'F',
     owner: 'WASHINGTON, TOWN OF - FIRE',
     taxed$: 38400,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '14-6': {
     address: '663 ASHUELOT DR',
@@ -1223,12 +1098,10 @@ export const LOTS = {
     ],
     cu$: 28300,
     land$: 197300,
-    neighborhood: 'E',
     owner: 'CARNEY, GARY R',
     taxed$: 374100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-20': {
     address: '138 HARRISON RD',
@@ -1242,12 +1115,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 206700,
-    neighborhood: 'E',
     owner: 'BRAVER, WILLIAM',
     taxed$: 281700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-21': {
     address: '150 HARRISON RD',
@@ -1261,12 +1132,10 @@ export const LOTS = {
     ],
     cu$: 6700,
     land$: 211600,
-    neighborhood: 'E',
     owner: 'VORE, ESTELLE PAPAGIOTAS REV T',
     taxed$: 403800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-28': {
     address: '93 HARRISON RD',
@@ -1280,12 +1149,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 41600,
-    neighborhood: 'D',
     owner: 'BLEAKNEY, SCOTT',
     taxed$: 136100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-38': {
     address: '536 ASHUELOT DR',
@@ -1299,12 +1166,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14400,
-    neighborhood: 'U',
     owner: 'DEGENNARO, ROBERT M',
     taxed$: 14400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-34': {
     address: 'ASHUELOT DR',
@@ -1318,12 +1183,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'DOYLE, MARY CLAIRE',
     taxed$: 11400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-35': {
     address: '497 ASHUELOT DR',
@@ -1337,12 +1200,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'DOYLE, MARY CLAIRE',
     taxed$: 183500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-47': {
     address: '101 TAYLOR CIR',
@@ -1356,12 +1217,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 42400,
-    neighborhood: 'E',
     owner: 'KEMP, CLIFFORD + MELINDA',
     taxed$: 163200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-61': {
     address: '263 STOWELL RD',
@@ -1375,12 +1234,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 48000,
-    neighborhood: 'E',
     owner: 'CARRON, DON L',
     taxed$: 175100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-77': {
     address: 'STOWELL RD',
@@ -1394,12 +1251,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11500,
-    neighborhood: 'U',
     owner: 'BAUMAN, ANDY',
     taxed$: 11500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-95': {
     address: '159 JEFFERSON DR',
@@ -1413,12 +1268,10 @@ export const LOTS = {
     ],
     cu$: 40700,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'RHINOCEROS PARTNERSHIP',
     taxed$: 222200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-109': {
     address: '40 MADISON DR',
@@ -1432,12 +1285,10 @@ export const LOTS = {
     ],
     cu$: 16000,
     land$: 35400,
-    neighborhood: 'E',
     owner: 'CAYER, SHAWN',
     taxed$: 149900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-103': {
     address: 'JEFFERSON DR',
@@ -1451,12 +1302,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'MOORE, DARWIN',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-113': {
     address: '108 MADISON DR',
@@ -1470,12 +1319,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38800,
-    neighborhood: 'E',
     owner: 'HAGUE, JEFFREY',
     taxed$: 199500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-118': {
     address: '178 MADISON DR',
@@ -1489,12 +1336,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38800,
-    neighborhood: 'E',
     owner: 'CLARK, RAYMOND J',
     taxed$: 142600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-120': {
     address: '374 ASHUELOT DR',
@@ -1508,12 +1353,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 38800,
-    neighborhood: 'E',
     owner: 'CREED, DARLENE B',
     taxed$: 118100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-127': {
     address: '77 MADISON DR',
@@ -1527,12 +1370,10 @@ export const LOTS = {
     ],
     cu$: 19000,
     land$: 41400,
-    neighborhood: 'E',
     owner: 'NELSON, MARY',
     taxed$: 147100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-143': {
     address: '330 ASHUELOT DR',
@@ -1546,12 +1387,10 @@ export const LOTS = {
     ],
     cu$: 10700,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'LINTNER, JAMES',
     taxed$: 130600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-141': {
     address: 'PRESIDENTIAL DR',
@@ -1565,12 +1404,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13000,
-    neighborhood: 'U',
     owner: 'SWEENEY, SHAWN P',
     taxed$: 13000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-153': {
     address: '397 ASHUELOT DR',
@@ -1584,12 +1421,10 @@ export const LOTS = {
     ],
     cu$: 18000,
     land$: 203600,
-    neighborhood: 'E',
     owner: 'FORD FAMILY LIVING TRUST',
     taxed$: 363700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-161': {
     address: '307 ASHUELOT DR',
@@ -1603,12 +1438,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 228500,
-    neighborhood: 'E',
     owner: 'NOLAN, STEVEN J',
     taxed$: 512700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-167': {
     address: '249 ASHUELOT DR',
@@ -1622,12 +1455,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 213600,
-    neighborhood: 'E',
     owner: 'WICKENS, DARRYL A',
     taxed$: 345800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-172': {
     address: '177 ASHUELOT DR',
@@ -1641,12 +1472,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 223600,
-    neighborhood: 'E',
     owner: 'MASTON FAM REV TRUST',
     taxed$: 357500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-173': {
     address: '165 ASHUELOT DR',
@@ -1660,12 +1489,10 @@ export const LOTS = {
     ],
     cu$: 23300,
     land$: 213600,
-    neighborhood: 'E',
     owner: 'TALPEY, ELIZABETH A FAMILY TRU',
     taxed$: 446900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-176': {
     address: '121 ASHUELOT DR',
@@ -1679,12 +1506,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 213600,
-    neighborhood: 'E',
     owner: 'FLANDERS, TIM A',
     taxed$: 273300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-177': {
     address: '113 ASHUELOT DR',
@@ -1698,12 +1523,10 @@ export const LOTS = {
     ],
     cu$: 8500,
     land$: 181900,
-    neighborhood: 'E',
     owner: 'SANGIOVANNI, ANTHONY REV TRUST',
     taxed$: 259000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-181': {
     address: '35 ASHUELOT DR',
@@ -1717,12 +1540,10 @@ export const LOTS = {
     ],
     cu$: 8000,
     land$: 225000,
-    neighborhood: 'E',
     owner: 'GRAYSON, HEATH',
     taxed$: 443200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-182': {
     address: '25 ASHUELOT DR',
@@ -1736,12 +1557,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 215100,
-    neighborhood: 'E',
     owner: 'SZYMANSKI, GINA L',
     taxed$: 400500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-185': {
     address: '14 VAN BUREN CIR',
@@ -1755,12 +1574,10 @@ export const LOTS = {
     ],
     cu$: 33200,
     land$: 219300,
-    neighborhood: 'E',
     owner: 'MODZELESKI FAMILY REV TRUST',
     taxed$: 456000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-189': {
     address: '30 VAN BUREN CIR',
@@ -1774,12 +1591,10 @@ export const LOTS = {
     ],
     cu$: 4400,
     land$: 260000,
-    neighborhood: 'E',
     owner: 'DKBS LAND HOLDINGS, LLC',
     taxed$: 468600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-191': {
     address: '25 VAN BUREN CIR',
@@ -1793,12 +1608,10 @@ export const LOTS = {
     ],
     cu$: 10200,
     land$: 225400,
-    neighborhood: 'E',
     owner: 'CHIN, PETER',
     taxed$: 334300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-192': {
     address: '183 MCKINLEY DR',
@@ -1812,12 +1625,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 236700,
-    neighborhood: 'E',
     owner: 'BARLOW, DAVID AND KATHY',
     taxed$: 356000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-199': {
     address: '30 GARFIELD DR',
@@ -1831,12 +1642,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 206100,
-    neighborhood: 'E',
     owner: 'RAND, EDITH',
     taxed$: 319300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-200': {
     address: '38 GARFIELD DR',
@@ -1850,12 +1659,10 @@ export const LOTS = {
     ],
     cu$: 9100,
     land$: 220700,
-    neighborhood: 'E',
     owner: 'DELOREY, NANCY & VENTO, JANIS',
     taxed$: 361500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-203': {
     address: '76 GARFIELD DR',
@@ -1869,12 +1676,10 @@ export const LOTS = {
     ],
     cu$: 8500,
     land$: 215100,
-    neighborhood: 'E',
     owner: 'HAUG, INGEBORG E 2020 TRUST',
     taxed$: 313600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-217': {
     address: '170 ASHUELOT DR',
@@ -1888,12 +1693,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'PERCOSKI, KATHLEEN',
     taxed$: 123200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-212': {
     address: 'TAFT RD',
@@ -1907,12 +1710,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10800,
-    neighborhood: 'U',
     owner: 'GERSHMAN, JEROLD M',
     taxed$: 10800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-213': {
     address: 'TAFT RD',
@@ -1926,12 +1727,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10800,
-    neighborhood: 'U',
     owner: 'GERSHMAN, JEROLD M',
     taxed$: 10800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-218': {
     address: '54 HAYES RD',
@@ -1945,12 +1744,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38600,
-    neighborhood: 'E',
     owner: 'STEPINSKI, JOSEPH',
     taxed$: 126700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-219': {
     address: '42 HAYES RD',
@@ -1964,12 +1761,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38600,
-    neighborhood: 'E',
     owner: 'FRESCHLIN, HARRY',
     taxed$: 108500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-230': {
     address: '9 HARDING RD',
@@ -1983,12 +1778,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'MCSHEFFERY, JOSEPH C',
     taxed$: 121900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-231': {
     address: '31 HARDING RD',
@@ -2002,12 +1795,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'ROCHFORD, TERRENCE',
     taxed$: 121700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-240': {
     address: '30 ASHUELOT DR',
@@ -2021,12 +1812,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 43900,
-    neighborhood: 'E',
     owner: 'PANISSIDI, MAUREEN T.',
     taxed$: 99700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-242': {
     address: '136 MCKINLEY DR',
@@ -2040,12 +1829,10 @@ export const LOTS = {
     ],
     cu$: 25100,
     land$: 45700,
-    neighborhood: 'E',
     owner: 'KILDAY JR, GORDON',
     taxed$: 226000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-245': {
     address: '110 MCKINLEY DR',
@@ -2059,12 +1846,10 @@ export const LOTS = {
     ],
     cu$: 12400,
     land$: 44900,
-    neighborhood: 'E',
     owner: "L'HOMMEDIEU, LAWRENCE & AMALIA",
     taxed$: 252300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-256': {
     address: '69 MCKINLEY DR',
@@ -2078,12 +1863,10 @@ export const LOTS = {
     ],
     cu$: 13100,
     land$: 41500,
-    neighborhood: 'E',
     owner: 'COYNE, JOSEPH C',
     taxed$: 184200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-263': {
     address: '43 MONROE CIR',
@@ -2097,12 +1880,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 46800,
-    neighborhood: 'E',
     owner: 'GREEN, PETER G',
     taxed$: 189100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-274': {
     address: '81 LINCOLN DR',
@@ -2116,12 +1897,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39500,
-    neighborhood: 'E',
     owner: 'BOUCHARD, DAVID M',
     taxed$: 156300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-275': {
     address: '99 LINCOLN DR',
@@ -2135,12 +1914,10 @@ export const LOTS = {
     ],
     cu$: 11000,
     land$: 40500,
-    neighborhood: 'E',
     owner: 'WOODWARD, SUSAN',
     taxed$: 126800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-285': {
     address: '229 LINCOLN DR',
@@ -2154,12 +1931,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'BEZDELOVS, DANIEL G',
     taxed$: 124500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-293': {
     address: '102 LINCOLN DR',
@@ -2173,12 +1948,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 39600,
-    neighborhood: 'E',
     owner: 'DEROECK, RICHARD S LIVING TRUS',
     taxed$: 126200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-288': {
     address: 'LINCOLN DR',
@@ -2192,12 +1965,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'U',
     owner: 'LAPRADE, MARK S',
     taxed$: 11600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-299': {
     address: '84 JACKSON DR',
@@ -2211,12 +1982,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 43100,
-    neighborhood: 'E',
     owner: 'BURGESS, WILLIAM E. JR',
     taxed$: 139900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-322': {
     address: '20 LINCOLN DR',
@@ -2230,12 +1999,10 @@ export const LOTS = {
     ],
     cu$: 12600,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'ALLEANO, MICHAEL J & CHRISTIE',
     taxed$: 123200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-332': {
     address: '322 PRESIDENTIAL DR',
@@ -2249,12 +2016,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41600,
-    neighborhood: 'D',
     owner: 'VANACORE, RAYMOND J',
     taxed$: 108700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-339': {
     address: '94 COOLIDGE DR',
@@ -2268,12 +2033,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9100,
-    neighborhood: 'U',
     owner: 'DUNPHY, SHAWN',
     taxed$: 9100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-349': {
     address: '269 COOLIDGE DR',
@@ -2287,12 +2050,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41800,
-    neighborhood: 'E',
     owner: 'MANCINI, FRANK J',
     taxed$: 145900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-341': {
     address: 'COOLIDGE DR',
@@ -2306,12 +2067,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11900,
-    neighborhood: 'U',
     owner: 'DUNPHY, JAMES',
     taxed$: 11900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-378': {
     address: '59 BUCHANAN CIR',
@@ -2325,12 +2084,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 41200,
-    neighborhood: 'E',
     owner: 'WHITE, ANDREW',
     taxed$: 124200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-372': {
     address: '81 COOLIDGE DR',
@@ -2344,12 +2101,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 42500,
-    neighborhood: 'E',
     owner: 'CALE, ROBERT L',
     taxed$: 188700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-9': {
     address: 'VALLEY RD',
@@ -2363,12 +2118,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 30200,
-    neighborhood: 'D',
     owner: 'THONIS, KATHERINE',
     taxed$: 31000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-13': {
     address: 'VALLEY RD',
@@ -2382,12 +2135,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23400,
-    neighborhood: 'V',
     owner: 'BARKIE, DAVID',
     taxed$: 23400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-18': {
     address: '959 VALLEY RD',
@@ -2401,12 +2152,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23400,
-    neighborhood: 'V',
     owner: 'CROUSS, TIMOTHY K',
     taxed$: 23400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-25': {
     address: '1022 VALLEY RD',
@@ -2420,12 +2169,10 @@ export const LOTS = {
     ],
     cu$: 17800,
     land$: 52700,
-    neighborhood: 'D',
     owner: 'SNELL, KAREN A REVOCABLE TRUST',
     taxed$: 156400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-34': {
     address: '576 VALLEY RD',
@@ -2439,12 +2186,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 43900,
-    neighborhood: 'D',
     owner: 'KIBBE, JEFFREY J',
     taxed$: 63200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-59': {
     address: '1012 FAXON HILL RD',
@@ -2458,12 +2203,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 180600,
-    neighborhood: 'F',
     owner: 'MALONEY, R. A. LIVING TRUST',
     taxed$: 233800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-78': {
     address: '825 MILLEN POND RD',
@@ -2477,12 +2220,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 0,
-    neighborhood: 'G',
     owner: 'LIBBY, TYLER J',
     taxed$: 17900,
     usage: '110',
-    use: 'R1W',
-    zone: ''
+    use: 'R1W'
   },
   '15-89': {
     address: '1021 MILLEN POND RD',
@@ -2496,12 +2237,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 145900,
-    neighborhood: 'F',
     owner: 'BLACK, JAMES L',
     taxed$: 188400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-107': {
     address: '882 MILLEN POND RD',
@@ -2515,12 +2254,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 49900,
-    neighborhood: 'E',
     owner: 'CARTER, STEPHEN C',
     taxed$: 117600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-112-01': {
     address: '808 MILLEN POND RD',
@@ -2538,12 +2275,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33700,
-    neighborhood: 'G',
     owner: 'MACDONALD, LEANDRA ANN',
     taxed$: 46800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-114': {
     address: '756 MILLEN POND RD',
@@ -2557,12 +2292,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 58600,
-    neighborhood: 'G',
     owner: 'KAVANAGH, JUDITH ANN BROCKWAY',
     taxed$: 144600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-126': {
     address: '273 PRESIDENTIAL DR',
@@ -2576,12 +2309,10 @@ export const LOTS = {
     ],
     cu$: 14100,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'GUNDECK, KATHLEEN A',
     taxed$: 185400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-127': {
     address: 'ADAMS DR',
@@ -2595,12 +2326,10 @@ export const LOTS = {
     ],
     cu$: 300,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'WASHINGTON, TOWN OF - TC DEED',
     taxed$: 11200,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '15-131': {
     address: 'ADAMS DR',
@@ -2614,12 +2343,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'CONANT III, CHARLES L',
     taxed$: 10900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-144': {
     address: 'ADAMS DR',
@@ -2633,12 +2360,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26100,
-    neighborhood: 'D',
     owner: 'BERDECIA, JORGE L',
     taxed$: 26100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-7-03': {
     address: '46 POINT RD',
@@ -2652,12 +2377,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 36352,
-    neighborhood: 'D',
     owner: 'GRAY, ROBIN M',
     taxed$: 36952,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-15': {
     address: '596 HIGHLAND HAVEN RD',
@@ -2671,12 +2394,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 165000,
-    neighborhood: 'E',
     owner: 'KOLINSKY, GAIL',
     taxed$: 215200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-13': {
     address: '580 HIGHLAND HAVEN RD',
@@ -2690,12 +2411,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 144800,
-    neighborhood: 'E',
     owner: 'LUCAS, JOSEPH A',
     taxed$: 307500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-8': {
     address: 'COVE RD',
@@ -2709,12 +2428,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 77200,
-    neighborhood: 'V',
     owner: 'LANIGAN, MICHELLE C',
     taxed$: 77200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-33': {
     address: '463 HIGHLAND HAVEN RD',
@@ -2728,12 +2445,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21100,
-    neighborhood: 'V',
     owner: 'RUSSELL, CAROLYN BAKER',
     taxed$: 21100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-25': {
     address: '39 MAPLE WAY',
@@ -2747,12 +2462,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36400,
-    neighborhood: 'E',
     owner: 'BARDEN, RALF I & INGER A REV F',
     taxed$: 151700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-39': {
     address: '386 HIGHLAND HAVEN RD',
@@ -2766,12 +2479,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37800,
-    neighborhood: 'E',
     owner: 'PERLA, ORLANDO J II',
     taxed$: 132600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-40': {
     address: 'HIGHLAND HAVEN RD',
@@ -2785,12 +2496,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14900,
-    neighborhood: 'W',
     owner: 'HARRIINGTON, DENNIS',
     taxed$: 14900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-45': {
     address: '522 HIGHLAND HAVEN RD',
@@ -2804,12 +2513,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17100,
-    neighborhood: 'W',
     owner: 'STYGLES, STUART W',
     taxed$: 17100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-72': {
     address: '1191 SO MAIN ST',
@@ -2823,12 +2530,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 32900,
-    neighborhood: 'E',
     owner: 'SCRUTON, CHRISTOPHER B',
     taxed$: 44900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-77-03': {
     address: '58 MILL ST',
@@ -2842,12 +2547,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5746,
-    neighborhood: 'V',
     owner: 'LAWRENCE, KEVIN A',
     taxed$: 5746,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-91': {
     address: '36 WASHINGTON DR',
@@ -2861,12 +2564,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42500,
-    neighborhood: 'E',
     owner: 'MOULDER, VIVIAN',
     taxed$: 124800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-98': {
     address: '4100 E WASHINGTON RD',
@@ -2880,12 +2581,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13200,
-    neighborhood: 'V',
     owner: 'SACCO, JOHN JR',
     taxed$: 13200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-111': {
     address: '',
@@ -2899,12 +2598,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13200,
-    neighborhood: 'V',
     owner: 'STILLO, CARMELLO',
     taxed$: 13200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-130': {
     address: '576 HIGHLAND HAVEN RD',
@@ -2918,12 +2615,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'HIGHLAND HAVEN VILLAGE DIST',
     taxed$: 0,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-25': {
     address: '186 WILD ACRE DR',
@@ -2941,12 +2636,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 103900,
-    neighborhood: 'D',
     owner: 'KLEIN, PATRICIA L',
     taxed$: 189800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '17-26': {
     address: '214 WILD ACRE DR',
@@ -2960,12 +2653,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 72100,
-    neighborhood: 'D',
     owner: 'CARUSO, JESSIE',
     taxed$: 143500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '17-28': {
     address: 'WILD ACRE DR',
@@ -2979,12 +2670,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 52132,
-    neighborhood: 'A',
     owner: 'NORTH STAR TRUST',
     taxed$: 53232,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-44': {
     address: '219 SMITH POND RD',
@@ -2998,12 +2687,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 19000,
-    neighborhood: 'D',
     owner: 'VANDERWENDE, SARAH B',
     taxed$: 23900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-141': {
     address: '678 HIGHLAND HAVEN RD',
@@ -3017,12 +2704,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 188100,
-    neighborhood: 'E',
     owner: 'MAZUR, PAMELA J',
     taxed$: 257000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-143': {
     address: '669 HIGHLAND HAVEN RD',
@@ -3036,12 +2721,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 49900,
-    neighborhood: 'E',
     owner: 'GULLAGE, JOSEPH B',
     taxed$: 130300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-170': {
     address: '704 HIGHLAND HAVEN RD',
@@ -3055,12 +2738,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 139100,
-    neighborhood: 'P',
     owner: 'GULLAGE, JOSEPH B',
     taxed$: 139100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-12': {
     address: '407 DOLE SCHOOL HOUSE RD',
@@ -3074,12 +2755,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 30400,
-    neighborhood: 'C',
     owner: 'ELLIS, JENNIFER M',
     taxed$: 64300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-2': {
     address: '262 NO MAIN ST',
@@ -3093,12 +2772,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 32400,
-    neighborhood: 'E',
     owner: 'HARDY, JOHN J & SHARON T REVOC',
     taxed$: 54700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-16': {
     address: '371 DOLE SCHOOL HOUSE RD',
@@ -3112,12 +2789,10 @@ export const LOTS = {
     ],
     cu$: 7000,
     land$: 33279,
-    neighborhood: 'C',
     owner: 'BELL, CRAIG BARROW REVOC TRUST',
     taxed$: 74679,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-9': {
     address: '46 NO MAIN ST',
@@ -3131,12 +2806,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37800,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - LIBRARY',
     taxed$: 235600,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '22-30': {
     address: '36 HALFMOON PD RD',
@@ -3150,12 +2823,10 @@ export const LOTS = {
     ],
     cu$: 9900,
     land$: 29500,
-    neighborhood: 'D',
     owner: 'ANWAR, JEFFRI',
     taxed$: 192900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-6': {
     address: '112 NO MAIN ST',
@@ -3169,12 +2840,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17200,
-    neighborhood: 'D',
     owner: 'CILLEY, DONNA J',
     taxed$: 17200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-13': {
     address: '37 HALFMOON PD RD',
@@ -3188,12 +2857,10 @@ export const LOTS = {
     ],
     cu$: 25400,
     land$: 40400,
-    neighborhood: 'D',
     owner: 'ROUSE, BARBARA J',
     taxed$: 276600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-14': {
     address: '59 HALFMOON PD RD',
@@ -3207,12 +2874,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35000,
-    neighborhood: 'D',
     owner: 'OTTERSON FAM REV TRUST,G R&S',
     taxed$: 158800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-17': {
     address: 'HALFMOON PD RD',
@@ -3226,12 +2891,10 @@ export const LOTS = {
     ],
     cu$: 7100,
     land$: 8300,
-    neighborhood: 'D',
     owner: 'OTTERSON FAM REV TRUST,G R&S',
     taxed$: 15400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-24': {
     address: '100 HALFMOON PD RD',
@@ -3245,12 +2908,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39500,
-    neighborhood: 'D',
     owner: 'WASHINGTON HISTORICAL SOCIETY',
     taxed$: 91100,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '22-34': {
     address: '90 SO MAIN ST',
@@ -3264,12 +2925,10 @@ export const LOTS = {
     ],
     cu$: 473400,
     land$: 72800,
-    neighborhood: 'F',
     owner: 'GRANITE STATE TELEPHONE',
     taxed$: 632600,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '22-35': {
     address: '34 SO MAIN ST',
@@ -3283,12 +2942,10 @@ export const LOTS = {
     ],
     cu$: 27700,
     land$: 35400,
-    neighborhood: 'D',
     owner: 'BLACKWELL, ROBERT A',
     taxed$: 224600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-37-01': {
     address: 'FAXON HILL RD',
@@ -3302,12 +2959,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 6000,
-    neighborhood: 'X',
     owner: 'TANNER, KENNETH E',
     taxed$: 6000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-42': {
     address: '71 FAXON HILL RD',
@@ -3321,12 +2976,10 @@ export const LOTS = {
     ],
     cu$: 7200,
     land$: 31500,
-    neighborhood: 'D',
     owner: 'CORNELL, KENNETH S',
     taxed$: 99700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-37-02': {
     address: 'VALLEY RD',
@@ -3340,12 +2993,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 24300,
-    neighborhood: 'D',
     owner: 'TANNER, KENNETH E',
     taxed$: 25400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-43': {
     address: 'FAXON HILL RD',
@@ -3359,12 +3010,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9100,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - CEMETERY',
     taxed$: 9100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '22-53': {
     address: '21 NO MAIN ST',
@@ -3378,12 +3027,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25100,
-    neighborhood: 'D',
     owner: 'DOZOIS, NORRIS J',
     taxed$: 137700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-56': {
     address: '11 LEMPSTER MT RD',
@@ -3397,12 +3044,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34000,
-    neighborhood: 'E',
     owner: 'WISNIEWSKI, DAVID',
     taxed$: 73100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-64': {
     address: '64 LEMPSTER MT RD',
@@ -3416,12 +3061,10 @@ export const LOTS = {
     ],
     cu$: 10700,
     land$: 41600,
-    neighborhood: 'E',
     owner: 'MUGAR, CAROLYN J',
     taxed$: 265700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-71': {
     address: '143 NO MAIN ST',
@@ -3435,12 +3078,10 @@ export const LOTS = {
     ],
     cu$: 6400,
     land$: 37500,
-    neighborhood: 'E',
     owner: 'MOSER, BRIAN P',
     taxed$: 145700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-5': {
     address: '2310 E WASHINGTON RD',
@@ -3454,12 +3095,10 @@ export const LOTS = {
     ],
     cu$: 10500,
     land$: 44600,
-    neighborhood: 'F',
     owner: 'SCOTT FAMILY INVESTMENT TRUST',
     taxed$: 131400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-6': {
     address: '2278 E WASHINGTON RD',
@@ -3473,12 +3112,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38500,
-    neighborhood: 'F',
     owner: 'EAST WASHINGTON BAPTIST CHURCH',
     taxed$: 106700,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '22-72': {
     address: 'SO MAIN ST',
@@ -3492,12 +3129,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18200,
-    neighborhood: 'D',
     owner: 'TANNER, KENNETH E',
     taxed$: 18200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-11': {
     address: '180 BRADFORD SPRINGS RD',
@@ -3511,12 +3146,10 @@ export const LOTS = {
     ],
     cu$: 6900,
     land$: 27668,
-    neighborhood: 'F',
     owner: 'MACDONALD, ADAM T',
     taxed$: 34568,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-12': {
     address: 'OLD HILLSBORO RD',
@@ -3530,12 +3163,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 49800,
-    neighborhood: 'E',
     owner: 'HARVEY, GREIG',
     taxed$: 49800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-13': {
     address: 'OLD HILLSBORO RD',
@@ -3549,12 +3180,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25800,
-    neighborhood: 'E',
     owner: 'FACCHINA, BAZIL T',
     taxed$: 25800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-19': {
     address: 'E WASHINGTON RD',
@@ -3568,12 +3197,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21000,
-    neighborhood: 'F',
     owner: 'WASHINGTON, TOWN OF - CEMETERY',
     taxed$: 21000,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '23-47': {
     address: 'PURLING BECK RD',
@@ -3587,12 +3214,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 31800,
-    neighborhood: 'F',
     owner: 'WASHINGTON, TOWN OF-EW SALLY J',
     taxed$: 31800,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '23-49': {
     address: 'E WASHINGTON RD',
@@ -3606,12 +3231,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11900,
-    neighborhood: 'F',
     owner: 'SCOTT FAMILY INVESTMENT TRUST',
     taxed$: 11900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-11': {
     address: 'VALLEY RD',
@@ -3625,12 +3248,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26400,
-    neighborhood: 'E',
     owner: 'GIROUARD, BRUCE M',
     taxed$: 26400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '23-51': {
     address: '2399 E WASHINGTON RD',
@@ -3644,12 +3265,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26963,
-    neighborhood: 'F',
     owner: 'COOK, R E & L T REV TRUST',
     taxed$: 26963,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-12': {
     address: '1173 VALLEY RD',
@@ -3663,12 +3282,10 @@ export const LOTS = {
     ],
     cu$: 5600,
     land$: 38600,
-    neighborhood: 'E',
     owner: 'GAHN, ROBERT C',
     taxed$: 44200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-56': {
     address: 'E WASHINGTON RD',
@@ -3682,12 +3299,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 556,
-    neighborhood: 'F',
     owner: 'ROBINSON, SANDRA J',
     taxed$: 556,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-4': {
     address: '1178 VALLEY RD',
@@ -3701,12 +3316,10 @@ export const LOTS = {
     ],
     cu$: 4200,
     land$: 41000,
-    neighborhood: 'E',
     owner: 'WRIGHT, SHAUN',
     taxed$: 86000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-5': {
     address: '1200 VALLEY RD',
@@ -3720,12 +3333,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 38900,
-    neighborhood: 'E',
     owner: 'PILLSBURY, DENIS R',
     taxed$: 51600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-10': {
     address: '1262 VALLEY RD',
@@ -3739,12 +3350,10 @@ export const LOTS = {
     ],
     cu$: 3700,
     land$: 30900,
-    neighborhood: 'E',
     owner: 'BOULEY, JASON',
     taxed$: 34600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-9': {
     address: 'VALLEY RD',
@@ -3758,12 +3367,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 30900,
-    neighborhood: 'E',
     owner: 'IVES, AARON',
     taxed$: 30900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-17': {
     address: '1253 VALLEY RD',
@@ -3777,12 +3384,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 40600,
-    neighborhood: 'E',
     owner: 'BERTRAND, KERRY',
     taxed$: 122300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-16-01': {
     address: 'VALLEY RD',
@@ -3796,12 +3401,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14100,
-    neighborhood: 'E',
     owner: 'HESELTON, HAROLD E & LAURA',
     taxed$: 14100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-21': {
     address: '1318 VALLEY RD',
@@ -3815,12 +3418,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 14100,
-    neighborhood: 'E',
     owner: 'REYNOLDS FAMILY TRUST OF 2021',
     taxed$: 19800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-34': {
     address: '1476 VALLEY RD',
@@ -3834,12 +3435,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 14100,
-    neighborhood: 'E',
     owner: 'KENDRICK LIVING TRUST',
     taxed$: 14700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-42': {
     address: '1597 VALLEY RD',
@@ -3853,12 +3452,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21300,
-    neighborhood: 'E',
     owner: 'DRISCOLL FAMILY REVOCABLE TRUS',
     taxed$: 21300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-60': {
     address: '34 LOOKOUT POINT RD',
@@ -3872,12 +3469,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 179700,
-    neighborhood: 'D',
     owner: 'WELKES, MORRIS',
     taxed$: 250400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-62': {
     address: '24 LOOKOUT POINT RD',
@@ -3895,12 +3490,10 @@ export const LOTS = {
     ],
     cu$: 15200,
     land$: 198900,
-    neighborhood: 'D',
     owner: 'TURGEON, ARTHUR',
     taxed$: 261700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-69': {
     address: '38 LAKEVIEW TERR',
@@ -3914,12 +3507,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 180700,
-    neighborhood: 'C',
     owner: 'MALINCONICO, PATRICIA A',
     taxed$: 234000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-79': {
     address: '2 BEECH WAY',
@@ -3933,12 +3524,10 @@ export const LOTS = {
     ],
     cu$: 3300,
     land$: 22700,
-    neighborhood: 'C',
     owner: 'HUBBARD, GEOFFREY',
     taxed$: 53000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-82': {
     address: '38 BEECH WAY',
@@ -3952,12 +3541,10 @@ export const LOTS = {
     ],
     cu$: 200,
     land$: 85900,
-    neighborhood: 'C',
     owner: 'KARACIUS, DELIA M',
     taxed$: 100800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-89': {
     address: '44 BIRCH POINT WAY',
@@ -3971,12 +3558,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 160800,
-    neighborhood: 'C',
     owner: 'BARNES, DEBORAH',
     taxed$: 243900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-90': {
     address: '52 BIRCH POINT WAY',
@@ -3990,12 +3575,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 170000,
-    neighborhood: 'E',
     owner: 'MILLS, FRED W',
     taxed$: 209300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-108-01': {
     address: '126 COVE RD',
@@ -4009,12 +3592,10 @@ export const LOTS = {
     ],
     cu$: 17800,
     land$: 155000,
-    neighborhood: 'C',
     owner: 'VOISINE, SHAWN',
     taxed$: 257300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-10': {
     address: '1666 VALLEY RD',
@@ -4028,12 +3609,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 20000,
-    neighborhood: 'E',
     owner: 'FUDGE, KEITH E',
     taxed$: 63400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-25': {
     address: '1764 VALLEY RD',
@@ -4047,12 +3626,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 27000,
-    neighborhood: 'E',
     owner: 'GAHN REALTY TRUST',
     taxed$: 61400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-27': {
     address: '1814 VALLEY RD',
@@ -4066,12 +3643,10 @@ export const LOTS = {
     ],
     cu$: 11100,
     land$: 41100,
-    neighborhood: 'E',
     owner: 'BOULEY, MICHAEL',
     taxed$: 130900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-43': {
     address: '2194 VALLEY RD',
@@ -4085,12 +3660,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 35300,
-    neighborhood: 'E',
     owner: 'AMARI FAMILY TRUST',
     taxed$: 119400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-44': {
     address: '2193 VALLEY RD',
@@ -4104,12 +3677,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 163100,
-    neighborhood: 'E',
     owner: 'JUBERT, MICHAEL J',
     taxed$: 236800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-45': {
     address: '2191 VALLEY RD',
@@ -4123,12 +3694,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 114500,
-    neighborhood: 'E',
     owner: 'PELLEGRINO, SIRI K. 2014 REV T',
     taxed$: 114500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-53': {
     address: '2153 VALLEY RD',
@@ -4142,12 +3711,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 175200,
-    neighborhood: 'E',
     owner: 'MCGOVERN, THOMAS E. & TERIE',
     taxed$: 208000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-59': {
     address: '2117 VALLEY RD',
@@ -4161,12 +3728,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 148000,
-    neighborhood: 'E',
     owner: 'ROY, LUDGER O',
     taxed$: 229400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-61': {
     address: '2113 VALLEY RD',
@@ -4180,12 +3745,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 131600,
-    neighborhood: 'E',
     owner: 'STRICKLAND,  BARBARA A. REVOCA',
     taxed$: 155400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-62': {
     address: '2109 VALLEY RD',
@@ -4199,12 +3762,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 142000,
-    neighborhood: 'E',
     owner: 'FICO REV TRUST, NANCY A',
     taxed$: 187000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-67': {
     address: '2090 VALLEY RD',
@@ -4218,12 +3779,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 37900,
-    neighborhood: 'E',
     owner: 'EBERLY, CHRISTOPHER DONALD',
     taxed$: 100400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-68': {
     address: '2096 VALLEY RD',
@@ -4237,12 +3796,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25000,
-    neighborhood: 'E',
     owner: 'MEADE, MICHAEL',
     taxed$: 44800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-79': {
     address: '2168 VALLEY RD',
@@ -4256,12 +3813,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35700,
-    neighborhood: 'E',
     owner: 'STANTON, JOHN F',
     taxed$: 90000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-80': {
     address: '2180 VALLEY RD',
@@ -4275,12 +3830,10 @@ export const LOTS = {
     ],
     cu$: 20800,
     land$: 20300,
-    neighborhood: 'E',
     owner: 'JUBERT, MICHAEL & KAREN',
     taxed$: 41100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-81': {
     address: '2188 VALLEY RD',
@@ -4294,12 +3847,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 35400,
-    neighborhood: 'E',
     owner: 'BERRY REALTY TRUST',
     taxed$: 82000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-92': {
     address: '1903 VALLEY RD',
@@ -4313,12 +3864,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 199500,
-    neighborhood: 'E',
     owner: 'KASPAR, STEVEN J',
     taxed$: 356500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-89': {
     address: 'VALLEY RD',
@@ -4332,12 +3881,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33700,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 33700,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '25-99': {
     address: '1827 VALLEY RD',
@@ -4351,12 +3898,10 @@ export const LOTS = {
     ],
     cu$: 9300,
     land$: 166600,
-    neighborhood: 'E',
     owner: 'CALCIANO, PHILIP JOHN',
     taxed$: 250700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-106': {
     address: '1769 VALLEY RD',
@@ -4370,12 +3915,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 173100,
-    neighborhood: 'E',
     owner: 'BARNES, EDWARD W',
     taxed$: 207400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-107': {
     address: '1763 VALLEY RD',
@@ -4389,12 +3932,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 197100,
-    neighborhood: 'E',
     owner: 'INGEMI, JOHN J.',
     taxed$: 284100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-109': {
     address: '1733 VALLEY RD',
@@ -4408,12 +3949,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 208700,
-    neighborhood: 'E',
     owner: 'URSINI, ANATOLIJ',
     taxed$: 279000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-114': {
     address: '1701 VALLEY RD',
@@ -4427,12 +3966,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 118800,
-    neighborhood: 'E',
     owner: 'CHICOINE, GEORGE F',
     taxed$: 121800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-115': {
     address: '1693 VALLEY RD',
@@ -4446,12 +3983,10 @@ export const LOTS = {
     ],
     cu$: 300,
     land$: 188900,
-    neighborhood: 'E',
     owner: 'BENKOSKI, RONALD R',
     taxed$: 254300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '6-2': {
     address: 'AYERS POND RD',
@@ -4465,12 +4000,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5996,
-    neighborhood: 'V',
     owner: 'BIBBO, G EDWARD',
     taxed$: 5996,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-96': {
     address: '372 BAILEY RD',
@@ -4484,12 +4017,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 28400,
-    neighborhood: 'E',
     owner: 'SIMKO, GEORGE',
     taxed$: 43600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-45': {
     address: '553 MILLEN POND RD',
@@ -4503,12 +4034,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 230800,
-    neighborhood: 'E',
     owner: 'BLUES BOY FAMILY TRUST OF 2019',
     taxed$: 272700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-44': {
     address: '523 MILLEN POND RD',
@@ -4522,12 +4051,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 209300,
-    neighborhood: 'F',
     owner: 'HAHN, INGRID',
     taxed$: 253300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-129': {
     address: '378 WASHINGTON DR',
@@ -4541,12 +4068,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 73950,
-    neighborhood: 'G',
     owner: 'KAPTEYN, PAUL C',
     taxed$: 261850,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-121': {
     address: '179 MADISON DR',
@@ -4560,12 +4085,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 38800,
-    neighborhood: 'E',
     owner: 'JEFFERY, ROBERT F',
     taxed$: 221600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-14': {
     address: '875 VALLEY RD',
@@ -4579,12 +4102,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 97000,
-    neighborhood: 'E',
     owner: 'SMITH, TIMOTHY LENOX',
     taxed$: 264300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-15': {
     address: '949 N MAIN ST',
@@ -4598,12 +4119,10 @@ export const LOTS = {
     ],
     cu$: 13200,
     land$: 47400,
-    neighborhood: 'E',
     owner: 'ROSELLEN, BERND',
     taxed$: 185300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-220': {
     address: '28 HAYES RD',
@@ -4617,12 +4136,10 @@ export const LOTS = {
     ],
     cu$: 13500,
     land$: 38600,
-    neighborhood: 'E',
     owner: 'LAROCHE, CHARLES WILFRED',
     taxed$: 171700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-47': {
     address: '819 N MAIN ST',
@@ -4636,12 +4153,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42500,
-    neighborhood: 'E',
     owner: 'MAKO, ALEX',
     taxed$: 152600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-26': {
     address: '93 WASHINGTON HEIGHTS RD',
@@ -4655,12 +4170,10 @@ export const LOTS = {
     ],
     cu$: 16700,
     land$: 26000,
-    neighborhood: 'A',
     owner: 'WHITE, CASSANDRA A',
     taxed$: 127900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-36': {
     address: '192 WASHINGTON HEIGHTS RD',
@@ -4674,12 +4187,10 @@ export const LOTS = {
     ],
     cu$: 26900,
     land$: 27400,
-    neighborhood: 'A',
     owner: 'GRANT, CHRISTOPHER PAUL',
     taxed$: 192600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-266': {
     address: '56 PIERCE RD',
@@ -4693,12 +4204,10 @@ export const LOTS = {
     ],
     cu$: 15700,
     land$: 43000,
-    neighborhood: 'E',
     owner: 'BROCK, ASHLEY S.',
     taxed$: 291500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-5': {
     address: '989 LEMPSTER MOUNTAIN RD',
@@ -4712,12 +4221,10 @@ export const LOTS = {
     ],
     cu$: 20700,
     land$: 35137,
-    neighborhood: 'C',
     owner: 'RICCIO, ERIN',
     taxed$: 160937,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-3': {
     address: '980 LEMPSTER MOUNTAIN RD',
@@ -4731,12 +4238,10 @@ export const LOTS = {
     ],
     cu$: 22700,
     land$: 46149,
-    neighborhood: 'C',
     owner: 'GASKELL, LAWRENCE J',
     taxed$: 170149,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-4': {
     address: '926 LEMPSTER MOUNTAIN RD',
@@ -4750,12 +4255,10 @@ export const LOTS = {
     ],
     cu$: 19100,
     land$: 34176,
-    neighborhood: 'C',
     owner: 'KERRY, ROBERT J',
     taxed$: 177876,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-6': {
     address: '427 OLD BURBANK RD',
@@ -4769,12 +4272,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 44401,
-    neighborhood: 'C',
     owner: 'GUERIN, ROBERT L',
     taxed$: 359501,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-7-01': {
     address: '781 LEMPSTER MOUNTAIN RD',
@@ -4788,12 +4289,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 32000,
-    neighborhood: 'C',
     owner: 'EATON, GUY L',
     taxed$: 179100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-16': {
     address: '93 TWIN BRIDGE RD',
@@ -4807,12 +4306,10 @@ export const LOTS = {
     ],
     cu$: 2500,
     land$: 29476,
-    neighborhood: 'C',
     owner: 'TREADWELL, ALLAN E',
     taxed$: 128676,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-21': {
     address: '215 WASHINGTON HEIGHTS RD',
@@ -4826,12 +4323,10 @@ export const LOTS = {
     ],
     cu$: 12100,
     land$: 31800,
-    neighborhood: 'A',
     owner: 'ROE, THOMAS J.',
     taxed$: 177000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-27': {
     address: '29 WASHINGTON HEIGHTS RD',
@@ -4845,12 +4340,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 24300,
-    neighborhood: 'A',
     owner: 'BROADLEY, STEVEN A.',
     taxed$: 47600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-31': {
     address: '121 MARYS LN',
@@ -4864,12 +4357,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 65600,
-    neighborhood: 'C',
     owner: 'SHAMALY, JANE ELLEN',
     taxed$: 202900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-34': {
     address: '134 WASHINGTON HEIGHTS RD',
@@ -4883,12 +4374,10 @@ export const LOTS = {
     ],
     cu$: 10400,
     land$: 28700,
-    neighborhood: 'A',
     owner: 'TANNER, THOMAS A',
     taxed$: 181700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-37': {
     address: '220 WASHINGTON HEIGHTS RD',
@@ -4902,12 +4391,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 28500,
-    neighborhood: 'A',
     owner: 'BOREY III, LOUIS J',
     taxed$: 119100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-48': {
     address: '783 N MAIN ST',
@@ -4921,12 +4408,10 @@ export const LOTS = {
     ],
     cu$: 20600,
     land$: 38000,
-    neighborhood: 'D',
     owner: 'KULBACKI, CRAIG A',
     taxed$: 192000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-50': {
     address: '749 N MAIN ST',
@@ -4940,12 +4425,10 @@ export const LOTS = {
     ],
     cu$: 57900,
     land$: 33671,
-    neighborhood: 'D',
     owner: 'BARTON, THOMAS',
     taxed$: 201971,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-52': {
     address: '576 N MAIN ST',
@@ -4959,12 +4442,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 34157,
-    neighborhood: 'D',
     owner: 'LEICHT, ELIZABETH',
     taxed$: 218157,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-53': {
     address: '658 N MAIN ST',
@@ -4978,12 +4459,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 34600,
-    neighborhood: 'D',
     owner: 'NICHOLS, RODERICK A',
     taxed$: 94100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-55': {
     address: '736 N MAIN ST',
@@ -4997,12 +4476,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35300,
-    neighborhood: 'D',
     owner: 'VINCENT, DAN',
     taxed$: 70300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-57': {
     address: '1052 LEMPSTER MOUNTAIN RD',
@@ -5016,12 +4493,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 34100,
-    neighborhood: 'C',
     owner: 'GASKELL, DONALD P',
     taxed$: 53800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-59': {
     address: '828 LEMPSTER MOUNTAIN RD',
@@ -5035,12 +4510,10 @@ export const LOTS = {
     ],
     cu$: 18400,
     land$: 35000,
-    neighborhood: 'C',
     owner: 'LABORE, ANDRE',
     taxed$: 205700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-61': {
     address: '786 LEMPSTER MOUNTAIN RD',
@@ -5054,12 +4527,10 @@ export const LOTS = {
     ],
     cu$: 4300,
     land$: 35000,
-    neighborhood: 'C',
     owner: 'ZUBRZYCKI, DEREK',
     taxed$: 204100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-7': {
     address: '1180 HALFMOON POND RD',
@@ -5073,12 +4544,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 45000,
-    neighborhood: 'D',
     owner: 'HALL, JENNIFER A',
     taxed$: 151300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-4': {
     address: '1227 HALFMOON POND RD',
@@ -5092,12 +4561,10 @@ export const LOTS = {
     ],
     cu$: 7000,
     land$: 38829,
-    neighborhood: 'D',
     owner: 'IADONISI, KATHLEEN',
     taxed$: 173729,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-5': {
     address: '1132 HALFMOON POND RD',
@@ -5111,12 +4578,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 42000,
-    neighborhood: 'D',
     owner: 'DUBUQUE IV, WILLIAM D',
     taxed$: 139300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-6': {
     address: '1166 HALFMOON POND RD',
@@ -5130,12 +4595,10 @@ export const LOTS = {
     ],
     cu$: 20400,
     land$: 37223,
-    neighborhood: 'D',
     owner: 'ROBICHEAU, NICHOLAS T.',
     taxed$: 284623,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-9': {
     address: '1262 HALFMOON POND RD',
@@ -5149,12 +4612,10 @@ export const LOTS = {
     ],
     cu$: 18800,
     land$: 47800,
-    neighborhood: 'D',
     owner: 'CRAFT, STEPHEN DOUGLAS',
     taxed$: 201000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-10': {
     address: '1412 HALFMOON POND RD',
@@ -5172,12 +4633,10 @@ export const LOTS = {
     ],
     cu$: 20700,
     land$: 53923,
-    neighborhood: 'D',
     owner: 'JAGER, COLIN LOVELL',
     taxed$: 208323,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-14': {
     address: '1632 HALFMOON POND RD',
@@ -5191,12 +4650,10 @@ export const LOTS = {
     ],
     cu$: 5500,
     land$: 34195,
-    neighborhood: 'D',
     owner: 'BRIDSCHGE, MARK A',
     taxed$: 114395,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-18': {
     address: '22 MARTIN RD',
@@ -5210,12 +4667,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 33900,
-    neighborhood: 'D',
     owner: 'SEEKAMP, MARY BETH',
     taxed$: 49400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-22': {
     address: '127 MARTIN RD',
@@ -5229,12 +4684,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 48000,
-    neighborhood: 'C',
     owner: 'COLAMARTINO, JOSEPH L',
     taxed$: 132100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-23': {
     address: '179 MARTIN RD',
@@ -5248,12 +4701,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 40200,
-    neighborhood: 'C',
     owner: 'GATHERCOLE, KEVIN E',
     taxed$: 104900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-24': {
     address: '211 MARTIN RD',
@@ -5267,12 +4718,10 @@ export const LOTS = {
     ],
     cu$: 9000,
     land$: 36300,
-    neighborhood: 'C',
     owner: 'MILLER, DANIEL P',
     taxed$: 218000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-27': {
     address: '317 MARTIN RD',
@@ -5286,12 +4735,10 @@ export const LOTS = {
     ],
     cu$: 3500,
     land$: 35400,
-    neighborhood: 'C',
     owner: "O'DONOGHUE, PATRICK",
     taxed$: 152600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-35': {
     address: '312 MARTIN RD',
@@ -5305,12 +4752,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'C',
     owner: 'BULLOCK, CHRISTOPHER',
     taxed$: 35800,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '8-38': {
     address: '202 MARTIN RD',
@@ -5324,12 +4769,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 38200,
-    neighborhood: 'C',
     owner: 'LONG, STEPHEN',
     taxed$: 174400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-46': {
     address: '1618 HALFMOON POND RD',
@@ -5343,12 +4786,10 @@ export const LOTS = {
     ],
     cu$: 3600,
     land$: 32000,
-    neighborhood: 'D',
     owner: 'DSV SPV1, LLC',
     taxed$: 108800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-47': {
     address: '1307 HALFMOON POND RD',
@@ -5362,12 +4803,10 @@ export const LOTS = {
     ],
     cu$: 16100,
     land$: 42400,
-    neighborhood: 'D',
     owner: 'JAGER NANCY BELLE',
     taxed$: 216200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-48': {
     address: '1129 HALFMOON POND RD',
@@ -5381,12 +4820,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 34000,
-    neighborhood: 'D',
     owner: 'WHITNEY, COLLEEN R',
     taxed$: 159700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-6': {
     address: '484 AYERS POND RD',
@@ -5400,12 +4837,10 @@ export const LOTS = {
     ],
     cu$: 17300,
     land$: 88118,
-    neighborhood: 'D',
     owner: 'MARSHALL, THOMAS & LINDA  REVO',
     taxed$: 271618,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-7': {
     address: '410 AYERS POND RD',
@@ -5419,12 +4854,10 @@ export const LOTS = {
     ],
     cu$: 41200,
     land$: 49242,
-    neighborhood: 'D',
     owner: 'FLORENCE, MARK E',
     taxed$: 353242,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-9': {
     address: '269 DEER VALLEY RD',
@@ -5438,12 +4871,10 @@ export const LOTS = {
     ],
     cu$: 3600,
     land$: 33611,
-    neighborhood: 'D',
     owner: 'CROWLEY, MARY E',
     taxed$: 185311,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-12': {
     address: '161 BRADFORD SPRINGS RD',
@@ -5457,12 +4888,10 @@ export const LOTS = {
     ],
     cu$: 8500,
     land$: 45700,
-    neighborhood: 'E',
     owner: 'PEREIRA, NEILETTE',
     taxed$: 126300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-13': {
     address: '2402 E WASHINGTON RD',
@@ -5480,12 +4909,10 @@ export const LOTS = {
     ],
     cu$: 36000,
     land$: 56777,
-    neighborhood: 'E',
     owner: 'COOK, R E & L T REV TRUST',
     taxed$: 394277,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-14': {
     address: '2494 E WASHINGTON RD',
@@ -5499,12 +4926,10 @@ export const LOTS = {
     ],
     cu$: 16900,
     land$: 44204,
-    neighborhood: 'E',
     owner: 'ROBINSON, SANDRA J',
     taxed$: 176104,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-16': {
     address: '182 AYERS POND RD',
@@ -5518,12 +4943,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 53400,
-    neighborhood: 'D',
     owner: 'GIGLIO, JODI-LYNN',
     taxed$: 140000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-19': {
     address: '2528 E WASHINGTON RD',
@@ -5537,12 +4960,10 @@ export const LOTS = {
     ],
     cu$: 19600,
     land$: 42594,
-    neighborhood: 'E',
     owner: 'THAYER, EDWARD G',
     taxed$: 230594,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-20': {
     address: '2581 E WASHINGTON RD',
@@ -5556,12 +4977,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 42500,
-    neighborhood: 'E',
     owner: 'MCFADDEN, MICHAEL',
     taxed$: 182700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-21': {
     address: '2616 E WASHINGTON RD',
@@ -5575,12 +4994,10 @@ export const LOTS = {
     ],
     cu$: 33000,
     land$: 47700,
-    neighborhood: 'E',
     owner: 'GARVIN, MARIANNE L',
     taxed$: 232700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-51': {
     address: '100 SUGAR HOUSE RD',
@@ -5594,12 +5011,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 47300,
-    neighborhood: 'E',
     owner: 'GILLETT, JOSEPH M',
     taxed$: 158100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-26-0B': {
     address: '325 AYERS POND RD',
@@ -5617,12 +5032,10 @@ export const LOTS = {
     ],
     cu$: 11300,
     land$: 36900,
-    neighborhood: 'D',
     owner: 'WASHINGTON, ROBERT',
     taxed$: 158600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-38': {
     address: '77 BERGWEG RD',
@@ -5636,12 +5049,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 43100,
-    neighborhood: 'E',
     owner: 'GALLAGHER, BETH',
     taxed$: 219300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-29': {
     address: '693 AYERS POND RD',
@@ -5655,12 +5066,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 38898,
-    neighborhood: 'D',
     owner: 'JANEWAY, ELEANOR A',
     taxed$: 193398,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-29-01': {
     address: '663 AYERS POND RD',
@@ -5674,12 +5083,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 34166,
-    neighborhood: 'D',
     owner: 'TUOHY, JOHN',
     taxed$: 207166,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-30': {
     address: '177 ULRICH RD',
@@ -5693,12 +5100,10 @@ export const LOTS = {
     ],
     cu$: 13300,
     land$: 47716,
-    neighborhood: 'D',
     owner: 'MCGRANAHAN, DONALD REV TRUST',
     taxed$: 181716,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-36': {
     address: '81 SANDY KNOLLS RD',
@@ -5712,12 +5117,10 @@ export const LOTS = {
     ],
     cu$: 35800,
     land$: 55336,
-    neighborhood: 'E',
     owner: 'CIRIELLO, MARGARET M',
     taxed$: 213636,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-37': {
     address: '51 SANDY KNOLLS RD',
@@ -5731,12 +5134,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 43300,
-    neighborhood: 'E',
     owner: 'PAQUIN, ROBERT',
     taxed$: 127400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-39': {
     address: '118 LOVELL MOUNTAIN RD',
@@ -5750,12 +5151,10 @@ export const LOTS = {
     ],
     cu$: 17700,
     land$: 54400,
-    neighborhood: 'E',
     owner: 'DUBE, LAURIE A',
     taxed$: 207600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-40': {
     address: '76 BERGWEG RD',
@@ -5769,12 +5168,10 @@ export const LOTS = {
     ],
     cu$: 21900,
     land$: 68400,
-    neighborhood: 'E',
     owner: 'LEISCHNER, PAUL GORDON',
     taxed$: 185200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-41': {
     address: '2734 E WASHINGTON RD',
@@ -5788,12 +5185,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 41600,
-    neighborhood: 'E',
     owner: 'RIZZI, LAURA J',
     taxed$: 176000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-42': {
     address: '57 LOVELL MOUNTAIN RD',
@@ -5807,12 +5202,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 43200,
-    neighborhood: 'E',
     owner: 'ECCARD, KRISTI A',
     taxed$: 80900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-53': {
     address: '30 SUGAR HOUSE RD',
@@ -5826,12 +5219,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 30300,
-    neighborhood: 'E',
     owner: 'BLAKNEY, BENJAMIN',
     taxed$: 50500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-43': {
     address: '95 LOVELL MOUNTAIN RD',
@@ -5845,12 +5236,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 44300,
-    neighborhood: 'E',
     owner: 'LISCHKE, ANNE S',
     taxed$: 162000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-44': {
     address: '123 LOVELL MOUNTAIN RD',
@@ -5864,12 +5253,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24900,
-    neighborhood: 'V',
     owner: 'BUCCINO, MATTHEW',
     taxed$: 24900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-50': {
     address: '126 SUGAR HOUSE RD',
@@ -5883,12 +5270,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'COLBY, THOMAS SEARS, SR',
     taxed$: 181800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-59': {
     address: '2700 E WASHINGTON RD',
@@ -5902,12 +5287,10 @@ export const LOTS = {
     ],
     cu$: 23800,
     land$: 49600,
-    neighborhood: 'E',
     owner: 'ORDWAY, ZACHARY S.',
     taxed$: 205700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-3': {
     address: '1025 ASHUELOT DR',
@@ -5921,12 +5304,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 45913,
-    neighborhood: 'E',
     owner: 'ARBOREAL OASIS, LLC',
     taxed$: 69913,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-11': {
     address: '1037 ASHUELOT DR',
@@ -5940,12 +5321,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 60500,
-    neighborhood: 'E',
     owner: 'KELLERMAN, CHARLINE, TRUSTEE',
     taxed$: 204200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-13': {
     address: '995 ASHUELOT DR',
@@ -5959,12 +5338,10 @@ export const LOTS = {
     ],
     cu$: 33200,
     land$: 65300,
-    neighborhood: 'E',
     owner: 'THOMPSON, EDWARD',
     taxed$: 250200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-16': {
     address: '973 ASHUELOT DR',
@@ -5978,12 +5355,10 @@ export const LOTS = {
     ],
     cu$: 13000,
     land$: 109100,
-    neighborhood: 'E',
     owner: 'DREW, KAREN ANN',
     taxed$: 277900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-18': {
     address: '959 ASHUELOT DR',
@@ -5997,12 +5372,10 @@ export const LOTS = {
     ],
     cu$: 21500,
     land$: 123000,
-    neighborhood: 'E',
     owner: 'ANDERSON REVOCABLE TRUST',
     taxed$: 296800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-22': {
     address: '917 ASHUELOT DR',
@@ -6016,12 +5389,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 190700,
-    neighborhood: 'E',
     owner: 'BERRY, JAY GRIFFIN',
     taxed$: 306100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-53': {
     address: '884 ASHUELOT DR',
@@ -6035,12 +5406,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 42100,
-    neighborhood: 'D',
     owner: 'DEPEAU, EDWARD A III',
     taxed$: 171900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-23': {
     address: '16 MCKINNON RD',
@@ -6054,12 +5423,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 187800,
-    neighborhood: 'E',
     owner: 'CRAINICH FAMILY 2015 REV TRUST',
     taxed$: 338100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-35': {
     address: '795 ASHUELOT DR',
@@ -6073,12 +5440,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 198100,
-    neighborhood: 'D',
     owner: 'DAILEY, M JOYCE 2013 TRUST',
     taxed$: 346200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-36': {
     address: '785 ASHUELOT DR',
@@ -6092,12 +5457,10 @@ export const LOTS = {
     ],
     cu$: 11000,
     land$: 201600,
-    neighborhood: 'D',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 851700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-29': {
     address: '861 ASHUELOT DR',
@@ -6111,12 +5474,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 192800,
-    neighborhood: 'D',
     owner: 'COLLETTE, ROBERT E',
     taxed$: 319700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-30': {
     address: '851 ASHUELOT DR',
@@ -6130,12 +5491,10 @@ export const LOTS = {
     ],
     cu$: 16100,
     land$: 192600,
-    neighborhood: 'D',
     owner: 'HALEY, KAREN J',
     taxed$: 325200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-32': {
     address: '827 ASHUELOT DR',
@@ -6149,12 +5508,10 @@ export const LOTS = {
     ],
     cu$: 36100,
     land$: 191900,
-    neighborhood: 'D',
     owner: 'MANNERS, THOMAS E.',
     taxed$: 312200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-33': {
     address: '821 ASHUELOT DR',
@@ -6168,12 +5525,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 214300,
-    neighborhood: 'G',
     owner: 'RHAN, FAMILY REV TRUST',
     taxed$: 629600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-3': {
     address: '90 OLD BURBANK RD',
@@ -6187,12 +5542,10 @@ export const LOTS = {
     ],
     cu$: 5500,
     land$: 42000,
-    neighborhood: 'D',
     owner: 'OLIVEIRA, GILBERT L',
     taxed$: 181700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-8': {
     address: '141 OLD BURBANK RD',
@@ -6206,12 +5559,10 @@ export const LOTS = {
     ],
     cu$: 29300,
     land$: 113696,
-    neighborhood: 'D',
     owner: 'GRAHAM, R L',
     taxed$: 370096,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-11': {
     address: '790 MILLEN POND RD',
@@ -6229,12 +5580,10 @@ export const LOTS = {
     ],
     cu$: 11900,
     land$: 47265,
-    neighborhood: 'E',
     owner: 'CALLENDER, TIMOTHY W',
     taxed$: 162965,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-19': {
     address: '304 OLD MARLOW RD',
@@ -6248,12 +5597,10 @@ export const LOTS = {
     ],
     cu$: 24600,
     land$: 62397,
-    neighborhood: 'E',
     owner: 'DRESSEL, CYNTHIA D.',
     taxed$: 238597,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-27-01': {
     address: '391 LEMPSTER MOUNTAIN RD',
@@ -6267,12 +5614,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 53218,
-    neighborhood: 'E',
     owner: 'HARVEY, JEREMY A.',
     taxed$: 80718,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-30': {
     address: '232 LEMPSTER MOUNTAIN RD',
@@ -6286,12 +5631,10 @@ export const LOTS = {
     ],
     cu$: 31300,
     land$: 0,
-    neighborhood: '',
     owner: 'RHOADES, WILLIAM',
     taxed$: 31300,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '11-31': {
     address: '563 N MAIN ST',
@@ -6305,12 +5648,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 38100,
-    neighborhood: 'E',
     owner: 'HARVEY, CYNTHIA A',
     taxed$: 97700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-33': {
     address: '276 N MAIN ST',
@@ -6324,12 +5665,10 @@ export const LOTS = {
     ],
     cu$: 8400,
     land$: 37897,
-    neighborhood: 'E',
     owner: 'GAITY, DANIEL J',
     taxed$: 118997,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-34': {
     address: '38 AMES RD',
@@ -6343,12 +5682,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 30900,
-    neighborhood: 'E',
     owner: 'GRAHAM, CODY',
     taxed$: 42100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-35': {
     address: '7 AMES RD',
@@ -6362,12 +5699,10 @@ export const LOTS = {
     ],
     cu$: 700,
     land$: 32600,
-    neighborhood: 'E',
     owner: 'ISAAC, JOSEPH A.',
     taxed$: 83100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-39': {
     address: '313 OLD MARLOW RD',
@@ -6381,12 +5716,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 43333,
-    neighborhood: 'E',
     owner: 'CHIDESTER, ALAN J',
     taxed$: 257633,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-40': {
     address: '284 MILLEN POND RD',
@@ -6400,12 +5733,10 @@ export const LOTS = {
     ],
     cu$: 4800,
     land$: 50600,
-    neighborhood: 'E',
     owner: 'MAMBRINO, JOANNE M',
     taxed$: 243800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-52': {
     address: '724 MILLEN POND RD',
@@ -6419,12 +5750,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 52400,
-    neighborhood: 'F',
     owner: 'BLACKWOOD,ROBERT K JR&SUSAN M',
     taxed$: 294600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-69': {
     address: '207 MILLEN POND RD',
@@ -6438,12 +5767,10 @@ export const LOTS = {
     ],
     cu$: 17000,
     land$: 45500,
-    neighborhood: 'E',
     owner: 'IADONISI, ROSEMARY',
     taxed$: 122800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-69-03': {
     address: '400 FAXON HILL RD',
@@ -6457,12 +5784,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 47386,
-    neighborhood: 'E',
     owner: 'BACHAND, YVONNE',
     taxed$: 194686,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-71': {
     address: '394 FAXON HILL RD',
@@ -6476,12 +5801,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 41600,
-    neighborhood: 'E',
     owner: 'GREGG, APRIL',
     taxed$: 188400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-72': {
     address: '453 FAXON HILL RD',
@@ -6495,12 +5818,10 @@ export const LOTS = {
     ],
     cu$: 17300,
     land$: 42884,
-    neighborhood: 'E',
     owner: 'HALVERSON, INGRID M',
     taxed$: 117784,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-73': {
     address: '393 FAXON HILL RD',
@@ -6514,12 +5835,10 @@ export const LOTS = {
     ],
     cu$: 19700,
     land$: 41351,
-    neighborhood: 'E',
     owner: 'MULLINER, CAMEO M',
     taxed$: 178951,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-76': {
     address: '96 VALLEY RD',
@@ -6533,12 +5852,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 37300,
-    neighborhood: 'E',
     owner: 'MUNN, RICHARD',
     taxed$: 56400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-81': {
     address: '59 OLD MARLOW RD',
@@ -6552,12 +5869,10 @@ export const LOTS = {
     ],
     cu$: 29700,
     land$: 52100,
-    neighborhood: 'E',
     owner: 'JEAN, LUC R.',
     taxed$: 201400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-82': {
     address: '83 OLD MARLOW RD',
@@ -6571,12 +5886,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 37600,
-    neighborhood: 'E',
     owner: 'PIATT, ROBERT L',
     taxed$: 127500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-85': {
     address: '690 MILLEN POND RD',
@@ -6590,12 +5903,10 @@ export const LOTS = {
     ],
     cu$: 82100,
     land$: 57800,
-    neighborhood: 'F',
     owner: 'WINDSOR CIRCUIT, LTD',
     taxed$: 283800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-2': {
     address: '217 HALFMOON POND RD',
@@ -6609,12 +5920,10 @@ export const LOTS = {
     ],
     cu$: 40800,
     land$: 62486,
-    neighborhood: 'D',
     owner: 'SHIFFLETT, AMBER J.',
     taxed$: 313886,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-4': {
     address: '181 HALFMOON POND RD',
@@ -6628,12 +5937,10 @@ export const LOTS = {
     ],
     cu$: 20600,
     land$: 43800,
-    neighborhood: 'D',
     owner: 'CAVENDER, ROCKLIN M',
     taxed$: 216500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-6': {
     address: '291 HALFMOON POND RD',
@@ -6647,12 +5954,10 @@ export const LOTS = {
     ],
     cu$: 12600,
     land$: 47900,
-    neighborhood: 'D',
     owner: 'CARTER, NINA',
     taxed$: 195300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-8': {
     address: '415 HALFMOON POND RD',
@@ -6666,12 +5971,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35500,
-    neighborhood: 'E',
     owner: 'WADE, STEPHEN S',
     taxed$: 177000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-9': {
     address: '437 HALFMOON POND RD',
@@ -6685,12 +5988,10 @@ export const LOTS = {
     ],
     cu$: 16100,
     land$: 39200,
-    neighborhood: 'E',
     owner: 'BINCKES, JEFFREY B',
     taxed$: 169100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-29': {
     address: '807 HALFMOON POND RD',
@@ -6712,12 +6013,10 @@ export const LOTS = {
     ],
     cu$: 10300,
     land$: 200400,
-    neighborhood: 'G',
     owner: 'ARMSTRONG, L H & J K REV TRUST',
     taxed$: 362000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-31': {
     address: '855 HALFMOON POND RD',
@@ -6731,12 +6030,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 158700,
-    neighborhood: 'G',
     owner: 'PANARELLO, JOSEPH R',
     taxed$: 255400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-32': {
     address: '863 HALFMOON POND RD',
@@ -6750,12 +6047,10 @@ export const LOTS = {
     ],
     cu$: 700,
     land$: 159983,
-    neighborhood: 'G',
     owner: 'ALLEN, PAMELA K',
     taxed$: 248883,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-33': {
     address: '1045 HALFMOON POND RD',
@@ -6769,12 +6064,10 @@ export const LOTS = {
     ],
     cu$: 19800,
     land$: 42000,
-    neighborhood: 'E',
     owner: 'BATES III, JOHN',
     taxed$: 105500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-38': {
     address: '770 HALFMOON POND RD',
@@ -6788,12 +6081,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'G',
     owner: 'NOACK, JOHN',
     taxed$: 194500,
     usage: '110',
-    use: 'R1W',
-    zone: ''
+    use: 'R1W'
   },
   '14-84': {
     address: '56 JEFFERSON DR',
@@ -6807,12 +6098,10 @@ export const LOTS = {
     ],
     cu$: 7000,
     land$: 38700,
-    neighborhood: 'E',
     owner: 'TERWILLIGER, CELESTE R',
     taxed$: 125700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-75': {
     address: '729 WASHINGTON DR',
@@ -6826,12 +6115,10 @@ export const LOTS = {
     ],
     cu$: 5600,
     land$: 215600,
-    neighborhood: 'G',
     owner: 'VANGEL, SAMUEL',
     taxed$: 272600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-44': {
     address: '512 HALFMOON POND RD',
@@ -6845,12 +6132,10 @@ export const LOTS = {
     ],
     cu$: 2300,
     land$: 42000,
-    neighborhood: 'E',
     owner: 'MARCOUX, MOLLY S',
     taxed$: 177000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-48': {
     address: '114 MILL ST',
@@ -6864,12 +6149,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26200,
-    neighborhood: 'V',
     owner: 'BUSH, AMANDA',
     taxed$: 26200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-66': {
     address: '835 WASHINGTON DR',
@@ -6883,12 +6166,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 248900,
-    neighborhood: 'G',
     owner: 'SARDINSKAS, CLAIRE FLETCHER',
     taxed$: 368900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-69': {
     address: '783 WASHINGTON DR',
@@ -6902,12 +6183,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 203400,
-    neighborhood: 'P',
     owner: 'COLLETTE, THOMAS',
     taxed$: 461800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-70': {
     address: '771 WASHINGTON DR',
@@ -6921,12 +6200,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 217100,
-    neighborhood: 'G',
     owner: 'KLUK, MICHAEL',
     taxed$: 408200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-71': {
     address: '763 WASHINGTON DR',
@@ -6940,12 +6217,10 @@ export const LOTS = {
     ],
     cu$: 12800,
     land$: 311700,
-    neighborhood: 'P',
     owner: 'HARNER, JEFF',
     taxed$: 555300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-73': {
     address: '743 WASHINGTON DR',
@@ -6959,12 +6234,10 @@ export const LOTS = {
     ],
     cu$: 24100,
     land$: 239600,
-    neighborhood: 'G',
     owner: 'NELSON, HOWARD',
     taxed$: 418400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-74': {
     address: '735 WASHINGTON DR',
@@ -6978,12 +6251,10 @@ export const LOTS = {
     ],
     cu$: 23200,
     land$: 220700,
-    neighborhood: 'G',
     owner: 'JOHNSON, CHARLES D',
     taxed$: 426100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-77': {
     address: '715 WASHINGTON DR',
@@ -6997,12 +6268,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 228700,
-    neighborhood: 'G',
     owner: 'BUXBAUM, JEFFREY N.',
     taxed$: 343200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-80': {
     address: '693 WASHINGTON DR',
@@ -7016,12 +6285,10 @@ export const LOTS = {
     ],
     cu$: 7400,
     land$: 214600,
-    neighborhood: 'G',
     owner: 'BROOK LIVING TRUST',
     taxed$: 336800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-81': {
     address: '685 WASHINGTON DR',
@@ -7035,12 +6302,10 @@ export const LOTS = {
     ],
     cu$: 36300,
     land$: 238300,
-    neighborhood: 'G',
     owner: 'JOHNSON, JEFFREY',
     taxed$: 463600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-82': {
     address: '677 WASHINGTON DR',
@@ -7054,12 +6319,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 215600,
-    neighborhood: 'G',
     owner: 'HANSSEN, DONALD M',
     taxed$: 328200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-83': {
     address: '20 WALNUT CIR',
@@ -7073,12 +6336,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 231100,
-    neighborhood: 'G',
     owner: 'FERLINS FAMILY COMPOUND TRUST',
     taxed$: 348900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-84': {
     address: '22 WALNUT CIR',
@@ -7092,12 +6353,10 @@ export const LOTS = {
     ],
     cu$: 7600,
     land$: 262700,
-    neighborhood: 'G',
     owner: 'POLLACK, ALAN S TRUST',
     taxed$: 390400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-86': {
     address: '653 WASHINGTON DR',
@@ -7111,12 +6370,10 @@ export const LOTS = {
     ],
     cu$: 14600,
     land$: 201500,
-    neighborhood: 'G',
     owner: 'KAPUR, TINA',
     taxed$: 295800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-87': {
     address: '633 WASHINGTON DR',
@@ -7130,12 +6387,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 197000,
-    neighborhood: 'G',
     owner: 'ALLEN, EDWARD & MARY',
     taxed$: 319500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-88': {
     address: '625 WASHINGTON DR',
@@ -7149,12 +6404,10 @@ export const LOTS = {
     ],
     cu$: 12400,
     land$: 194800,
-    neighborhood: 'G',
     owner: 'SCHULDT III, ROBERT R LIV TR',
     taxed$: 325200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-89': {
     address: '611 WASHINGTON DR',
@@ -7168,12 +6421,10 @@ export const LOTS = {
     ],
     cu$: 9300,
     land$: 218800,
-    neighborhood: 'G',
     owner: 'MARTIN, PETER W LIVING TRUST',
     taxed$: 458100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-90': {
     address: '581 WASHINGTON DR',
@@ -7187,12 +6438,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 200600,
-    neighborhood: 'G',
     owner: 'STALEY, JEFFREY L',
     taxed$: 303200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-91': {
     address: '561 WASHINGTON DR',
@@ -7206,12 +6455,10 @@ export const LOTS = {
     ],
     cu$: 27500,
     land$: 221700,
-    neighborhood: 'G',
     owner: 'MAX, RONALD & JOAN IRREV TRUST',
     taxed$: 434800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-95': {
     address: '541 WASHINGTON DR',
@@ -7225,12 +6472,10 @@ export const LOTS = {
     ],
     cu$: 27200,
     land$: 214400,
-    neighborhood: 'G',
     owner: 'PERRAS, WAYNE I',
     taxed$: 377700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-96': {
     address: '533 WASHINGTON DR',
@@ -7244,12 +6489,10 @@ export const LOTS = {
     ],
     cu$: 17700,
     land$: 212700,
-    neighborhood: 'G',
     owner: 'BISSONNETTE, JAMES P. REVOCABL',
     taxed$: 328400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-97': {
     address: '515 WASHINGTON DR',
@@ -7263,12 +6506,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 254700,
-    neighborhood: 'G',
     owner: 'VAN PRAAGH, RICHARD REV TRUST',
     taxed$: 378200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-98': {
     address: '499 WASHINGTON DR',
@@ -7282,12 +6523,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 220300,
-    neighborhood: 'G',
     owner: 'JACOBSON, THOMAS C.',
     taxed$: 392500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-100': {
     address: '378 WASHINGTON DR',
@@ -7301,12 +6540,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 61200,
-    neighborhood: 'V',
     owner: 'KAPTEYN, PAUL C',
     taxed$: 61200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-103': {
     address: '455 WASHINGTON DR',
@@ -7320,12 +6557,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 226500,
-    neighborhood: 'G',
     owner: 'BUTCHER FAMILY REVOCABLE TRUST',
     taxed$: 441500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-104': {
     address: '453 WASHINGTON DR',
@@ -7339,12 +6574,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 206700,
-    neighborhood: 'G',
     owner: 'JAFFE, JACOB D',
     taxed$: 343600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-105': {
     address: '439 WASHINGTON DR',
@@ -7358,12 +6591,10 @@ export const LOTS = {
     ],
     cu$: 22000,
     land$: 224000,
-    neighborhood: 'G',
     owner: 'GALDONIK, RUTH C REVOCABLE TRU',
     taxed$: 386700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-108': {
     address: '355 WASHINGTON DR',
@@ -7377,12 +6608,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 224000,
-    neighborhood: 'G',
     owner: 'EPPLER, M P & R E TRUST',
     taxed$: 331600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-109': {
     address: '305 WASHINGTON DR',
@@ -7396,12 +6625,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 220600,
-    neighborhood: 'G',
     owner: 'PERNICE, ROBIN',
     taxed$: 406900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-113': {
     address: '249 WASHINGTON DR',
@@ -7415,12 +6642,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 210100,
-    neighborhood: 'G',
     owner: 'KONYHA REAL ESTATE TRUST, M&J',
     taxed$: 281400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-116': {
     address: '231 WASHINGTON DR',
@@ -7434,12 +6659,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 217900,
-    neighborhood: 'G',
     owner: 'HYLAND JR, JOHN J',
     taxed$: 304600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-130': {
     address: '394 WASHINGTON DR',
@@ -7453,12 +6676,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 80600,
-    neighborhood: 'G',
     owner: 'BULMAN, RICHARD B',
     taxed$: 218400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-131': {
     address: '416 WASHINGTON DR',
@@ -7472,12 +6693,10 @@ export const LOTS = {
     ],
     cu$: 10700,
     land$: 139400,
-    neighborhood: 'P',
     owner: 'KOWALSKI, ROY E.',
     taxed$: 454100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-134': {
     address: '488 WASHINGTON DR',
@@ -7491,12 +6710,10 @@ export const LOTS = {
     ],
     cu$: 6700,
     land$: 78700,
-    neighborhood: 'G',
     owner: 'MORRISETTE, MARK A',
     taxed$: 176900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-138': {
     address: '574 WASHINGTON DR',
@@ -7510,12 +6727,10 @@ export const LOTS = {
     ],
     cu$: 6800,
     land$: 76400,
-    neighborhood: 'G',
     owner: 'BODNAR, BERTRAM J',
     taxed$: 163300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-140': {
     address: '608 WASHINGTON DR',
@@ -7529,12 +6744,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 66400,
-    neighborhood: 'G',
     owner: 'MURPHY, GARDNER',
     taxed$: 231400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-141': {
     address: '632 WASHINGTON DR',
@@ -7548,12 +6761,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 71800,
-    neighborhood: 'G',
     owner: 'BISSONNETTE, JAMES P. REVOCABL',
     taxed$: 168200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-145': {
     address: '716 WASHINGTON DR',
@@ -7567,12 +6778,10 @@ export const LOTS = {
     ],
     cu$: 6000,
     land$: 72500,
-    neighborhood: 'G',
     owner: 'KOWALSKI, LINDA',
     taxed$: 157800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-147': {
     address: '756 WASHINGTON DR',
@@ -7586,12 +6795,10 @@ export const LOTS = {
     ],
     cu$: 18100,
     land$: 72400,
-    neighborhood: 'G',
     owner: 'KNIGHT,  ROBIN',
     taxed$: 134000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-148': {
     address: '780 WASHINGTON DR',
@@ -7605,12 +6812,10 @@ export const LOTS = {
     ],
     cu$: 15800,
     land$: 69800,
-    neighborhood: 'G',
     owner: 'VINCIGUERRA, STEPHEN',
     taxed$: 263300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-153': {
     address: '139 WASHINGTON DR',
@@ -7624,12 +6829,10 @@ export const LOTS = {
     ],
     cu$: 12000,
     land$: 225291,
-    neighborhood: 'G',
     owner: 'CARNEY, JEAN-PIERRE',
     taxed$: 427091,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-155-01': {
     address: '158 WINDING WAY',
@@ -7643,12 +6846,10 @@ export const LOTS = {
     ],
     cu$: 6800,
     land$: 222800,
-    neighborhood: 'F',
     owner: 'HANSSEN, STEPHEN',
     taxed$: 421400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-155-02': {
     address: '156 WINDING WAY',
@@ -7662,12 +6863,10 @@ export const LOTS = {
     ],
     cu$: 27400,
     land$: 223400,
-    neighborhood: 'F',
     owner: 'REIS, RANDOLPH J',
     taxed$: 403700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-159': {
     address: '108 ISLAND POND RD',
@@ -7681,12 +6880,10 @@ export const LOTS = {
     ],
     cu$: 4300,
     land$: 65800,
-    neighborhood: 'E',
     owner: 'BOND, EMERY ALLEN',
     taxed$: 135600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-164': {
     address: '77 ISLAND POND RD',
@@ -7700,12 +6897,10 @@ export const LOTS = {
     ],
     cu$: 12700,
     land$: 157000,
-    neighborhood: 'D',
     owner: 'THAYER,  MARIANNE',
     taxed$: 237200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-203': {
     address: '339 WASHINGTON DR',
@@ -7719,12 +6914,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'G',
     owner: 'GEBO LIVING TRUST',
     taxed$: 67600,
     usage: '110',
-    use: 'R1W',
-    zone: ''
+    use: 'R1W'
   },
   '13-4': {
     address: '3068 E WASHINGTON RD',
@@ -7738,12 +6931,10 @@ export const LOTS = {
     ],
     cu$: 19500,
     land$: 46500,
-    neighborhood: 'E',
     owner: 'TERANI, STEPHEN J & GAYLE  REV',
     taxed$: 209900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-175': {
     address: '151 MILL ST',
@@ -7757,12 +6948,10 @@ export const LOTS = {
     ],
     cu$: 23100,
     land$: 51500,
-    neighborhood: 'E',
     owner: 'YEATON, H & E REV TRUST',
     taxed$: 147100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-178': {
     address: '148 HALFMOON POND RD',
@@ -7776,12 +6965,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33900,
-    neighborhood: 'D',
     owner: 'MORROW, ANDREA',
     taxed$: 98300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-179': {
     address: '242 S MAIN ST',
@@ -7795,12 +6982,10 @@ export const LOTS = {
     ],
     cu$: 7400,
     land$: 36500,
-    neighborhood: 'D',
     owner: 'CILLEY, ROBERT',
     taxed$: 122100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-181-01': {
     address: '83 VALLEY RD',
@@ -7814,12 +6999,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35800,
-    neighborhood: 'D',
     owner: 'GOLTSOV, GREGORY V',
     taxed$: 183300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-181-02': {
     address: '117 VALLEY RD',
@@ -7833,12 +7016,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42100,
-    neighborhood: 'E',
     owner: 'JETTE, JUSTIN C',
     taxed$: 126300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-185': {
     address: '430 HALFMOON POND RD',
@@ -7852,12 +7033,10 @@ export const LOTS = {
     ],
     cu$: 8200,
     land$: 31400,
-    neighborhood: 'D',
     owner: 'COLE, CLIFFORD G',
     taxed$: 176900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-36': {
     address: '108 GRANT RD',
@@ -7871,12 +7050,10 @@ export const LOTS = {
     ],
     cu$: 700,
     land$: 41100,
-    neighborhood: 'E',
     owner: 'FLESSAS, HENRY',
     taxed$: 203700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-5': {
     address: '3170 E WASHINGTON RD',
@@ -7890,12 +7067,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 43900,
-    neighborhood: 'E',
     owner: 'CARD, RICHARD',
     taxed$: 218200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-6': {
     address: '3272 E WASHINGTON RD',
@@ -7909,12 +7084,10 @@ export const LOTS = {
     ],
     cu$: 4300,
     land$: 56482,
-    neighborhood: 'E',
     owner: 'KRAUS, WILLIAM B',
     taxed$: 133482,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-8': {
     address: '3430 E WASHINGTON RD',
@@ -7928,12 +7101,10 @@ export const LOTS = {
     ],
     cu$: 21900,
     land$: 43248,
-    neighborhood: 'E',
     owner: 'FRANCE, DAVID',
     taxed$: 221748,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-16': {
     address: '3554 E WASHINGTON RD',
@@ -7947,12 +7118,10 @@ export const LOTS = {
     ],
     cu$: 36100,
     land$: 54258,
-    neighborhood: 'E',
     owner: 'GELATT FAMILY TRUST',
     taxed$: 302458,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-4': {
     address: '683 ASHUELOT DR',
@@ -7966,12 +7135,10 @@ export const LOTS = {
     ],
     cu$: 18800,
     land$: 192200,
-    neighborhood: 'E',
     owner: 'LIMA, MARIA LUCIANA REV TRUST ',
     taxed$: 326600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-16-01': {
     address: '3545 E WASHINGTON RD',
@@ -7985,12 +7152,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 0,
-    neighborhood: 'H',
     owner: 'DARAGON, JAMES P.',
     taxed$: 99500,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '13-17': {
     address: '3661 E WASHINGTON RD',
@@ -8004,12 +7169,10 @@ export const LOTS = {
     ],
     cu$: 15900,
     land$: 41300,
-    neighborhood: 'E',
     owner: 'SHIPMAN, DAVID',
     taxed$: 141600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-18': {
     address: '3587 E WASHINGTON RD',
@@ -8023,12 +7186,10 @@ export const LOTS = {
     ],
     cu$: 59900,
     land$: 47999,
-    neighborhood: 'E',
     owner: 'PALUDI, DAMON TRUST',
     taxed$: 363199,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-22': {
     address: '3245 E WASHINGTON RD',
@@ -8042,12 +7203,10 @@ export const LOTS = {
     ],
     cu$: 16400,
     land$: 45600,
-    neighborhood: 'E',
     owner: 'HOFSTETTER REV FAMILY TRUST',
     taxed$: 178800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-23': {
     address: '3145 E WASHINGTON RD',
@@ -8061,12 +7220,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 44877,
-    neighborhood: 'E',
     owner: 'CROWLEY, SEAN B',
     taxed$: 137477,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-24': {
     address: '3015 E WASHINGTON RD',
@@ -8080,12 +7237,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40500,
-    neighborhood: 'E',
     owner: 'CURRAN, RYAN',
     taxed$: 153800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-8': {
     address: '20 HARRISON RD',
@@ -8099,12 +7254,10 @@ export const LOTS = {
     ],
     cu$: 24400,
     land$: 182500,
-    neighborhood: 'E',
     owner: 'SHEA, JOSEPH',
     taxed$: 322200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-25': {
     address: '3133 E WASHINGTON RD',
@@ -8118,12 +7271,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 27899,
-    neighborhood: 'E',
     owner: 'ECCARDT FARMS INC',
     taxed$: 30599,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '13-28': {
     address: '2667 E WASHINGTON RD',
@@ -8137,12 +7288,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 40500,
-    neighborhood: 'E',
     owner: 'TREADWELL, ALLAN E',
     taxed$: 143600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-37': {
     address: '526 ASHUELOT DR',
@@ -8156,12 +7305,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45200,
-    neighborhood: 'F',
     owner: 'DAWE, RICHARD C.',
     taxed$: 202400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-30': {
     address: '2607 E WASHINGTON RD',
@@ -8175,12 +7322,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 51000,
-    neighborhood: 'E',
     owner: 'HAVUNEN, DALE',
     taxed$: 53200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-32': {
     address: '3094 E WASHINGTON RD',
@@ -8194,12 +7339,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42800,
-    neighborhood: 'E',
     owner: 'TOCZKO,  ALLAN J',
     taxed$: 177100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-33': {
     address: '3112 E WASHINGTON RD',
@@ -8213,12 +7356,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 45000,
-    neighborhood: 'E',
     owner: 'BENNETT, BRUCE',
     taxed$: 185800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-34': {
     address: '3000 E WASHINGTON RD',
@@ -8232,12 +7373,10 @@ export const LOTS = {
     ],
     cu$: 14700,
     land$: 54500,
-    neighborhood: 'E',
     owner: 'ECCARD, GEORGE R',
     taxed$: 228300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-15': {
     address: '82 HARRISON RD',
@@ -8251,12 +7390,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 176800,
-    neighborhood: 'E',
     owner: 'THOMPSON, ROBERT W. LIVING TRU',
     taxed$: 256800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-22': {
     address: '158 HARRISON RD',
@@ -8270,12 +7407,10 @@ export const LOTS = {
     ],
     cu$: 27800,
     land$: 221600,
-    neighborhood: 'D',
     owner: 'SMITH III, JAMES D',
     taxed$: 373000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-23': {
     address: '166 HARRISON RD',
@@ -8289,12 +7424,10 @@ export const LOTS = {
     ],
     cu$: 16000,
     land$: 221700,
-    neighborhood: 'E',
     owner: 'PATERNO, ANNE F REVOCABLE LIVI',
     taxed$: 391300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-24': {
     address: '182 HARRISON RD',
@@ -8308,12 +7441,10 @@ export const LOTS = {
     ],
     cu$: 20700,
     land$: 163200,
-    neighborhood: 'E',
     owner: 'COLLINS, WESLEY T & SUSAN R RE',
     taxed$: 339700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-26': {
     address: '135 HARRISON RD',
@@ -8327,12 +7458,10 @@ export const LOTS = {
     ],
     cu$: 5100,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'HASS, CHARLES',
     taxed$: 134500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-27': {
     address: '117 HARRISON RD',
@@ -8346,12 +7475,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'BENOIT, RAYMOND A.',
     taxed$: 126400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-29': {
     address: '71 HARRISON RD',
@@ -8365,12 +7492,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'VIEIRA, EMANUEL JORGE JR',
     taxed$: 161400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-30': {
     address: '23 HARRISON RD',
@@ -8388,12 +7513,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 115600,
-    neighborhood: 'E',
     owner: 'LAPLUME, RUSSELL J',
     taxed$: 258000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-32': {
     address: '585 ASHUELOT DR',
@@ -8407,12 +7530,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 42600,
-    neighborhood: 'E',
     owner: 'ERIAS, BERNARD',
     taxed$: 131800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-33': {
     address: '547 ASHUELOT DR',
@@ -8426,12 +7547,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'VILLAGIO, SPENCER',
     taxed$: 114700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-40': {
     address: '562 ASHUELOT DR',
@@ -8445,12 +7564,10 @@ export const LOTS = {
     ],
     cu$: 34100,
     land$: 47500,
-    neighborhood: 'F',
     owner: 'COOLEY, EARL L.',
     taxed$: 149400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-43': {
     address: '652 ASHUELOT DR',
@@ -8464,12 +7581,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 35000,
-    neighborhood: 'E',
     owner: 'FORTY, KENT',
     taxed$: 86700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-45': {
     address: '676 ASHUELOT DR',
@@ -8483,12 +7598,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 40900,
-    neighborhood: 'E',
     owner: 'BILLINGS, TREVOR J.',
     taxed$: 153700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-54': {
     address: '116 TAYLOR CIR',
@@ -8502,12 +7615,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43400,
-    neighborhood: 'E',
     owner: 'COLBY, ASHLEY D',
     taxed$: 132500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-58': {
     address: '40 TAYLOR CIR',
@@ -8521,12 +7632,10 @@ export const LOTS = {
     ],
     cu$: 23000,
     land$: 43900,
-    neighborhood: 'E',
     owner: 'DEMERCHANT, PETER C',
     taxed$: 181000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-59': {
     address: '10 TAYLOR CIR',
@@ -8540,12 +7649,10 @@ export const LOTS = {
     ],
     cu$: 13500,
     land$: 42800,
-    neighborhood: 'E',
     owner: 'PERCY, BENJAMIN A. & AMANDA L.',
     taxed$: 218900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-63': {
     address: '219 STOWELL RD',
@@ -8559,12 +7666,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 41200,
-    neighborhood: 'E',
     owner: 'GARCIA, HEATHER M',
     taxed$: 151400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-66': {
     address: '30 GRANT RD',
@@ -8578,12 +7683,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 41100,
-    neighborhood: 'E',
     owner: 'LAMBERT, ROBERT',
     taxed$: 116800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-68': {
     address: '80 GRANT RD',
@@ -8597,12 +7700,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39100,
-    neighborhood: 'E',
     owner: 'RIESSLE, ROBERT W',
     taxed$: 211600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-69': {
     address: '468 ASHUELOT DR',
@@ -8616,12 +7717,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36600,
-    neighborhood: 'E',
     owner: 'DAMATO, STEVEN',
     taxed$: 118400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-71': {
     address: '89 GRANT RD',
@@ -8635,12 +7734,10 @@ export const LOTS = {
     ],
     cu$: 18700,
     land$: 42500,
-    neighborhood: 'E',
     owner: 'STICKLOR, PAUL',
     taxed$: 140300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-80': {
     address: '107 STOWELL RD',
@@ -8654,12 +7751,10 @@ export const LOTS = {
     ],
     cu$: 24400,
     land$: 47900,
-    neighborhood: 'E',
     owner: 'SNOW, STEPHEN P',
     taxed$: 155900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-82': {
     address: '83 STOWELL RD',
@@ -8673,12 +7768,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 40600,
-    neighborhood: 'E',
     owner: 'NAPLES, JEFFREY G',
     taxed$: 115800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-83': {
     address: '48 JEFFERSON DR',
@@ -8692,12 +7785,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 38700,
-    neighborhood: 'E',
     owner: 'CASTELLANO, PATRICIA A',
     taxed$: 133600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-86': {
     address: '84 JEFFERSON DR',
@@ -8711,12 +7802,10 @@ export const LOTS = {
     ],
     cu$: 29200,
     land$: 41100,
-    neighborhood: 'E',
     owner: 'LANGLOIS, ROBERT R',
     taxed$: 145400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-94': {
     address: '173 JEFFERSON DR',
@@ -8730,12 +7819,10 @@ export const LOTS = {
     ],
     cu$: 6500,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'DOWNEY, ROSEMARIE',
     taxed$: 106800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-97': {
     address: '125 JEFFERSON DR',
@@ -8749,12 +7836,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'BILSKI TRUST, BARBARA C',
     taxed$: 151200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-100': {
     address: '85 JEFFERSON DR',
@@ -8768,12 +7853,10 @@ export const LOTS = {
     ],
     cu$: 10600,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'RENKIN, PAUL S',
     taxed$: 157700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-102': {
     address: '49 JEFFERSON DR',
@@ -8787,12 +7870,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'ROUSSEAU & EVINSON REVC TRUST',
     taxed$: 120900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-104': {
     address: '77 STOWELL RD',
@@ -8806,12 +7887,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42000,
-    neighborhood: 'E',
     owner: 'SHARKEY, ARTHUR J & LINDA J',
     taxed$: 217800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-107': {
     address: '462 PRESIDENTIAL DR',
@@ -8825,12 +7904,10 @@ export const LOTS = {
     ],
     cu$: 12900,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'WASHBURN JR, MALCOM E',
     taxed$: 198000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-110': {
     address: '52 MADISON DR',
@@ -8844,12 +7921,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'NIEMAN, ROBERT F',
     taxed$: 186200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-111': {
     address: '78 MADISON DR',
@@ -8863,12 +7938,10 @@ export const LOTS = {
     ],
     cu$: 19200,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'BECKLER, DREW A',
     taxed$: 151200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-114': {
     address: '128 MADISON DR',
@@ -8882,12 +7955,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 41200,
-    neighborhood: 'E',
     owner: 'MORSE, JAMES',
     taxed$: 84000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-116': {
     address: '150 MADISON DR',
@@ -8901,12 +7972,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 41100,
-    neighborhood: 'E',
     owner: 'BECKLER, TYLER',
     taxed$: 134600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-124': {
     address: '145 MADISON DR',
@@ -8920,12 +7989,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42200,
-    neighborhood: 'E',
     owner: 'CARLSON, CATHERINA L',
     taxed$: 137400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-129': {
     address: '53 MADISON DR',
@@ -8939,12 +8006,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37300,
-    neighborhood: 'E',
     owner: 'MAHAFFY, GARY J.',
     taxed$: 158100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-138': {
     address: '616 PRESIDENTIAL DR',
@@ -8958,12 +8023,10 @@ export const LOTS = {
     ],
     cu$: 23700,
     land$: 42200,
-    neighborhood: 'E',
     owner: 'NAZARIAN, RAYMOND',
     taxed$: 201800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-139': {
     address: '630 PRESIDENTIAL DR',
@@ -8977,12 +8040,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 46600,
-    neighborhood: 'E',
     owner: 'RISCO, GABRIEL A. III',
     taxed$: 160700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-140': {
     address: '642 PRESIDENTIAL DR',
@@ -8996,12 +8057,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46600,
-    neighborhood: 'E',
     owner: 'HAROPULOS, JASON J.',
     taxed$: 147900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-142': {
     address: '682 PRESIDENTIAL DR',
@@ -9015,12 +8074,10 @@ export const LOTS = {
     ],
     cu$: 7000,
     land$: 42600,
-    neighborhood: 'E',
     owner: 'BEAUCHESNE, ALAN B',
     taxed$: 148700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-144': {
     address: '314 ASHUELOT DR',
@@ -9034,12 +8091,10 @@ export const LOTS = {
     ],
     cu$: 39000,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'GERSHMAN, JEROLD M',
     taxed$: 187700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-145': {
     address: '292 ASHUELOT DR',
@@ -9053,12 +8108,10 @@ export const LOTS = {
     ],
     cu$: 29600,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'DICKMAN, DAVID T',
     taxed$: 216500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-146': {
     address: '278 ASHUELOT DR',
@@ -9072,12 +8125,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'JOSLYN, MATTHEW B.',
     taxed$: 151900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-147': {
     address: '258 ASHUELOT DR',
@@ -9091,12 +8142,10 @@ export const LOTS = {
     ],
     cu$: 20900,
     land$: 68800,
-    neighborhood: 'E',
     owner: 'BELLA VITA PROPERTIES, LLC',
     taxed$: 198000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-155': {
     address: '377 ASHUELOT DR',
@@ -9110,12 +8159,10 @@ export const LOTS = {
     ],
     cu$: 21100,
     land$: 236000,
-    neighborhood: 'E',
     owner: 'ROBERT REVOCABLE TRUST',
     taxed$: 434000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-157': {
     address: '351 ASHUELOT DR',
@@ -9129,12 +8176,10 @@ export const LOTS = {
     ],
     cu$: 8600,
     land$: 213500,
-    neighborhood: 'E',
     owner: 'GENTILE, JOSEPH L',
     taxed$: 334000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-158': {
     address: '341 ASHUELOT DR',
@@ -9148,12 +8193,10 @@ export const LOTS = {
     ],
     cu$: 4300,
     land$: 228400,
-    neighborhood: 'E',
     owner: 'PETESCIA, GARY REV TRUST',
     taxed$: 456900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-159': {
     address: '327 ASHUELOT DR',
@@ -9167,12 +8210,10 @@ export const LOTS = {
     ],
     cu$: 3100,
     land$: 218600,
-    neighborhood: 'E',
     owner: 'BARTON, WILLIAM',
     taxed$: 315600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-160': {
     address: '315 ASHUELOT DR',
@@ -9186,12 +8227,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 213600,
-    neighborhood: 'E',
     owner: 'RIZZO, JOHN S',
     taxed$: 361900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-162': {
     address: '291 ASHUELOT DR',
@@ -9205,12 +8244,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 213500,
-    neighborhood: 'E',
     owner: 'MOREL, JAMES AND JOYCE LIVING ',
     taxed$: 279700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-163': {
     address: '283 ASHUELOT DR',
@@ -9224,12 +8261,10 @@ export const LOTS = {
     ],
     cu$: 25000,
     land$: 213500,
-    neighborhood: 'E',
     owner: 'MACDOUGALL FAMILY TRUST',
     taxed$: 332900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-164': {
     address: '265 ASHUELOT DR',
@@ -9243,12 +8278,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 213600,
-    neighborhood: 'E',
     owner: 'HOFF, JO ANN G REVOC TRUST',
     taxed$: 346700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-165': {
     address: '263 ASHUELOT DR',
@@ -9262,12 +8295,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'L A E ASSOCIATION',
     taxed$: 0,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '14-166': {
     address: '22 HARDING RD',
@@ -9281,12 +8312,10 @@ export const LOTS = {
     ],
     cu$: 3500,
     land$: 38700,
-    neighborhood: 'E',
     owner: 'HILL, KRISTEN M.',
     taxed$: 168800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-168': {
     address: '237 ASHUELOT DR',
@@ -9300,12 +8329,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 213600,
-    neighborhood: 'E',
     owner: 'CLAUS, GUNHILD REVOC TRST',
     taxed$: 344700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-169': {
     address: '223 ASHUELOT DR',
@@ -9319,12 +8346,10 @@ export const LOTS = {
     ],
     cu$: 11800,
     land$: 209800,
-    neighborhood: 'D',
     owner: 'CURTIS, DIANE REV TRUST',
     taxed$: 322900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-170': {
     address: '215 ASHUELOT DR',
@@ -9338,12 +8363,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 223600,
-    neighborhood: 'E',
     owner: "O'NEIL, THOMAS L REVOCABLE TRU",
     taxed$: 347700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-171': {
     address: '193 ASHUELOT DR',
@@ -9357,12 +8380,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 228600,
-    neighborhood: 'E',
     owner: 'BOUCHER, ARDA L 1988 TRUST',
     taxed$: 417400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-174': {
     address: '157 ASHUELOT DR',
@@ -9376,12 +8397,10 @@ export const LOTS = {
     ],
     cu$: 6500,
     land$: 237000,
-    neighborhood: 'E',
     owner: 'HAYES REALTY TRUST',
     taxed$: 334900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-178': {
     address: '87 ASHUELOT DR',
@@ -9395,12 +8414,10 @@ export const LOTS = {
     ],
     cu$: 24300,
     land$: 214900,
-    neighborhood: 'E',
     owner: 'VILLANTI, ROBERT',
     taxed$: 452700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-179': {
     address: '65 ASHUELOT DR',
@@ -9414,12 +8431,10 @@ export const LOTS = {
     ],
     cu$: 9300,
     land$: 245500,
-    neighborhood: 'E',
     owner: 'TATSUTANI, MARIKA',
     taxed$: 446900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-180': {
     address: '53 ASHUELOT DR',
@@ -9433,12 +8448,10 @@ export const LOTS = {
     ],
     cu$: 14900,
     land$: 215500,
-    neighborhood: 'E',
     owner: 'STENZEL, ROBERT & LYNNE FAMILY',
     taxed$: 314800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-183': {
     address: '21 ASHUELOT DR',
@@ -9452,12 +8465,10 @@ export const LOTS = {
     ],
     cu$: 21700,
     land$: 201200,
-    neighborhood: 'D',
     owner: 'IOSCH, FRANK H',
     taxed$: 375700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-186': {
     address: '26 VAN BUREN CIR',
@@ -9471,12 +8482,10 @@ export const LOTS = {
     ],
     cu$: 20400,
     land$: 244300,
-    neighborhood: 'E',
     owner: 'KAY FAMILY 2019 TRUST',
     taxed$: 437200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-190': {
     address: '29 VAN BUREN CIR',
@@ -9490,12 +8499,10 @@ export const LOTS = {
     ],
     cu$: 6200,
     land$: 244300,
-    neighborhood: 'E',
     owner: 'ANDRUSIAK, RICHARD A',
     taxed$: 364100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-193': {
     address: '173 MCKINLEY DR',
@@ -9509,12 +8516,10 @@ export const LOTS = {
     ],
     cu$: 7700,
     land$: 244000,
-    neighborhood: 'E',
     owner: 'MONKTON, SUSAN K. & CLIFFORD B',
     taxed$: 409300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-194': {
     address: '147 MCKINLEY DR',
@@ -9528,12 +8533,10 @@ export const LOTS = {
     ],
     cu$: 16100,
     land$: 216800,
-    neighborhood: 'E',
     owner: 'DAMM, DONALD B & NANCY L REVOC',
     taxed$: 397800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-198': {
     address: '105 MCKINLEY DR',
@@ -9547,12 +8550,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39200,
-    neighborhood: 'E',
     owner: 'SWANICK, SHELBY ELISABETH',
     taxed$: 164000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-201': {
     address: '48 GARFIELD RD',
@@ -9566,12 +8567,10 @@ export const LOTS = {
     ],
     cu$: 31600,
     land$: 215300,
-    neighborhood: 'E',
     owner: 'BATCHA III, JOSEPH J',
     taxed$: 414800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-204': {
     address: '86 GARFIELD RD',
@@ -9585,12 +8584,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 215300,
-    neighborhood: 'E',
     owner: 'HUNIHAN, KAREN REVOCABLE TRUST',
     taxed$: 453100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-206': {
     address: '224 ASHUELOT DR',
@@ -9604,12 +8601,10 @@ export const LOTS = {
     ],
     cu$: 7600,
     land$: 59000,
-    neighborhood: 'E',
     owner: 'RICARD, ALISON L.',
     taxed$: 178600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-208': {
     address: '48 TAFT RD',
@@ -9623,12 +8618,10 @@ export const LOTS = {
     ],
     cu$: 15400,
     land$: 39500,
-    neighborhood: 'E',
     owner: 'MARINACCIO, RALPH J',
     taxed$: 125000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-209': {
     address: '22 TAFT RD',
@@ -9642,12 +8635,10 @@ export const LOTS = {
     ],
     cu$: 12500,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'ROCKETT, ANDREW',
     taxed$: 150000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-210': {
     address: '14 TAFT RD',
@@ -9661,12 +8652,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'MATTE, DAVID P.',
     taxed$: 139700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-211': {
     address: '631 PRESIDENTIAL DR',
@@ -9680,12 +8669,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 38600,
-    neighborhood: 'E',
     owner: 'BOTELHO, JOSE J. & LAURA',
     taxed$: 179000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-215': {
     address: '55 TAFT RD',
@@ -9699,12 +8686,10 @@ export const LOTS = {
     ],
     cu$: 11400,
     land$: 51300,
-    neighborhood: 'E',
     owner: 'CORIGLIANO, LEE B.',
     taxed$: 150300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-216': {
     address: '188 ASHUELOT DR',
@@ -9718,12 +8703,10 @@ export const LOTS = {
     ],
     cu$: 16100,
     land$: 39200,
-    neighborhood: 'E',
     owner: 'BERMUDEZ, LOUIS',
     taxed$: 148700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-221': {
     address: '623 PRESIDENTIAL DR',
@@ -9737,12 +8720,10 @@ export const LOTS = {
     ],
     cu$: 15200,
     land$: 38500,
-    neighborhood: 'E',
     owner: 'BALLIRO, JOHN F',
     taxed$: 100100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-223': {
     address: '29 HAYES RD',
@@ -9756,12 +8737,10 @@ export const LOTS = {
     ],
     cu$: 6500,
     land$: 38800,
-    neighborhood: 'E',
     owner: 'SILVA, RAPHAEL',
     taxed$: 142800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-226': {
     address: '67 HAYES RD',
@@ -9775,12 +8754,10 @@ export const LOTS = {
     ],
     cu$: 24500,
     land$: 41400,
-    neighborhood: 'E',
     owner: 'WRIGHT, ROBERT',
     taxed$: 279000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-228': {
     address: '50 HARDING RD',
@@ -9794,12 +8771,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 38700,
-    neighborhood: 'E',
     owner: 'KOPF, BRANDON E',
     taxed$: 151500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-232': {
     address: '47 HARDING RD',
@@ -9813,12 +8788,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'BREIDEL, DANIEL M',
     taxed$: 153700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-234': {
     address: '108 ASHUELOT DR',
@@ -9832,12 +8805,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 39300,
-    neighborhood: 'E',
     owner: '108 ASHUELOT DR., LLC',
     taxed$: 167300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-235': {
     address: '96 ASHUELOT DR',
@@ -9851,12 +8822,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40400,
-    neighborhood: 'E',
     owner: 'REGAN JR, RONALD W',
     taxed$: 92000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-239': {
     address: '36 ASHUELOT DR',
@@ -9870,12 +8839,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45800,
-    neighborhood: 'E',
     owner: 'WALSH, JEANNETTE E TRUST',
     taxed$: 175500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-241': {
     address: '10 ASHUELOT DR',
@@ -9889,12 +8856,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 47700,
-    neighborhood: 'E',
     owner: 'CAYER, BRIAN',
     taxed$: 152500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-244': {
     address: '116 MCKINLEY DR',
@@ -9908,12 +8873,10 @@ export const LOTS = {
     ],
     cu$: 14200,
     land$: 43800,
-    neighborhood: 'E',
     owner: 'BURT FAMILY 2006 TRUST',
     taxed$: 124100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-247': {
     address: '72 MCKINLEY DR',
@@ -9927,12 +8890,10 @@ export const LOTS = {
     ],
     cu$: 21900,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'KOHN, GLADYS M',
     taxed$: 176500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-249': {
     address: '38 MCKINLEY DR',
@@ -9946,12 +8907,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 41400,
-    neighborhood: 'E',
     owner: 'VRABEL REV TRUST,MICHAEL&DORIS',
     taxed$: 157600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-250': {
     address: '28 MCKINLEY DR',
@@ -9965,12 +8924,10 @@ export const LOTS = {
     ],
     cu$: 16600,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'SYLVIA, JASON',
     taxed$: 188700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-251': {
     address: '98 ADAMS DR',
@@ -9984,12 +8941,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37500,
-    neighborhood: 'E',
     owner: 'SMITH, KYLE B',
     taxed$: 152600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-252': {
     address: '126 ADAMS DR',
@@ -10003,12 +8958,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10000,
-    neighborhood: 'U',
     owner: 'NORTHEAST PROPERTIES & INVESTM',
     taxed$: 10000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-253': {
     address: '23 MCKINLEY DR',
@@ -10022,12 +8975,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39800,
-    neighborhood: 'E',
     owner: 'BELCASTRO, JOSEPH P',
     taxed$: 195100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-260': {
     address: '30 MONROE CIR',
@@ -10041,12 +8992,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'DENSLOW, NOAH B',
     taxed$: 149700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-262': {
     address: '31 MONROE CIR',
@@ -10060,12 +9009,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39100,
-    neighborhood: 'E',
     owner: 'ROETMAN, THERESA',
     taxed$: 176900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-272': {
     address: '51 LINCOLN DR',
@@ -10079,12 +9026,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 39300,
-    neighborhood: 'E',
     owner: 'DYNDERSKI, ANTHONY  & SANDRA  ',
     taxed$: 191600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-276': {
     address: '111 LINCOLN DR',
@@ -10098,12 +9043,10 @@ export const LOTS = {
     ],
     cu$: 17600,
     land$: 36800,
-    neighborhood: 'E',
     owner: 'PARK, DAVID',
     taxed$: 184900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-279': {
     address: '141 LINCOLN DR',
@@ -10117,12 +9060,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41500,
-    neighborhood: 'E',
     owner: 'CILLEY, KIMBERLY A',
     taxed$: 161300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-283': {
     address: '207 LINCOLN DR',
@@ -10136,12 +9077,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 35500,
-    neighborhood: 'E',
     owner: 'DAVIS JR, GORDON O',
     taxed$: 151600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-284': {
     address: '219 LINCOLN DR',
@@ -10155,12 +9094,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 35500,
-    neighborhood: 'E',
     owner: 'SHEPPARD, RICHARD C',
     taxed$: 179700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-286': {
     address: '232 LINCOLN DR',
@@ -10174,12 +9111,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37300,
-    neighborhood: 'E',
     owner: 'WEYMOUTH, DANA M & JEFFREY R',
     taxed$: 189000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-287': {
     address: '210 LINCOLN DR',
@@ -10193,12 +9128,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 33400,
-    neighborhood: 'E',
     owner: 'GRENDELL, FELISHA-ANNE',
     taxed$: 158100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-290': {
     address: '152 LINCOLN DR',
@@ -10212,12 +9145,10 @@ export const LOTS = {
     ],
     cu$: 6700,
     land$: 39200,
-    neighborhood: 'E',
     owner: 'CHOY, ALBERT F',
     taxed$: 186700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-291': {
     address: '132 LINCOLN DR',
@@ -10231,12 +9162,10 @@ export const LOTS = {
     ],
     cu$: 25100,
     land$: 37200,
-    neighborhood: 'E',
     owner: 'RACZKOWSKI, ARTUR',
     taxed$: 155200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-292': {
     address: '116 LINCOLN DR',
@@ -10250,12 +9179,10 @@ export const LOTS = {
     ],
     cu$: 32300,
     land$: 35500,
-    neighborhood: 'E',
     owner: 'MORIN, LISA S',
     taxed$: 129500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-294': {
     address: '76 LINCOLN DR',
@@ -10269,12 +9196,10 @@ export const LOTS = {
     ],
     cu$: 3900,
     land$: 43600,
-    neighborhood: 'E',
     owner: 'LEVITZ, ANDREW',
     taxed$: 124000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-295': {
     address: '70 LINCOLN DR',
@@ -10288,12 +9213,10 @@ export const LOTS = {
     ],
     cu$: 2800,
     land$: 44500,
-    neighborhood: 'E',
     owner: 'TETRAULT, THOMAS L.',
     taxed$: 121400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-296': {
     address: '52 LINCOLN DR',
@@ -10307,12 +9230,10 @@ export const LOTS = {
     ],
     cu$: 20400,
     land$: 42200,
-    neighborhood: 'D',
     owner: 'RANKIN, JOHN A.',
     taxed$: 134100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-310': {
     address: '22 CLEVELAND CIR',
@@ -10326,12 +9247,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 35400,
-    neighborhood: 'E',
     owner: 'STUMPF, KIMBERLY H',
     taxed$: 130600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-311': {
     address: '24 CLEVELAND CIR',
@@ -10345,12 +9264,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36500,
-    neighborhood: 'E',
     owner: 'BOUCHER, MICHAEL H',
     taxed$: 176500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-313': {
     address: '399 PRESIDENTIAL DR',
@@ -10364,12 +9281,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40000,
-    neighborhood: 'E',
     owner: 'PELCHAT, RANDY W.',
     taxed$: 158300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-315': {
     address: '25 JACKSON DR',
@@ -10383,12 +9298,10 @@ export const LOTS = {
     ],
     cu$: 14200,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'VACCARO. KENNETH',
     taxed$: 158100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-316': {
     address: '59 JACKSON DR',
@@ -10402,12 +9315,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'MILLS, PHILLIP A',
     taxed$: 168300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-317': {
     address: '83 JACKSON DR',
@@ -10421,12 +9332,10 @@ export const LOTS = {
     ],
     cu$: 12000,
     land$: 39500,
-    neighborhood: 'E',
     owner: 'MORIN, SCOTT MATTHEW',
     taxed$: 183000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-321': {
     address: '139 JACKSON DR',
@@ -10440,12 +9349,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'BALAMUTH, ADAM O.',
     taxed$: 170600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-329': {
     address: '353 PRESIDENTIAL DR',
@@ -10459,12 +9366,10 @@ export const LOTS = {
     ],
     cu$: 3100,
     land$: 43400,
-    neighborhood: 'D',
     owner: 'LUBA JR, MICHAEL',
     taxed$: 213100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-335': {
     address: '390 PRESIDENTIAL DR',
@@ -10478,12 +9383,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41600,
-    neighborhood: 'D',
     owner: 'GIOIA, MARY K.',
     taxed$: 115200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-337': {
     address: '54 COOLIDGE DR',
@@ -10497,12 +9400,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40600,
-    neighborhood: 'E',
     owner: 'ST. LAURENT, STEVEN P.',
     taxed$: 150700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-338': {
     address: '80 COOLIDGE DR',
@@ -10516,12 +9417,10 @@ export const LOTS = {
     ],
     cu$: 3600,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'OUELLETTE, KIM H',
     taxed$: 138000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-340': {
     address: '110 COOLIDGE DR',
@@ -10535,12 +9434,10 @@ export const LOTS = {
     ],
     cu$: 16000,
     land$: 40900,
-    neighborhood: 'E',
     owner: 'DUNPHY, JAMES M TRUSTEE, REV T',
     taxed$: 178600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-343': {
     address: '170 COOLIDGE DR',
@@ -10554,12 +9451,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 40200,
-    neighborhood: 'E',
     owner: 'DIGIACOMO, JOSEPH A & JAN N',
     taxed$: 79100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-345': {
     address: '216 COOLIDGE DR',
@@ -10573,12 +9468,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35500,
-    neighborhood: 'E',
     owner: 'DRAGON, KIRK M.',
     taxed$: 96700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-350': {
     address: '290 COOLIDGE DR',
@@ -10592,12 +9485,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 40400,
-    neighborhood: 'E',
     owner: 'TRUDELLE, FAMILY TRUST OF 2015',
     taxed$: 217900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-351': {
     address: '306 COOLIDGE DR',
@@ -10611,12 +9502,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41200,
-    neighborhood: 'E',
     owner: 'ADAMEK, ROBERT P',
     taxed$: 188600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-352': {
     address: '328 COOLIDGE DR',
@@ -10630,12 +9519,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 42900,
-    neighborhood: 'D',
     owner: 'GENTILE, DOUGLAS J',
     taxed$: 193200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-365': {
     address: '20 STOWELL RD',
@@ -10649,12 +9536,10 @@ export const LOTS = {
     ],
     cu$: 5600,
     land$: 42600,
-    neighborhood: 'E',
     owner: 'SVITOK, OTTO',
     taxed$: 172400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-369': {
     address: '27 COOLIDGE DR',
@@ -10668,12 +9553,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40900,
-    neighborhood: 'E',
     owner: 'SMITH, JAMES D. III',
     taxed$: 168800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-370': {
     address: '53 COOLIDGE DR',
@@ -10687,12 +9570,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'WHITEHILL, MICHAEL',
     taxed$: 207600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-373': {
     address: '103 COOLIDGE DR',
@@ -10706,12 +9587,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'YOUNG, BARBARA A',
     taxed$: 167900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-379': {
     address: '47 BUCHANAN CIR',
@@ -10725,12 +9604,10 @@ export const LOTS = {
     ],
     cu$: 6300,
     land$: 41000,
-    neighborhood: 'E',
     owner: '47 BUCHANAN CIRCLE REALTY TRUS',
     taxed$: 211100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-361': {
     address: '500 COOLIDGE DR',
@@ -10744,12 +9621,10 @@ export const LOTS = {
     ],
     cu$: 41800,
     land$: 41300,
-    neighborhood: 'E',
     owner: 'LOWE FAMILY NH TRUST',
     taxed$: 228700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-362': {
     address: '90 STOWELL RD',
@@ -10763,12 +9638,10 @@ export const LOTS = {
     ],
     cu$: 11000,
     land$: 41800,
-    neighborhood: 'E',
     owner: 'LEEDBERG, MICHAEL J',
     taxed$: 184400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-368': {
     address: '11 COOLIDGE DR',
@@ -10782,12 +9655,10 @@ export const LOTS = {
     ],
     cu$: 26900,
     land$: 42500,
-    neighborhood: 'E',
     owner: 'MORIN, MELISSA',
     taxed$: 232600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-381': {
     address: '74 BUCHANAN CIR',
@@ -10801,12 +9672,10 @@ export const LOTS = {
     ],
     cu$: 25300,
     land$: 44800,
-    neighborhood: 'E',
     owner: 'LANDRY FAMILY TRUST',
     taxed$: 211800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-498': {
     address: '67 LANG RD',
@@ -10820,12 +9689,10 @@ export const LOTS = {
     ],
     cu$: 40600,
     land$: 131677,
-    neighborhood: 'C',
     owner: 'GILLIGAN, JENNY M',
     taxed$: 305677,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-1': {
     address: '223 VALLEY RD',
@@ -10839,12 +9706,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 58,
-    neighborhood: 'V',
     owner: 'BARTEVIAN, PATRICIA REV TRUST',
     taxed$: 58,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-2': {
     address: '231 VALLEY RD',
@@ -10858,12 +9723,10 @@ export const LOTS = {
     ],
     cu$: 37500,
     land$: 49137,
-    neighborhood: 'E',
     owner: 'BARTEVIAN, PATRICIA REV TRUST',
     taxed$: 270737,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-5': {
     address: '393 VALLEY RD',
@@ -10877,12 +9740,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 33800,
-    neighborhood: 'D',
     owner: 'KELLY, JAYNE M',
     taxed$: 92700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-6': {
     address: '649 VALLEY RD',
@@ -10896,12 +9757,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 88518,
-    neighborhood: 'D',
     owner: 'DUMENY, SCOTT M',
     taxed$: 239818,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-7': {
     address: '719 VALLEY RD',
@@ -10915,12 +9774,10 @@ export const LOTS = {
     ],
     cu$: 20500,
     land$: 38300,
-    neighborhood: 'D',
     owner: 'JOY, ROBERT A',
     taxed$: 87200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-8': {
     address: '737 VALLEY RD',
@@ -10934,12 +9791,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40300,
-    neighborhood: 'D',
     owner: 'LINDSELL, JENNIFER R',
     taxed$: 101600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-10': {
     address: '791 VALLEY RD',
@@ -10953,12 +9808,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42300,
-    neighborhood: 'D',
     owner: 'TROTTIER, ROBERT',
     taxed$: 130900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-11': {
     address: '811 VALLEY RD',
@@ -10972,12 +9825,10 @@ export const LOTS = {
     ],
     cu$: 3900,
     land$: 0,
-    neighborhood: 'D',
     owner: 'HOLLENBECK,  JOHN A',
     taxed$: 6100,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '15-12': {
     address: '813 VALLEY RD',
@@ -10991,12 +9842,10 @@ export const LOTS = {
     ],
     cu$: 27500,
     land$: 39542,
-    neighborhood: 'D',
     owner: 'HOLLENBECK,  JOHN A',
     taxed$: 171442,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-15': {
     address: '893 VALLEY RD',
@@ -11010,12 +9859,10 @@ export const LOTS = {
     ],
     cu$: 3500,
     land$: 92300,
-    neighborhood: 'D',
     owner: 'WECHSLER FAMILY REVOCABLE TRUS',
     taxed$: 349400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-17': {
     address: '935 VALLEY RD',
@@ -11029,12 +9876,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 67300,
-    neighborhood: 'D',
     owner: 'SNELL, KAREN A REVOCABLE TRUST',
     taxed$: 225400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-19': {
     address: '973 VALLEY RD',
@@ -11048,12 +9893,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 34200,
-    neighborhood: 'D',
     owner: 'TURNER, SCOTT D. III',
     taxed$: 37400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-21': {
     address: '1025 VALLEY RD',
@@ -11067,12 +9910,10 @@ export const LOTS = {
     ],
     cu$: 21500,
     land$: 42300,
-    neighborhood: 'D',
     owner: 'RICHARD, DONALD',
     taxed$: 201400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-24': {
     address: '1040 VALLEY RD',
@@ -11086,12 +9927,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 50500,
-    neighborhood: 'D',
     owner: 'ALMEIDA, JOHN',
     taxed$: 166600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-29': {
     address: '776 VALLEY RD',
@@ -11105,12 +9944,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 41500,
-    neighborhood: 'D',
     owner: 'SABINE, ROBIN',
     taxed$: 148700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-33': {
     address: '658 VALLEY RD',
@@ -11124,12 +9961,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'D',
     owner: 'HURLEY, MAUREEN R',
     taxed$: 32500,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '15-35': {
     address: '494 VALLEY RD',
@@ -11143,12 +9978,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 31800,
-    neighborhood: 'D',
     owner: "O'CONNOR, JOANN M",
     taxed$: 98800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-36': {
     address: '524 VALLEY RD',
@@ -11162,12 +9995,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36200,
-    neighborhood: 'D',
     owner: 'PETROWICZ, LAWRENCE C',
     taxed$: 120000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-39': {
     address: '511 FAXON HILL RD',
@@ -11181,12 +10012,10 @@ export const LOTS = {
     ],
     cu$: 15000,
     land$: 34801,
-    neighborhood: 'D',
     owner: 'HALVERSON, KIRSTEN',
     taxed$: 230801,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-49': {
     address: '1035 FAXON HILL RD',
@@ -11200,12 +10029,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 47500,
-    neighborhood: 'F',
     owner: 'RIVEST, BONNIE LYNN',
     taxed$: 132200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-57': {
     address: '1124 FAXON HILL RD',
@@ -11219,12 +10046,10 @@ export const LOTS = {
     ],
     cu$: 25700,
     land$: 168500,
-    neighborhood: 'F',
     owner: 'HATCH, ANDREW W',
     taxed$: 295300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-58': {
     address: '1040 FAXON HILL RD',
@@ -11238,12 +10063,10 @@ export const LOTS = {
     ],
     cu$: 31700,
     land$: 228027,
-    neighborhood: 'F',
     owner: 'JAKE REALTY TRUST',
     taxed$: 389427,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-63': {
     address: '968 FAXON HILL RD',
@@ -11257,12 +10080,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'CIANO, ROBERT',
     taxed$: 13400,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '15-79': {
     address: '857 MILLEN POND RD',
@@ -11276,12 +10097,10 @@ export const LOTS = {
     ],
     cu$: 10100,
     land$: 213700,
-    neighborhood: 'G',
     owner: 'DULAC, PAUL & REBECCA FAMILY R',
     taxed$: 346400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-84': {
     address: '919 MILLEN POND RD',
@@ -11295,12 +10114,10 @@ export const LOTS = {
     ],
     cu$: 4000,
     land$: 217900,
-    neighborhood: 'G',
     owner: 'CLARKE, BARRY D',
     taxed$: 274800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-90': {
     address: '1035 MILLEN POND RD',
@@ -11314,12 +10131,10 @@ export const LOTS = {
     ],
     cu$: 18500,
     land$: 140300,
-    neighborhood: 'F',
     owner: 'MINIKOWSKI, STEPHEN J.',
     taxed$: 281800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-92': {
     address: '1244 FAXON HILL RD',
@@ -11333,12 +10148,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 161000,
-    neighborhood: 'F',
     owner: 'HUNTON, GEORGE W',
     taxed$: 293500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-99': {
     address: '164 PRESIDENTIAL DR',
@@ -11352,12 +10165,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 48000,
-    neighborhood: 'E',
     owner: 'SILIPIGNI, STEPHEN',
     taxed$: 136800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-100': {
     address: '70 PRESIDENTIAL DR',
@@ -11371,12 +10182,10 @@ export const LOTS = {
     ],
     cu$: 11900,
     land$: 46600,
-    neighborhood: 'E',
     owner: 'ABORN, JAMES H',
     taxed$: 162600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-105': {
     address: '8 FARNSWORTH HILL RD',
@@ -11394,12 +10203,10 @@ export const LOTS = {
     ],
     cu$: 33400,
     land$: 178251,
-    neighborhood: 'D',
     owner: 'BRIGHTON FAMILY TRUST',
     taxed$: 324351,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-110': {
     address: '836 MILLEN POND RD',
@@ -11413,12 +10220,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 132300,
-    neighborhood: 'F',
     owner: 'RIGBY, LTC JOHN G',
     taxed$: 261400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-111': {
     address: '818 MILLEN POND RD',
@@ -11432,12 +10237,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 61300,
-    neighborhood: 'F',
     owner: 'SHANNON FAMILY TRUST',
     taxed$: 211600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-112': {
     address: '798 MILLEN POND RD',
@@ -11455,12 +10258,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 44400,
-    neighborhood: 'G',
     owner: 'MACDONALD, LEANDRA ANN',
     taxed$: 119900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-113': {
     address: '768 MILLEN POND RD',
@@ -11474,12 +10275,10 @@ export const LOTS = {
     ],
     cu$: 19100,
     land$: 45100,
-    neighborhood: 'G',
     owner: 'PACHECO, JOHN D',
     taxed$: 159700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-126': {
     address: '1478 S MAIN ST',
@@ -11493,12 +10292,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 49600,
-    neighborhood: 'E',
     owner: 'CARON, BRUCE W. & BREANNA E.',
     taxed$: 198000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-115': {
     address: '738 MILLEN POND RD',
@@ -11512,12 +10309,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 58500,
-    neighborhood: 'G',
     owner: 'YUSKO REV TRUST, STEPHEN G',
     taxed$: 235200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-118': {
     address: '102 FARNSWORTH HILL RD',
@@ -11531,12 +10326,10 @@ export const LOTS = {
     ],
     cu$: 400,
     land$: 32100,
-    neighborhood: 'D',
     owner: 'SMITH, WILLIAM T',
     taxed$: 92900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-123': {
     address: '262 PRESIDENTIAL DR',
@@ -11550,12 +10343,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'KENNETT, HEATHER J',
     taxed$: 165400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-125': {
     address: '286 PRESIDENTIAL DR',
@@ -11569,12 +10360,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42300,
-    neighborhood: 'E',
     owner: 'DAVIS, GLENN A',
     taxed$: 158100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-128': {
     address: '27 ADAMS DR',
@@ -11588,12 +10377,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'CANNELLA, MICHAEL J II',
     taxed$: 121200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-129': {
     address: '37 ADAMS DR',
@@ -11607,12 +10394,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 37100,
-    neighborhood: 'E',
     owner: 'FELICE LIVING TRUST',
     taxed$: 117500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-132': {
     address: '135 ADAMS DR',
@@ -11626,12 +10411,10 @@ export const LOTS = {
     ],
     cu$: 15900,
     land$: 42400,
-    neighborhood: 'E',
     owner: 'BUTLER, BEVERLY A',
     taxed$: 194900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-141': {
     address: '245 ADAMS DR',
@@ -11645,12 +10428,10 @@ export const LOTS = {
     ],
     cu$: 15200,
     land$: 46000,
-    neighborhood: 'E',
     owner: 'KRAMER, KENNETH R',
     taxed$: 199400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-145': {
     address: '250 ADAMS DR',
@@ -11664,12 +10445,10 @@ export const LOTS = {
     ],
     cu$: 7200,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'BOYD, ROBERT E.',
     taxed$: 217400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-148': {
     address: '224 ADAMS DR',
@@ -11683,12 +10462,10 @@ export const LOTS = {
     ],
     cu$: 6200,
     land$: 41300,
-    neighborhood: 'E',
     owner: 'STEPHANSKY, ERIC J.',
     taxed$: 242500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-149': {
     address: '196 ADAMS DR',
@@ -11702,12 +10479,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 35100,
-    neighborhood: 'E',
     owner: 'CIANCETTA, CHRISTINE A',
     taxed$: 155200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-150': {
     address: '182 ADAMS DR',
@@ -11721,12 +10496,10 @@ export const LOTS = {
     ],
     cu$: 19900,
     land$: 39200,
-    neighborhood: 'E',
     owner: 'MEIER, MICHAEL',
     taxed$: 199500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-152': {
     address: '707 VALLEY RD',
@@ -11740,12 +10513,10 @@ export const LOTS = {
     ],
     cu$: 400,
     land$: 28900,
-    neighborhood: 'E',
     owner: 'GRINDELL, STEPHEN RICHARD',
     taxed$: 40000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-156': {
     address: '193 VALLEY RD',
@@ -11759,12 +10530,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38000,
-    neighborhood: 'D',
     owner: 'MOORE, CARL',
     taxed$: 129800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-2-01': {
     address: '434 S MAIN ST',
@@ -11778,12 +10547,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 38886,
-    neighborhood: 'E',
     owner: 'MANNING, JUNE',
     taxed$: 199786,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-7-01': {
     address: '254 HIGHLAND HAVEN RD',
@@ -11797,12 +10564,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 34457,
-    neighborhood: 'D',
     owner: 'SHEARIN, KATIE E',
     taxed$: 165757,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-7-02': {
     address: '324 HIGHLAND HAVEN RD',
@@ -11816,12 +10581,10 @@ export const LOTS = {
     ],
     cu$: 17700,
     land$: 35732,
-    neighborhood: 'D',
     owner: 'TYLER, JAMES E',
     taxed$: 214032,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-9': {
     address: '85 POINT RD',
@@ -11835,12 +10598,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 206300,
-    neighborhood: 'E',
     owner: 'HIGGINS.THOMAS M & JULIANNA S.',
     taxed$: 273800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-10': {
     address: '67 POINT RD',
@@ -11854,12 +10615,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 210000,
-    neighborhood: 'E',
     owner: 'DUGAN, EDWARD M',
     taxed$: 400900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-11': {
     address: '43 POINT RD',
@@ -11873,12 +10632,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 224300,
-    neighborhood: 'E',
     owner: 'MCHUGH, WILLIAM',
     taxed$: 381700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-77-05': {
     address: '4786 E WASHINGTON RD',
@@ -11892,12 +10649,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 46100,
-    neighborhood: 'E',
     owner: 'BRUNO, ALFRED J',
     taxed$: 223700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-12': {
     address: '552 HIGHLAND HAVEN RD',
@@ -11911,12 +10666,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 162900,
-    neighborhood: 'E',
     owner: 'KELLY, ROBERT W',
     taxed$: 234200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-14': {
     address: '588 HIGHLAND HAVEN RD',
@@ -11930,12 +10683,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 151500,
-    neighborhood: 'E',
     owner: 'SINGLEY LIVING TRUST, MARTIN C',
     taxed$: 212600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-16': {
     address: '604 HIGHLAND HAVEN RD',
@@ -11949,12 +10700,10 @@ export const LOTS = {
     ],
     cu$: 3200,
     land$: 170300,
-    neighborhood: 'E',
     owner: 'DOBSON, BRIAN & DONNA FAMILY T',
     taxed$: 274900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-17': {
     address: '4 MAPLE WAY',
@@ -11968,12 +10717,10 @@ export const LOTS = {
     ],
     cu$: 2800,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'LOPEZ, PETER A.',
     taxed$: 92000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-28': {
     address: '557 HIGHLAND HAVEN RD',
@@ -11987,12 +10734,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 43800,
-    neighborhood: 'E',
     owner: 'JOHNS, DENNIS',
     taxed$: 97600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-31': {
     address: '501 HIGHLAND HAVEN RD',
@@ -12006,12 +10751,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36700,
-    neighborhood: 'D',
     owner: 'WOJTAS, CHARLES',
     taxed$: 145800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-34': {
     address: '447 HIGHLAND HAVEN RD',
@@ -12025,12 +10768,10 @@ export const LOTS = {
     ],
     cu$: 17500,
     land$: 35200,
-    neighborhood: 'D',
     owner: 'HARRINGTON, DENNIS',
     taxed$: 134900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-35': {
     address: '439 HIGHLAND HAVEN RD',
@@ -12044,12 +10785,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33300,
-    neighborhood: 'D',
     owner: 'AGRESTI, PASQUALE A',
     taxed$: 95600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-38': {
     address: '101 POINT RD',
@@ -12063,12 +10802,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 161500,
-    neighborhood: 'E',
     owner: 'NEMIROVSKY, MICHAEL',
     taxed$: 203600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-43': {
     address: '494 HIGHLAND HAVEN RD',
@@ -12082,12 +10819,10 @@ export const LOTS = {
     ],
     cu$: 10800,
     land$: 38700,
-    neighborhood: 'D',
     owner: 'ASSELIN, LORETTA',
     taxed$: 236400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-44': {
     address: '512 HIGHLAND HAVEN RD',
@@ -12101,12 +10836,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 37800,
-    neighborhood: 'D',
     owner: 'ADAMS-BARRIENTOS, KAREN',
     taxed$: 149700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-49': {
     address: '1158 S MAIN ST',
@@ -12120,12 +10853,10 @@ export const LOTS = {
     ],
     cu$: 134400,
     land$: 45236,
-    neighborhood: 'E',
     owner: 'LAFFERTY, ANDREW M.',
     taxed$: 291136,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-55': {
     address: '1388 S MAIN ST',
@@ -12139,12 +10870,10 @@ export const LOTS = {
     ],
     cu$: 3300,
     land$: 65300,
-    neighborhood: 'E',
     owner: 'YOUNG, JOHANNA H',
     taxed$: 200900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-66': {
     address: '3859 E WASHINGTON RD',
@@ -12158,12 +10887,10 @@ export const LOTS = {
     ],
     cu$: 300,
     land$: 37459,
-    neighborhood: 'E',
     owner: 'ROBERTSON, EVERETT',
     taxed$: 132159,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-70-16': {
     address: '4627 E WASHINGTON RD',
@@ -12177,12 +10904,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 152,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 152,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-71': {
     address: '1107 S MAIN ST',
@@ -12196,12 +10921,10 @@ export const LOTS = {
     ],
     cu$: 37200,
     land$: 85754,
-    neighborhood: 'E',
     owner: 'PARTYKA, STANLEY J. III',
     taxed$: 298854,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-86': {
     address: '132 WASHINGTON DR',
@@ -12215,12 +10938,10 @@ export const LOTS = {
     ],
     cu$: 5300,
     land$: 44700,
-    neighborhood: 'E',
     owner: 'SHERIFF, BARRY D.',
     taxed$: 128800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-76': {
     address: '479 S MAIN ST',
@@ -12234,12 +10955,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 78500,
-    neighborhood: 'E',
     owner: 'MULLINER, SHANE AND CAMEO',
     taxed$: 131100,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '16-77-02': {
     address: '60 MILL ST',
@@ -12253,12 +10972,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 37208,
-    neighborhood: 'E',
     owner: 'LAWRENCE, KEVIN A',
     taxed$: 144308,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-77-04': {
     address: '4812 E WASHINGTON RD',
@@ -12272,12 +10989,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'LONGVAL, MARC C',
     taxed$: 6600,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '16-78': {
     address: '4610 E WASHINGTON RD',
@@ -12291,12 +11006,10 @@ export const LOTS = {
     ],
     cu$: 100,
     land$: 40100,
-    neighborhood: 'E',
     owner: 'RUSSELL, JOHN A',
     taxed$: 178800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-79': {
     address: '4550 E WASHINGTON RD',
@@ -12310,12 +11023,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 0,
-    neighborhood: '',
     owner: 'BOREY, LOUIS J',
     taxed$: 1000,
     usage: '260',
-    use: 'CI',
-    zone: ''
+    use: 'CI'
   },
   '16-81': {
     address: '23 ISLAND POND RD',
@@ -12329,12 +11040,10 @@ export const LOTS = {
     ],
     cu$: 14800,
     land$: 55500,
-    neighborhood: 'E',
     owner: 'DUGGAN, COLIN C',
     taxed$: 158400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-88': {
     address: '92 WASHINGTON DR',
@@ -12348,12 +11057,10 @@ export const LOTS = {
     ],
     cu$: 3700,
     land$: 43800,
-    neighborhood: 'E',
     owner: 'POZOMOORE, MARIA ISABEL',
     taxed$: 113200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-92': {
     address: '22 WASHINGTON DR',
@@ -12367,12 +11074,10 @@ export const LOTS = {
     ],
     cu$: 28400,
     land$: 43400,
-    neighborhood: 'E',
     owner: 'DUBE, DAVID',
     taxed$: 278100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-93': {
     address: '4210 E WASHINGTON RD',
@@ -12386,12 +11091,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 41200,
-    neighborhood: 'E',
     owner: 'GILLILAND FAMILY REV TRUST',
     taxed$: 219700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-97': {
     address: '4126 E WASHINGTON RD',
@@ -12405,12 +11108,10 @@ export const LOTS = {
     ],
     cu$: 6800,
     land$: 43800,
-    neighborhood: 'E',
     owner: 'WHYNOTT, CHRISTOPHER FRANCIS',
     taxed$: 145100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-100': {
     address: '4070 E WASHINGTON RD',
@@ -12424,12 +11125,10 @@ export const LOTS = {
     ],
     cu$: 3600,
     land$: 44000,
-    neighborhood: 'E',
     owner: 'HOWDEN, ERIK J',
     taxed$: 118200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-107': {
     address: '3912 E WASHINGTON RD',
@@ -12443,12 +11142,10 @@ export const LOTS = {
     ],
     cu$: 7700,
     land$: 43200,
-    neighborhood: 'E',
     owner: 'LYNCH, THOMAS E',
     taxed$: 168300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-112': {
     address: '3824 E WASHINGTON RD',
@@ -12462,12 +11159,10 @@ export const LOTS = {
     ],
     cu$: 10600,
     land$: 44700,
-    neighborhood: 'E',
     owner: 'SNAIR SR, ROBERT B',
     taxed$: 160200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-114': {
     address: '3756 E WASHINGTON RD',
@@ -12481,12 +11176,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 42200,
-    neighborhood: 'E',
     owner: 'KULBACKI, STEVEN C',
     taxed$: 175900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-124': {
     address: '1514 S MAIN ST',
@@ -12500,12 +11193,10 @@ export const LOTS = {
     ],
     cu$: 3100,
     land$: 50400,
-    neighborhood: 'E',
     owner: 'ELDRIDGE, MARC',
     taxed$: 116700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-118': {
     address: '381 HIGHLAND HAVEN RD',
@@ -12519,12 +11210,10 @@ export const LOTS = {
     ],
     cu$: 2800,
     land$: 42000,
-    neighborhood: 'E',
     owner: 'BARDEN, RALF I & INGER A REV F',
     taxed$: 205200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-119': {
     address: '48 BEAVER BROOK RD',
@@ -12538,12 +11227,10 @@ export const LOTS = {
     ],
     cu$: 29200,
     land$: 48400,
-    neighborhood: 'E',
     owner: 'CAFFREY, EVAN',
     taxed$: 205000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-121': {
     address: '608 HIGHLAND HAVEN RD',
@@ -12557,12 +11244,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 170000,
-    neighborhood: 'E',
     owner: 'GRUNWALD, MICHAEL',
     taxed$: 373700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-123': {
     address: '1516 S MAIN ST',
@@ -12576,12 +11261,10 @@ export const LOTS = {
     ],
     cu$: 700,
     land$: 48900,
-    neighborhood: 'E',
     owner: 'OSTERTAG, ROBERT',
     taxed$: 72300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-125': {
     address: '1480 S MAIN ST',
@@ -12595,12 +11278,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 48800,
-    neighborhood: 'E',
     owner: 'OSTERTAG, MICHAEL D',
     taxed$: 89200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-128': {
     address: '27 BEAVER BROOK RD',
@@ -12614,12 +11295,10 @@ export const LOTS = {
     ],
     cu$: 38100,
     land$: 44300,
-    neighborhood: 'E',
     owner: 'BARDEN, MATS',
     taxed$: 155300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-129': {
     address: '51 BEAVER BROOK RD',
@@ -12633,12 +11312,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 51000,
-    neighborhood: 'E',
     owner: 'MOSHER, DOUGLAS G',
     taxed$: 107300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '17-8': {
     address: '289 SMITH POND RD',
@@ -12652,12 +11329,10 @@ export const LOTS = {
     ],
     cu$: 7300,
     land$: 42293,
-    neighborhood: 'D',
     owner: 'RUBEGA REV TRUST OF 2015',
     taxed$: 393393,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-10': {
     address: '269 SMITH POND RD',
@@ -12671,12 +11346,10 @@ export const LOTS = {
     ],
     cu$: 15400,
     land$: 42000,
-    neighborhood: 'D',
     owner: 'SPALDING, PAMELA A',
     taxed$: 176400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-11': {
     address: '241 SMITH POND RD',
@@ -12690,12 +11363,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 42500,
-    neighborhood: 'D',
     owner: 'DONNELLY, JAMES R.',
     taxed$: 170100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-12': {
     address: '181 SMITH POND RD',
@@ -12709,12 +11380,10 @@ export const LOTS = {
     ],
     cu$: 16100,
     land$: 34106,
-    neighborhood: 'D',
     owner: 'HAKULIN,  ANNA MARIE ANNELLI',
     taxed$: 177906,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-16': {
     address: '256 SMITH POND RD',
@@ -12728,12 +11397,10 @@ export const LOTS = {
     ],
     cu$: 12600,
     land$: 61000,
-    neighborhood: 'D',
     owner: 'HUOT, ERIN M',
     taxed$: 203800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-17': {
     address: '302 SMITH POND RD',
@@ -12747,12 +11414,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 32200,
-    neighborhood: 'D',
     owner: 'DESFOSSES, RICHARD',
     taxed$: 190900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-19': {
     address: '107 WILD ACRE DR',
@@ -12766,12 +11431,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 139600,
-    neighborhood: 'D',
     owner: 'MUSMANNO, FRANK J. REVOC TRUST',
     taxed$: 290900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-20': {
     address: '77 WILD ACRE DR',
@@ -12789,12 +11452,10 @@ export const LOTS = {
     ],
     cu$: 22600,
     land$: 120500,
-    neighborhood: 'D',
     owner: 'PARK, THOMAS E',
     taxed$: 279700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-21': {
     address: '56 WILD ACRE DR',
@@ -12808,12 +11469,10 @@ export const LOTS = {
     ],
     cu$: 3700,
     land$: 40800,
-    neighborhood: 'D',
     owner: 'NIVEN, RICHARD',
     taxed$: 82500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '17-22': {
     address: '90 WILD ACRE DR',
@@ -12831,12 +11490,10 @@ export const LOTS = {
     ],
     cu$: 21600,
     land$: 104300,
-    neighborhood: 'D',
     owner: 'GANNON, MICHAEL',
     taxed$: 233900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-23': {
     address: '158 WILD ACRE DR',
@@ -12854,12 +11511,10 @@ export const LOTS = {
     ],
     cu$: 28300,
     land$: 119400,
-    neighborhood: 'D',
     owner: 'HOLMBERG, CHARLOTTE MINOR VEDE',
     taxed$: 242900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-24': {
     address: '168 WILD ACRE DR',
@@ -12877,12 +11532,10 @@ export const LOTS = {
     ],
     cu$: 21300,
     land$: 104500,
-    neighborhood: 'D',
     owner: 'ALLAN, JAMES AND BERNADETTE',
     taxed$: 237100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '17-27': {
     address: '223 WILD ACRE DR',
@@ -12896,12 +11549,10 @@ export const LOTS = {
     ],
     cu$: 19900,
     land$: 139200,
-    neighborhood: 'D',
     owner: 'WARENDA, MARK',
     taxed$: 311600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '22-4': {
     address: '202 N MAIN ST',
@@ -12915,12 +11566,10 @@ export const LOTS = {
     ],
     cu$: 4300,
     land$: 0,
-    neighborhood: 'E',
     owner: 'CARTER, MICHAEL',
     taxed$: 15400,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '17-41': {
     address: '361 SMITH POND RD',
@@ -12934,12 +11583,10 @@ export const LOTS = {
     ],
     cu$: 33400,
     land$: 139621,
-    neighborhood: 'D',
     owner: 'ROSS, ALAN L 2011 REVOCABLE TR',
     taxed$: 383021,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-45': {
     address: '58 WILD ACRE DR',
@@ -12957,12 +11604,10 @@ export const LOTS = {
     ],
     cu$: 17900,
     land$: 33919,
-    neighborhood: 'D',
     owner: 'NIVEN, RICHARD R & CYNTHIA R',
     taxed$: 173219,
     usage: '120',
-    use: 'R2',
-    zone: '02'
+    use: 'R2'
   },
   '19-2': {
     address: '1137 VALLEY RD',
@@ -12976,12 +11621,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 46500,
-    neighborhood: 'E',
     owner: 'HESELTON, NICHOLAS W',
     taxed$: 130800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-47': {
     address: '160 DOLE SCHOOL HOUSE RD',
@@ -12995,12 +11638,10 @@ export const LOTS = {
     ],
     cu$: 7900,
     land$: 22400,
-    neighborhood: 'V',
     owner: 'ESTEY-MANSFIELD, RAYMOND',
     taxed$: 30300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-124': {
     address: '212 BEAVER BROOK RD',
@@ -13014,12 +11655,10 @@ export const LOTS = {
     ],
     cu$: 5500,
     land$: 100900,
-    neighborhood: 'C',
     owner: 'KELLEY FAMILY TRUST, SHAWN M.',
     taxed$: 313600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-125': {
     address: '211 BEAVER BROOK RD',
@@ -13033,12 +11672,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'VENDEL LIVING TRUST',
     taxed$: 103600,
     usage: '110',
-    use: 'R1A',
-    zone: ''
+    use: 'R1A'
   },
   '20-137': {
     address: '642 HIGHLAND HAVEN RD',
@@ -13052,12 +11689,10 @@ export const LOTS = {
     ],
     cu$: 15300,
     land$: 183100,
-    neighborhood: 'E',
     owner: 'GOODMAN, MICHAEL W',
     taxed$: 310500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-138': {
     address: '656 HIGHLAND HAVEN RD',
@@ -13071,12 +11706,10 @@ export const LOTS = {
     ],
     cu$: 5600,
     land$: 170500,
-    neighborhood: 'E',
     owner: 'CARUSO, NANCY',
     taxed$: 332900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-139': {
     address: '664 HIGHLAND HAVEN RD',
@@ -13090,12 +11723,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 157000,
-    neighborhood: 'E',
     owner: 'JANELLE, DAVID J',
     taxed$: 227500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-140': {
     address: '672 HIGHLAND HAVEN RD',
@@ -13109,12 +11740,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 161000,
-    neighborhood: 'E',
     owner: 'PHERSON, MARK',
     taxed$: 280100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-142': {
     address: '696 HIGHLAND HAVEN RD',
@@ -13128,12 +11757,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 171000,
-    neighborhood: 'E',
     owner: 'ROGERS LIVING TRUST',
     taxed$: 216700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-150': {
     address: '236 DOLE SCHOOL HOUSE RD',
@@ -13147,12 +11774,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 38600,
-    neighborhood: 'D',
     owner: 'BROADLEY, EMILY C',
     taxed$: 157900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-5-01': {
     address: '130 N MAIN ST',
@@ -13166,12 +11791,10 @@ export const LOTS = {
     ],
     cu$: 4400,
     land$: 37800,
-    neighborhood: 'D',
     owner: 'CILLEY, JOHN E',
     taxed$: 261100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-171': {
     address: '68 BEAVER BROOK RD',
@@ -13185,12 +11808,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 40100,
-    neighborhood: 'E',
     owner: 'TAGLIERI, STEPHEN',
     taxed$: 151200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-173': {
     address: '130 BEAVER BROOK RD',
@@ -13204,12 +11825,10 @@ export const LOTS = {
     ],
     cu$: 6500,
     land$: 159000,
-    neighborhood: 'F',
     owner: 'VOAS, CARL M REVOCABLE TRUST',
     taxed$: 382900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-174': {
     address: '158 BEAVER BROOK RD',
@@ -13223,12 +11842,10 @@ export const LOTS = {
     ],
     cu$: 3900,
     land$: 186900,
-    neighborhood: 'G',
     owner: 'GILMAN, RAY E. III',
     taxed$: 443600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-175': {
     address: '198 BEAVER BROOK RD',
@@ -13242,12 +11859,10 @@ export const LOTS = {
     ],
     cu$: 3600,
     land$: 162000,
-    neighborhood: 'F',
     owner: 'BUTLER, COLLEEN ANNE',
     taxed$: 270700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-183': {
     address: '141 BEAVER BROOK RD',
@@ -13261,12 +11876,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 51200,
-    neighborhood: 'G',
     owner: 'SCANLAN, MONICA M',
     taxed$: 335300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-186': {
     address: '93 BEAVER BROOK RD',
@@ -13280,12 +11893,10 @@ export const LOTS = {
     ],
     cu$: 15400,
     land$: 47300,
-    neighborhood: 'G',
     owner: 'FED HOME LOAN MORTG CORP',
     taxed$: 191000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '21-6': {
     address: '564 DOLE SCHOOL HOUSE RD',
@@ -13299,12 +11910,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36385,
-    neighborhood: 'C',
     owner: 'CURTIS, GARRETT L',
     taxed$: 177885,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-26': {
     address: '88 HALFMOON POND RD',
@@ -13318,12 +11927,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16200,
-    neighborhood: 'D',
     owner: 'SUMSKI, LAWRENCE P',
     taxed$: 84600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-9-01': {
     address: '422 DOLE SCHOOL HOUSE RD',
@@ -13337,12 +11944,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 33600,
-    neighborhood: 'C',
     owner: 'ANCTIL, CHARLES',
     taxed$: 120100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-9-02': {
     address: '536 DOLE SCHOOL HOUSE RD',
@@ -13356,12 +11961,10 @@ export const LOTS = {
     ],
     cu$: 26400,
     land$: 33660,
-    neighborhood: 'C',
     owner: 'MOORE,DANIELLE A',
     taxed$: 202560,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-13': {
     address: '485 DOLE SCHOOL HOUSE RD',
@@ -13375,12 +11978,10 @@ export const LOTS = {
     ],
     cu$: 5200,
     land$: 35403,
-    neighborhood: 'C',
     owner: 'WALTON, ROBERT S',
     taxed$: 151503,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-17': {
     address: '476 DOLE SCHOOL HOUSE RD',
@@ -13394,12 +11995,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 36700,
-    neighborhood: 'C',
     owner: 'MILLER, DONALD A',
     taxed$: 181100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-18': {
     address: '492 DOLE SCHOOL HOUSE RD',
@@ -13413,12 +12012,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 33100,
-    neighborhood: 'C',
     owner: 'WALTON, GORDON C',
     taxed$: 72300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-19': {
     address: '506 DOLE SCHOOL HOUSE RD',
@@ -13432,12 +12029,10 @@ export const LOTS = {
     ],
     cu$: 20600,
     land$: 49600,
-    neighborhood: 'E',
     owner: 'REED, SHERRY A & MARK J',
     taxed$: 186400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-20': {
     address: '446 DOLE SCHOOL HOUSE RD',
@@ -13451,12 +12046,10 @@ export const LOTS = {
     ],
     cu$: 41300,
     land$: 41900,
-    neighborhood: 'C',
     owner: 'GIGLIO, TIMOTHY R',
     taxed$: 225400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-1': {
     address: '280 N MAIN ST',
@@ -13470,12 +12063,10 @@ export const LOTS = {
     ],
     cu$: 3700,
     land$: 42000,
-    neighborhood: 'E',
     owner: 'LEMIRE, LOUIS P',
     taxed$: 108800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-10': {
     address: '32 N MAIN ST',
@@ -13489,12 +12080,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 37800,
-    neighborhood: 'D',
     owner: 'PROVENCHER, KEVIN',
     taxed$: 161400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-11': {
     address: '26 N MAIN ST',
@@ -13508,12 +12097,10 @@ export const LOTS = {
     ],
     cu$: 19100,
     land$: 36000,
-    neighborhood: 'D',
     owner: 'GIBSON, JONATHAN',
     taxed$: 228700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-12-0S': {
     address: '7 HALFMOON POND RD',
@@ -13527,12 +12114,10 @@ export const LOTS = {
     ],
     cu$: 10500,
     land$: 98600,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF -TOWN HALL',
     taxed$: 680100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '22-15': {
     address: '85 HALFMOON POND RD',
@@ -13546,12 +12131,10 @@ export const LOTS = {
     ],
     cu$: 23300,
     land$: 39100,
-    neighborhood: 'D',
     owner: "O'CONNOR, SEAN P",
     taxed$: 208400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-18': {
     address: '95 HALFMOON POND RD',
@@ -13565,12 +12148,10 @@ export const LOTS = {
     ],
     cu$: 11800,
     land$: 33000,
-    neighborhood: 'D',
     owner: 'BURKE, LUKE A.',
     taxed$: 149300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-20': {
     address: '101 HALFMOON POND RD',
@@ -13584,12 +12165,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 34800,
-    neighborhood: 'D',
     owner: 'BRITT, ANDREW W',
     taxed$: 123400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-21': {
     address: '163 S MAIN ST',
@@ -13603,12 +12182,10 @@ export const LOTS = {
     ],
     cu$: 64400,
     land$: 52900,
-    neighborhood: 'D',
     owner: 'DUCKER, MICHAEL R',
     taxed$: 233100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-25': {
     address: '94 HALFMOON POND RD',
@@ -13622,12 +12199,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15100,
-    neighborhood: 'D',
     owner: 'HARWOOD, GARY R',
     taxed$: 48100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-29': {
     address: '64 HALFMOON POND RD',
@@ -13641,12 +12216,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 35700,
-    neighborhood: 'D',
     owner: 'EDBERG, DENISE',
     taxed$: 127800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-31': {
     address: '11 CROSS RD',
@@ -13660,12 +12233,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 25600,
-    neighborhood: 'D',
     owner: 'JOHNSON SR, DALE L',
     taxed$: 89100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-32': {
     address: '127 S MAIN ST',
@@ -13679,12 +12250,10 @@ export const LOTS = {
     ],
     cu$: 5200,
     land$: 32800,
-    neighborhood: 'D',
     owner: 'COLE, WILLIAM B',
     taxed$: 132200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-33': {
     address: '122 S MAIN ST',
@@ -13698,12 +12267,10 @@ export const LOTS = {
     ],
     cu$: 5200,
     land$: 36800,
-    neighborhood: 'D',
     owner: 'LACKEY, SAVANNA G',
     taxed$: 124000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-36': {
     address: '56 SYMONDS LN',
@@ -13717,12 +12284,10 @@ export const LOTS = {
     ],
     cu$: 19100,
     land$: 31016,
-    neighborhood: 'D',
     owner: 'BARKER, PHILIP A. & LINDA K. I',
     taxed$: 248216,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-37': {
     address: '1 FAXON HILL RD',
@@ -13736,12 +12301,10 @@ export const LOTS = {
     ],
     cu$: 13300,
     land$: 30400,
-    neighborhood: 'D',
     owner: 'BOYDEN, ROBERT',
     taxed$: 167600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-38': {
     address: '3 FAXON HILL RD',
@@ -13755,12 +12318,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 34500,
-    neighborhood: 'D',
     owner: 'GASKELL, JAMES L',
     taxed$: 171100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-39': {
     address: '37 SYMONDS LN',
@@ -13774,12 +12335,10 @@ export const LOTS = {
     ],
     cu$: 5200,
     land$: 33500,
-    neighborhood: 'D',
     owner: 'BAUER, JOSEPHINE S',
     taxed$: 125600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-40': {
     address: '55 FAXON HILL RD',
@@ -13793,12 +12352,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'D',
     owner: 'HOFFORD REVOC FAMILY TRUST',
     taxed$: 24400,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '22-41': {
     address: '203 FAXON HILL RD',
@@ -13812,12 +12369,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'TELLIER, THOMAS E',
     taxed$: 62200,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '22-52': {
     address: '2 FAXON HILL RD',
@@ -13831,12 +12386,10 @@ export const LOTS = {
     ],
     cu$: 6500,
     land$: 29600,
-    neighborhood: 'D',
     owner: 'DEPOT, SCOTT RAYMOND',
     taxed$: 103900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-46': {
     address: '22 MILLEN POND RD',
@@ -13850,12 +12403,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43800,
-    neighborhood: 'E',
     owner: 'BARTLETT, WILLIAM J JR',
     taxed$: 154200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-49': {
     address: '1 OLD MARLOW RD',
@@ -13869,12 +12420,10 @@ export const LOTS = {
     ],
     cu$: 19700,
     land$: 36367,
-    neighborhood: 'D',
     owner: 'STAPLETON, JOSEPH BRIAN',
     taxed$: 170267,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-50': {
     address: '96 FAXON HILL RD',
@@ -13888,12 +12437,10 @@ export const LOTS = {
     ],
     cu$: 19800,
     land$: 37400,
-    neighborhood: 'D',
     owner: 'MENDONSA, EMANUEL C',
     taxed$: 121400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-51': {
     address: '32 FAXON HILL RD',
@@ -13907,12 +12454,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 30100,
-    neighborhood: 'D',
     owner: 'PARRIS, SCOTT J',
     taxed$: 143700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-54': {
     address: '29 N MAIN ST',
@@ -13926,12 +12471,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'D',
     owner: 'CURRAN, RYAN',
     taxed$: 141700,
     usage: '260',
-    use: 'CI',
-    zone: ''
+    use: 'CI'
   },
   '22-59': {
     address: '72 OLD MARLOW RD',
@@ -13945,12 +12488,10 @@ export const LOTS = {
     ],
     cu$: 22000,
     land$: 50900,
-    neighborhood: 'E',
     owner: 'CHAUSEE, SCOTT J',
     taxed$: 264800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-61': {
     address: '150 LEMPSTER MOUNTAIN RD',
@@ -13964,12 +12505,10 @@ export const LOTS = {
     ],
     cu$: 9900,
     land$: 44300,
-    neighborhood: 'E',
     owner: 'TWEEDY, MEGHAN',
     taxed$: 168000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-62': {
     address: '80 LEMPSTER MOUNTAIN RD',
@@ -13983,12 +12522,10 @@ export const LOTS = {
     ],
     cu$: 9900,
     land$: 44500,
-    neighborhood: 'E',
     owner: 'CARLSON, ROGER M',
     taxed$: 127200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-63': {
     address: '173 N MAIN ST',
@@ -14002,12 +12539,10 @@ export const LOTS = {
     ],
     cu$: 14400,
     land$: 85800,
-    neighborhood: 'E',
     owner: 'OTTE, KENDEL REVOCABLE TRUST',
     taxed$: 224600,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '22-65': {
     address: '36 LEMPSTER MOUNTAIN RD',
@@ -14021,12 +12556,10 @@ export const LOTS = {
     ],
     cu$: 4500,
     land$: 32100,
-    neighborhood: 'D',
     owner: 'CLARK, HUGH R.',
     taxed$: 158500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-66': {
     address: '28 LEMPSTER MOUNTAIN RD',
@@ -14040,12 +12573,10 @@ export const LOTS = {
     ],
     cu$: 36400,
     land$: 37800,
-    neighborhood: 'D',
     owner: 'ANCTIL, ARMAND H JR',
     taxed$: 218300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-73': {
     address: '56 FAXON HILL RD',
@@ -14059,12 +12590,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19800,
-    neighborhood: 'D',
     owner: 'MITCHELL, DIANE A',
     taxed$: 77500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-2': {
     address: '105 BRADFORD SPRINGS RD',
@@ -14078,12 +12607,10 @@ export const LOTS = {
     ],
     cu$: 4800,
     land$: 44600,
-    neighborhood: 'F',
     owner: 'MCNEILL, KENNETH',
     taxed$: 165600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-3': {
     address: '85 BRADFORD SPRINGS RD',
@@ -14097,12 +12624,10 @@ export const LOTS = {
     ],
     cu$: 13600,
     land$: 44600,
-    neighborhood: 'F',
     owner: 'FALLON FAMILY REV TRUST',
     taxed$: 208900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-4': {
     address: '43 BRADFORD SPRINGS RD',
@@ -14116,12 +12641,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 47900,
-    neighborhood: 'F',
     owner: 'TAYLOR, NATHANIEL L LIVING TRU',
     taxed$: 190900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-7': {
     address: '28 BRADFORD SPRINGS RD',
@@ -14135,12 +12658,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 45400,
-    neighborhood: 'F',
     owner: 'CLEGG, JOHN J.',
     taxed$: 198800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-8': {
     address: '34 BRADFORD SPRINGS RD',
@@ -14154,12 +12675,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 44600,
-    neighborhood: 'F',
     owner: 'DAVIS, LISA M.',
     taxed$: 153500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-9': {
     address: '48 BRADFORD SPRINGS RD',
@@ -14173,12 +12692,10 @@ export const LOTS = {
     ],
     cu$: 25300,
     land$: 43100,
-    neighborhood: 'F',
     owner: 'WATERMAN, PETER',
     taxed$: 242400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-52': {
     address: '2485 E WASHINGTON RD',
@@ -14192,12 +12709,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 41300,
-    neighborhood: 'F',
     owner: 'ROBINSON, SANDRA J REV TRUST',
     taxed$: 187000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-10': {
     address: '142 BRADFORD SPRINGS RD',
@@ -14211,12 +12726,10 @@ export const LOTS = {
     ],
     cu$: 18300,
     land$: 47600,
-    neighborhood: 'F',
     owner: 'BRYANT, EDWARD R.',
     taxed$: 185500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-14': {
     address: '23 OLD HILLSBOROUGH RD',
@@ -14230,12 +12743,10 @@ export const LOTS = {
     ],
     cu$: 11600,
     land$: 40500,
-    neighborhood: 'E',
     owner: 'DONAHUE, CAROLE A',
     taxed$: 157500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-15': {
     address: '11 OLD HILLSBOROUGH RD',
@@ -14249,12 +12760,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43100,
-    neighborhood: 'E',
     owner: 'DONAHUE, CAROLE A 2004 TRUST',
     taxed$: 177100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-16': {
     address: '2232 E WASHINGTON RD',
@@ -14268,12 +12777,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 41300,
-    neighborhood: 'F',
     owner: 'DONAHUE, CAROLE A 2004 TRUST',
     taxed$: 190200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-17': {
     address: '2230 E WASHINGTON RD',
@@ -14287,12 +12794,10 @@ export const LOTS = {
     ],
     cu$: 8700,
     land$: 53600,
-    neighborhood: 'F',
     owner: 'GILMAN, CHARLES A',
     taxed$: 176000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-18': {
     address: '2234 E WASHINGTON RD',
@@ -14306,12 +12811,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'EAST WASHINGTON BAPTIST CHURCH',
     taxed$: 54700,
     usage: '260',
-    use: 'CI',
-    zone: ''
+    use: 'CI'
   },
   '23-20': {
     address: '2184 E WASHINGTON RD',
@@ -14325,12 +12828,10 @@ export const LOTS = {
     ],
     cu$: 11900,
     land$: 39600,
-    neighborhood: 'F',
     owner: 'DONAHUE, CAROLE A 2004 TRUST',
     taxed$: 210500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-21': {
     address: '52 OLD HILLSBOROUGH RD',
@@ -14344,12 +12845,10 @@ export const LOTS = {
     ],
     cu$: 10200,
     land$: 41700,
-    neighborhood: 'E',
     owner: 'FACCHINA, BAZIL T',
     taxed$: 164600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-22': {
     address: '2146 E WASHINGTON RD',
@@ -14363,12 +12862,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 33700,
-    neighborhood: 'E',
     owner: 'NIMS, ADAM M.',
     taxed$: 160300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-23': {
     address: '2128 E WASHINGTON RD',
@@ -14382,12 +12879,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 33800,
-    neighborhood: 'E',
     owner: 'ROY, RONALD E',
     taxed$: 107300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-24': {
     address: '2114 E WASHINGTON RD',
@@ -14401,12 +12896,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 24300,
-    neighborhood: 'E',
     owner: 'HOEHN, JANICE L',
     taxed$: 146100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-25': {
     address: '2110 E WASHINGTON RD',
@@ -14420,12 +12913,10 @@ export const LOTS = {
     ],
     cu$: 23400,
     land$: 43700,
-    neighborhood: 'E',
     owner: 'HARVEY, GREIG',
     taxed$: 314400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-27': {
     address: '2072 E WASHINGTON RD',
@@ -14439,12 +12930,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37800,
-    neighborhood: 'E',
     owner: 'HARVEY, ELIZABETH DEAKIN',
     taxed$: 37800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-28': {
     address: '2046 E WASHINGTON RD',
@@ -14458,12 +12947,10 @@ export const LOTS = {
     ],
     cu$: 8100,
     land$: 42000,
-    neighborhood: 'E',
     owner: 'HOLMES, VICKI L',
     taxed$: 185300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-35': {
     address: '43 BEAR HILL RD',
@@ -14477,12 +12964,10 @@ export const LOTS = {
     ],
     cu$: 2500,
     land$: 48500,
-    neighborhood: 'F',
     owner: 'COSTELLO, ANTHONY T',
     taxed$: 427600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-38': {
     address: '54 BEAR HILL RD',
@@ -14496,12 +12981,10 @@ export const LOTS = {
     ],
     cu$: 22700,
     land$: 52100,
-    neighborhood: 'F',
     owner: 'SCHWARTZ REV FAM TRUST',
     taxed$: 182900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-42': {
     address: '116 PURLING BECK RD',
@@ -14515,12 +12998,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34900,
-    neighborhood: 'F',
     owner: 'VANYPEREN, JAMES',
     taxed$: 34900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-43': {
     address: '2093 E WASHINGTON RD',
@@ -14534,12 +13015,10 @@ export const LOTS = {
     ],
     cu$: 19800,
     land$: 60417,
-    neighborhood: 'F',
     owner: 'CASHORALI, NICHOLAS T.',
     taxed$: 248517,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-44': {
     address: '116 PURLING BECK RD',
@@ -14553,12 +13032,10 @@ export const LOTS = {
     ],
     cu$: 48600,
     land$: 50900,
-    neighborhood: 'F',
     owner: 'VANYPEREN, JAMES',
     taxed$: 331000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-45': {
     address: '66 PURLING BECK RD',
@@ -14576,12 +13053,10 @@ export const LOTS = {
     ],
     cu$: 17400,
     land$: 63600,
-    neighborhood: 'F',
     owner: 'SCHWARTZ REV FAM TRUST',
     taxed$: 252500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-48': {
     address: '2291 E WASHINGTON RD',
@@ -14595,12 +13070,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 49900,
-    neighborhood: 'F',
     owner: 'QUATTROCHI, JOSEPH C',
     taxed$: 283500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-7': {
     address: '1234 VALLEY RD',
@@ -14614,12 +13087,10 @@ export const LOTS = {
     ],
     cu$: 3900,
     land$: 36600,
-    neighborhood: 'E',
     owner: 'GUAY, RODNEY',
     taxed$: 89500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-50': {
     address: '2381 E WASHINGTON RD',
@@ -14633,12 +13104,10 @@ export const LOTS = {
     ],
     cu$: 6700,
     land$: 67200,
-    neighborhood: 'F',
     owner: 'PERSECHINO, DANIEL L. AND REBE',
     taxed$: 263600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-53': {
     address: '146 PURLING BECK RD',
@@ -14652,12 +13121,10 @@ export const LOTS = {
     ],
     cu$: 15800,
     land$: 74073,
-    neighborhood: 'F',
     owner: 'CUMMINGS, MARK A',
     taxed$: 133673,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-55': {
     address: '178 BRADFORD SPRINGS RD',
@@ -14671,12 +13138,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 44872,
-    neighborhood: 'F',
     owner: 'MACDONALD, ADAM T',
     taxed$: 144672,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-57': {
     address: '2236 E WASHINGTON RD',
@@ -14690,12 +13155,10 @@ export const LOTS = {
     ],
     cu$: 15800,
     land$: 44600,
-    neighborhood: 'F',
     owner: 'MORSE, PAULA  A',
     taxed$: 145100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-58': {
     address: '143 BEAR HILL RD',
@@ -14709,12 +13172,10 @@ export const LOTS = {
     ],
     cu$: 31500,
     land$: 51700,
-    neighborhood: 'E',
     owner: 'HEAVY-LEEDHAM RECREATION TRUST',
     taxed$: 149400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-3': {
     address: '1170 VALLEY RD',
@@ -14728,12 +13189,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 43800,
-    neighborhood: 'E',
     owner: 'HALL, MICHAEL P',
     taxed$: 94600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-6': {
     address: '1224 VALLEY RD',
@@ -14747,12 +13206,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40300,
-    neighborhood: 'E',
     owner: 'CURRAN, JAMES M',
     taxed$: 66600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-24': {
     address: '1358 VALLEY RD',
@@ -14766,12 +13223,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 25700,
-    neighborhood: 'E',
     owner: 'SWANSON, ROBERT A.',
     taxed$: 60500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-8': {
     address: '1238 VALLEY RD',
@@ -14785,12 +13240,10 @@ export const LOTS = {
     ],
     cu$: 9300,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'SOMERO, KATELYNN',
     taxed$: 190800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-13': {
     address: '1199 VALLEY RD',
@@ -14804,12 +13257,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38300,
-    neighborhood: 'E',
     owner: 'DREW, KELLIE L. & SCOTT A. JR.',
     taxed$: 159700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-14': {
     address: '1207 VALLEY RD',
@@ -14823,12 +13274,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36700,
-    neighborhood: 'E',
     owner: 'JUDKINS, EVERETT M & JEAN D',
     taxed$: 60100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-15': {
     address: '1219 VALLEY RD',
@@ -14842,12 +13291,10 @@ export const LOTS = {
     ],
     cu$: 15500,
     land$: 38000,
-    neighborhood: 'E',
     owner: 'SILVA, JOHN M',
     taxed$: 159400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-16': {
     address: '1243 VALLEY RD',
@@ -14861,12 +13308,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 28200,
-    neighborhood: 'E',
     owner: 'HESELTON, HAROLD E',
     taxed$: 28200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-18': {
     address: '1278 VALLEY RD',
@@ -14880,12 +13325,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 42600,
-    neighborhood: 'E',
     owner: 'GRIFFIN, THOMAS J',
     taxed$: 130200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-19': {
     address: '1292 VALLEY RD',
@@ -14899,12 +13342,10 @@ export const LOTS = {
     ],
     cu$: 12100,
     land$: 40400,
-    neighborhood: 'E',
     owner: 'PUTNAM, MARTIN G',
     taxed$: 115400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-25': {
     address: '1362 VALLEY RD',
@@ -14918,12 +13359,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13200,
-    neighborhood: 'E',
     owner: 'WILLIAMS, JOHN J',
     taxed$: 13200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-27': {
     address: '1372 VALLEY RD',
@@ -14937,12 +13376,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37200,
-    neighborhood: 'E',
     owner: 'FITZGERALD, RANDY H',
     taxed$: 139500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-30': {
     address: '1394 VALLEY RD',
@@ -14956,12 +13393,10 @@ export const LOTS = {
     ],
     cu$: 18700,
     land$: 38200,
-    neighborhood: 'E',
     owner: 'TAPP, JOSEPH A',
     taxed$: 114400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-31': {
     address: '1406 VALLEY RD',
@@ -14975,12 +13410,10 @@ export const LOTS = {
     ],
     cu$: 9100,
     land$: 27000,
-    neighborhood: 'E',
     owner: 'PIPER, TIMOTHY S',
     taxed$: 96500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-37': {
     address: '1509 VALLEY RD',
@@ -14994,12 +13427,10 @@ export const LOTS = {
     ],
     cu$: 9600,
     land$: 35300,
-    neighborhood: 'E',
     owner: 'ADKINS, ROBERT T',
     taxed$: 82600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-39': {
     address: '1547 VALLEY RD',
@@ -15013,12 +13444,10 @@ export const LOTS = {
     ],
     cu$: 13500,
     land$: 38100,
-    neighborhood: 'E',
     owner: 'BRAYFIELD, JEFFERY C',
     taxed$: 122500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-40': {
     address: '1561 VALLEY RD',
@@ -15032,12 +13461,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 41400,
-    neighborhood: 'E',
     owner: 'MACINTYRE,KEVIN S',
     taxed$: 83600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-58': {
     address: '46 LOOKOUT POINT RD',
@@ -15051,12 +13478,10 @@ export const LOTS = {
     ],
     cu$: 4300,
     land$: 160700,
-    neighborhood: 'D',
     owner: 'COTE IRREVOCABLE TRUST',
     taxed$: 205500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-70': {
     address: '2120 VALLEY RD',
@@ -15070,12 +13495,10 @@ export const LOTS = {
     ],
     cu$: 4200,
     land$: 35200,
-    neighborhood: 'E',
     owner: 'CLOUTIER, PAUL R.',
     taxed$: 91300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-59': {
     address: '38 LOOKOUT POINT RD',
@@ -15089,12 +13512,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 158900,
-    neighborhood: 'D',
     owner: 'MENSH, ERIC & WENDY JOINT REV ',
     taxed$: 218100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-64': {
     address: '18 LOOKOUT POINT RD',
@@ -15108,12 +13529,10 @@ export const LOTS = {
     ],
     cu$: 5800,
     land$: 160200,
-    neighborhood: 'D',
     owner: 'HABESHIAN, ALICIA MARIE',
     taxed$: 192600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-67': {
     address: '1445 VALLEY RD',
@@ -15127,12 +13546,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'GUYER, DALE J',
     taxed$: 104000,
     usage: '110',
-    use: 'R1W',
-    zone: ''
+    use: 'R1W'
   },
   '24-77': {
     address: '84 LAKEVIEW TER',
@@ -15146,12 +13563,10 @@ export const LOTS = {
     ],
     cu$: 29800,
     land$: 195000,
-    neighborhood: 'C',
     owner: 'JANCO FAMILY WASHINGTON TRUST',
     taxed$: 277100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-78': {
     address: '1361 VALLEY RD',
@@ -15165,12 +13580,10 @@ export const LOTS = {
     ],
     cu$: 18000,
     land$: 149000,
-    neighborhood: 'E',
     owner: 'CORDEIRO, PAUL',
     taxed$: 321000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-24': {
     address: '1750 VALLEY RD',
@@ -15184,12 +13597,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38300,
-    neighborhood: 'E',
     owner: 'FEIGHERY, KIMBERLY ANN',
     taxed$: 166900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-84': {
     address: '52 BEECH WAY',
@@ -15203,12 +13614,10 @@ export const LOTS = {
     ],
     cu$: 3300,
     land$: 158700,
-    neighborhood: 'C',
     owner: 'MCFEE, RICHARD D',
     taxed$: 237200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-86': {
     address: '54 BEECH WAY',
@@ -15222,12 +13631,10 @@ export const LOTS = {
     ],
     cu$: 5200,
     land$: 157500,
-    neighborhood: 'C',
     owner: 'MCFEE, RICHARD D.',
     taxed$: 185200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-87': {
     address: '66 BEECH WAY',
@@ -15241,12 +13648,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 201500,
-    neighborhood: 'C',
     owner: 'HOCEVAR, DAVID A',
     taxed$: 332000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-93': {
     address: '62 BIRCH POINT WAY',
@@ -15260,12 +13665,10 @@ export const LOTS = {
     ],
     cu$: 36200,
     land$: 247100,
-    neighborhood: 'C',
     owner: 'PEABODY, C & B REVC TRUST',
     taxed$: 393300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-107': {
     address: '92 COVE RD',
@@ -15279,12 +13682,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 209200,
-    neighborhood: 'C',
     owner: 'LANGTRY REVOCABLE TRUST, R & C',
     taxed$: 323400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-121': {
     address: '93 COVE RD',
@@ -15298,12 +13699,10 @@ export const LOTS = {
     ],
     cu$: 23700,
     land$: 27000,
-    neighborhood: 'C',
     owner: 'DEVINE, CAROLE AND JAMES',
     taxed$: 135100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-114': {
     address: '188 COVE RD',
@@ -15317,12 +13716,10 @@ export const LOTS = {
     ],
     cu$: 7700,
     land$: 180500,
-    neighborhood: 'C',
     owner: 'WRIGHTSON, DAVID MALCOLM',
     taxed$: 278800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-138': {
     address: '11 COVE RD',
@@ -15336,12 +13733,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 34162,
-    neighborhood: 'C',
     owner: 'GRANT, JARED R',
     taxed$: 130062,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-1': {
     address: '1538 VALLEY RD',
@@ -15355,12 +13750,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'FRAZIER, WILLIAM J',
     taxed$: 116200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-2': {
     address: '1548 VALLEY RD',
@@ -15374,12 +13767,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 34000,
-    neighborhood: 'E',
     owner: 'ALLEN, CHARLES',
     taxed$: 87900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-5': {
     address: '1578 VALLEY RD',
@@ -15393,12 +13784,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 31000,
-    neighborhood: 'E',
     owner: 'CORDEIRO, JEAN TRUST OF 2005',
     taxed$: 117000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-7': {
     address: '1600 VALLEY RD',
@@ -15412,12 +13801,10 @@ export const LOTS = {
     ],
     cu$: 2800,
     land$: 29300,
-    neighborhood: 'E',
     owner: 'LABOMBARD, MICHAEL',
     taxed$: 50800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-12': {
     address: '1700 VALLEY RD',
@@ -15431,12 +13818,10 @@ export const LOTS = {
     ],
     cu$: 44900,
     land$: 40000,
-    neighborhood: 'E',
     owner: 'CHICOINE, GEORGE F',
     taxed$: 159300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-13': {
     address: '1704 VALLEY RD',
@@ -15450,12 +13835,10 @@ export const LOTS = {
     ],
     cu$: 28400,
     land$: 37200,
-    neighborhood: 'E',
     owner: 'CHICOINE, ROGER G. JR & ANGELA',
     taxed$: 84900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-21': {
     address: '1736 VALLEY RD',
@@ -15469,12 +13852,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38500,
-    neighborhood: 'E',
     owner: 'MCQUADE, GERALDINE SUE TRUST',
     taxed$: 127300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-26': {
     address: '1788 VALLEY RD',
@@ -15488,12 +13869,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 38600,
-    neighborhood: 'E',
     owner: 'MILLETTE, MICHAEL L',
     taxed$: 136700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-33': {
     address: '1892 VALLEY RD',
@@ -15507,12 +13886,10 @@ export const LOTS = {
     ],
     cu$: 7100,
     land$: 38500,
-    neighborhood: 'E',
     owner: 'KIROVAC, MARC',
     taxed$: 140200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-37': {
     address: '2042 VALLEY RD',
@@ -15526,12 +13903,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 37900,
-    neighborhood: 'E',
     owner: 'LUONGO, ALICIA A',
     taxed$: 114700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-39': {
     address: '2050 VALLEY RD',
@@ -15545,12 +13920,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41600,
-    neighborhood: 'E',
     owner: 'MELLETT, KEVIN F',
     taxed$: 161500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-47': {
     address: '2181 VALLEY RD',
@@ -15564,12 +13937,10 @@ export const LOTS = {
     ],
     cu$: 3700,
     land$: 165600,
-    neighborhood: 'E',
     owner: 'MORWAY, ELIZABETH A',
     taxed$: 228400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-48': {
     address: '2171 VALLEY RD',
@@ -15583,12 +13954,10 @@ export const LOTS = {
     ],
     cu$: 7500,
     land$: 170000,
-    neighborhood: 'E',
     owner: 'STANTON, JOHN F',
     taxed$: 245000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-50': {
     address: '2163 VALLEY RD',
@@ -15602,12 +13971,10 @@ export const LOTS = {
     ],
     cu$: 9100,
     land$: 173000,
-    neighborhood: 'E',
     owner: 'AMARI FAMILY TRUST',
     taxed$: 293400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-52': {
     address: '2157 VALLEY RD',
@@ -15621,12 +13988,10 @@ export const LOTS = {
     ],
     cu$: 19500,
     land$: 186600,
-    neighborhood: 'E',
     owner: 'AMARI, SHELLEY',
     taxed$: 221900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-55': {
     address: '2143 VALLEY RD',
@@ -15640,12 +14005,10 @@ export const LOTS = {
     ],
     cu$: 24200,
     land$: 195900,
-    neighborhood: 'E',
     owner: 'MAYBURY, JOHN F',
     taxed$: 305400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-58': {
     address: '2123 VALLEY RD',
@@ -15659,12 +14022,10 @@ export const LOTS = {
     ],
     cu$: 7200,
     land$: 222100,
-    neighborhood: 'E',
     owner: 'BEEBIE, KAREN FAMILY TRUST',
     taxed$: 291400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-60': {
     address: '2115 VALLEY RD',
@@ -15678,12 +14039,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 144000,
-    neighborhood: 'E',
     owner: 'CROMBIE, FREDERICK C III REV T',
     taxed$: 201400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-63': {
     address: '2105 VALLEY RD',
@@ -15697,12 +14056,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 142000,
-    neighborhood: 'E',
     owner: 'ASHWORTH, CHRISTINE',
     taxed$: 202200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-64': {
     address: '2097 VALLEY RD',
@@ -15716,12 +14073,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 177300,
-    neighborhood: 'E',
     owner: 'MEADE, MICHAEL',
     taxed$: 250800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-65': {
     address: '2081 VALLEY RD',
@@ -15735,12 +14090,10 @@ export const LOTS = {
     ],
     cu$: 10000,
     land$: 177100,
-    neighborhood: 'E',
     owner: 'PELTON, THOMAS W',
     taxed$: 246500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-66': {
     address: '2080 VALLEY RD',
@@ -15754,12 +14107,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 27900,
-    neighborhood: 'E',
     owner: 'GIRARD, CHRISTINE',
     taxed$: 60500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-71': {
     address: '2134 VALLEY RD',
@@ -15773,12 +14124,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 35900,
-    neighborhood: 'E',
     owner: 'LOFGREN, GREGORY',
     taxed$: 103000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-77': {
     address: '58 HEMLOCK DR',
@@ -15792,12 +14141,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 33000,
-    neighborhood: 'E',
     owner: 'CROUSS, TIMOTHY K',
     taxed$: 113300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-78': {
     address: '2154 VALLEY RD',
@@ -15811,12 +14158,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 31000,
-    neighborhood: 'E',
     owner: 'LAVOIE, DANIEL',
     taxed$: 96800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-83-02': {
     address: '2041 VALLEY RD',
@@ -15830,12 +14175,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34300,
-    neighborhood: 'E',
     owner: 'BONACCORSI, PETER M.',
     taxed$: 112500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-86': {
     address: '2005 VALLEY RD',
@@ -15849,12 +14192,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 165900,
-    neighborhood: 'E',
     owner: 'LANE, JAMES E',
     taxed$: 221500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-87': {
     address: '1993 VALLEY RD',
@@ -15868,12 +14209,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 189000,
-    neighborhood: 'E',
     owner: 'MACDONALD, ROBIN',
     taxed$: 215500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-90': {
     address: '1949 VALLEY RD',
@@ -15887,12 +14226,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 196200,
-    neighborhood: 'E',
     owner: 'KARPOWSKI JR,THOMAS',
     taxed$: 314200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-91': {
     address: '1927 VALLEY RD',
@@ -15906,12 +14243,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 185300,
-    neighborhood: 'E',
     owner: 'DALEY, JEAN E',
     taxed$: 293800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-101': {
     address: '1821 VALLEY RD',
@@ -15925,12 +14260,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 119700,
-    neighborhood: 'E',
     owner: 'POOLE, CHRISTOPHER',
     taxed$: 208500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-103': {
     address: '1795 VALLEY RD',
@@ -15944,12 +14277,10 @@ export const LOTS = {
     ],
     cu$: 16100,
     land$: 220500,
-    neighborhood: 'E',
     owner: 'BENNETT FAMILY LIVING TRUST',
     taxed$: 368100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-104': {
     address: '1787 VALLEY RD',
@@ -15963,12 +14294,10 @@ export const LOTS = {
     ],
     cu$: 3100,
     land$: 204300,
-    neighborhood: 'E',
     owner: 'CLAIRE FAMILY REVOCABLE TRUST ',
     taxed$: 260400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-105': {
     address: '1773 VALLEY RD',
@@ -15982,12 +14311,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 195900,
-    neighborhood: 'E',
     owner: 'MCCANN, RICHARD M',
     taxed$: 301000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-108': {
     address: '1747 VALLEY RD',
@@ -16001,12 +14328,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 196000,
-    neighborhood: 'E',
     owner: 'COUTE, THOMAS  & DIANE M',
     taxed$: 309000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-112': {
     address: '1705 VALLEY RD',
@@ -16020,12 +14345,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 186100,
-    neighborhood: 'E',
     owner: 'CHICOINE, ROGER G.',
     taxed$: 306500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-113': {
     address: '1703 VALLEY RD',
@@ -16039,12 +14362,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 191300,
-    neighborhood: 'E',
     owner: "O'CONNOR, KEVIN W",
     taxed$: 210700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-116': {
     address: '1681 VALLEY RD',
@@ -16058,12 +14379,10 @@ export const LOTS = {
     ],
     cu$: 38300,
     land$: 0,
-    neighborhood: '',
     owner: 'BARKIE, DAVID',
     taxed$: 187100,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '25-117': {
     address: '1669 VALLEY RD',
@@ -16077,12 +14396,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 197400,
-    neighborhood: 'E',
     owner: 'DEMARCO, FRANK M JR',
     taxed$: 342100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-117': {
     address: '81 POINT RD',
@@ -16096,12 +14413,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 192000,
-    neighborhood: 'E',
     owner: 'SHWARTZ, JANET KOELSCH',
     taxed$: 292700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '9-23': {
     address: '2766 E WASHINGTON RD',
@@ -16115,12 +14430,10 @@ export const LOTS = {
     ],
     cu$: 14100,
     land$: 0,
-    neighborhood: 'E',
     owner: 'ECCARDT FARMS INC',
     taxed$: 14100,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '11-43': {
     address: '521 MILLEN POND RD',
@@ -16134,12 +14447,10 @@ export const LOTS = {
     ],
     cu$: 6500,
     land$: 202900,
-    neighborhood: 'F',
     owner: 'LUNDQUIST LIV TRUST DTD 1/4/05',
     taxed$: 335900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-11': {
     address: '447 HALFMOON POND RD',
@@ -16153,12 +14464,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 39698,
-    neighborhood: 'E',
     owner: 'ZIPPER, AARON J',
     taxed$: 130298,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-137': {
     address: '546 WASHINGTON DR',
@@ -16172,12 +14481,10 @@ export const LOTS = {
     ],
     cu$: 7300,
     land$: 101500,
-    neighborhood: 'G',
     owner: 'CORRIGAN, JOHN F',
     taxed$: 250900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '23-1': {
     address: '2372 E WASHINGTON RD',
@@ -16191,12 +14498,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 54606,
-    neighborhood: 'F',
     owner: 'PEREZ, JOSEPH',
     taxed$: 150006,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-409': {
     address: '68 ASHUELOT ACRE RD',
@@ -16210,12 +14515,10 @@ export const LOTS = {
     ],
     cu$: 16900,
     land$: 192200,
-    neighborhood: 'D',
     owner: 'BEAM, KATHLEEN A 2001 LIV TR',
     taxed$: 400100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-3': {
     address: '1554 VALLEY RD',
@@ -16229,12 +14532,10 @@ export const LOTS = {
     ],
     cu$: 3300,
     land$: 18600,
-    neighborhood: 'E',
     owner: 'PARKER, NEAL H',
     taxed$: 21900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '8-33': {
     address: '374 MARTIN RD',
@@ -16248,12 +14549,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 28300,
-    neighborhood: 'C',
     owner: 'MARTIN, PETER W LIVING TRUST',
     taxed$: 29500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-17': {
     address: '315 WASHINGTON HGTS RD',
@@ -16267,12 +14566,10 @@ export const LOTS = {
     ],
     cu$: 12700,
     land$: 28500,
-    neighborhood: 'A',
     owner: 'VALLE, STEVEN F',
     taxed$: 121800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-23': {
     address: '179 WASHINGTON HGTS RD',
@@ -16286,12 +14583,10 @@ export const LOTS = {
     ],
     cu$: 3600,
     land$: 28800,
-    neighborhood: 'A',
     owner: 'WALSH, MALLORY JACOB',
     taxed$: 187500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-25': {
     address: '117 WASHINGTON HGTS RD',
@@ -16305,12 +14600,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 36000,
-    neighborhood: 'A',
     owner: 'CASEY, GEORGANN',
     taxed$: 117300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-32': {
     address: '94 WASHINGTON HGTS RD',
@@ -16324,12 +14617,10 @@ export const LOTS = {
     ],
     cu$: 6400,
     land$: 23601,
-    neighborhood: 'A',
     owner: 'WILSON, RAYMOND L',
     taxed$: 117401,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-35': {
     address: '188 WASHINGTON HGTS RD',
@@ -16343,12 +14634,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 28500,
-    neighborhood: 'A',
     owner: 'DUBE, MARC R',
     taxed$: 113400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-39': {
     address: '294 WASHINGTON HGTS RD',
@@ -16362,12 +14651,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 30600,
-    neighborhood: 'A',
     owner: 'STEVENS, GREGORY',
     taxed$: 65000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-40': {
     address: '322 WASHINGTON HGTS RD',
@@ -16381,12 +14668,10 @@ export const LOTS = {
     ],
     cu$: 400,
     land$: 30200,
-    neighborhood: 'A',
     owner: 'BARKER, BRUCE',
     taxed$: 30600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-42': {
     address: '341 WASHINGTON HGTS RD',
@@ -16400,12 +14685,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 36000,
-    neighborhood: 'A',
     owner: 'KENDALL, GARY',
     taxed$: 170100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-43': {
     address: '919 NO MAIN ST',
@@ -16419,12 +14702,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38200,
-    neighborhood: 'D',
     owner: 'KELLY, JOHN',
     taxed$: 132600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-25': {
     address: '253 MARTIN RD',
@@ -16438,12 +14719,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 29400,
-    neighborhood: 'C',
     owner: 'MILLER, DANIEL P & DIANE M',
     taxed$: 30400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-34': {
     address: '372 MARTIN RD',
@@ -16457,12 +14736,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16879,
-    neighborhood: 'C',
     owner: 'LAPIERRE, MYRA C REVOC TRUST',
     taxed$: 25279,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-10': {
     address: '231 DEER VALLEY RD',
@@ -16476,12 +14753,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 29374,
-    neighborhood: 'D',
     owner: 'LANDRY, LOUIS G',
     taxed$: 44874,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-26-0A': {
     address: '301 AYERS POND RD',
@@ -16499,12 +14774,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 32266,
-    neighborhood: 'D',
     owner: 'PORTER, BENJAMIN C',
     taxed$: 166266,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-61': {
     address: '2527 E WASHINGTON RD',
@@ -16518,12 +14791,10 @@ export const LOTS = {
     ],
     cu$: 9200,
     land$: 3099,
-    neighborhood: 'E',
     owner: 'THAYER, EDWARD G',
     taxed$: 12299,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-63': {
     address: '2560 E WASHINGTON RD',
@@ -16537,12 +14808,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36100,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - FIRE',
     taxed$: 53000,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '10-34': {
     address: '799 ASHUELOT DR',
@@ -16556,12 +14825,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 193200,
-    neighborhood: 'D',
     owner: 'CONNORS, PHILIP F',
     taxed$: 275500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-37': {
     address: '769 ASHUELOT DR',
@@ -16575,12 +14842,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 198000,
-    neighborhood: 'D',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 279100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-45': {
     address: '147 TAYLOR CIR',
@@ -16594,12 +14859,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24000,
-    neighborhood: 'V',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 24000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '11-3-01': {
     address: '26 OLD BURBANK RD',
@@ -16613,12 +14876,10 @@ export const LOTS = {
     ],
     cu$: 14200,
     land$: 37600,
-    neighborhood: 'D',
     owner: 'CARTER, WALLACE F',
     taxed$: 183700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-13': {
     address: '686 MILLEN POND RD',
@@ -16632,12 +14893,10 @@ export const LOTS = {
     ],
     cu$: 27300,
     land$: 40049,
-    neighborhood: 'E',
     owner: 'MINGARY, LLC',
     taxed$: 419849,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-14': {
     address: '626 MILLEN POND RD',
@@ -16651,12 +14910,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'F',
     owner: 'MUGAR, CAROLYN J',
     taxed$: 25100,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '11-22': {
     address: '221 LEMPSTER MT RD',
@@ -16670,12 +14927,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 36783,
-    neighborhood: 'D',
     owner: 'KELLOGG, RANDOLPH W',
     taxed$: 92483,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-26': {
     address: '600 LEMPSTER MT RD',
@@ -16689,12 +14944,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 65500,
-    neighborhood: 'E',
     owner: 'WOODCOCK, PETER L.',
     taxed$: 212300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-50': {
     address: '674 MILLEN POND RD',
@@ -16708,12 +14961,10 @@ export const LOTS = {
     ],
     cu$: 18000,
     land$: 50200,
-    neighborhood: 'F',
     owner: 'KERN, AUDREY MARGARET TRUST',
     taxed$: 231700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '11-55': {
     address: '704 MILLEN POND RD',
@@ -16731,12 +14982,10 @@ export const LOTS = {
     ],
     cu$: 13400,
     land$: 190700,
-    neighborhood: 'F',
     owner: 'SNYDER, DIANE E',
     taxed$: 275200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-67': {
     address: '18 WOLF WAY',
@@ -16750,12 +14999,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 0,
-    neighborhood: '',
     owner: 'WASHINGTON, TOWN OF -CMP MORGN',
     taxed$: 1400,
     usage: '300',
-    use: 'EX-M',
-    zone: ''
+    use: 'EX-M'
   },
   '12-67': {
     address: '821 WASHINGTON DR',
@@ -16769,12 +15016,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 221700,
-    neighborhood: 'G',
     owner: '821 WASHINGTON DRIVE, LLC',
     taxed$: 342700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-39': {
     address: '730 HALFMOON PD RD',
@@ -16792,12 +15037,10 @@ export const LOTS = {
     ],
     cu$: 16000,
     land$: 61000,
-    neighborhood: 'G',
     owner: 'LAPRADE, NORMAN',
     taxed$: 191500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-43': {
     address: '528 HALFMOON PD RD',
@@ -16811,12 +15054,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 30601,
-    neighborhood: 'E',
     owner: 'OTTERSON, GEORGE M.REVOC FAMIL',
     taxed$: 63101,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-68': {
     address: '795 WASHINGTON DR',
@@ -16830,12 +15071,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 222600,
-    neighborhood: 'G',
     owner: 'SARDINSKAS, STUART A ET AL',
     taxed$: 403900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-111': {
     address: '261 WASHINGTON DR',
@@ -16849,12 +15088,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 216500,
-    neighborhood: 'G',
     owner: 'CHAMBERLAIN, RALPH E',
     taxed$: 286500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-112': {
     address: '255 WASHINGTON DR',
@@ -16868,12 +15105,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 211100,
-    neighborhood: 'G',
     owner: 'KWIATKOWSKI, IRENE S IRREV TRU',
     taxed$: 261500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-162': {
     address: '21 ISLAND POND RD',
@@ -16887,12 +15122,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 25300,
-    neighborhood: 'D',
     owner: 'GILLILAND, ROBERT J.',
     taxed$: 28300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-1': {
     address: '731 ASHUELOT DR',
@@ -16906,12 +15139,10 @@ export const LOTS = {
     ],
     cu$: 13700,
     land$: 197200,
-    neighborhood: 'E',
     owner: 'HORTON, CAROL E',
     taxed$: 363400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-2': {
     address: '707 ASHUELOT DR',
@@ -16929,12 +15160,10 @@ export const LOTS = {
     ],
     cu$: 3100,
     land$: 186100,
-    neighborhood: 'E',
     owner: 'RUSSELL, MARY C  REV TRUST',
     taxed$: 357300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-5': {
     address: '679 ASHUELOT DR',
@@ -16948,12 +15177,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 201600,
-    neighborhood: 'E',
     owner: 'COSTLEY, SUSAN E',
     taxed$: 323500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-7': {
     address: '651 ASHUELOT DR',
@@ -16967,12 +15194,10 @@ export const LOTS = {
     ],
     cu$: 12400,
     land$: 199100,
-    neighborhood: 'E',
     owner: "O'CONNELL, JOHN L",
     taxed$: 324900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-18': {
     address: '124 HARRISON RD',
@@ -16986,12 +15211,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 194600,
-    neighborhood: 'E',
     owner: 'RUGGIERO, ROCCO R',
     taxed$: 306100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-19': {
     address: '126 HARRISON RD',
@@ -17005,12 +15228,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 199700,
-    neighborhood: 'E',
     owner: 'WHITNEY, MILTON R. TRUST AGRMT',
     taxed$: 289300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-51': {
     address: '69 TAYLOR CIR',
@@ -17024,12 +15245,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'BRERETON, BRUCE',
     taxed$: 180100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-76': {
     address: '189 STOWELL RD',
@@ -17043,12 +15262,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 40700,
-    neighborhood: 'E',
     owner: 'PERRY, ANTHONY C',
     taxed$: 202400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-156': {
     address: '357 ASHUELOT DR',
@@ -17062,12 +15279,10 @@ export const LOTS = {
     ],
     cu$: 5600,
     land$: 203500,
-    neighborhood: 'E',
     owner: 'BERUBE, HENRY',
     taxed$: 375200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-196': {
     address: '123 MCKINLEY DR',
@@ -17081,12 +15296,10 @@ export const LOTS = {
     ],
     cu$: 30200,
     land$: 226300,
-    neighborhood: 'E',
     owner: 'ZERJAV, JOHN',
     taxed$: 346200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-207': {
     address: '66 TAFT RD',
@@ -17100,12 +15313,10 @@ export const LOTS = {
     ],
     cu$: 4800,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'DUNN FAMILY TRUST',
     taxed$: 186800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-237': {
     address: '66 ASHUELOT DR',
@@ -17119,12 +15330,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 45700,
-    neighborhood: 'E',
     owner: 'GERBER, CHRISTOPHER M.',
     taxed$: 187500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-303': {
     address: '13 CLEVELAND CIR',
@@ -17138,12 +15347,10 @@ export const LOTS = {
     ],
     cu$: 10100,
     land$: 41200,
-    neighborhood: 'E',
     owner: 'GUNDECK, STANLEY R',
     taxed$: 121400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-375': {
     address: '187 COOLIDGE DR',
@@ -17157,12 +15364,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 44600,
-    neighborhood: 'E',
     owner: 'BOMBARD, MARIA M',
     taxed$: 148800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-384': {
     address: '42 BUCHANAN CIR',
@@ -17176,12 +15381,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 43100,
-    neighborhood: 'E',
     owner: 'SANDFORD, WAYNE E & CHRISTINE',
     taxed$: 182100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-410': {
     address: '50 ASHUELOT ACRE RD',
@@ -17195,12 +15398,10 @@ export const LOTS = {
     ],
     cu$: 12300,
     land$: 177500,
-    neighborhood: 'D',
     owner: 'TAYLOR, JAMES S REV TRUST',
     taxed$: 429300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-411': {
     address: '42 ASHUELOT ACRE RD',
@@ -17214,12 +15415,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 159400,
-    neighborhood: 'D',
     owner: 'STROSCIO, DANIEL',
     taxed$: 260700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-412': {
     address: '32 ASHUELOT ACRE RD',
@@ -17233,12 +15432,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 178800,
-    neighborhood: 'D',
     owner: 'RUSSELL, RAYMOND F',
     taxed$: 240500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-413': {
     address: '24 ASHUELOT ACRE RD',
@@ -17252,12 +15449,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 178600,
-    neighborhood: 'D',
     owner: 'SANDERS JR, GEORGE N',
     taxed$: 197800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-414': {
     address: '14 ASHUELOT ACRE RD',
@@ -17271,12 +15466,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 164300,
-    neighborhood: 'D',
     owner: 'WASHALOT REALTY TRUST, DETOUR ',
     taxed$: 233900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-401': {
     address: '154 ASHUELOT ACRE RD',
@@ -17290,12 +15483,10 @@ export const LOTS = {
     ],
     cu$: 27900,
     land$: 182300,
-    neighborhood: 'D',
     owner: 'BOUMA, JODY M',
     taxed$: 328400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-402': {
     address: '142 ASHUELOT ACRE RD',
@@ -17309,12 +15500,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 182300,
-    neighborhood: 'D',
     owner: 'BOUMA, BRETT AND JODY',
     taxed$: 208200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-403': {
     address: '136 ASHUELOT ACRE RD',
@@ -17328,12 +15517,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 175800,
-    neighborhood: 'D',
     owner: 'MARTIN, BONNIE',
     taxed$: 190500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-404': {
     address: '130 ASHUELOT ACRE RD',
@@ -17347,12 +15534,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 159800,
-    neighborhood: 'D',
     owner: 'BROWN, FRANK J',
     taxed$: 249900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-405': {
     address: '124 ASHUELOT ACRE RD',
@@ -17366,12 +15551,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 178800,
-    neighborhood: 'D',
     owner: 'COLPITTS JOINT REV TRUST',
     taxed$: 248200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-406': {
     address: '104 ASHUELOT ACRE RD',
@@ -17385,12 +15568,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 172900,
-    neighborhood: 'D',
     owner: 'PLUMRIDGE, JAMES A.',
     taxed$: 221100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-434': {
     address: '579 MARLOW RD',
@@ -17404,12 +15585,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 31500,
-    neighborhood: 'D',
     owner: 'GROVER, SUZANNE',
     taxed$: 108400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-407': {
     address: '88 ASHUELOT ACRE RD',
@@ -17423,12 +15602,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 162200,
-    neighborhood: 'D',
     owner: 'BRAGG, MARK A',
     taxed$: 191300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-408': {
     address: '82 ASHUELOT ACRE RD',
@@ -17442,12 +15619,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 167500,
-    neighborhood: 'C',
     owner: 'WRIGHT, PAMELA J',
     taxed$: 205600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-417': {
     address: '2 ASHUELOT ACRE RD',
@@ -17461,12 +15636,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 173600,
-    neighborhood: 'D',
     owner: 'HESKETH, TODD S.',
     taxed$: 208300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-418': {
     address: '637 MARLOW RD',
@@ -17480,12 +15653,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 188600,
-    neighborhood: 'D',
     owner: 'DAVIS REVOCABLE TRUST',
     taxed$: 259000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-419': {
     address: '646 MARLOW RD',
@@ -17499,12 +15670,10 @@ export const LOTS = {
     ],
     cu$: 2800,
     land$: 69540,
-    neighborhood: 'D',
     owner: 'LITTLE, WARREN J IRREV R P TR',
     taxed$: 232240,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-420': {
     address: '15 ASHUELOT ACRE RD',
@@ -17518,12 +15687,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19800,
-    neighborhood: 'C',
     owner: 'DANCAUSE, SALLY',
     taxed$: 33700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-421': {
     address: '27 ASHUELOT ACRE RD',
@@ -17537,12 +15704,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 26400,
-    neighborhood: 'C',
     owner: 'LAPPEN, SCOTT C.',
     taxed$: 75200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-422': {
     address: '35 ASHUELOT ACRE RD',
@@ -17556,12 +15721,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 26400,
-    neighborhood: 'C',
     owner: 'DLUGOSZ, JOSEPH',
     taxed$: 63900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-423': {
     address: '51 ASHUELOT ACRE RD',
@@ -17575,12 +15738,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26400,
-    neighborhood: 'C',
     owner: 'KALASKY, JAMES G',
     taxed$: 83500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-424': {
     address: '61 ASHUELOT ACRE RD',
@@ -17594,12 +15755,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 49500,
-    neighborhood: 'E',
     owner: 'WALDRON, JAMES',
     taxed$: 198100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-425': {
     address: 'ASHUELOT ACRE RD',
@@ -17613,12 +15772,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43500,
-    neighborhood: 'D',
     owner: 'OPERARIO, DON',
     taxed$: 129900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-433': {
     address: '603 MARLOW RD',
@@ -17632,12 +15789,10 @@ export const LOTS = {
     ],
     cu$: 18400,
     land$: 33900,
-    neighborhood: 'D',
     owner: 'GILMORE FAMILY REV LIVING TRUS',
     taxed$: 181600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-435': {
     address: '569 MARLOW RD',
@@ -17651,12 +15806,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 30900,
-    neighborhood: 'C',
     owner: 'MANN, EILEEN',
     taxed$: 99700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-458': {
     address: '97 HUNTLEY MT RD',
@@ -17670,12 +15823,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 28400,
-    neighborhood: 'B',
     owner: 'HEBERT, JOHN W',
     taxed$: 96900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-459': {
     address: '87 HUNTLEY MT RD',
@@ -17689,12 +15840,10 @@ export const LOTS = {
     ],
     cu$: 9200,
     land$: 28400,
-    neighborhood: 'B',
     owner: 'KEITH, AARON',
     taxed$: 123100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-460': {
     address: '65 HUNTLEY MT RD',
@@ -17708,12 +15857,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 26900,
-    neighborhood: 'B',
     owner: 'WILLIAMS, DANIEL S.',
     taxed$: 117700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-461': {
     address: '49 HUNTLEY MT RD',
@@ -17727,12 +15874,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19800,
-    neighborhood: 'B',
     owner: 'KIRCHNER, JOAN',
     taxed$: 37900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-463': {
     address: '15 HUNTLEY MT RD',
@@ -17746,12 +15891,10 @@ export const LOTS = {
     ],
     cu$: 20500,
     land$: 25100,
-    neighborhood: 'B',
     owner: 'CROSS, THOMAS E',
     taxed$: 142900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-464': {
     address: '7 HUNTLEY MT RD',
@@ -17765,12 +15908,10 @@ export const LOTS = {
     ],
     cu$: 4100,
     land$: 20100,
-    neighborhood: 'B',
     owner: 'CROSS, THOMAS E',
     taxed$: 24200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-467': {
     address: '419 MARLOW RD',
@@ -17784,12 +15925,10 @@ export const LOTS = {
     ],
     cu$: 15000,
     land$: 33523,
-    neighborhood: 'C',
     owner: 'TURNER, EDWARD J',
     taxed$: 234623,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-468': {
     address: '317 MARLOW RD',
@@ -17803,12 +15942,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 0,
-    neighborhood: 'C',
     owner: 'SOUZA, PAUL J',
     taxed$: 12000,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '14-468-01': {
     address: '363 MARLOW RD',
@@ -17822,12 +15959,10 @@ export const LOTS = {
     ],
     cu$: 14900,
     land$: 34600,
-    neighborhood: 'C',
     owner: 'SOUZA, PAUL J',
     taxed$: 75000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-493': {
     address: '228 MARLOW RD',
@@ -17841,12 +15976,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 35900,
-    neighborhood: 'C',
     owner: 'FIRTH, DAVID',
     taxed$: 62800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-494': {
     address: '234 MARLOW RD',
@@ -17860,12 +15993,10 @@ export const LOTS = {
     ],
     cu$: 16900,
     land$: 40800,
-    neighborhood: 'C',
     owner: 'CHAMBERLAIN, JON D',
     taxed$: 219700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-23': {
     address: '1065 VALLEY RD',
@@ -17879,12 +16010,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42300,
-    neighborhood: 'D',
     owner: 'RICHARD, ANNA',
     taxed$: 122200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-27': {
     address: '930 VALLEY RD',
@@ -17898,12 +16027,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 0,
-    neighborhood: 'D',
     owner: 'BEAUDREAULT, RICHARD P',
     taxed$: 2000,
     usage: '260',
-    use: 'CI',
-    zone: ''
+    use: 'CI'
   },
   '15-40': {
     address: '1574 VALLEY RD',
@@ -17917,12 +16044,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 950,
-    neighborhood: 'X',
     owner: 'HALVERSON, KIRSTEN',
     taxed$: 950,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-80': {
     address: '869 MILLEN POND RD',
@@ -17936,12 +16061,10 @@ export const LOTS = {
     ],
     cu$: 10800,
     land$: 172400,
-    neighborhood: 'G',
     owner: 'JASSEN, DARYL J & TURNER, J C ',
     taxed$: 224300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-81': {
     address: '881 MILLEN POND RD',
@@ -17955,12 +16078,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 174800,
-    neighborhood: 'G',
     owner: 'FLOCK, DONALD P',
     taxed$: 224100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-93': {
     address: '1230 FAXON HILL RD',
@@ -17974,12 +16095,10 @@ export const LOTS = {
     ],
     cu$: 14100,
     land$: 178900,
-    neighborhood: 'F',
     owner: 'KIMBALL, ADAM G',
     taxed$: 317600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-94': {
     address: '1168 FAXON HILL RD',
@@ -17993,12 +16112,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 94900,
-    neighborhood: 'F',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 96000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-109': {
     address: '854 MILLEN POND RD',
@@ -18012,12 +16129,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 50100,
-    neighborhood: 'E',
     owner: 'WYAND, ROBERT C',
     taxed$: 108000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-162': {
     address: '704 VALLEY RD',
@@ -18031,12 +16146,10 @@ export const LOTS = {
     ],
     cu$: 3400,
     land$: 24300,
-    neighborhood: 'D',
     owner: 'BLANCHETTE, MATTHEW',
     taxed$: 59500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-1': {
     address: '163 VALLEY RD',
@@ -18050,12 +16163,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 36691,
-    neighborhood: 'D',
     owner: 'CHARETTE, JOHN',
     taxed$: 78091,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-23': {
     address: '18 MAPLE WAY',
@@ -18069,12 +16180,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34800,
-    neighborhood: 'D',
     owner: 'MANCINI, CARL W INTER VIVOS TR',
     taxed$: 114800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-27': {
     address: '573 HIGHLAND HAVEN RD',
@@ -18088,12 +16197,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45600,
-    neighborhood: 'E',
     owner: 'BELL, KENNETH S.',
     taxed$: 81400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-29': {
     address: '541 HIGHLAND HAVEN RD',
@@ -18107,12 +16214,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20900,
-    neighborhood: 'V',
     owner: 'BROWN, BRIAN',
     taxed$: 20900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-58': {
     address: '1429 SO MAIN ST',
@@ -18126,12 +16231,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35100,
-    neighborhood: 'E',
     owner: 'PAPPAS, CHARLES F',
     taxed$: 64300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-59': {
     address: '1415 SO MAIN ST',
@@ -18145,12 +16248,10 @@ export const LOTS = {
     ],
     cu$: 200,
     land$: 30700,
-    neighborhood: 'E',
     owner: 'GIANNELLI LIVING TRUST, G & M',
     taxed$: 54200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-77-11': {
     address: '4644 E WASHINGTON RD',
@@ -18164,12 +16265,10 @@ export const LOTS = {
     ],
     cu$: 7000,
     land$: 30595,
-    neighborhood: 'E',
     owner: 'BOREY, LOUIS J',
     taxed$: 37595,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-85': {
     address: '152 WASHINGTON DR',
@@ -18183,12 +16282,10 @@ export const LOTS = {
     ],
     cu$: 19000,
     land$: 44700,
-    neighborhood: 'E',
     owner: 'COTE, TIMOTHY G',
     taxed$: 177500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-94': {
     address: '4200 E WASHINGTON RD',
@@ -18202,12 +16299,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39000,
-    neighborhood: 'E',
     owner: 'OFMAN, PETER',
     taxed$: 116300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-102': {
     address: '4078 E WASHINGTON RD',
@@ -18221,12 +16316,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 29900,
-    neighborhood: 'V',
     owner: 'VINCIGUERRA, ANTHONY S.',
     taxed$: 30900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-103': {
     address: '3996 E WASHINGTON RD',
@@ -18240,12 +16333,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 26100,
-    neighborhood: 'V',
     owner: 'GALLAGHER, STEPHEN & TRACIE',
     taxed$: 31100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-105': {
     address: '3964 E WASHINGTON RD',
@@ -18259,12 +16350,10 @@ export const LOTS = {
     ],
     cu$: 9000,
     land$: 39400,
-    neighborhood: 'E',
     owner: 'SEAVEY, EARL REAL ESTATE TRUST',
     taxed$: 144700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-30': {
     address: '201 WILD ACRE DR',
@@ -18278,12 +16367,10 @@ export const LOTS = {
     ],
     cu$: 2500,
     land$: 126500,
-    neighborhood: 'D',
     owner: 'CARUSO, JESSIE',
     taxed$: 172100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-31': {
     address: '197 WILD ACRE DR',
@@ -18297,12 +16384,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 131500,
-    neighborhood: 'D',
     owner: 'ALLAN JR, JAMES M',
     taxed$: 204500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '19-4': {
     address: '1428 VALLEY RD',
@@ -18316,12 +16401,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14695,
-    neighborhood: 'W',
     owner: 'WILD LAKE ASSOCIATION, INC',
     taxed$: 14695,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '19-22': {
     address: '1066 VALLEY RD',
@@ -18335,12 +16418,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 29900,
-    neighborhood: 'E',
     owner: 'CLARKE, JEFFREY REID',
     taxed$: 30700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-35': {
     address: '419 BAILEY RD',
@@ -18354,12 +16435,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40100,
-    neighborhood: 'E',
     owner: 'MACKERT, LYNN',
     taxed$: 176800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-37': {
     address: '451 BAILEY RD',
@@ -18373,12 +16452,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16300,
-    neighborhood: 'W',
     owner: 'KARRMANN, MICHAEL K',
     taxed$: 16300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-40': {
     address: '405 BAILEY RD',
@@ -18396,12 +16473,10 @@ export const LOTS = {
     ],
     cu$: 100,
     land$: 17400,
-    neighborhood: 'W',
     owner: 'ARMEEN, BENEDICT',
     taxed$: 19000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-50': {
     address: '482 BAILEY RD',
@@ -18415,12 +16490,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 57000,
-    neighborhood: 'E',
     owner: 'LINCOLN, MICHELLE',
     taxed$: 171900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-93': {
     address: '400 BAILEY RD',
@@ -18434,12 +16507,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45800,
-    neighborhood: 'E',
     owner: 'KENDALL, JANE',
     taxed$: 197900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-112': {
     address: '37 WOODPECKER RD',
@@ -18453,12 +16524,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35600,
-    neighborhood: 'D',
     owner: 'REYNHOUT, DAVID',
     taxed$: 66900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-116': {
     address: '178 DOLE SCHOOL HOUSE RD',
@@ -18472,12 +16541,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21900,
-    neighborhood: 'D',
     owner: 'TEBO, DAVID M',
     taxed$: 21900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-132': {
     address: '22 WOODPECKER RD',
@@ -18491,12 +16558,10 @@ export const LOTS = {
     ],
     cu$: 9000,
     land$: 28300,
-    neighborhood: 'D',
     owner: 'SPITZ, ROBERT A',
     taxed$: 105700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-136': {
     address: '622 HIGHLAND HAVEN RD',
@@ -18510,12 +16575,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 199100,
-    neighborhood: 'E',
     owner: 'PRINCIPE, JOHN F',
     taxed$: 308100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-184': {
     address: '137 BEAVER BROOK RD',
@@ -18529,12 +16592,10 @@ export const LOTS = {
     ],
     cu$: 12300,
     land$: 44700,
-    neighborhood: 'E',
     owner: 'KOTFER, KATRINA D',
     taxed$: 57000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '22-7': {
     address: '98 NO MAIN ST',
@@ -18548,12 +16609,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 36557,
-    neighborhood: 'D',
     owner: 'CILLEY, DONNA J',
     taxed$: 191457,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-8': {
     address: '62 NO MAIN ST',
@@ -18567,12 +16626,10 @@ export const LOTS = {
     ],
     cu$: 4500,
     land$: 38300,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - LIBRARY ',
     taxed$: 42800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-28': {
     address: '74 HALFMOON PD RD',
@@ -18586,12 +16643,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 40200,
-    neighborhood: 'D',
     owner: 'WILSON, RANDALL AND REBECCA TR',
     taxed$: 186500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-57': {
     address: '31 LEMPSTER MT RD',
@@ -18605,12 +16660,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 37300,
-    neighborhood: 'E',
     owner: 'JACKSON, ROBERT S',
     taxed$: 122700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-58': {
     address: '75 LEMPSTER MT RD',
@@ -18624,12 +16677,10 @@ export const LOTS = {
     ],
     cu$: 11000,
     land$: 63600,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - FIRE',
     taxed$: 344600,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '24-35': {
     address: '1479 VALLEY RD',
@@ -18643,12 +16694,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18000,
-    neighborhood: 'E',
     owner: 'MCCULLA, THOMAS BENJAMIN',
     taxed$: 18000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-54': {
     address: '94 LOOKOUT POINT RD',
@@ -18662,12 +16711,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 38400,
-    neighborhood: 'C',
     owner: 'SABINE, ROBIN',
     taxed$: 39600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-55': {
     address: '90 LOOKOUT POINT RD',
@@ -18681,12 +16728,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 175300,
-    neighborhood: 'D',
     owner: 'MANDIROLA, THERESA Y REV TRUST',
     taxed$: 209700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-56': {
     address: '80 LOOKOUT POINT RD',
@@ -18700,12 +16745,10 @@ export const LOTS = {
     ],
     cu$: 2500,
     land$: 182300,
-    neighborhood: 'D',
     owner: 'SMITH, TIMOTHY J',
     taxed$: 222800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-57': {
     address: '70 LOOKOUT POINT RD',
@@ -18719,12 +16762,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 182700,
-    neighborhood: 'D',
     owner: 'SKOWRONSKI, EUGENE & WIESLAWA',
     taxed$: 269800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-63': {
     address: '22 LOOKOUT POINT RD',
@@ -18738,12 +16779,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 166500,
-    neighborhood: 'D',
     owner: 'BURLAMACHI, TRACY',
     taxed$: 209900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-65': {
     address: '14 LOOKOUT POINT RD',
@@ -18757,12 +16796,10 @@ export const LOTS = {
     ],
     cu$: 700,
     land$: 162900,
-    neighborhood: 'D',
     owner: 'DEFOSSE, DAVID R',
     taxed$: 246300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-66': {
     address: '2 LOOKOUT POINT RD',
@@ -18776,12 +16813,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 173600,
-    neighborhood: 'D',
     owner: 'FIORAVANTI, MARY E.',
     taxed$: 173600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-68': {
     address: '26 LAKEVIEW TERR',
@@ -18795,12 +16830,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 103200,
-    neighborhood: 'C',
     owner: 'HOGAN, ARTHUR & STACEY',
     taxed$: 103200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-70': {
     address: '40 LAKEVIEW TERR',
@@ -18814,12 +16847,10 @@ export const LOTS = {
     ],
     cu$: 15400,
     land$: 213800,
-    neighborhood: 'C',
     owner: 'LACASSE, TAKODA TAMARA LIVING ',
     taxed$: 304600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-72': {
     address: '54 LAKEVIEW TERR',
@@ -18833,12 +16864,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 163200,
-    neighborhood: 'C',
     owner: 'DEMORE, W G & DEMORE JR, W G',
     taxed$: 228700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-74': {
     address: '62 LAKEVIEW TERR',
@@ -18852,12 +16881,10 @@ export const LOTS = {
     ],
     cu$: 11000,
     land$: 176700,
-    neighborhood: 'C',
     owner: 'MASENG REV TRUST, BERYL M',
     taxed$: 271700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-75': {
     address: '70 LAKEVIEW TERR',
@@ -18871,12 +16898,10 @@ export const LOTS = {
     ],
     cu$: 5200,
     land$: 158800,
-    neighborhood: 'C',
     owner: 'MURRAY, FRANCIS AND RANDI',
     taxed$: 291400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-76': {
     address: '74 LAKEVIEW TERR',
@@ -18890,12 +16915,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 183400,
-    neighborhood: 'C',
     owner: 'BAKER, DAVID',
     taxed$: 219100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-91': {
     address: '54 BIRCH POINT WAY',
@@ -18909,12 +16932,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 155600,
-    neighborhood: 'C',
     owner: 'BOLOGNA, ALFRED',
     taxed$: 261500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-94': {
     address: '51 BIRCH POINT WAY',
@@ -18928,12 +16949,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 206100,
-    neighborhood: 'C',
     owner: 'DUMAS, DAVID J',
     taxed$: 316900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-96': {
     address: '21 BIRCH POINT WAY',
@@ -18947,12 +16966,10 @@ export const LOTS = {
     ],
     cu$: 3100,
     land$: 157800,
-    neighborhood: 'C',
     owner: "WALLY'S WORLD 2021 FAMILY TRUS",
     taxed$: 186100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-99': {
     address: '11 BIRCH POINT WAY',
@@ -18966,12 +16983,10 @@ export const LOTS = {
     ],
     cu$: 2500,
     land$: 147800,
-    neighborhood: 'C',
     owner: 'COBLEIGH COVE TRUST',
     taxed$: 283800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-100': {
     address: '48 COVE RD',
@@ -18985,12 +17000,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 149100,
-    neighborhood: 'C',
     owner: 'SHATNEY, GARY AND PAMELA',
     taxed$: 214500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-101': {
     address: '52 COVE RD',
@@ -19004,12 +17017,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 150800,
-    neighborhood: 'D',
     owner: 'BEARCE JR, WILLIAM',
     taxed$: 203300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-102': {
     address: '58 COVE RD',
@@ -19023,12 +17034,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 153400,
-    neighborhood: 'C',
     owner: 'HOWES, DAVID W',
     taxed$: 183300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-103': {
     address: '62 COVE RD',
@@ -19042,12 +17051,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 143800,
-    neighborhood: 'C',
     owner: 'DOYLE, JAMES M.',
     taxed$: 162700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-104': {
     address: '70 COVE RD',
@@ -19061,12 +17068,10 @@ export const LOTS = {
     ],
     cu$: 4000,
     land$: 151600,
-    neighborhood: 'C',
     owner: 'WEAVER, ANN',
     taxed$: 186300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-105': {
     address: '80 COVE RD',
@@ -19080,12 +17085,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 147800,
-    neighborhood: 'C',
     owner: 'BUCHANAN, KEVIN J',
     taxed$: 187200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-109': {
     address: '140 COVE RD',
@@ -19099,12 +17102,10 @@ export const LOTS = {
     ],
     cu$: 8500,
     land$: 173700,
-    neighborhood: 'C',
     owner: 'MANDARANO, ANTHONY P',
     taxed$: 224300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-110': {
     address: '146 COVE RD',
@@ -19118,12 +17119,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 154200,
-    neighborhood: 'C',
     owner: 'SCHULTZ, KENNETH',
     taxed$: 211800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-111': {
     address: '156 COVE RD',
@@ -19137,12 +17136,10 @@ export const LOTS = {
     ],
     cu$: 4500,
     land$: 189400,
-    neighborhood: 'C',
     owner: 'REVANE, DONALD W',
     taxed$: 351700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-112': {
     address: '166 COVE RD',
@@ -19156,12 +17153,10 @@ export const LOTS = {
     ],
     cu$: 15200,
     land$: 179700,
-    neighborhood: 'D',
     owner: 'KROCHUNE, JAMES J',
     taxed$: 279000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-113': {
     address: '178 COVE RD',
@@ -19175,12 +17170,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 179700,
-    neighborhood: 'F',
     owner: 'MAYNARD, KAREN D REVOCABLE TRU',
     taxed$: 279600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-118': {
     address: '175 COVE RD',
@@ -19194,12 +17187,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15000,
-    neighborhood: 'C',
     owner: 'REVANE, DONALD W',
     taxed$: 15000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-124': {
     address: '53 COVE RD',
@@ -19213,12 +17204,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 20100,
-    neighborhood: 'C',
     owner: 'BEARCE JR, WILLIAM',
     taxed$: 22700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-125': {
     address: '3 POINT ISLAND',
@@ -19232,12 +17221,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 121400,
-    neighborhood: 'A',
     owner: 'NADEAU FAMILY TRUST, R & L',
     taxed$: 152300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-126': {
     address: '2 POINT ISLAND',
@@ -19251,12 +17238,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 121200,
-    neighborhood: 'A',
     owner: 'BARNES, DEBORAH',
     taxed$: 142600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-127': {
     address: '1 POINT ISLAND',
@@ -19270,12 +17255,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 122400,
-    neighborhood: 'A',
     owner: 'FLETCHER, EDWARD THOMAS',
     taxed$: 151800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-9': {
     address: '1652 VALLEY RD',
@@ -19289,12 +17272,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 35300,
-    neighborhood: 'E',
     owner: 'DELOTTINVILLE, DON',
     taxed$: 49200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-30': {
     address: '1854 VALLEY RD',
@@ -19308,12 +17289,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18600,
-    neighborhood: 'E',
     owner: 'DURIS, ROBERT A',
     taxed$: 18600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-36': {
     address: '2020 VALLEY RD',
@@ -19327,12 +17306,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 35800,
-    neighborhood: 'E',
     owner: 'PROCTOR FAMILY TRUST',
     taxed$: 54800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-40': {
     address: '2060 VALLEY RD',
@@ -19346,12 +17323,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 38300,
-    neighborhood: 'E',
     owner: "O'ROURKE FAMILY TRUST",
     taxed$: 81000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-41': {
     address: '2078 VALLEY RD',
@@ -19365,12 +17340,10 @@ export const LOTS = {
     ],
     cu$: 3900,
     land$: 18000,
-    neighborhood: 'E',
     owner: 'MORRISON, RONALD',
     taxed$: 21900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-42': {
     address: '24 HEMLOCK CIR',
@@ -19384,12 +17357,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 36200,
-    neighborhood: 'D',
     owner: 'KAMON, MATTAN',
     taxed$: 72100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-46': {
     address: '2183 VALLEY RD',
@@ -19403,12 +17374,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 169000,
-    neighborhood: 'E',
     owner: 'VADNEY FAMILY IRREVOCABLE TRUS',
     taxed$: 222700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-49': {
     address: '2167 VALLEY RD',
@@ -19422,12 +17391,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 181800,
-    neighborhood: 'E',
     owner: 'DIONNE, SANDRA, TRUSTEE',
     taxed$: 206700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-57': {
     address: '2127 VALLEY RD',
@@ -19441,12 +17408,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 158400,
-    neighborhood: 'E',
     owner: 'NIMBLETT, MARY A',
     taxed$: 173200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-72': {
     address: '49 HEMLOCK CIR',
@@ -19460,12 +17425,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21600,
-    neighborhood: 'C',
     owner: 'BEAN, HARLAN R.',
     taxed$: 29200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-73': {
     address: '41 HEMLOCK CIR',
@@ -19479,12 +17442,10 @@ export const LOTS = {
     ],
     cu$: 3500,
     land$: 27000,
-    neighborhood: 'E',
     owner: 'BEAN, HARLAN R.',
     taxed$: 118600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-84': {
     address: '2027 VALLEY RD',
@@ -19498,12 +17459,10 @@ export const LOTS = {
     ],
     cu$: 4800,
     land$: 38600,
-    neighborhood: 'E',
     owner: 'BERRY, HELEN REVOCABLE TRUST',
     taxed$: 120700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-85': {
     address: '2017 VALLEY RD',
@@ -19517,12 +17476,10 @@ export const LOTS = {
     ],
     cu$: 5100,
     land$: 212500,
-    neighborhood: 'E',
     owner: 'SCARNEO, COLLEEN E. REVOCABLE ',
     taxed$: 254000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-93': {
     address: '1901 VALLEY RD',
@@ -19536,12 +17493,10 @@ export const LOTS = {
     ],
     cu$: 3500,
     land$: 174700,
-    neighborhood: 'E',
     owner: 'JOHNSON, STEWART',
     taxed$: 265700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-94': {
     address: '1891 VALLEY RD',
@@ -19555,12 +17510,10 @@ export const LOTS = {
     ],
     cu$: 18000,
     land$: 225800,
-    neighborhood: 'E',
     owner: 'SEYFFERT, ANNE',
     taxed$: 327500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-95': {
     address: '1883 VALLEY RD',
@@ -19574,12 +17527,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 151200,
-    neighborhood: 'E',
     owner: 'ALLARD, RONALD E',
     taxed$: 202000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-97': {
     address: '1853 VALLEY RD',
@@ -19593,12 +17544,10 @@ export const LOTS = {
     ],
     cu$: 9200,
     land$: 165000,
-    neighborhood: 'E',
     owner: 'DURIS, ROBERT A',
     taxed$: 229700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-98': {
     address: '1841 VALLEY RD',
@@ -19612,12 +17561,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 153000,
-    neighborhood: 'E',
     owner: 'KUNTZ, JAMES R.',
     taxed$: 192800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-118': {
     address: '2133 VALLEY RD',
@@ -19631,12 +17578,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 91900,
-    neighborhood: 'E',
     owner: 'TREPANIER, MARCEL',
     taxed$: 91900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-49': {
     address: '660 MILLEN POND RD',
@@ -19650,12 +17595,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 165200,
-    neighborhood: 'E',
     owner: 'FRATEA JR, FRANK A',
     taxed$: 193500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-89': {
     address: 'JEFFERSON DR',
@@ -19669,12 +17612,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10800,
-    neighborhood: 'U',
     owner: 'WYNNE, DAVID D',
     taxed$: 10800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-456': {
     address: 'HUNTLEY MT RD',
@@ -19688,12 +17629,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19800,
-    neighborhood: 'B',
     owner: 'HEBERT, MICHELLE E',
     taxed$: 19800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '6-3': {
     address: 'AYERS POND RD',
@@ -19707,12 +17646,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3358,
-    neighborhood: 'V',
     owner: 'BIBBO, G EDWARD',
     taxed$: 3358,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '6-7': {
     address: 'AYERS POND RD',
@@ -19726,12 +17663,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2218,
-    neighborhood: 'V',
     owner: 'COHEN, HARVEY',
     taxed$: 2218,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '7-10': {
     address: 'TWIN BRIDGE RD',
@@ -19749,12 +17684,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3200,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 3200,
     usage: '501',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '7-8': {
     address: 'LEMPSTER MT RD',
@@ -19768,12 +17701,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1338,
-    neighborhood: 'V',
     owner: 'LABORE, ANDRE',
     taxed$: 1338,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '7-20': {
     address: 'WASHINGTON HGTS RD',
@@ -19787,12 +17718,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26900,
-    neighborhood: 'A',
     owner: 'JARZOMBEK, ANTHONY P TRUSTEE',
     taxed$: 26900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-30': {
     address: 'MARYS LN',
@@ -19806,12 +17735,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 22200,
-    neighborhood: 'C',
     owner: 'SHAMALY, JANE ELLEN',
     taxed$: 23600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-38': {
     address: 'WASHINGTON HGTS RD',
@@ -19825,12 +17752,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22400,
-    neighborhood: 'A',
     owner: 'KUTRUBES, DORIA',
     taxed$: 22400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-54': {
     address: 'NO MAIN ST',
@@ -19844,12 +17769,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1588,
-    neighborhood: 'V',
     owner: 'MALLARD, KENNETH A',
     taxed$: 1588,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '7-60': {
     address: 'LEMPSTER MT RD',
@@ -19863,12 +17786,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1610,
-    neighborhood: 'V',
     owner: 'THIBAULT, JON',
     taxed$: 1610,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '7-62': {
     address: 'LEMPSTER MT RD',
@@ -19882,12 +17803,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26100,
-    neighborhood: 'V',
     owner: 'UTH, CHAMROEUN',
     taxed$: 26100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-12': {
     address: 'HALFMOON PD RD',
@@ -19901,12 +17820,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24429,
-    neighborhood: 'V',
     owner: 'WEST TRUST, KATHLEEN M REV',
     taxed$: 24429,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-13': {
     address: 'HALFMOON PD RD',
@@ -19920,12 +17837,10 @@ export const LOTS = {
     ],
     cu$: 300,
     land$: 583,
-    neighborhood: 'V',
     owner: 'BRIDSCHGE, MARK A',
     taxed$: 883,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '8-19': {
     address: '11 MARTIN RD',
@@ -19939,12 +17854,10 @@ export const LOTS = {
     ],
     cu$: 13800,
     land$: 38800,
-    neighborhood: 'D',
     owner: 'PUTNAM, BRUCE',
     taxed$: 122200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-20': {
     address: 'HALFMOON PD RD',
@@ -19958,12 +17871,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23400,
-    neighborhood: 'V',
     owner: 'DUFOE, DAVID L. TRUSTEE DUFOE ',
     taxed$: 23400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-21': {
     address: 'MARTIN RD',
@@ -19977,12 +17888,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 608,
-    neighborhood: 'V',
     owner: 'PUTNAM, BRUCE',
     taxed$: 608,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-29': {
     address: 'MARTIN RD',
@@ -19996,12 +17905,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19853,
-    neighborhood: 'V',
     owner: 'MILLER, PETER J',
     taxed$: 19853,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-44': {
     address: 'LOVELL MT RD',
@@ -20015,12 +17922,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2497,
-    neighborhood: 'V',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 2497,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '8-45': {
     address: 'LOVELL MT RD',
@@ -20034,12 +17939,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10453,
-    neighborhood: 'V',
     owner: 'BATES III, JOHN',
     taxed$: 10453,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '9-4': {
     address: 'AYERS POND RD',
@@ -20053,12 +17956,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4095,
-    neighborhood: 'V',
     owner: 'SULLIVAN REV TRUST, ANDREA',
     taxed$: 4095,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '9-5': {
     address: 'AYERS POND RD',
@@ -20072,12 +17973,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 547,
-    neighborhood: 'V',
     owner: 'PHILLIPS, DAVID',
     taxed$: 547,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '9-8': {
     address: 'AYERS POND RD',
@@ -20091,12 +17990,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 498,
-    neighborhood: 'D',
     owner: 'PORTER, BENJAMIN C',
     taxed$: 498,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '9-15': {
     address: 'AYERS POND RD',
@@ -20110,12 +18007,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3377,
-    neighborhood: 'V',
     owner: 'ROBINSON, SANDRA J REV TRUST',
     taxed$: 3377,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '9-17': {
     address: '54 AYERS POND RD',
@@ -20129,12 +18024,10 @@ export const LOTS = {
     ],
     cu$: 13100,
     land$: 31568,
-    neighborhood: 'D',
     owner: 'FRANCE, PETER',
     taxed$: 44668,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-22': {
     address: 'E WASHINGTON RD',
@@ -20148,12 +18041,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 697,
-    neighborhood: 'V',
     owner: 'GARVIN, MARIANNE AND JAMES',
     taxed$: 697,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '9-24': {
     address: 'E WASHINGTON RD',
@@ -20167,12 +18058,10 @@ export const LOTS = {
     ],
     cu$: 22200,
     land$: 36651,
-    neighborhood: 'E',
     owner: 'GARVIN, MARIANNE AND JAMES',
     taxed$: 58851,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-25': {
     address: 'AYERS POND RD',
@@ -20186,12 +18075,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1058,
-    neighborhood: 'V',
     owner: 'MCGRANAHAN, DAVID',
     taxed$: 1058,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '9-27': {
     address: 'AYERS POND RD',
@@ -20205,12 +18092,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1483,
-    neighborhood: 'V',
     owner: 'SPROUL, JOHN B',
     taxed$: 1483,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '9-28': {
     address: '487 AYERS POND RD',
@@ -20224,12 +18109,10 @@ export const LOTS = {
     ],
     cu$: 20000,
     land$: 7736,
-    neighborhood: 'D',
     owner: 'MARSHALL, THOMAS & LINDA  REVO',
     taxed$: 27736,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-31': {
     address: 'OFF SUGAR HOUSE RD',
@@ -20243,12 +18126,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3900,
-    neighborhood: 'X',
     owner: 'BUTLER MOUNTAIN HOLDINGS, LLC',
     taxed$: 3900,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '9-32': {
     address: 'SUGAR HOUSE RD',
@@ -20262,12 +18143,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34900,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - DPWH',
     taxed$: 34900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '9-45': {
     address: 'LOVELL MT RD',
@@ -20281,12 +18160,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3303,
-    neighborhood: 'V',
     owner: 'BLAKNEY, KAREN A',
     taxed$: 3303,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '9-46': {
     address: '211 LOVELL MT RD',
@@ -20300,12 +18177,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36000,
-    neighborhood: 'E',
     owner: 'DANTAS, CYNTHIA',
     taxed$: 82500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-55': {
     address: 'SUGAR HOUSE RD',
@@ -20319,12 +18194,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 449,
-    neighborhood: 'V',
     owner: 'BLAKNEY, JOHN G, LOIS, & SUSAN',
     taxed$: 449,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '9-64': {
     address: 'AYERS POND RD',
@@ -20338,12 +18211,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1955,
-    neighborhood: 'X',
     owner: 'PORTER, WILLIAM G',
     taxed$: 1955,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '10-7': {
     address: 'ASHUELOT DR',
@@ -20357,12 +18228,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17100,
-    neighborhood: 'V',
     owner: 'BONO,JEREMY L & JACQUELINE A',
     taxed$: 17100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-14': {
     address: 'ASHUELOT DR',
@@ -20376,12 +18245,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 44400,
-    neighborhood: 'V',
     owner: 'THOMPSON, EDWARD',
     taxed$: 44400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-17': {
     address: 'ASHUELOT DR',
@@ -20395,12 +18262,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 73100,
-    neighborhood: 'V',
     owner: 'ANDERSON REVOCABLE TRUST',
     taxed$: 73100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-24': {
     address: 'MCKINNON RD',
@@ -20414,12 +18279,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 57,
-    neighborhood: 'X',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 57,
     usage: '190',
-    use: 'CUMO',
-    zone: '02'
+    use: 'CUMO'
   },
   '10-25': {
     address: 'MCKINNON RD',
@@ -20433,12 +18296,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1261,
-    neighborhood: 'X',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 1261,
     usage: '190',
-    use: 'CUMO',
-    zone: '02'
+    use: 'CUMO'
   },
   '10-26': {
     address: 'MCKINNON RD',
@@ -20452,12 +18313,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1248,
-    neighborhood: 'X',
     owner: 'THOMPSON, ROBERT',
     taxed$: 1248,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '10-27': {
     address: 'MCKINNON RD',
@@ -20471,12 +18330,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2790,
-    neighborhood: 'V',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 2790,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '10-28': {
     address: 'MCKINNON RD',
@@ -20490,12 +18347,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 95100,
-    neighborhood: 'V',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 95100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-49': {
     address: 'ASHUELOT DR',
@@ -20509,12 +18364,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23700,
-    neighborhood: 'D',
     owner: 'HALL, RICHARD GARY',
     taxed$: 23700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '11-1': {
     address: '324 OLD BURBANK RD',
@@ -20528,12 +18381,10 @@ export const LOTS = {
     ],
     cu$: 700,
     land$: 17746,
-    neighborhood: 'V',
     owner: 'KLOHS, JEROME D',
     taxed$: 18446,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-2': {
     address: 'OLD BURBANK RD',
@@ -20547,12 +18398,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 910,
-    neighborhood: 'V',
     owner: 'GRAHAM, R L',
     taxed$: 910,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '11-9': {
     address: 'OLD MARLOW RD',
@@ -20566,12 +18415,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8116,
-    neighborhood: 'V',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 8116,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '11-12': {
     address: 'OLD MARLOW RD',
@@ -20585,12 +18432,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1325,
-    neighborhood: 'V',
     owner: 'CUMMINGS, ADAM G',
     taxed$: 1325,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '11-16': {
     address: 'OLD MARLOW RD',
@@ -20604,12 +18449,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2245,
-    neighborhood: 'V',
     owner: 'MACNEIL FARM',
     taxed$: 2245,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '11-29': {
     address: 'NO MAIN ST',
@@ -20623,12 +18466,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1118,
-    neighborhood: 'V',
     owner: 'TWEEDY, MEGHAN',
     taxed$: 1118,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '11-32': {
     address: '398 NO MAIN ST',
@@ -20642,12 +18483,10 @@ export const LOTS = {
     ],
     cu$: 3200,
     land$: 33770,
-    neighborhood: 'E',
     owner: 'VAN PRAAGH, ANDREW',
     taxed$: 58370,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-36': {
     address: '121 OLD MARLOW RD',
@@ -20661,12 +18500,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25700,
-    neighborhood: 'V',
     owner: 'PIATT, ROBERT L',
     taxed$: 25700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-41': {
     address: 'MILLEN POND RD',
@@ -20680,12 +18517,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 57200,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 57200,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '11-68': {
     address: 'FAXON HILL RD',
@@ -20699,12 +18534,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1462,
-    neighborhood: 'V',
     owner: 'HALVERSON, KIRSTEN',
     taxed$: 1462,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '11-74': {
     address: 'SYMONDS LN',
@@ -20718,12 +18551,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3691,
-    neighborhood: 'X',
     owner: 'BARKER, PHILIP A. & LINDA K. I',
     taxed$: 3691,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '11-78': {
     address: 'AMES RD',
@@ -20737,12 +18568,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4759,
-    neighborhood: 'V',
     owner: 'KELLOGG, RANDOLPH W',
     taxed$: 4759,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '11-79': {
     address: 'OLD MARLOW RD',
@@ -20756,12 +18585,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2700,
-    neighborhood: 'X',
     owner: 'PIATT, ROBERT L',
     taxed$: 2700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-84': {
     address: '690 OLD MARLOW RD',
@@ -20775,12 +18602,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 254,
-    neighborhood: 'V',
     owner: 'KELLOGG, RANDOLPH W',
     taxed$: 254,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '11-86': {
     address: 'LEMPSTER MT RD',
@@ -20794,12 +18619,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1547,
-    neighborhood: 'V',
     owner: 'JOYAL, RICHARD M',
     taxed$: 1547,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '12-5': {
     address: 'LOVELL MT RD',
@@ -20813,12 +18636,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1191,
-    neighborhood: 'V',
     owner: 'WHEELER, VIRGINIA',
     taxed$: 1191,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '12-7': {
     address: 'HALFMOON PD RD',
@@ -20832,12 +18653,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9400,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 9400,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-14': {
     address: '667 HALFMOON PD RD',
@@ -20851,12 +18670,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 52200,
-    neighborhood: 'E',
     owner: 'LUCAS, ANTHONLY ANDREW',
     taxed$: 92300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-25': {
     address: '693 HALFMOON PD RD',
@@ -20870,12 +18687,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 123600,
-    neighborhood: 'G',
     owner: 'KRYGERIS REVOCABLE FAMILY TRST',
     taxed$: 137400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-26': {
     address: 'HALFMOON PD RD',
@@ -20889,12 +18704,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 71300,
-    neighborhood: 'G',
     owner: 'FIDLER, DAVID C.',
     taxed$: 71300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-36': {
     address: 'HALFMOON PD RD',
@@ -20908,12 +18721,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4547,
-    neighborhood: 'E',
     owner: 'BLENKHORN, ETHEL ESTATE',
     taxed$: 4547,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '12-41': {
     address: '684 HALFMOON PD RD',
@@ -20927,12 +18738,10 @@ export const LOTS = {
     ],
     cu$: 11800,
     land$: 44461,
-    neighborhood: 'G',
     owner: 'KRYGERIS REVOCABLE FAMILY TRST',
     taxed$: 210461,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-42': {
     address: 'HALFMOON PD RD',
@@ -20946,12 +18755,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2244,
-    neighborhood: 'V',
     owner: 'OTTERSON FAM REV TRUST,G R&S',
     taxed$: 2244,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '12-63': {
     address: 'LOVELL MT RD',
@@ -20965,12 +18772,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3699,
-    neighborhood: 'V',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 3699,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '12-107': {
     address: 'WASHINGTON DR',
@@ -20984,12 +18789,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 144800,
-    neighborhood: 'V',
     owner: 'MORSS, WATSON S - ESTATE OF',
     taxed$: 144800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-118': {
     address: 'WASHINGTON DR',
@@ -21003,12 +18806,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 493,
-    neighborhood: 'V',
     owner: 'JOHNSON, JEFFREY',
     taxed$: 493,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-132': {
     address: 'WASHINGTON DR',
@@ -21022,12 +18823,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33100,
-    neighborhood: 'V',
     owner: 'ROMANO III, CHARLES RICHARD',
     taxed$: 33100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-137-01': {
     address: 'WASHINGTON DR',
@@ -21041,12 +18840,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33000,
-    neighborhood: 'V',
     owner: 'PARNAS, J P, B L & D R',
     taxed$: 33000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-144': {
     address: 'WASHINGTON DR',
@@ -21060,12 +18857,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33000,
-    neighborhood: 'V',
     owner: 'VINCIGUERRA, ANTHONY S.',
     taxed$: 33000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-146': {
     address: 'WASHINGTON DR',
@@ -21079,12 +18874,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 32900,
-    neighborhood: 'V',
     owner: 'PARNAS, JEAN-PIERRE',
     taxed$: 32900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-150': {
     address: '808 WASHINGTON DR',
@@ -21098,12 +18891,10 @@ export const LOTS = {
     ],
     cu$: 7700,
     land$: 64065,
-    neighborhood: 'G',
     owner: 'KITTREDGE, KAREN J.',
     taxed$: 128765,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-155': {
     address: 'E WASHINGTON RD',
@@ -21117,12 +18908,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 154300,
-    neighborhood: 'V',
     owner: 'LYNCH REVOCABLE TRUST',
     taxed$: 154300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-156': {
     address: 'E WASHINGTON RD',
@@ -21136,12 +18925,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 112200,
-    neighborhood: 'V',
     owner: 'GRAHAM FAM REAL ESTATE TRUST',
     taxed$: 112200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-160': {
     address: 'ISLAND POND RD',
@@ -21155,12 +18942,10 @@ export const LOTS = {
     ],
     cu$: 5300,
     land$: 23000,
-    neighborhood: 'D',
     owner: 'WHITING, THOMAS',
     taxed$: 28300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-174': {
     address: 'HALFMOON PD RD',
@@ -21174,12 +18959,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18800,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 18800,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-169': {
     address: 'ISLAND POND RD',
@@ -21193,12 +18976,10 @@ export const LOTS = {
     ],
     cu$: 11000,
     land$: 22700,
-    neighborhood: 'C',
     owner: 'ALLEN, LAWRENCE R',
     taxed$: 33700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-176': {
     address: '230 HALFMOON PD RD',
@@ -21212,12 +18993,10 @@ export const LOTS = {
     ],
     cu$: 2200,
     land$: 16707,
-    neighborhood: 'D',
     owner: 'SHIFFLETT, AMBER J.',
     taxed$: 18907,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-182': {
     address: 'SO MAIN ST',
@@ -21231,12 +19010,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 633,
-    neighborhood: 'V',
     owner: 'ATKINS, SHAWN L',
     taxed$: 633,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '12-195': {
     address: 'ISLAND POND BOAT ACC',
@@ -21250,12 +19027,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26000,
-    neighborhood: 'D',
     owner: 'CHACE,JODIE ET AL',
     taxed$: 26000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-207': {
     address: 'BULMAN ISLAND',
@@ -21269,12 +19044,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10500,
-    neighborhood: 'A',
     owner: 'BULMAN, RICHARD B',
     taxed$: 10500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-208': {
     address: 'HELENS ISLAND',
@@ -21288,12 +19061,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11300,
-    neighborhood: 'A',
     owner: 'VAN PRAAGH, DR RICHARD',
     taxed$: 11300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-3': {
     address: 'E WASHINGTON RD',
@@ -21307,12 +19078,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21600,
-    neighborhood: 'V',
     owner: 'TERANI, STEPHEN J & GAYLE  REV',
     taxed$: 21600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-7': {
     address: 'E WASHINGTON RD',
@@ -21326,12 +19095,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 546,
-    neighborhood: 'V',
     owner: 'FRANCE, DAVID',
     taxed$: 546,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '13-31': {
     address: 'KINGSBURY HILL RD',
@@ -21345,12 +19112,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1751,
-    neighborhood: 'V',
     owner: 'WILLIAMS, THOMAS EDWARD',
     taxed$: 1751,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '13-36': {
     address: 'KINGSBURY HILL RD',
@@ -21364,12 +19129,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1640,
-    neighborhood: 'X',
     owner: 'VERRILL CORNELIUSEN, INC',
     taxed$: 1640,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '14-17': {
     address: 'HARRISON RD',
@@ -21383,12 +19146,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 22,
-    neighborhood: 'V',
     owner: 'LAMOY, ROBERT C',
     taxed$: 2022,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-44': {
     address: '306 STOWELL RD',
@@ -21402,12 +19163,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10300,
-    neighborhood: 'U',
     owner: 'J & W TRUST',
     taxed$: 10300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-48': {
     address: 'ASHUELOT DR',
@@ -21421,12 +19180,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'ZEMAN, DANIEL',
     taxed$: 11400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-53': {
     address: 'TAYLOR CIR',
@@ -21440,12 +19197,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'DEROSSI, CHARLES',
     taxed$: 11400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-55': {
     address: 'TAYLOR CIR',
@@ -21459,12 +19214,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11800,
-    neighborhood: 'U',
     owner: 'MCLAUGHLIN, CATLIN HOPE',
     taxed$: 11800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-56': {
     address: 'TAYLOR CIR',
@@ -21478,12 +19231,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11800,
-    neighborhood: 'U',
     owner: 'MILLER, TODD REALTY TRUST',
     taxed$: 11800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-67': {
     address: 'GRANT RD',
@@ -21497,12 +19248,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11500,
-    neighborhood: 'U',
     owner: 'ONOFRIO, MARCELLO',
     taxed$: 11500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-73': {
     address: 'GRANT RD',
@@ -21516,12 +19265,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'U',
     owner: 'FERREIRA, ELIO',
     taxed$: 11600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-74': {
     address: 'GRANT RD',
@@ -21535,12 +19282,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11500,
-    neighborhood: 'U',
     owner: 'ROY, JASON T',
     taxed$: 11500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-75': {
     address: 'GRANT RD',
@@ -21554,12 +19299,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41300,
-    neighborhood: 'E',
     owner: 'MANA, STEPHEN M.',
     taxed$: 41300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-81': {
     address: 'STOWELL RD',
@@ -21573,12 +19316,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'TUTINO, RAYMOND',
     taxed$: 11400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-87': {
     address: 'OFF JEFFERSON DR',
@@ -21607,12 +19348,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10800,
-    neighborhood: 'U',
     owner: 'LANGLOIS, ROBERT R JR',
     taxed$: 10800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-90': {
     address: 'GRANT RD',
@@ -21626,12 +19365,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14200,
-    neighborhood: 'U',
     owner: 'LANZILLO, DOMENIC',
     taxed$: 14200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-91': {
     address: '150 JEFFERSON DR',
@@ -21645,12 +19382,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37900,
-    neighborhood: 'E',
     owner: 'SZYMANSKI JR, JOSEPH P',
     taxed$: 112900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-108': {
     address: 'MADISON DR',
@@ -21664,12 +19399,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'CURTIN, JAMES',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-112': {
     address: 'MADISON DR',
@@ -21683,12 +19416,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'HAGUE, CHRISTOPHER J',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-119': {
     address: 'MADISON DR',
@@ -21702,12 +19433,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'MORRIS, FRANK IV',
     taxed$: 10900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-130': {
     address: 'MADISON DR',
@@ -21721,12 +19450,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'WPB HOLDINGS, LLC',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-131': {
     address: 'MADISON DR',
@@ -21740,12 +19467,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'U',
     owner: 'CHONTOS, LEE ELLEN',
     taxed$: 11600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-133': {
     address: 'PRESIDENTIAL DR',
@@ -21759,12 +19484,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'WASHIINGTON, TOWN OF - TC DEED',
     taxed$: 11000,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '14-227': {
     address: 'HARDING RD',
@@ -21793,12 +19516,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'L A E ASSOCIATION',
     taxed$: 0,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '14-149': {
     address: 'ASHUELOT DR',
@@ -21812,12 +19533,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 124200,
-    neighborhood: 'U',
     owner: 'MILES, JOHN E',
     taxed$: 124200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-150': {
     address: '417 ASHUELOT DR',
@@ -21831,12 +19550,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 204800,
-    neighborhood: 'E',
     owner: 'FROST, MARY LOU 2017 REVOCABLE',
     taxed$: 339600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-151': {
     address: '407 ASHUELOT DR',
@@ -21850,12 +19567,10 @@ export const LOTS = {
     ],
     cu$: 18200,
     land$: 203600,
-    neighborhood: 'E',
     owner: 'GINN, ROBERT A',
     taxed$: 314200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-184': {
     address: 'ASHUELOT DR',
@@ -21869,12 +19584,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 139000,
-    neighborhood: 'U',
     owner: 'CALABRO, JOHN R',
     taxed$: 139000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-202': {
     address: 'GARFIELD DR',
@@ -21888,12 +19601,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 138900,
-    neighborhood: 'U',
     owner: 'QUINN, BRIAN E',
     taxed$: 138900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-222': {
     address: '587 PRESIDENTIAL DR',
@@ -21907,12 +19618,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 41100,
-    neighborhood: 'E',
     owner: 'TILTON-WAHLERT, ELIZABETH',
     taxed$: 98600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-224': {
     address: 'HAYES RD',
@@ -21926,12 +19635,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'ZUBER, STEPHEN S',
     taxed$: 10900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-233': {
     address: 'HARDING RD',
@@ -21945,12 +19652,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9900,
-    neighborhood: 'U',
     owner: 'SULLIVAN, PHILIP KEVIN',
     taxed$: 9900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-254': {
     address: 'MCKINLEY DR',
@@ -21964,12 +19669,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11200,
-    neighborhood: 'U',
     owner: 'PISCIOTTA, RICHARD',
     taxed$: 11200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-257': {
     address: 'GARFIELD DR',
@@ -21983,12 +19686,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'COTE, JEFFREY B',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-258': {
     address: 'MONROE CIR',
@@ -22002,12 +19703,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17400,
-    neighborhood: 'U',
     owner: 'JOHNSON, CARL',
     taxed$: 17400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-269': {
     address: 'PIERCE RD',
@@ -22021,12 +19720,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12600,
-    neighborhood: 'U',
     owner: 'VISINSKI, ANDREW',
     taxed$: 12600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-267': {
     address: 'PIERCE RD',
@@ -22040,12 +19737,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12100,
-    neighborhood: 'U',
     owner: 'LEBLOND, DAVID J',
     taxed$: 12100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-273': {
     address: 'LINCOLN DR',
@@ -22059,12 +19754,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12100,
-    neighborhood: 'U',
     owner: 'MULREADY, CAROL J',
     taxed$: 12100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-298': {
     address: 'JACKSON DR',
@@ -22093,12 +19786,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'BURGESS, WILLIAM E. JR',
     taxed$: 11000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-304': {
     address: 'CLEVELAND CIR',
@@ -22112,12 +19803,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10200,
-    neighborhood: 'U',
     owner: 'SCHANDER, CAROL',
     taxed$: 10200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-305': {
     address: 'PRESIDENTIAL DR',
@@ -22131,12 +19820,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9900,
-    neighborhood: 'U',
     owner: 'MELAGRANO, JOSEPH F.',
     taxed$: 9900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-307': {
     address: '475 PRESIDENTIAL DR',
@@ -22150,12 +19837,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 42500,
-    neighborhood: 'E',
     owner: 'ZAHRT, SIGRID MC NAIR',
     taxed$: 92900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-320': {
     address: 'JACKSON DR',
@@ -22169,12 +19854,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'LALIOTS, THOMAS',
     taxed$: 10900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-324': {
     address: 'ADAMS DR',
@@ -22188,12 +19871,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11100,
-    neighborhood: 'U',
     owner: 'CARDINAL, LEONARD',
     taxed$: 11100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-325': {
     address: 'ADAMS DR',
@@ -22207,12 +19888,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'DAVIS, GLENN A',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-328': {
     address: 'PRESIDENTIAL DR',
@@ -22226,12 +19905,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 27300,
-    neighborhood: 'D',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 27300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-333': {
     address: 'PRESIDENTIAL DR',
@@ -22245,12 +19922,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'BENNETT PROPERTIES, LLC',
     taxed$: 11400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-334': {
     address: 'PRESIDENTIAL DR',
@@ -22264,12 +19939,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10200,
-    neighborhood: 'U',
     owner: 'FOWLER, CLAIRE B.',
     taxed$: 10200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-348': {
     address: 'COOLIDGE DR',
@@ -22283,12 +19956,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'BACOTTI, MICHAEL J',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-354': {
     address: 'COOLIDGE DR',
@@ -22302,12 +19973,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13500,
-    neighborhood: 'U',
     owner: 'MOHR, CHRISTOPHER',
     taxed$: 13500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-355': {
     address: '400 COOLIDGE DR',
@@ -22321,12 +19990,10 @@ export const LOTS = {
     ],
     cu$: 14500,
     land$: 38800,
-    neighborhood: 'E',
     owner: 'BULLDOG REVOCABLE TRUST',
     taxed$: 177400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-374': {
     address: 'COOLIDGE DR',
@@ -22340,12 +20007,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11300,
-    neighborhood: 'U',
     owner: 'ROBERT REVOCABLE TRUST',
     taxed$: 11300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-383': {
     address: 'BUCHANAN CIR',
@@ -22359,12 +20024,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'U',
     owner: 'SANDFORD, WAYNE E',
     taxed$: 11600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-499': {
     address: 'LANG RD',
@@ -22378,12 +20041,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18100,
-    neighborhood: 'C',
     owner: 'GILLIGAN, JENNY M',
     taxed$: 18100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-510': {
     address: 'MARLOW RD',
@@ -22397,12 +20058,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10100,
-    neighborhood: 'C',
     owner: 'SANDERS, GEORGE',
     taxed$: 10100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-512': {
     address: 'MARLOW RD',
@@ -22416,12 +20075,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 30500,
-    neighborhood: 'C',
     owner: 'BRITTON, RAYMOND F.',
     taxed$: 30500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-3': {
     address: 'VALLEY RD',
@@ -22435,12 +20092,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3107,
-    neighborhood: 'V',
     owner: 'BARTEVIAN, PATRICIA REV TRUST',
     taxed$: 3107,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-4': {
     address: 'VALLEY RD',
@@ -22454,12 +20109,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4670,
-    neighborhood: 'V',
     owner: 'BARTEVIAN, PATRICIA',
     taxed$: 4670,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '15-16': {
     address: 'VALLEY RD',
@@ -22473,12 +20126,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 92300,
-    neighborhood: 'D',
     owner: 'BARKIE, DAVID',
     taxed$: 200100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-20': {
     address: 'VALLEY RD',
@@ -22492,12 +20143,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26100,
-    neighborhood: 'V',
     owner: 'RICHARD, DONALD',
     taxed$: 26100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-22': {
     address: 'VALLEY RD',
@@ -22511,12 +20160,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26100,
-    neighborhood: 'V',
     owner: 'RICHARD, DONALD',
     taxed$: 26100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-28': {
     address: 'VALLEY RD',
@@ -22530,12 +20177,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 708,
-    neighborhood: 'V',
     owner: 'BEAUDREAULT, RICHARD P.',
     taxed$: 708,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-37': {
     address: 'VALLEY RD',
@@ -22549,12 +20194,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 23382,
-    neighborhood: 'V',
     owner: 'HALVERSON, KIRSTEN',
     taxed$: 24782,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-38': {
     address: '290 VALLEY RD',
@@ -22568,12 +20211,10 @@ export const LOTS = {
     ],
     cu$: 11100,
     land$: 41709,
-    neighborhood: 'D',
     owner: 'BARTEVIAN, PATRICIA REV TRUST',
     taxed$: 315609,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-48': {
     address: '935 FAXON HILL RD',
@@ -22587,12 +20228,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1758,
-    neighborhood: 'F',
     owner: 'NEW ENGLAND FORESTRY FNDTN',
     taxed$: 1758,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-58-01': {
     address: 'FAXON HILL RD',
@@ -22606,12 +20245,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 272,
-    neighborhood: 'F',
     owner: 'JAKE REALTY TRUST',
     taxed$: 272,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-82': {
     address: '1 ANDERSON ISLAND',
@@ -22625,12 +20262,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 102000,
-    neighborhood: 'E',
     owner: 'ANDERSON, PETER K',
     taxed$: 116000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-95': {
     address: '1183 FAXON HILL RD',
@@ -22644,12 +20279,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 37600,
-    neighborhood: 'F',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 53000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-97': {
     address: '1139 FAXON HILL RD',
@@ -22663,12 +20296,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 0,
-    neighborhood: '',
     owner: 'ZERJAV, JOHN',
     taxed$: 34500,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '15-104': {
     address: 'FARNSWORTH HILL RD',
@@ -22682,12 +20313,10 @@ export const LOTS = {
     ],
     cu$: 300,
     land$: 28125,
-    neighborhood: 'D',
     owner: 'BRIGHTON FAMILY TRUST',
     taxed$: 43125,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-107-01': {
     address: 'MILLEN POND RD',
@@ -22701,12 +20330,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45800,
-    neighborhood: 'G',
     owner: 'CARTER, STEPHEN C',
     taxed$: 45800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-117': {
     address: '112 FARNSWORTH HILL RD',
@@ -22720,12 +20347,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17300,
-    neighborhood: 'D',
     owner: 'SMITH, WILLIAM T',
     taxed$: 37400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-119': {
     address: 'COOLIDGE DR',
@@ -22739,12 +20364,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 329,
-    neighborhood: 'V',
     owner: 'BRIGHTON FAMILY TRUST',
     taxed$: 329,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-135': {
     address: 'ADAMS DR',
@@ -22758,12 +20381,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7600,
-    neighborhood: 'U',
     owner: 'DEVLIN, JAMES A',
     taxed$: 7600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-136': {
     address: 'ADAMS DR',
@@ -22777,12 +20398,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7700,
-    neighborhood: 'U',
     owner: 'MEIER, DONNA',
     taxed$: 7700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-154': {
     address: '153 KING ST',
@@ -22796,12 +20415,10 @@ export const LOTS = {
     ],
     cu$: 27200,
     land$: 84300,
-    neighborhood: 'E',
     owner: 'N. N. E. CONF. OF SEVENTH DAY',
     taxed$: 193200,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '15-147': {
     address: 'PIERCE RD',
@@ -22815,12 +20432,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'WICKENS REVOCABLE TRUST',
     taxed$: 10900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-153': {
     address: 'PINE POINT RD',
@@ -22834,12 +20449,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 132500,
-    neighborhood: 'G',
     owner: 'ABREU, SHARON ROBINSON',
     taxed$: 132500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-155': {
     address: 'COVE RD',
@@ -22853,12 +20466,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34300,
-    neighborhood: 'V',
     owner: 'REVANE, DONALD W',
     taxed$: 34300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-4': {
     address: '744 SO MAIN ST',
@@ -22872,12 +20483,10 @@ export const LOTS = {
     ],
     cu$: 7800,
     land$: 45000,
-    neighborhood: 'E',
     owner: 'BUKER JR, CLAYTON A',
     taxed$: 123300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-18': {
     address: 'OAK TERR',
@@ -22891,12 +20500,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15600,
-    neighborhood: 'W',
     owner: 'THOMAS, STEVE',
     taxed$: 15600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-19': {
     address: 'OAK TERR',
@@ -22910,12 +20517,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16000,
-    neighborhood: 'W',
     owner: 'SARAFIAN, EDWARD GERALD',
     taxed$: 16000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-41': {
     address: 'HIGHLAND HAVEN RD',
@@ -22929,12 +20534,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17200,
-    neighborhood: 'W',
     owner: 'MORRIS, MARY',
     taxed$: 17200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-42': {
     address: 'HIGHLAND HAVEN RD',
@@ -22948,12 +20551,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18600,
-    neighborhood: 'W',
     owner: 'TYLER, JAMES',
     taxed$: 18600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-47': {
     address: 'HIGHLAND HAVEN RD',
@@ -22967,12 +20568,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9600,
-    neighborhood: 'W',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 9600,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '16-50': {
     address: '952 SO MAIN ST',
@@ -22986,12 +20585,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3900,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - TRANS ST',
     taxed$: 3900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '16-65': {
     address: 'E WASHINGTON RD',
@@ -23005,12 +20602,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 530,
-    neighborhood: 'V',
     owner: 'PALUDI, DAMON TRUST',
     taxed$: 530,
     usage: '190',
-    use: 'CUMO',
-    zone: '02'
+    use: 'CUMO'
   },
   '16-70-13': {
     address: 'E WASHINGTON RD',
@@ -23024,12 +20619,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 404,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 404,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-20': {
     address: 'E WASHINGTON RD',
@@ -23043,12 +20636,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 181,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 181,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-74': {
     address: '4773 E WASHINGTON RD',
@@ -23062,12 +20653,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 40500,
-    neighborhood: 'E',
     owner: 'POOLER, W & D',
     taxed$: 64600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-77': {
     address: 'MILL ST',
@@ -23081,12 +20670,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 238,
-    neighborhood: 'V',
     owner: 'BOREY, LOUIS J',
     taxed$: 238,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-77-06': {
     address: 'E WASHINGTON RD',
@@ -23100,12 +20687,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 545,
-    neighborhood: 'V',
     owner: 'BOREY, LOUIS J',
     taxed$: 545,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-77-07': {
     address: 'E WASHINGTON RD',
@@ -23119,12 +20704,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 561,
-    neighborhood: 'V',
     owner: 'BOREY, LOUIS J',
     taxed$: 561,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-82': {
     address: 'ISLAND POND RD',
@@ -23138,12 +20721,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 12800,
-    neighborhood: 'E',
     owner: 'MCLAUGHLIN, JEFFREY  REV TRUST',
     taxed$: 18500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-83': {
     address: 'E WASHINGTON RD',
@@ -23161,12 +20742,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10000,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 10000,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '16-84': {
     address: '81 WASHINGTON DR',
@@ -23180,12 +20759,10 @@ export const LOTS = {
     ],
     cu$: 26500,
     land$: 45800,
-    neighborhood: 'E',
     owner: 'LEIZURE, STEPHANIE W',
     taxed$: 195300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-89': {
     address: 'WASHINGTON DR',
@@ -23199,12 +20776,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25100,
-    neighborhood: 'V',
     owner: 'LEIZURE, LARRY',
     taxed$: 25100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-90': {
     address: 'WASHINGTON DR',
@@ -23218,12 +20793,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26400,
-    neighborhood: 'V',
     owner: 'FERNANDES, ORLANDO S',
     taxed$: 26400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-99': {
     address: 'E WASHINGTON RD',
@@ -23237,12 +20810,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13100,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - TC DEED',
     taxed$: 13100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '16-108': {
     address: 'E WASHINGTON RD',
@@ -23256,12 +20827,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20700,
-    neighborhood: 'V',
     owner: 'KNOWLTON, GLENN R',
     taxed$: 20700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-109': {
     address: 'E WASHINGTON RD',
@@ -23275,12 +20844,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20500,
-    neighborhood: 'V',
     owner: 'BUCCINO, MATTHEW',
     taxed$: 20500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-110': {
     address: 'E WASHINGTON RD',
@@ -23294,12 +20861,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20700,
-    neighborhood: 'V',
     owner: 'LEMIRE, LOUIS P',
     taxed$: 20700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-113': {
     address: 'E WASHINGTON RD',
@@ -23313,12 +20878,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26000,
-    neighborhood: 'V',
     owner: 'YOUNG SR, MARK EDWIN',
     taxed$: 26000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-115': {
     address: 'E WASHINGTON RD',
@@ -23332,12 +20895,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1435,
-    neighborhood: 'X',
     owner: 'JOHNSON, JEFFREY',
     taxed$: 1435,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-120': {
     address: 'BEAVER BROOK RD',
@@ -23351,12 +20912,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25400,
-    neighborhood: 'V',
     owner: 'COYNE, EDWARD J',
     taxed$: 25400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-122': {
     address: '28 DOLE SCHOOL HOUSE RD',
@@ -23370,12 +20929,10 @@ export const LOTS = {
     ],
     cu$: 8400,
     land$: 44100,
-    neighborhood: 'D',
     owner: 'LAWRENCE, JOAN C',
     taxed$: 126200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-131-02': {
     address: 'BAILEY RD',
@@ -23389,12 +20946,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 28500,
-    neighborhood: 'V',
     owner: 'SNELL, SCOTT J',
     taxed$: 28500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-127': {
     address: '93 BAILEY RD',
@@ -23408,12 +20963,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 37448,
-    neighborhood: 'E',
     owner: 'DALTO, PATRICIA A',
     taxed$: 125148,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-131-01': {
     address: '102 BAILEY RD',
@@ -23427,12 +20980,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46600,
-    neighborhood: 'E',
     owner: 'SMITH, MICHAEL J',
     taxed$: 136400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-5': {
     address: 'KINGSBURY HILL RD',
@@ -23446,12 +20997,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2277,
-    neighborhood: 'X',
     owner: 'SKIPPER, SARA ANNE REV FAM TR',
     taxed$: 2277,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '17-6': {
     address: 'KINGSBURY HILL RD',
@@ -23465,12 +21014,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1570,
-    neighborhood: 'C',
     owner: 'SKIPPER, SARA ANNE REV FAM TR',
     taxed$: 1570,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '17-7': {
     address: 'KINGSBURY HILL RD',
@@ -23484,12 +21031,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 886,
-    neighborhood: 'C',
     owner: 'MATA, CRISTIAN',
     taxed$: 886,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '17-9': {
     address: '9 KINGSBURY HILL RD',
@@ -23503,12 +21048,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 39000,
-    neighborhood: 'C',
     owner: 'CARR, JEFFERY',
     taxed$: 121400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-13': {
     address: 'SO MAIN ST',
@@ -23522,12 +21065,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3502,
-    neighborhood: 'V',
     owner: 'WILLIAMS, ANN MARIE',
     taxed$: 3502,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '17-14': {
     address: 'SO MAIN ST',
@@ -23541,12 +21082,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1700,
-    neighborhood: 'V',
     owner: 'WRIGHT, JOHN P TRUST',
     taxed$: 1700,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '17-15': {
     address: 'SMITH POND RD',
@@ -23560,12 +21099,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 8514,
-    neighborhood: 'D',
     owner: 'NIVEN, RICHARD',
     taxed$: 10514,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-29': {
     address: 'WILD ACRE DR',
@@ -23579,12 +21116,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 51500,
-    neighborhood: 'D',
     owner: 'CARUSO, JESSIE',
     taxed$: 51500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-2': {
     address: 'JEFTS RD',
@@ -23598,12 +21133,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2201,
-    neighborhood: 'B',
     owner: 'MURDOCK, RICHARD W. TRUSTEE RE',
     taxed$: 2201,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '18-33': {
     address: 'JEFTS RD',
@@ -23617,12 +21150,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4897,
-    neighborhood: 'X',
     owner: 'STERLING QUALITY CLEANERS, INC',
     taxed$: 4897,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '22-22': {
     address: 'HALFMOON PD RD',
@@ -23636,12 +21167,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1800,
-    neighborhood: 'D',
     owner: 'BRITT, ANDREW W',
     taxed$: 1800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-38': {
     address: 'BAILEY RD',
@@ -23655,12 +21184,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17100,
-    neighborhood: 'W',
     owner: 'DEVLIN, NANCY L REVOC TRUST',
     taxed$: 17100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-126': {
     address: '238 WOODPECKER RD',
@@ -23674,12 +21201,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 33900,
-    neighborhood: 'D',
     owner: 'LAFFERTY, ANDREW AND KATHERINE',
     taxed$: 74500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-122': {
     address: 'FOX RUN RD',
@@ -23693,12 +21218,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 548,
-    neighborhood: 'C',
     owner: 'BUCHANAN, LORNE R J',
     taxed$: 548,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-128': {
     address: '192 WOODPECKER RD',
@@ -23712,12 +21235,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 37900,
-    neighborhood: 'D',
     owner: 'KILDAY JR, GORDON',
     taxed$: 54400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-149': {
     address: '530 LONG POND RD',
@@ -23731,12 +21252,10 @@ export const LOTS = {
     ],
     cu$: 3500,
     land$: 174500,
-    neighborhood: 'C',
     owner: 'GOODRICH, NANCY N.',
     taxed$: 411800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-169': {
     address: '700 HIGHLAND HAVEN RD',
@@ -23750,12 +21269,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 246400,
-    neighborhood: 'E',
     owner: 'TAGLIERI, WILLIAM C',
     taxed$: 325300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-172': {
     address: 'BEAVER BROOK RD',
@@ -23769,12 +21286,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 154400,
-    neighborhood: 'F',
     owner: 'COYNE, EDWARD J',
     taxed$: 154400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-178': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -23788,12 +21303,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25900,
-    neighborhood: 'D',
     owner: 'PIERCE, STEPHEN C',
     taxed$: 25900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-179': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -23807,12 +21320,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24400,
-    neighborhood: 'D',
     owner: 'HOLM, LORI A',
     taxed$: 24400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-185': {
     address: 'BEAVER BROOK RD',
@@ -23826,12 +21337,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36000,
-    neighborhood: 'G',
     owner: 'SMITH-DUFTON',
     taxed$: 36000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-1': {
     address: '1810 SO MAIN ST',
@@ -23845,12 +21354,10 @@ export const LOTS = {
     ],
     cu$: 16200,
     land$: 43612,
-    neighborhood: 'E',
     owner: 'NEUBACHER DECLARATION TRST',
     taxed$: 167312,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-7': {
     address: 'OLD COUNTY RD',
@@ -23864,12 +21371,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1570,
-    neighborhood: 'X',
     owner: 'MAINE, CRAIGEN L T REVC FAM TR',
     taxed$: 1570,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '21-10': {
     address: 'OLD COUNTY RD',
@@ -23883,12 +21388,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15800,
-    neighborhood: 'B',
     owner: 'BERNARDO, JOHN',
     taxed$: 15800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-15': {
     address: '25 DOLE SCHOOL HOUSE RD',
@@ -23902,12 +21405,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2553,
-    neighborhood: 'C',
     owner: 'BELL, CRAIG BARROW REVOC TRUST',
     taxed$: 2553,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '22-23': {
     address: 'HALFMOON PD RD',
@@ -23921,12 +21422,10 @@ export const LOTS = {
     ],
     cu$: 12300,
     land$: 18000,
-    neighborhood: 'D',
     owner: 'WASHINGTON HISTORICAL SOCIETY',
     taxed$: 30300,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '22-27': {
     address: 'HALFMOON PD RD',
@@ -23940,12 +21439,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9900,
-    neighborhood: 'D',
     owner: 'SUMSKI, LAWRENCE P',
     taxed$: 9900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-44': {
     address: '126 SYMONDS LN',
@@ -23959,12 +21456,10 @@ export const LOTS = {
     ],
     cu$: 3200,
     land$: 38000,
-    neighborhood: 'D',
     owner: 'BARKER, CARL',
     taxed$: 99200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-45': {
     address: '17 MILLEN POND RD',
@@ -23978,12 +21473,10 @@ export const LOTS = {
     ],
     cu$: 5100,
     land$: 41300,
-    neighborhood: 'E',
     owner: 'GLYNN, KATHLEEN M.',
     taxed$: 78900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-47': {
     address: 'FAXON HILL RD',
@@ -23997,12 +21490,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12700,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - CEMETERY',
     taxed$: 12700,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '22-48': {
     address: 'FAXON HILL RD',
@@ -24016,12 +21507,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 376,
-    neighborhood: 'D',
     owner: 'STAPLETON, JOSEPH BRIAN',
     taxed$: 376,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '22-55': {
     address: 'NO MAIN ST',
@@ -24035,12 +21524,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9400,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - WAYSD PK',
     taxed$: 9400,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '23-41': {
     address: 'BEAR HILL RD',
@@ -24054,12 +21541,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2051,
-    neighborhood: 'F',
     owner: 'SCHWARTZ REV FAM TRUST',
     taxed$: 2051,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '22-68': {
     address: 'NO MAIN ST',
@@ -24077,12 +21562,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 3200,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - BANDSTND',
     taxed$: 7900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '23-29': {
     address: 'OLD HILLSBORO RD',
@@ -24096,12 +21579,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1169,
-    neighborhood: 'D',
     owner: 'RUSSELL FAMILY TRUST',
     taxed$: 1169,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '23-30': {
     address: 'E WASHINGTON RD',
@@ -24115,12 +21596,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8900,
-    neighborhood: 'E',
     owner: 'MASLIN, ALBERT J. III',
     taxed$: 8900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-31': {
     address: 'E WASHINGTON RD',
@@ -24134,12 +21613,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2900,
-    neighborhood: 'E',
     owner: 'FACCHINA, BAZIL T',
     taxed$: 2900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-34': {
     address: 'E WASHINGTON RD',
@@ -24153,12 +21630,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12800,
-    neighborhood: 'F',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 12800,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '23-36': {
     address: 'BEAR HILL RD',
@@ -24172,12 +21647,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 300,
-    neighborhood: 'F',
     owner: 'HEAVY-LEEDHAM RECREATION TRUST',
     taxed$: 300,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '23-37': {
     address: 'BEAR HILL RD',
@@ -24191,12 +21664,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 345,
-    neighborhood: 'F',
     owner: 'HEAVY-LEEDHAM RECREATION TRUST',
     taxed$: 345,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '24-23': {
     address: 'VALLEY RD',
@@ -24210,12 +21681,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10800,
-    neighborhood: 'E',
     owner: 'AIESI, ROCCO P ESTATE',
     taxed$: 10800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-22': {
     address: 'VALLEY RD',
@@ -24229,12 +21698,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13600,
-    neighborhood: 'E',
     owner: 'CRANDALL, WILLIAM C',
     taxed$: 13600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-26': {
     address: 'VALLEY RD',
@@ -24248,12 +21715,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'E',
     owner: 'FITZGERALD, RANDY H',
     taxed$: 11600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-32': {
     address: 'VALLEY RD',
@@ -24267,12 +21732,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14600,
-    neighborhood: 'E',
     owner: 'GIBBS, BARRY',
     taxed$: 14600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-33': {
     address: 'VALLEY RD',
@@ -24286,12 +21749,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13200,
-    neighborhood: 'E',
     owner: 'CORDEIRO, PAUL',
     taxed$: 13200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-51': {
     address: '79 LOOKOUT POINT RD',
@@ -24305,12 +21766,10 @@ export const LOTS = {
     ],
     cu$: 3300,
     land$: 163000,
-    neighborhood: 'D',
     owner: 'OUELLETTE, DONALD L & DOLORES ',
     taxed$: 181500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-53': {
     address: '104 LOOKOUT POINT RD',
@@ -24324,12 +21783,10 @@ export const LOTS = {
     ],
     cu$: 7900,
     land$: 211100,
-    neighborhood: 'D',
     owner: 'BUECHEL, ALAN P',
     taxed$: 285400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-80': {
     address: 'BEECH WAY',
@@ -24343,12 +21800,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22000,
-    neighborhood: 'C',
     owner: 'KARACIUS, DELIA M',
     taxed$: 22000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-81': {
     address: 'BEECH WAY',
@@ -24362,12 +21817,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21800,
-    neighborhood: 'C',
     owner: 'KARACIUS, DELIA M',
     taxed$: 21800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-88': {
     address: 'BIRCH POINT WAY',
@@ -24381,12 +21834,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 104400,
-    neighborhood: 'C',
     owner: 'BARTEVIAN, PATRICIA REV TRUST',
     taxed$: 104400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-108': {
     address: 'COVE RD',
@@ -24400,12 +21851,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 119800,
-    neighborhood: 'C',
     owner: 'GINGRAS, NORMAN',
     taxed$: 186700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-120-02': {
     address: 'COVE RD',
@@ -24419,12 +21868,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11500,
-    neighborhood: 'C',
     owner: 'MANDARANO, ANTHONY',
     taxed$: 11500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-130': {
     address: '1 HERMIT ISLAND',
@@ -24438,12 +21885,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 91000,
-    neighborhood: 'A',
     owner: 'HERMIT ISLAND PROPERTY TRUST',
     taxed$: 109300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-131': {
     address: '1 MOODY ISLAND',
@@ -24457,12 +21902,10 @@ export const LOTS = {
     ],
     cu$: 7500,
     land$: 92200,
-    neighborhood: 'A',
     owner: 'GRIMES,  CRAIG H.',
     taxed$: 119900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-4': {
     address: 'VALLEY RD',
@@ -24476,12 +21919,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14600,
-    neighborhood: 'E',
     owner: 'DEMO, DARRIN',
     taxed$: 14600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-6': {
     address: 'VALLEY RD',
@@ -24495,12 +21936,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14800,
-    neighborhood: 'E',
     owner: 'MCNEILL, ROBERT J JR',
     taxed$: 14800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-8': {
     address: 'VALLEY RD',
@@ -24514,12 +21953,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15600,
-    neighborhood: 'E',
     owner: 'PEABODY, CHARLES L REV TRUST',
     taxed$: 15600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-15': {
     address: 'MCQUADE RD',
@@ -24533,12 +21970,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8800,
-    neighborhood: 'G',
     owner: 'HOULE, MATTHEW',
     taxed$: 8800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-15-01': {
     address: 'MCQUADE RD',
@@ -24552,12 +21987,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8300,
-    neighborhood: 'C',
     owner: 'WASHINGTON, TOWN OF - TC DEED',
     taxed$: 8300,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '25-34': {
     address: 'VALLEY RD',
@@ -24571,12 +22004,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'E',
     owner: 'LENZ, ALAN P',
     taxed$: 11600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-35': {
     address: 'VALLEY RD',
@@ -24590,12 +22021,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14000,
-    neighborhood: 'E',
     owner: 'KARPOWSKI JR,THOMAS',
     taxed$: 14000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-54': {
     address: 'VALLEY RD',
@@ -24609,12 +22038,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 118300,
-    neighborhood: 'E',
     owner: 'PROCTOR, WILLIAM J',
     taxed$: 118300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-56': {
     address: 'VALLEY RD',
@@ -24628,12 +22055,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'HIGHLAND LAKE ASSOC',
     taxed$: 0,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '25-56-01': {
     address: 'VALLEY RD',
@@ -24647,12 +22072,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'HIGHLAND LAKE ASSOC',
     taxed$: 0,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '25-100': {
     address: 'ISLAND OFF VALLEY RD',
@@ -24666,12 +22089,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 91100,
-    neighborhood: 'A',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 91100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-111': {
     address: 'VALLEY RD',
@@ -24685,12 +22106,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 107600,
-    neighborhood: 'E',
     owner: 'CHICOINE, ROGER G. JR & ANGELA',
     taxed$: 107600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '11-27': {
     address: 'LEMPSTER MT RD',
@@ -24704,12 +22123,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7947,
-    neighborhood: 'E',
     owner: 'TWEEDY, MEGHAN',
     taxed$: 7947,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '11-46': {
     address: 'MILLEN POND RD',
@@ -24723,12 +22140,10 @@ export const LOTS = {
     ],
     cu$: 10000,
     land$: 76338,
-    neighborhood: 'F',
     owner: 'MUGAR, CAROLYN J',
     taxed$: 86338,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-54': {
     address: '378 MCLAUGHLIN RD',
@@ -24742,12 +22157,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 184489,
-    neighborhood: 'E',
     owner: 'DAVIS, SPENCER W',
     taxed$: 338789,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-60': {
     address: '122 OLD HAYING RD',
@@ -24761,12 +22174,10 @@ export const LOTS = {
     ],
     cu$: 10700,
     land$: 213900,
-    neighborhood: 'F',
     owner: 'MANCHESTER, LAURA LINCOLN TRUS',
     taxed$: 322000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '19-6': {
     address: 'BARDEN POND RD',
@@ -24780,12 +22191,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 30500,
-    neighborhood: 'B',
     owner: 'ALLAN, COLLEEN CONLEY &JEFFREY',
     taxed$: 30500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '1-3': {
     address: 'NO MAIN ST',
@@ -24799,12 +22208,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 103400,
-    neighborhood: 'V',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 103400,
     usage: '500',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '4-5': {
     address: 'NO MAIN ST',
@@ -24818,12 +22225,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4044,
-    neighborhood: 'V',
     owner: 'CHAMBERLAIN, ELINOR M',
     taxed$: 4044,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-398': {
     address: 'OLD MARLOW RD',
@@ -24837,12 +22242,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4151,
-    neighborhood: 'A',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 4151,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '20-64': {
     address: 'E SHORE DR',
@@ -24856,12 +22259,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19700,
-    neighborhood: 'W',
     owner: 'HODGE, STEVEN GERARD',
     taxed$: 19700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '8-49': {
     address: 'LOVELL MT RD',
@@ -24875,12 +22276,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 479,
-    neighborhood: 'X',
     owner: 'BERNARDO, JOHN',
     taxed$: 479,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '9-1': {
     address: 'AYERS POND RD',
@@ -24894,12 +22293,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 301,
-    neighborhood: 'X',
     owner: 'MCGRANAHAN, DONALD REV TRUST',
     taxed$: 301,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '7-18': {
     address: 'WASHINGTON HGTS RD',
@@ -24913,12 +22310,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 20400,
-    neighborhood: 'A',
     owner: 'MCLARNEY, MICHAEL D',
     taxed$: 21400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-44': {
     address: 'NO MAIN ST',
@@ -24932,12 +22327,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23400,
-    neighborhood: 'V',
     owner: 'RODE, ALEXANDER F',
     taxed$: 23400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-452-01': {
     address: 'BRENDA LN',
@@ -24951,12 +22344,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43400,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 43400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '6-5': {
     address: 'AYERS POND RD',
@@ -24970,12 +22361,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 777,
-    neighborhood: 'X',
     owner: 'BIBBO, G EDWARD',
     taxed$: 777,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '6-6': {
     address: '960 AYERS POND RD',
@@ -24989,12 +22378,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 25200,
-    neighborhood: 'E',
     owner: 'WYMAN, BRIAN S',
     taxed$: 45200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-46': {
     address: 'NO MAIN ST',
@@ -25008,12 +22395,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7000,
-    neighborhood: 'E',
     owner: 'PRETA, JOSE C',
     taxed$: 7000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '6-9': {
     address: 'AYERS POND RD',
@@ -25027,12 +22412,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 918,
-    neighborhood: 'V',
     owner: 'BIBBO, G EDWARD',
     taxed$: 918,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '7-22': {
     address: '179 WASHINGTON HGTS',
@@ -25046,12 +22429,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21000,
-    neighborhood: 'A',
     owner: 'WALSH, MALLORY JACOB',
     taxed$: 21000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '1-1': {
     address: 'NO MAIN ST',
@@ -25065,12 +22446,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1660,
-    neighborhood: 'V',
     owner: 'GOSHEN HILL FARM, LLC',
     taxed$: 1660,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '1-2': {
     address: 'NO MAIN ST',
@@ -25084,12 +22463,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3210,
-    neighborhood: 'V',
     owner: 'GOSHEN FOREST, LLC',
     taxed$: 3210,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '2-1': {
     address: 'BACK MT RD',
@@ -25103,12 +22480,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2557,
-    neighborhood: 'X',
     owner: 'BUTLER MOUNTAIN HOLDINGS, LLC',
     taxed$: 2557,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '2-2': {
     address: 'BACK MT RD',
@@ -25122,12 +22497,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10848,
-    neighborhood: 'V',
     owner: 'MATA, CRISTIAN',
     taxed$: 10848,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '2-3': {
     address: 'BACK MT RD',
@@ -25141,12 +22514,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 76500,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 76500,
     usage: '501',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '6-1': {
     address: 'AYERS POND RD',
@@ -25160,12 +22531,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4940,
-    neighborhood: 'V',
     owner: 'BUTLER MOUNTAIN HOLDINGS, LLC',
     taxed$: 4940,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '3-1': {
     address: 'BACK MT RD',
@@ -25179,12 +22548,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 58100,
-    neighborhood: 'X',
     owner: 'MCDONALD, CHERYL FORTUNE',
     taxed$: 58100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '3-2': {
     address: 'BACK MT RD',
@@ -25198,12 +22565,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 570,
-    neighborhood: 'X',
     owner: 'BERNARDO, JOHN',
     taxed$: 570,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '3-3': {
     address: 'BACK MT RD',
@@ -25217,12 +22582,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2698,
-    neighborhood: 'V',
     owner: 'DICKINSON IV, LEON L',
     taxed$: 2698,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '4-1': {
     address: 'NO MAIN ST',
@@ -25236,12 +22599,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 126700,
-    neighborhood: 'V',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 126700,
     usage: '500',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '4-2': {
     address: '1915 NO MAIN ST',
@@ -25255,12 +22616,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 43500,
-    neighborhood: 'E',
     owner: 'WADLEIGH, MELVIN R',
     taxed$: 87600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '6-4': {
     address: 'AYERS POND RD',
@@ -25274,12 +22633,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 7560,
-    neighborhood: 'C',
     owner: 'DOLE EW TRUST',
     taxed$: 9060,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '4-3': {
     address: '1983 NO MAIN ST',
@@ -25293,12 +22650,10 @@ export const LOTS = {
     ],
     cu$: 6100,
     land$: 39979,
-    neighborhood: 'E',
     owner: 'WOLFE, TIMOTHY & STEPHANIE TR',
     taxed$: 247279,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '4-4': {
     address: 'NO MAIN ST',
@@ -25312,12 +22667,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 118700,
-    neighborhood: 'V',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 118700,
     usage: '500',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '7-12': {
     address: '1141 NO MAIN ST',
@@ -25331,12 +22684,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 50469,
-    neighborhood: 'C',
     owner: 'SAUNDERS, BRADFORD O',
     taxed$: 60069,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '7-14': {
     address: 'NO MAIN ST',
@@ -25350,12 +22701,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16500,
-    neighborhood: 'V',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 16500,
     usage: '400',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '7-9': {
     address: 'TWIN BRIDGE RD',
@@ -25369,12 +22718,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1232,
-    neighborhood: 'V',
     owner: 'GUNDERSEN, JAMES I',
     taxed$: 1232,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '4-6': {
     address: '100 PILLSBURY STATE PARK',
@@ -25388,12 +22735,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1920700,
-    neighborhood: 'V',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 1920700,
     usage: '500',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '8-17': {
     address: '1704 HALFMOON PD RD',
@@ -25407,12 +22752,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 33900,
-    neighborhood: 'D',
     owner: 'NADEAU, LIONEL',
     taxed$: 58600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '5-1': {
     address: 'HALFMOON PD RD',
@@ -25426,12 +22769,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21520,
-    neighborhood: 'V',
     owner: 'BUTLER MOUNTAIN HOLDINGS, LLC',
     taxed$: 21520,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '5-3': {
     address: 'AYERS POND RD',
@@ -25445,12 +22786,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9187,
-    neighborhood: 'X',
     owner: 'MATA, CRISTIAN',
     taxed$: 9187,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '6-8': {
     address: '919 AYERS POND RD',
@@ -25464,12 +22803,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1924,
-    neighborhood: 'V',
     owner: 'DOLE EW TRUST',
     taxed$: 1924,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '7-1': {
     address: 'NO MAIN ST',
@@ -25483,12 +22820,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9791,
-    neighborhood: 'V',
     owner: 'CHAMBERLAIN, ELINOR M',
     taxed$: 9791,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '7-7-02': {
     address: 'LEMPSTER MT RD',
@@ -25502,12 +22837,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5380,
-    neighborhood: 'V',
     owner: 'HUNT II, CHARLES M',
     taxed$: 5380,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '7-33': {
     address: 'WASHINGTON HGTS RD',
@@ -25521,12 +22854,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 401,
-    neighborhood: 'A',
     owner: 'WILSON, RAYMOND L',
     taxed$: 401,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '7-41': {
     address: 'WASHINGTON HGTS RD',
@@ -25540,12 +22871,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23600,
-    neighborhood: 'A',
     owner: 'MERVA, JAN',
     taxed$: 23600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-1': {
     address: 'HALFMOON PD RD',
@@ -25559,12 +22888,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18248,
-    neighborhood: 'V',
     owner: 'JONES, ANTHONY A',
     taxed$: 18248,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '8-30': {
     address: 'MARTIN RD',
@@ -25578,12 +22905,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1118,
-    neighborhood: 'C',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 1118,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '8-31': {
     address: 'MARTIN RD',
@@ -25597,12 +22922,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4332,
-    neighborhood: 'X',
     owner: 'BUTLER MOUNTAIN HOLDINGS, LLC',
     taxed$: 4332,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '8-32': {
     address: 'MARTIN RD',
@@ -25616,12 +22939,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 944,
-    neighborhood: 'V',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 944,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '8-39': {
     address: '134 MARTIN RD',
@@ -25635,12 +22956,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 38600,
-    neighborhood: 'C',
     owner: 'BROADLEY, ASHLEY MARIE',
     taxed$: 97700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-40': {
     address: '112 MARTIN RD',
@@ -25654,12 +22973,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19714,
-    neighborhood: 'V',
     owner: 'MCHALE, FREDRICK',
     taxed$: 19714,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '8-41': {
     address: 'LOVELL MT RD',
@@ -25673,12 +22990,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 73300,
-    neighborhood: 'X',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 73300,
     usage: '500',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '8-42': {
     address: 'LOVELL MT RD',
@@ -25692,12 +23007,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 136200,
-    neighborhood: 'C',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 136200,
     usage: '500',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '8-43': {
     address: 'LOVELL MT RD',
@@ -25711,12 +23024,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 6382,
-    neighborhood: 'C',
     owner: 'KRUSE, KATRINA',
     taxed$: 6382,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '9-2': {
     address: 'AYERS POND RD',
@@ -25730,12 +23041,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 646,
-    neighborhood: 'X',
     owner: 'MATA, CRISTIAN',
     taxed$: 646,
     usage: '190',
-    use: 'CUWL',
-    zone: '02'
+    use: 'CUWL'
   },
   '9-3': {
     address: 'AYERS POND RD',
@@ -25749,12 +23058,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 467,
-    neighborhood: 'X',
     owner: 'MCGRANAHAN, DONALD REV TRUST',
     taxed$: 467,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '9-11': {
     address: 'DEER VALLEY RD',
@@ -25768,12 +23075,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18900,
-    neighborhood: 'V',
     owner: 'LEIGHTON, RICHARD O',
     taxed$: 18900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-33': {
     address: 'LOVELL MT RD',
@@ -25787,12 +23092,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10100,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 10100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '9-34': {
     address: 'LOVELL MT RD',
@@ -25806,12 +23109,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 781,
-    neighborhood: 'D',
     owner: 'BLAKNEY, KAREN A',
     taxed$: 781,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-35': {
     address: 'SANDY KNOLLS RD',
@@ -25825,12 +23126,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 51000,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - DPWH',
     taxed$: 53100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '9-47': {
     address: 'LOVELL MT RD',
@@ -25844,12 +23143,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23100,
-    neighborhood: 'V',
     owner: 'ECCARD, RYAN G',
     taxed$: 23100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-48': {
     address: 'LOVELL MT RD',
@@ -25863,12 +23160,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21400,
-    neighborhood: 'V',
     owner: 'GALLAGHER, BETH C',
     taxed$: 21400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-49': {
     address: 'SUGAR HOUSE RD',
@@ -25882,12 +23177,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20200,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - DPWH',
     taxed$: 20200,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '9-52': {
     address: 'SUGAR HOUSE RD',
@@ -25901,12 +23194,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20500,
-    neighborhood: 'V',
     owner: 'GILLETT, JOSEPH',
     taxed$: 20500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-56': {
     address: 'SUGAR HOUSE RD',
@@ -25920,12 +23211,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 352,
-    neighborhood: 'V',
     owner: 'BLAKNEY, JOHN G, LOIS, & SUSAN',
     taxed$: 352,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '9-57': {
     address: 'SANDY KNOLLS RD',
@@ -25939,12 +23228,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23200,
-    neighborhood: 'V',
     owner: 'CIRIELLO, MARGARET M',
     taxed$: 23200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-58': {
     address: '514 AYERS POND RD',
@@ -25958,12 +23245,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23400,
-    neighborhood: 'V',
     owner: 'GARVIN, GREG AND KRISTEN',
     taxed$: 23400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-60': {
     address: 'DEER VALLEY RD',
@@ -25977,12 +23262,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 566,
-    neighborhood: 'V',
     owner: 'ROSE, JEFFREY D',
     taxed$: 566,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '9-62': {
     address: 'AYERS POND RD',
@@ -25996,12 +23279,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33,
-    neighborhood: 'V',
     owner: 'GARVIN, MARIANNE AND JAMES',
     taxed$: 33,
     usage: '190',
-    use: 'CUWL',
-    zone: '02'
+    use: 'CUWL'
   },
   '9-65': {
     address: 'LOVELL MT RD',
@@ -26015,12 +23296,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1282,
-    neighborhood: 'V',
     owner: 'ECCARDT FARMS INC',
     taxed$: 1282,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '9-66': {
     address: 'ULRICH RD',
@@ -26034,12 +23313,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 775,
-    neighborhood: 'X',
     owner: 'ECCARDT FARMS INC',
     taxed$: 775,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '9-67': {
     address: 'BRADFORD SPRINGS RD',
@@ -26053,12 +23330,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 282,
-    neighborhood: 'V',
     owner: 'ROSE, JEFFREY D',
     taxed$: 282,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-1': {
     address: '70 SISTERS WAY',
@@ -26072,12 +23347,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 91765,
-    neighborhood: 'E',
     owner: 'GRIFFITH-DOYLE REALTY TRUST',
     taxed$: 231965,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-2': {
     address: 'SISTERS WAY',
@@ -26091,12 +23364,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3143,
-    neighborhood: 'X',
     owner: 'GRIFFITH-DOYLE REALTY TRUST',
     taxed$: 3143,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '10-4': {
     address: 'ASHUELOT DR',
@@ -26110,12 +23381,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 61400,
-    neighborhood: 'X',
     owner: 'GOBIN, WALTER C',
     taxed$: 61400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-5': {
     address: 'OLD MARLOW RD',
@@ -26129,12 +23398,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 134800,
-    neighborhood: 'X',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 134800,
     usage: '501',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '10-6': {
     address: 'ASHUELOT DR',
@@ -26148,12 +23415,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5745,
-    neighborhood: 'V',
     owner: 'BONO,JEREMY L & JACQUELINE A',
     taxed$: 5745,
     usage: '190',
-    use: 'CUMO',
-    zone: '02'
+    use: 'CUMO'
   },
   '10-8': {
     address: 'ASHUELOT DR',
@@ -26167,12 +23432,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45000,
-    neighborhood: 'V',
     owner: 'WHARTON, RICHARD M',
     taxed$: 45000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-12': {
     address: 'ASHUELOT DR',
@@ -26186,12 +23449,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 44600,
-    neighborhood: 'V',
     owner: 'ARBOREAL OASIS, LLC',
     taxed$: 44600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-20': {
     address: 'ASHUELOT DR',
@@ -26205,12 +23466,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 95400,
-    neighborhood: 'V',
     owner: 'ZIEGLER, ERIC',
     taxed$: 95400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-21': {
     address: 'ASHUELOT DR',
@@ -26224,12 +23483,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 95200,
-    neighborhood: 'V',
     owner: 'PRENTISS, TIMOTHY S',
     taxed$: 95200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '10-38': {
     address: 'ASHUELOT DR',
@@ -26243,12 +23500,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 100900,
-    neighborhood: 'D',
     owner: 'CAMPENELLA, MICHAEL L',
     taxed$: 100900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-39': {
     address: 'ASHUELOT DR',
@@ -26262,12 +23517,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 101200,
-    neighborhood: 'D',
     owner: 'BARKIE, DAVID',
     taxed$: 101200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-41': {
     address: 'TAYLOR CIR',
@@ -26281,12 +23534,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19600,
-    neighborhood: 'V',
     owner: 'MAGOUN, PETER',
     taxed$: 19600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-43': {
     address: 'TAYLOR CIR',
@@ -26300,12 +23551,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10300,
-    neighborhood: 'U',
     owner: 'DEVLIN, JAMES A',
     taxed$: 10300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-44': {
     address: 'TAYLOR CIR',
@@ -26319,12 +23568,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22300,
-    neighborhood: 'V',
     owner: 'DEVLIN, JAMES A',
     taxed$: 22300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-47': {
     address: 'ASHUELOT DR',
@@ -26338,12 +23585,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10500,
-    neighborhood: 'U',
     owner: 'ROOMES, JASON C',
     taxed$: 10500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-48': {
     address: 'ASHUELOT DR',
@@ -26357,12 +23602,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23800,
-    neighborhood: 'D',
     owner: 'RHAN, FAMILY REV TRUST',
     taxed$: 23800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-50': {
     address: 'ASHUELOT DR',
@@ -26376,12 +23619,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 27300,
-    neighborhood: 'D',
     owner: 'POOPOR, JEFFREY F',
     taxed$: 27300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-55': {
     address: 'ASHUELOT DR',
@@ -26395,12 +23636,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33000,
-    neighborhood: 'D',
     owner: 'REYNOLDS, JOSHUA',
     taxed$: 33000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-56': {
     address: 'ASHUELOT DR',
@@ -26414,12 +23653,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23700,
-    neighborhood: 'D',
     owner: 'REYNOLDS, JOSHUA',
     taxed$: 23700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-58': {
     address: 'ASHUELOT DR',
@@ -26433,12 +23670,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10000,
-    neighborhood: 'U',
     owner: 'LEIBRANDT, JEREMIAH K',
     taxed$: 10000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-59': {
     address: 'ASHUELOT DR',
@@ -26452,12 +23687,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23800,
-    neighborhood: 'D',
     owner: 'MELENDEZ, CRUZ EDWARD',
     taxed$: 23800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-453': {
     address: '76 ASHUELOT POND',
@@ -26471,12 +23704,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 39400,
-    neighborhood: 'A',
     owner: 'SPAULDING, CHRISTOPHER S',
     taxed$: 59200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '10-61': {
     address: 'ASHUELOT DR',
@@ -26490,12 +23721,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36900,
-    neighborhood: 'D',
     owner: 'DINGMAN, BRIAN J',
     taxed$: 36900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '10-62': {
     address: 'ASHUELOT DR',
@@ -26509,12 +23738,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5200,
-    neighborhood: 'D',
     owner: 'ARBOREAL OASIS, LLC',
     taxed$: 5200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '11-6': {
     address: 'OLD BURBANK RD',
@@ -26528,12 +23755,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 171,
-    neighborhood: 'X',
     owner: 'GUERIN, ROBERT L',
     taxed$: 171,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '11-7': {
     address: 'OLD BURBANK RD',
@@ -26547,12 +23772,10 @@ export const LOTS = {
     ],
     cu$: 7200,
     land$: 25500,
-    neighborhood: 'V',
     owner: 'OLIVEIRA, GILBERT L',
     taxed$: 32700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-10': {
     address: 'OLD MARLOW RD',
@@ -26566,12 +23789,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7810,
-    neighborhood: 'V',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 7810,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '11-15': {
     address: 'OLD MARLOW RD',
@@ -26585,12 +23806,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5297,
-    neighborhood: 'V',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 5297,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '11-17': {
     address: '468 OLD MARLOW RD',
@@ -26604,12 +23823,10 @@ export const LOTS = {
     ],
     cu$: 8500,
     land$: 57000,
-    neighborhood: 'D',
     owner: 'BRIGHTON, JOHN AND SUSAN',
     taxed$: 230300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-38-01': {
     address: '277 OLD MARLOW RD',
@@ -26623,12 +23840,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46600,
-    neighborhood: 'E',
     owner: 'ROYCE, WILLIAM G',
     taxed$: 89900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-18': {
     address: '426 OLD MARLOW RD',
@@ -26642,12 +23857,10 @@ export const LOTS = {
     ],
     cu$: 203000,
     land$: 197960,
-    neighborhood: 'E',
     owner: 'MACNEIL FARM',
     taxed$: 740160,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-20': {
     address: '190 OLD MARLOW RD',
@@ -26661,12 +23874,10 @@ export const LOTS = {
     ],
     cu$: 14400,
     land$: 45500,
-    neighborhood: 'E',
     owner: 'CLARK, W ROBERT',
     taxed$: 185600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-21': {
     address: '146 OLD MARLOW RD',
@@ -26680,12 +23891,10 @@ export const LOTS = {
     ],
     cu$: 9700,
     land$: 44900,
-    neighborhood: 'E',
     owner: 'HENDRICKSON, YVONNE LIVING TRU',
     taxed$: 131500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-28': {
     address: '419 NO MAIN ST',
@@ -26699,12 +23908,10 @@ export const LOTS = {
     ],
     cu$: 14700,
     land$: 36700,
-    neighborhood: 'E',
     owner: 'FREDRICKSON-FEZISHIN, KARIN',
     taxed$: 153400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-37': {
     address: '141 OLD MARLOW RD',
@@ -26718,12 +23925,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 36377,
-    neighborhood: 'E',
     owner: 'KARLBERG, KENNETH P & CARL R',
     taxed$: 62777,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-38': {
     address: 'OLD MARLOW RD',
@@ -26737,12 +23942,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1271,
-    neighborhood: 'V',
     owner: 'DRESSEL, CYNTHIA D.',
     taxed$: 1271,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '11-51': {
     address: 'MILLEN POND RD',
@@ -26756,12 +23959,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12000,
-    neighborhood: 'X',
     owner: 'SNYDER, DIANE E',
     taxed$: 12000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-54': {
     address: 'MILLEN POND RD',
@@ -26775,12 +23976,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 52200,
-    neighborhood: 'F',
     owner: 'BLACKWOOD,ROBERT K JR&SUSAN M',
     taxed$: 52200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-56': {
     address: '699 MILLEN POND RD',
@@ -26794,12 +23993,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 166400,
-    neighborhood: 'F',
     owner: 'SNYDER, JERRY A',
     taxed$: 215700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-57': {
     address: '689 MILLEN POND RD',
@@ -26813,12 +24010,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 170700,
-    neighborhood: 'F',
     owner: 'WINDSOR CIRCUIT, LTD',
     taxed$: 211100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-58': {
     address: 'MILLEN POND RD',
@@ -26832,12 +24027,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 40600,
-    neighborhood: 'F',
     owner: 'MINGARY, LLC',
     taxed$: 40600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-59': {
     address: '685 MILLEN POND RD',
@@ -26851,12 +24044,10 @@ export const LOTS = {
     ],
     cu$: 4400,
     land$: 165200,
-    neighborhood: 'F',
     owner: 'WALSH, SUSAN ELISABETH',
     taxed$: 219300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-60': {
     address: 'MILLEN POND RD',
@@ -26870,12 +24061,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 78000,
-    neighborhood: 'F',
     owner: 'KERN, AUDREY MARGARET TRUST',
     taxed$: 78000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-65': {
     address: '611 MILLEN POND RD',
@@ -26889,12 +24078,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 0,
-    neighborhood: 'F',
     owner: 'MUGAR, CAROLYN J',
     taxed$: 124500,
     usage: '110',
-    use: 'R1W',
-    zone: ''
+    use: 'R1W'
   },
   '11-66': {
     address: 'MILLEN POND RD',
@@ -26908,12 +24095,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 77900,
-    neighborhood: 'F',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 77900,
     usage: '400',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '11-69-01': {
     address: 'FAXON HILL RD',
@@ -26927,12 +24112,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 138,
-    neighborhood: 'V',
     owner: 'BACHAND, YVONNE',
     taxed$: 138,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '11-69-02': {
     address: 'FAXON HILL RD',
@@ -26946,12 +24129,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 141,
-    neighborhood: 'V',
     owner: 'BACHAND, YVONNE',
     taxed$: 141,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '14-98': {
     address: 'JEFFERSON DR',
@@ -26965,12 +24146,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10900,
-    neighborhood: 'U',
     owner: 'SALAZAR, GEORGE E',
     taxed$: 10900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '11-80': {
     address: '127 FARNSWORTH HILL RD',
@@ -26984,12 +24163,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11307,
-    neighborhood: 'V',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 11307,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '11-83': {
     address: '639 MILLEN POND RD',
@@ -27003,12 +24180,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 118300,
-    neighborhood: 'F',
     owner: 'MUGAR, CAROLYN J',
     taxed$: 179400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '11-87': {
     address: 'OLD MARLOW RD',
@@ -27022,12 +24197,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1600,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - TC DEED',
     taxed$: 1600,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-1': {
     address: 'NO MAIN ST',
@@ -27041,12 +24214,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3004,
-    neighborhood: 'X',
     owner: 'CHESHIRE PROPERTIES, LLC',
     taxed$: 3004,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '12-17': {
     address: 'SNOW RD',
@@ -27060,12 +24231,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 26900,
-    neighborhood: 'F',
     owner: 'ANDREWS, CAROL K',
     taxed$: 27900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-18': {
     address: '78 SNOW RD',
@@ -27079,12 +24248,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 151300,
-    neighborhood: 'G',
     owner: 'HAYNES, JANET F',
     taxed$: 190900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-2-01': {
     address: 'HALFMOON PD RD',
@@ -27098,12 +24265,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 21374,
-    neighborhood: 'F',
     owner: 'SHIFFLETT, AMBER J.',
     taxed$: 26274,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-10': {
     address: '507 HALFMOON PD RD',
@@ -27117,12 +24282,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 41700,
-    neighborhood: 'E',
     owner: 'DANFORTH, DEAN A.',
     taxed$: 105100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-15': {
     address: 'SNOW RD',
@@ -27136,12 +24299,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21800,
-    neighborhood: 'V',
     owner: 'HOWE, JOSHUAH RYAN',
     taxed$: 21800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-16': {
     address: '41 SNOW RD',
@@ -27155,12 +24316,10 @@ export const LOTS = {
     ],
     cu$: 3200,
     land$: 44900,
-    neighborhood: 'F',
     owner: 'TEWKSBURY, JOHN B',
     taxed$: 123800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-120-01': {
     address: 'COVE RD',
@@ -27174,12 +24333,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11500,
-    neighborhood: 'C',
     owner: 'DEVINE, JAMES',
     taxed$: 11500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-19': {
     address: '70 SNOW RD',
@@ -27193,12 +24350,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 160100,
-    neighborhood: 'G',
     owner: 'BERGERON LIVING TRUST, MABLE B',
     taxed$: 198500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-20': {
     address: '56 SNOW RD',
@@ -27212,12 +24367,10 @@ export const LOTS = {
     ],
     cu$: 7100,
     land$: 142600,
-    neighborhood: 'G',
     owner: 'ANDREWS, CAROL',
     taxed$: 239500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-21': {
     address: '42 SNOW RD',
@@ -27231,12 +24384,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 130400,
-    neighborhood: 'G',
     owner: 'FATKIN, HARRY W. FAMILY TRUST',
     taxed$: 187100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-22': {
     address: '36 SNOW RD',
@@ -27250,12 +24401,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 135100,
-    neighborhood: 'G',
     owner: 'HOWE, JOSHUAH RYAN',
     taxed$: 169700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-23': {
     address: '20 SNOW RD',
@@ -27269,12 +24418,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 134000,
-    neighborhood: 'G',
     owner: 'MORRIS, ANDREA J',
     taxed$: 175600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-24': {
     address: '14 SNOW RD',
@@ -27288,12 +24435,10 @@ export const LOTS = {
     ],
     cu$: 4500,
     land$: 145700,
-    neighborhood: 'G',
     owner: 'WPF, LLC',
     taxed$: 212900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-27': {
     address: '727 HALFMOON PD RD',
@@ -27307,12 +24452,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 122800,
-    neighborhood: 'G',
     owner: 'GARRITY, DANIEL L',
     taxed$: 163400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-28': {
     address: 'HALFMOON PD RD',
@@ -27326,12 +24469,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 79100,
-    neighborhood: 'V',
     owner: 'LAPRADE, NORMAN J',
     taxed$: 79100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-40': {
     address: '696 HALFMOON PD RD',
@@ -27345,12 +24486,10 @@ export const LOTS = {
     ],
     cu$: 21600,
     land$: 50400,
-    neighborhood: 'G',
     owner: 'FIDLER, DAVID C.',
     taxed$: 144400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-45': {
     address: 'HALFMOON PD RD',
@@ -27364,12 +24503,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 6300,
-    neighborhood: 'V',
     owner: 'BUFFUM, STANLEY GEORGE',
     taxed$: 6300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-46': {
     address: 'HALFMOON PD RD',
@@ -27383,12 +24520,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3615,
-    neighborhood: 'V',
     owner: 'VIBBER, DAVID E',
     taxed$: 3615,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-47': {
     address: '390 HALFMOON PD RD',
@@ -27402,12 +24537,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 29980,
-    neighborhood: 'V',
     owner: 'HALVE MAAN, LLC',
     taxed$: 29980,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-57': {
     address: '105 ISLAND POND',
@@ -27421,12 +24554,10 @@ export const LOTS = {
     ],
     cu$: 4000,
     land$: 134600,
-    neighborhood: 'C',
     owner: 'ALLEN, LAWRENCE R',
     taxed$: 204100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-58': {
     address: '129 ISLAND POND',
@@ -27440,12 +24571,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 130392,
-    neighborhood: 'C',
     owner: 'ALLEN, LAWRENCE R',
     taxed$: 140492,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-59': {
     address: '147 ISLAND POND',
@@ -27459,12 +24588,10 @@ export const LOTS = {
     ],
     cu$: 8100,
     land$: 132190,
-    neighborhood: 'C',
     owner: 'ALLEN, LAWRENCE R',
     taxed$: 195890,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-120': {
     address: 'WASHINGTON DR',
@@ -27478,12 +24605,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 217,
-    neighborhood: 'V',
     owner: 'JOHNSON, JEFFREY',
     taxed$: 217,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-49': {
     address: '294 MCLAUGHLIN RD',
@@ -27497,12 +24622,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 187125,
-    neighborhood: 'C',
     owner: 'MCLAUGHLIN, JEFFREY  REV TRUST',
     taxed$: 282925,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-50': {
     address: '94 MCLAUGHLIN RD',
@@ -27516,12 +24639,10 @@ export const LOTS = {
     ],
     cu$: 20200,
     land$: 212000,
-    neighborhood: 'E',
     owner: 'JOHNSON, DALE R. & KAREN V. RE',
     taxed$: 384100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-51': {
     address: '11 MCLAUGHLIN RD',
@@ -27535,12 +24656,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 111300,
-    neighborhood: 'A',
     owner: 'WHITING, THOMAS A',
     taxed$: 146900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-52': {
     address: '96 MCLAUGHLIN RD',
@@ -27554,12 +24673,10 @@ export const LOTS = {
     ],
     cu$: 15800,
     land$: 215100,
-    neighborhood: 'F',
     owner: 'BLISS FAMILY 2014 TRUST',
     taxed$: 264600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-53': {
     address: 'ISLAND POND',
@@ -27573,12 +24690,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 84700,
-    neighborhood: 'V',
     owner: 'WOOD, JOAN H',
     taxed$: 84700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-55': {
     address: '379 MCLAUGHLIN RD',
@@ -27592,12 +24707,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 181073,
-    neighborhood: 'C',
     owner: 'NEVILLE LIVING TRUST',
     taxed$: 252573,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-60': {
     address: '221 ISLAND POND',
@@ -27611,12 +24724,10 @@ export const LOTS = {
     ],
     cu$: 6200,
     land$: 226800,
-    neighborhood: 'C',
     owner: 'CRAVEN, CHRISTOPHER & KELLY',
     taxed$: 264600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-61': {
     address: '247 ISLAND POND',
@@ -27630,12 +24741,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'C',
     owner: 'CHACE,JODIE ET AL',
     taxed$: 23300,
     usage: '110',
-    use: 'R1W',
-    zone: ''
+    use: 'R1W'
   },
   '12-62': {
     address: 'LOVELL MT RD',
@@ -27649,12 +24758,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1776,
-    neighborhood: 'C',
     owner: 'CARPENTER REALTY TRUST',
     taxed$: 1776,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '12-64': {
     address: '856 WASHINGTON DR',
@@ -27668,12 +24775,10 @@ export const LOTS = {
     ],
     cu$: 3500,
     land$: 158300,
-    neighborhood: 'G',
     owner: 'REILLY, PAUL & DIANE',
     taxed$: 221700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-65': {
     address: 'WASHINGTON DR',
@@ -27687,12 +24792,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'WASHINGTON LAKE ASSOCIATION',
     taxed$: 0,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '12-119': {
     address: 'WASHINGTON DR',
@@ -27706,12 +24809,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 153,
-    neighborhood: 'V',
     owner: 'JOHNSON, JEFFREY',
     taxed$: 153,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-121': {
     address: 'WASHINGTON DR',
@@ -27725,12 +24826,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 162,
-    neighborhood: 'V',
     owner: 'JOHNSON, JEFFREY',
     taxed$: 162,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-122': {
     address: 'WASHINGTON DR',
@@ -27744,12 +24843,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 257,
-    neighborhood: 'V',
     owner: 'JOHNSON, JEFFREY',
     taxed$: 257,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-153-01': {
     address: '155 WINDRUN RD',
@@ -27763,12 +24860,10 @@ export const LOTS = {
     ],
     cu$: 41800,
     land$: 321257,
-    neighborhood: 'G',
     owner: 'DICARLO, JAMES J',
     taxed$: 823957,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-124': {
     address: 'E WASHINGTON RD',
@@ -27782,12 +24877,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 893,
-    neighborhood: 'V',
     owner: 'BEANE, PETER E',
     taxed$: 893,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '12-125': {
     address: 'E WASHINGTON RD',
@@ -27801,12 +24894,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 32600,
-    neighborhood: 'V',
     owner: 'FITZMORRIS, TRACEY K & DAVID R',
     taxed$: 32600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-126': {
     address: 'E WASHINGTON RD',
@@ -27820,12 +24911,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36600,
-    neighborhood: 'V',
     owner: 'FITZMORRIS, TRACEY K & DAVID R',
     taxed$: 36600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-128': {
     address: 'WASHINGTON DR',
@@ -27839,12 +24928,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33300,
-    neighborhood: 'V',
     owner: 'GEBO LIVING TRUST',
     taxed$: 33300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '12-139': {
     address: 'WASHINGTON DR',
@@ -27858,12 +24945,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 32800,
-    neighborhood: 'V',
     owner: 'BODNAR, BERTRAM J',
     taxed$: 32800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-151': {
     address: 'WASHINGTON DR',
@@ -27877,12 +24962,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 119,
-    neighborhood: 'V',
     owner: 'KITTREDGE, KAREN J',
     taxed$: 119,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '12-152': {
     address: 'WASHINGTON DR',
@@ -27896,12 +24979,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3691,
-    neighborhood: 'X',
     owner: 'KAPTEYN, PAUL C',
     taxed$: 3691,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '12-154': {
     address: '56 ISLAND POND BOAT ACC',
@@ -27915,12 +24996,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 159824,
-    neighborhood: 'E',
     owner: 'HIGHWOODS TRUST',
     taxed$: 189124,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-161': {
     address: 'ISLAND POND RD',
@@ -27934,12 +25013,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 22300,
-    neighborhood: 'D',
     owner: 'HUNT, RUSSELL K & CHARLES M',
     taxed$: 23600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-163': {
     address: 'ISLAND POND RD',
@@ -27953,12 +25030,10 @@ export const LOTS = {
     ],
     cu$: 4500,
     land$: 26000,
-    neighborhood: 'D',
     owner: 'CRAVEN, CHRISTOPHER & KELLY',
     taxed$: 30500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '13-12': {
     address: 'FIELDS WAY',
@@ -27972,12 +25047,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 77,
-    neighborhood: 'V',
     owner: 'GELATT FAMILY TRUST 2011',
     taxed$: 77,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '12-165': {
     address: 'ISLAND POND RD',
@@ -27991,12 +25064,10 @@ export const LOTS = {
     ],
     cu$: 16700,
     land$: 25300,
-    neighborhood: 'C',
     owner: 'BOND, EMERY ALLEN',
     taxed$: 42000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-166': {
     address: '105 ISLAND POND RD',
@@ -28010,12 +25081,10 @@ export const LOTS = {
     ],
     cu$: 11900,
     land$: 24700,
-    neighborhood: 'C',
     owner: 'ALLEN, LAWRENCE R',
     taxed$: 36600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-167': {
     address: '56 ISLAND POND RD',
@@ -28029,12 +25098,10 @@ export const LOTS = {
     ],
     cu$: 9400,
     land$: 25300,
-    neighborhood: 'C',
     owner: 'HIGHWOODS TRUST',
     taxed$: 34700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-168': {
     address: 'ISLAND POND RD',
@@ -28048,12 +25115,10 @@ export const LOTS = {
     ],
     cu$: 7500,
     land$: 25300,
-    neighborhood: 'C',
     owner: 'PARKER, JEFFREY S REVOCABLE TR',
     taxed$: 32800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-171': {
     address: 'ISLAND POND RD',
@@ -28067,12 +25132,10 @@ export const LOTS = {
     ],
     cu$: 5900,
     land$: 23300,
-    neighborhood: 'C',
     owner: 'FRANCE, DAVID',
     taxed$: 29200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-172': {
     address: '125 ISLAND POND RD',
@@ -28086,12 +25149,10 @@ export const LOTS = {
     ],
     cu$: 13100,
     land$: 36000,
-    neighborhood: 'C',
     owner: 'OEHLSCHLAEGER, F K & SE TRUST',
     taxed$: 49100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-173': {
     address: 'ISLAND POND RD',
@@ -28105,12 +25166,10 @@ export const LOTS = {
     ],
     cu$: 5700,
     land$: 24700,
-    neighborhood: 'C',
     owner: 'PARKER, JEFFREY S REVOCABLE TR',
     taxed$: 30400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-181': {
     address: 'VALLEY RD',
@@ -28124,12 +25183,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1059,
-    neighborhood: 'V',
     owner: 'GOLTSOV, GREGORY V',
     taxed$: 1059,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '12-181-04': {
     address: 'SO MAIN ST',
@@ -28143,12 +25200,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4700,
-    neighborhood: 'E',
     owner: 'LONGVAL, MARC C',
     taxed$: 4700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-191': {
     address: '749 HALFMOON PD RD',
@@ -28162,12 +25217,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 92500,
-    neighborhood: 'A',
     owner: 'MADIGAN,SEAN',
     taxed$: 103300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-192': {
     address: 'MILL ST',
@@ -28181,12 +25234,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9,
-    neighborhood: 'D',
     owner: 'YEATON, H & E REV TRUST',
     taxed$: 9,
     usage: '190',
-    use: 'CUWL',
-    zone: '02'
+    use: 'CUWL'
   },
   '12-189': {
     address: '1 PETERSON ISLAND',
@@ -28200,12 +25251,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 80800,
-    neighborhood: 'A',
     owner: 'PETERSON REAL ESTATE TRUST',
     taxed$: 86200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-183': {
     address: 'SO MAIN ST',
@@ -28219,12 +25268,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5600,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - CONSERVA',
     taxed$: 5600,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-184': {
     address: 'HALFMOON PD RD',
@@ -28238,12 +25285,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5900,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 5900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-186': {
     address: 'HALFMOON PD RD',
@@ -28257,12 +25302,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5900,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 5900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-188': {
     address: '1 SPENCERS ISLAND',
@@ -28276,12 +25319,10 @@ export const LOTS = {
     ],
     cu$: 7800,
     land$: 167000,
-    neighborhood: 'A',
     owner: 'PARKER, JEFFREY S REVOCABLE TR',
     taxed$: 208200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-190': {
     address: '1 OEHLSCHLAEGER ISLAND',
@@ -28295,12 +25336,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 108100,
-    neighborhood: 'A',
     owner: 'OEHLSCHLAEGER, F K & SE TRUST',
     taxed$: 159200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-193': {
     address: 'MILL ST',
@@ -28314,12 +25353,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9400,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 9400,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '12-196': {
     address: 'HALFMOON PD RD',
@@ -28333,12 +25370,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 67500,
-    neighborhood: 'E',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 67500,
     usage: '400',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '12-197': {
     address: 'ISLAND POND RD',
@@ -28352,12 +25387,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34000,
-    neighborhood: 'V',
     owner: 'PARLOW, MARK E',
     taxed$: 34000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '12-199': {
     address: 'HALFMOON PD RD',
@@ -28371,12 +25404,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 788,
-    neighborhood: 'V',
     owner: 'KRYGERIS REVOCABLE FAMILY TRST',
     taxed$: 788,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '12-201': {
     address: 'SO MAIN ST',
@@ -28390,12 +25421,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33100,
-    neighborhood: 'V',
     owner: 'RHOADES, WILLIAM',
     taxed$: 33100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '12-205': {
     address: 'ISLAND POND RD',
@@ -28409,12 +25438,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 140800,
-    neighborhood: 'D',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 140800,
     usage: '400',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '12-206': {
     address: '1 POLLACK ISLAND',
@@ -28428,12 +25455,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10400,
-    neighborhood: 'A',
     owner: 'POLLACK, ALAN',
     taxed$: 10400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-2': {
     address: 'E WASHINGTON RD',
@@ -28447,12 +25472,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 82200,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - TC DEED',
     taxed$: 83100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '13-9': {
     address: 'E WASHINGTON RD',
@@ -28466,12 +25489,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26701,
-    neighborhood: 'V',
     owner: 'MANNING, JOHN M',
     taxed$: 26701,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-10': {
     address: 'FIELDS WAY',
@@ -28485,12 +25506,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21129,
-    neighborhood: 'V',
     owner: 'GELATT FAMILY TRUST',
     taxed$: 21129,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-11': {
     address: 'FIELDS WAY',
@@ -28504,12 +25523,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 77,
-    neighborhood: 'V',
     owner: 'GELATT FAMILY TRUST',
     taxed$: 77,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '13-13': {
     address: 'FIELDS WAY',
@@ -28523,12 +25540,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 79,
-    neighborhood: 'V',
     owner: 'GELATT FAMILY TRUST',
     taxed$: 79,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '13-14': {
     address: 'FIELDS WAY',
@@ -28542,12 +25557,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 81,
-    neighborhood: 'V',
     owner: 'GELATT FAMILY TRUST',
     taxed$: 81,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '13-15': {
     address: 'FIELDS WAY',
@@ -28561,12 +25574,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 81,
-    neighborhood: 'V',
     owner: 'GELATT FAMILY TRUST',
     taxed$: 81,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '13-37': {
     address: 'KINGSBURY HILL RD',
@@ -28580,12 +25591,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 653,
-    neighborhood: 'V',
     owner: 'CORNELIUSEN FAMILY IRREVOCABLE',
     taxed$: 653,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '13-38': {
     address: 'E WASHINGTON RD',
@@ -28599,12 +25608,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 31338,
-    neighborhood: 'V',
     owner: 'ECCARDT FARMS INC',
     taxed$: 31338,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '13-39': {
     address: 'E WASHINGTON RD',
@@ -28618,12 +25625,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 758,
-    neighborhood: 'X',
     owner: 'ECCARDT FARMS INC',
     taxed$: 758,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-10': {
     address: 'HARRISON RD',
@@ -28637,12 +25642,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 104600,
-    neighborhood: 'V',
     owner: 'JETTE, GERARD',
     taxed$: 104600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-11': {
     address: 'HARRISON RD',
@@ -28656,12 +25659,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24900,
-    neighborhood: 'V',
     owner: 'CIANCETTA, CHRISTINE A',
     taxed$: 24900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-50': {
     address: 'TAYLOR CIR',
@@ -28675,12 +25676,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'QUARANTA, THOMAS J',
     taxed$: 11400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-52': {
     address: 'TAYLOR CIR',
@@ -28694,12 +25693,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14300,
-    neighborhood: 'E',
     owner: 'KEAMY, MATTHEW P',
     taxed$: 14300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-65': {
     address: 'GRANT RD',
@@ -28713,12 +25710,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8100,
-    neighborhood: 'U',
     owner: 'LAMBERT, ROBERT H',
     taxed$: 8100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-96': {
     address: 'JEFFERSON DR',
@@ -28732,12 +25727,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10400,
-    neighborhood: 'U',
     owner: 'SZYMANSKI, JOSEPH',
     taxed$: 10400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-101': {
     address: 'JEFFERSON DR',
@@ -28751,12 +25744,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'GLAVIANO, GWEN',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-122': {
     address: 'MADISON DR',
@@ -28770,12 +25761,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13000,
-    neighborhood: 'U',
     owner: 'RUGGIERO, ROCCO R',
     taxed$: 13000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-135': {
     address: 'PRESIDENTIAL DR',
@@ -28789,12 +25778,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'L A E ASSOCIATION',
     taxed$: 0,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '14-187': {
     address: 'VAN BUREN CIR',
@@ -28808,12 +25795,10 @@ export const LOTS = {
     ],
     cu$: 100,
     land$: 28500,
-    neighborhood: 'E',
     owner: 'CROSS, THOMAS E',
     taxed$: 28600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-197': {
     address: 'MCKINLEY DR',
@@ -28827,12 +25812,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 118800,
-    neighborhood: 'U',
     owner: 'ZERJAV, JOHN',
     taxed$: 118800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-205': {
     address: '104 GARFIELD DR',
@@ -28846,12 +25829,10 @@ export const LOTS = {
     ],
     cu$: 13700,
     land$: 211500,
-    neighborhood: 'E',
     owner: 'WORSHAM, STEPHEN J & MEGAN F',
     taxed$: 337600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-225': {
     address: 'HAYES RD',
@@ -28865,12 +25846,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11100,
-    neighborhood: 'U',
     owner: 'OSTHEIMER, ARPAD',
     taxed$: 11100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-261': {
     address: 'ADAMS DR',
@@ -28884,12 +25863,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11200,
-    neighborhood: 'U',
     owner: 'LEDBETTER, JENNIFER L & GERALD',
     taxed$: 11200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-268': {
     address: 'PIERCE RD',
@@ -28903,12 +25880,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12600,
-    neighborhood: 'U',
     owner: 'VISINSKI, ANDREW',
     taxed$: 12600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-270': {
     address: 'LINCOLN DR',
@@ -28922,12 +25897,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12100,
-    neighborhood: 'U',
     owner: 'PAWLOWSKI, MITCHELL',
     taxed$: 12100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-271': {
     address: 'LINCOLN DR',
@@ -28941,12 +25914,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'MEADE, JOSEPH B',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-277': {
     address: 'LINCOLN DR',
@@ -28960,12 +25931,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'U',
     owner: 'ATHANASOPOULOS, CHRISTINA',
     taxed$: 11600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-278': {
     address: 'LINCOLN DR',
@@ -28979,12 +25948,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'ATHANASOPOULOS, CHRISTINA',
     taxed$: 11400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-281': {
     address: 'LINCOLN DR',
@@ -28998,12 +25965,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11600,
-    neighborhood: 'U',
     owner: 'KOVATCHEVA, SABINA HIMMINGER',
     taxed$: 11600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-301': {
     address: 'JACKSON DR',
@@ -29017,12 +25982,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10200,
-    neighborhood: 'U',
     owner: 'MACLACHLAN, JANE',
     taxed$: 10200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-302': {
     address: 'JACKSON DR',
@@ -29036,12 +25999,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10300,
-    neighborhood: 'U',
     owner: 'GUNDECK, STANLEY R',
     taxed$: 10300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-309': {
     address: '421 PRESIDENTIAL DR',
@@ -29055,12 +26016,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 35800,
-    neighborhood: 'E',
     owner: 'F ROCK TRUST',
     taxed$: 94100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-312': {
     address: 'CLEVELAND CIR',
@@ -29074,12 +26033,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11300,
-    neighborhood: 'U',
     owner: 'ALEXANDER, NICHOLAS A',
     taxed$: 11300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-314': {
     address: 'JACKSON DR',
@@ -29093,12 +26050,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'U',
     owner: 'VITTI, ANTHONY',
     taxed$: 11000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-327': {
     address: 'PRESIDENTIAL DR',
@@ -29112,12 +26067,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37700,
-    neighborhood: 'U',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 37700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-336': {
     address: 'PRESIDENTIAL DR',
@@ -29131,12 +26084,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11400,
-    neighborhood: 'U',
     owner: 'WONG, DON R JR',
     taxed$: 11400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-356': {
     address: '418 COOLIDGE DR',
@@ -29150,12 +26101,10 @@ export const LOTS = {
     ],
     cu$: 25400,
     land$: 45100,
-    neighborhood: 'E',
     owner: 'MOHR, CHRISTOPHER',
     taxed$: 238400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-360': {
     address: 'COOLIDGE DR',
@@ -29169,12 +26118,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3400,
-    neighborhood: 'U',
     owner: 'WELDES, DR. PETRA',
     taxed$: 3400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-415': {
     address: 'ASHUELOT ACRE RD',
@@ -29188,12 +26135,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 81500,
-    neighborhood: 'U',
     owner: 'GILMORE FAMILY REV LIVING TRUS',
     taxed$: 82800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-364': {
     address: 'COOLIDGE DR',
@@ -29207,12 +26152,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12500,
-    neighborhood: 'U',
     owner: 'BOYCE, STEVEN M TRUST',
     taxed$: 12500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-380': {
     address: 'BUCHANAN CIR',
@@ -29226,12 +26169,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12000,
-    neighborhood: 'U',
     owner: 'LANDRY FAMILY TRUST',
     taxed$: 12000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-387': {
     address: 'COOLIDGE DR',
@@ -29245,12 +26186,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14700,
-    neighborhood: 'U',
     owner: 'SANFORD, CHRISTOPHER J',
     taxed$: 14700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-390': {
     address: 'COOLIDGE DR',
@@ -29264,12 +26203,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12200,
-    neighborhood: 'U',
     owner: 'MOHR, CHRISTOPHER',
     taxed$: 12200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-391': {
     address: 'COOLIDGE DR',
@@ -29283,12 +26220,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11800,
-    neighborhood: 'U',
     owner: 'MOHR, CHRISTOPHER',
     taxed$: 11800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-392': {
     address: 'COOLIDGE DR',
@@ -29302,12 +26237,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12800,
-    neighborhood: 'U',
     owner: 'MOHR, CHRISTOPHER',
     taxed$: 12800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-393': {
     address: 'COOLIDGE DR',
@@ -29321,12 +26254,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 12700,
-    neighborhood: 'U',
     owner: 'GALLAGHER, STEVEN J',
     taxed$: 14600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-394': {
     address: 'COOLIDGE DR',
@@ -29370,12 +26301,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 849,
-    neighborhood: 'U',
     owner: 'SCHNEIDER FAMILY REVOCABLE TRU',
     taxed$: 849,
     usage: '190',
-    use: 'CUMO',
-    zone: '02'
+    use: 'CUMO'
   },
   '14-397': {
     address: 'OLD MARLOW RD',
@@ -29389,12 +26318,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 506,
-    neighborhood: 'U',
     owner: 'THOMPSON, ROBERT',
     taxed$: 506,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '14-399': {
     address: 'HUNTLEY MT RD',
@@ -29408,12 +26335,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 754,
-    neighborhood: 'X',
     owner: 'SOCIETY FOR THE PROTECTION',
     taxed$: 754,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '14-400': {
     address: 'HUNTLEY MT RD',
@@ -29427,12 +26352,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 51700,
-    neighborhood: 'X',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 51700,
     usage: '501',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '14-427': {
     address: 'ASHUELOT ACRE RD',
@@ -29446,12 +26369,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21100,
-    neighborhood: 'C',
     owner: 'GILLIGAN, JENNY M',
     taxed$: 21100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-428': {
     address: 'ASHUELOT ACRE RD',
@@ -29465,12 +26386,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23100,
-    neighborhood: 'C',
     owner: 'BROWN, FRANK J',
     taxed$: 23100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-430': {
     address: 'LANG RD',
@@ -29484,12 +26403,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24600,
-    neighborhood: 'B',
     owner: 'HALL, JAMES',
     taxed$: 24600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-431': {
     address: '51 COTTAGE LN',
@@ -29503,12 +26420,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 32600,
-    neighborhood: 'C',
     owner: 'PRATT, RONALD W',
     taxed$: 83200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-432': {
     address: '30 COTTAGE LN',
@@ -29522,12 +26437,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 29400,
-    neighborhood: 'C',
     owner: 'CHASSE, WAYNE P',
     taxed$: 80600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-436': {
     address: '31 LANG RD',
@@ -29541,12 +26454,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 23300,
-    neighborhood: 'B',
     owner: 'GEERTZ, WILLIAM',
     taxed$: 75400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-437': {
     address: '41 LANG RD',
@@ -29560,12 +26471,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 24800,
-    neighborhood: 'C',
     owner: 'GILLIGAN, JENNY M',
     taxed$: 97200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-438': {
     address: '530 MARLOW RD',
@@ -29579,12 +26488,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 28400,
-    neighborhood: 'C',
     owner: 'KATHAN, JAMES C',
     taxed$: 31900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-439': {
     address: 'MARLOW RD',
@@ -29598,12 +26505,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1987,
-    neighborhood: 'C',
     owner: 'SANDERS, GEORGE',
     taxed$: 1987,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '14-441': {
     address: 'ASHUELOT POND',
@@ -29617,12 +26522,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 87761,
-    neighborhood: 'V',
     owner: 'BRITTON, RAYMOND F',
     taxed$: 89461,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-442': {
     address: 'MARLOW RD',
@@ -29636,12 +26539,10 @@ export const LOTS = {
     ],
     cu$: 4200,
     land$: 41453,
-    neighborhood: 'C',
     owner: 'CROSS, THOMAS E',
     taxed$: 45653,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-443': {
     address: '30 ASHUELOT POND',
@@ -29655,12 +26556,10 @@ export const LOTS = {
     ],
     cu$: 7100,
     land$: 109800,
-    neighborhood: 'A',
     owner: 'JOYCE, LEILA',
     taxed$: 199300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-444': {
     address: 'ASHUELOT POND',
@@ -29674,12 +26573,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 55600,
-    neighborhood: 'A',
     owner: 'JOYCE, LEILA',
     taxed$: 55600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-445': {
     address: '48 ASHUELOT POND',
@@ -29693,12 +26590,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 77400,
-    neighborhood: 'A',
     owner: 'FISK, GLORIA A',
     taxed$: 116200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-446': {
     address: '52 ASHUELOT POND',
@@ -29712,12 +26607,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 47500,
-    neighborhood: 'A',
     owner: 'PURDY III, WILLIAM A',
     taxed$: 72400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-447': {
     address: '66 ASHUELOT POND',
@@ -29731,12 +26624,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43000,
-    neighborhood: 'A',
     owner: 'CROSS, THOMAS E',
     taxed$: 59000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-448': {
     address: '56 ASHUELOT POND',
@@ -29750,12 +26641,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 65800,
-    neighborhood: 'A',
     owner: 'LANG, TIMOTHY D. & ELAINE M. R',
     taxed$: 91900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-449': {
     address: '62 ASHUELOT POND',
@@ -29769,12 +26658,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 45100,
-    neighborhood: 'A',
     owner: 'CROSS, THOMAS E',
     taxed$: 90700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-450': {
     address: '64 ASHUELOT POND',
@@ -29788,12 +26675,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 40600,
-    neighborhood: 'A',
     owner: 'CROSS, THOMAS E',
     taxed$: 54400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-451': {
     address: '70 ASHUELOT POND',
@@ -29807,12 +26692,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 47500,
-    neighborhood: 'A',
     owner: 'PELLETIER, ANNE M',
     taxed$: 64100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-452': {
     address: '74 BRENDA LN',
@@ -29826,12 +26709,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 58300,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 151900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-454': {
     address: 'BRENDA LN',
@@ -29845,12 +26726,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 77,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 77,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-454-01': {
     address: 'KAREN LN',
@@ -29864,12 +26743,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 81700,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 81700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-454-04': {
     address: 'BRENDA LN',
@@ -29883,12 +26760,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 29800,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 31300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-454-08': {
     address: '72 BRENDA LN',
@@ -29902,12 +26777,10 @@ export const LOTS = {
     ],
     cu$: 4400,
     land$: 29700,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 43500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-455': {
     address: 'HUNTLEY MT RD',
@@ -29921,12 +26794,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22700,
-    neighborhood: 'B',
     owner: 'HEBERT, JOHN W',
     taxed$: 22700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-457': {
     address: '34 HUNTLEY MT RD',
@@ -29940,12 +26811,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 14800,
-    neighborhood: 'B',
     owner: 'CROSS,THOMAS E',
     taxed$: 16000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-462': {
     address: 'MARLOW RD',
@@ -29959,12 +26828,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2202,
-    neighborhood: 'C',
     owner: 'CROSS, THOMAS E',
     taxed$: 2202,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '14-466': {
     address: 'MARLOW RD',
@@ -29978,12 +26845,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1137,
-    neighborhood: 'C',
     owner: 'CROSS, THOMAS E',
     taxed$: 1137,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '14-485': {
     address: '270 ASHUELOT POND',
@@ -29997,12 +26862,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 165100,
-    neighborhood: 'A',
     owner: 'PORTER, TODD A. & CHRISTOPHER ',
     taxed$: 194500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-469': {
     address: '95 MARLOW RD',
@@ -30016,12 +26879,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 608,
-    neighborhood: 'C',
     owner: 'AMERICAN BORN, LLC',
     taxed$: 608,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-471': {
     address: '578 MARLOW RD',
@@ -30035,12 +26896,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25600,
-    neighborhood: 'C',
     owner: 'MANN, JAMES SR & EILEEN',
     taxed$: 55600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-472': {
     address: 'MARLOW RD',
@@ -30054,12 +26913,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25800,
-    neighborhood: 'C',
     owner: 'DONOFRIO, MICHAEL M',
     taxed$: 25800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-473': {
     address: '594 MARLOW RD',
@@ -30073,12 +26930,10 @@ export const LOTS = {
     ],
     cu$: 8000,
     land$: 29800,
-    neighborhood: 'C',
     owner: 'MEISNER, RALPH',
     taxed$: 106500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-474': {
     address: 'MARLOW RD',
@@ -30092,12 +26947,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17200,
-    neighborhood: 'C',
     owner: 'MEISNER, RALPH',
     taxed$: 17200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-475': {
     address: 'MARLOW RD',
@@ -30111,12 +26964,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21200,
-    neighborhood: 'C',
     owner: 'SOUZA, PAUL J',
     taxed$: 21200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-492': {
     address: '184 MARLOW RD',
@@ -30130,12 +26981,10 @@ export const LOTS = {
     ],
     cu$: 6900,
     land$: 38100,
-    neighborhood: 'C',
     owner: 'HOOPER, STEPHEN ERIK',
     taxed$: 156300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-476': {
     address: 'RUSSELL MILLPOND RD',
@@ -30149,12 +26998,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3020,
-    neighborhood: 'C',
     owner: 'CROSS, THOMAS E',
     taxed$: 3020,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-477': {
     address: '180 ASHUELOT POND',
@@ -30168,12 +27015,10 @@ export const LOTS = {
     ],
     cu$: 2500,
     land$: 60700,
-    neighborhood: 'A',
     owner: 'EDGAR, MARTHA',
     taxed$: 63200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-478': {
     address: '182 ASHUELOT POND',
@@ -30187,12 +27032,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 49400,
-    neighborhood: 'A',
     owner: 'VOGT, RACHEL K',
     taxed$: 70600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-479': {
     address: '188 ASHUELOT POND',
@@ -30206,12 +27049,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 60600,
-    neighborhood: 'A',
     owner: 'EDGAR, MARTHA',
     taxed$: 60600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-480': {
     address: '196 ASHUELOT POND',
@@ -30225,12 +27066,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 67000,
-    neighborhood: 'A',
     owner: 'DAVIS, JOHN J',
     taxed$: 92000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-481': {
     address: '204 ASHUELOT POND',
@@ -30244,12 +27083,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 66800,
-    neighborhood: 'A',
     owner: 'MARSHALL, PAMELA J',
     taxed$: 95800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-482': {
     address: '208 ASHUELOT POND',
@@ -30263,12 +27100,10 @@ export const LOTS = {
     ],
     cu$: 3300,
     land$: 67000,
-    neighborhood: 'A',
     owner: 'BLACK, CORY A',
     taxed$: 70300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-483': {
     address: '214 ASHUELOT POND',
@@ -30282,12 +27117,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 60600,
-    neighborhood: 'A',
     owner: 'COOKE,ZACHARY, ALAINA, JANELLE',
     taxed$: 76500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-487': {
     address: 'GARFIELD DR',
@@ -30301,12 +27134,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 481,
-    neighborhood: 'D',
     owner: 'VISINSKI, JOSEPH F',
     taxed$: 481,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '14-488': {
     address: 'MARLOW RD',
@@ -30320,12 +27151,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2143,
-    neighborhood: 'D',
     owner: 'LANG, TIMOTHY D. & ELAINE M. R',
     taxed$: 2143,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '14-488-01': {
     address: 'MARLOW RD',
@@ -30339,12 +27168,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 289,
-    neighborhood: 'C',
     owner: 'SANDERS, GEORGE',
     taxed$: 289,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '14-489': {
     address: '138 MARLOW RD',
@@ -30358,12 +27185,10 @@ export const LOTS = {
     ],
     cu$: 15100,
     land$: 34088,
-    neighborhood: 'C',
     owner: 'IDE, MARK J',
     taxed$: 188688,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-30': {
     address: 'VALLEY RD',
@@ -30377,12 +27202,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26400,
-    neighborhood: 'V',
     owner: 'SABINE, ROBIN',
     taxed$: 26400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-490': {
     address: '14 PENINSULA DR',
@@ -30396,12 +27219,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'L A E ASSOCIATION',
     taxed$: 0,
     usage: '260',
-    use: 'CI',
-    zone: '02'
+    use: 'CI'
   },
   '14-491': {
     address: 'MARLOW RD',
@@ -30415,12 +27236,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 587,
-    neighborhood: 'C',
     owner: 'IDE, MARK J',
     taxed$: 587,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '14-495': {
     address: '2 MARLOW RD',
@@ -30434,12 +27253,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 72214,
-    neighborhood: 'C',
     owner: 'MARTELLO, GRACE E',
     taxed$: 109014,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-496': {
     address: 'ASHUELOT POND',
@@ -30453,12 +27270,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 81000,
-    neighborhood: 'A',
     owner: 'EDGAR, MARTHA',
     taxed$: 81000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-500': {
     address: 'ASHUELOT POND',
@@ -30472,12 +27287,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36600,
-    neighborhood: 'A',
     owner: 'CROSS, THOMAS E',
     taxed$: 36600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-501': {
     address: 'MARLOW RD',
@@ -30491,12 +27304,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 132900,
-    neighborhood: 'D',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 132900,
     usage: '400',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '14-502': {
     address: 'MARLOW RD',
@@ -30510,12 +27321,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17900,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 17900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '14-503': {
     address: 'ASHUELOT ACRE RD',
@@ -30529,12 +27338,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'C',
     owner: 'WALDRON/SANDERS/KAMIENIECKI/DL',
     taxed$: 0,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-504': {
     address: 'ASHUELOT ACRE RD',
@@ -30548,12 +27355,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 76900,
-    neighborhood: 'C',
     owner: 'WRIGHT, PAMELA J',
     taxed$: 76900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '14-506': {
     address: 'MARLOW RD',
@@ -30567,12 +27372,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 137100,
-    neighborhood: 'D',
     owner: 'ASHUELOT POND DAM, VILLAGE DIS',
     taxed$: 137100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '14-507': {
     address: 'ASHUELOT POND',
@@ -30586,12 +27389,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3900,
-    neighborhood: 'A',
     owner: 'JOYCE, LEILA',
     taxed$: 3900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '14-508': {
     address: 'MARLOW RD',
@@ -30605,12 +27406,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'D',
     owner: 'SANDERS, GEORGE',
     taxed$: 0,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-31': {
     address: 'VALLEY RD',
@@ -30624,12 +27423,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 506,
-    neighborhood: 'V',
     owner: 'CASSIDY, DONALD',
     taxed$: 506,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-32': {
     address: 'VALLEY RD',
@@ -30643,12 +27440,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 348,
-    neighborhood: 'V',
     owner: 'CASSIDY, DONALD',
     taxed$: 348,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-41': {
     address: 'FAXON HILL RD',
@@ -30662,12 +27457,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1377,
-    neighborhood: 'V',
     owner: 'BALL, DAVID REV TRUST',
     taxed$: 1377,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-42': {
     address: 'FAXON HILL RD',
@@ -30681,12 +27474,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11035,
-    neighborhood: 'X',
     owner: 'NEW ENGLAND FORESTRY FNDTN',
     taxed$: 11035,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '15-43': {
     address: '719 FAXON HILL RD',
@@ -30700,12 +27491,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45800,
-    neighborhood: 'F',
     owner: 'DESCLOS, JAMES C',
     taxed$: 45800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-44': {
     address: '773 FAXON HILL RD',
@@ -30719,12 +27508,10 @@ export const LOTS = {
     ],
     cu$: 7900,
     land$: 39100,
-    neighborhood: 'F',
     owner: 'LAWSON, CAROLYN MORITZ',
     taxed$: 47000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-45': {
     address: 'FAXON HILL RD',
@@ -30738,12 +27525,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37700,
-    neighborhood: 'F',
     owner: 'ROBINSON III, CLARK S REV TRUS',
     taxed$: 37700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-46': {
     address: '861 FAXON HILL RD',
@@ -30757,12 +27542,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 56800,
-    neighborhood: 'F',
     owner: 'ABREU, SHARON ROBINSON',
     taxed$: 105300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-47': {
     address: '889 FAXON HILL RD',
@@ -30776,12 +27559,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 51000,
-    neighborhood: 'F',
     owner: 'KENDRICK, TIMOTHY',
     taxed$: 104700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-48-01': {
     address: 'FAXON HILL RD',
@@ -30795,12 +27576,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 836,
-    neighborhood: 'F',
     owner: 'CRANDALL, JAMES L REV TR',
     taxed$: 836,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-50': {
     address: 'FAXON HILL RD',
@@ -30814,12 +27593,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34800,
-    neighborhood: 'V',
     owner: 'LEE, GING TOY',
     taxed$: 34800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-51': {
     address: 'KING ST',
@@ -30833,12 +27610,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7824,
-    neighborhood: 'V',
     owner: 'MACDONALD, LEANDRA ANN',
     taxed$: 7824,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-52': {
     address: '333 KING ST',
@@ -30852,12 +27627,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 27461,
-    neighborhood: 'D',
     owner: 'ALLISON, JAMES W',
     taxed$: 80261,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-53': {
     address: '413 KING ST',
@@ -30871,12 +27644,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 29200,
-    neighborhood: 'D',
     owner: 'SACCO, JAMES, ROBERT& JOHN',
     taxed$: 77000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-54': {
     address: '436 KING ST',
@@ -30890,12 +27661,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'SLAVES OF THE IMMACULATE HEART',
     taxed$: 94000,
     usage: '260',
-    use: 'CI',
-    zone: ''
+    use: 'CI'
   },
   '15-55': {
     address: 'KING ST',
@@ -30909,12 +27678,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2021,
-    neighborhood: 'V',
     owner: 'SLAVES OF THE IMMACULATE HEART',
     taxed$: 2021,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-56': {
     address: 'FAXON HILL RD',
@@ -30928,12 +27695,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21475,
-    neighborhood: 'V',
     owner: 'ZERJAV, JOHN',
     taxed$: 21475,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-61': {
     address: '114 OLD HAYING RD',
@@ -30947,12 +27712,10 @@ export const LOTS = {
     ],
     cu$: 11800,
     land$: 187800,
-    neighborhood: 'F',
     owner: 'KASER, AMY CRANDALL',
     taxed$: 290800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-62': {
     address: 'OLD HAYING RD',
@@ -30966,12 +27729,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 370,
-    neighborhood: 'V',
     owner: 'CRANDALL, JAMES L REV TR',
     taxed$: 370,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '15-64': {
     address: '15 OLD HAYING RD',
@@ -30985,12 +27746,10 @@ export const LOTS = {
     ],
     cu$: 5300,
     land$: 181600,
-    neighborhood: 'G',
     owner: 'COLLINS, EDWARD A',
     taxed$: 368700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-65': {
     address: 'PINE POINT RD',
@@ -31004,12 +27763,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1244,
-    neighborhood: 'G',
     owner: 'PARKER, KENNETH R - WILL OF',
     taxed$: 1244,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '15-66': {
     address: '152 PINE POINT RD',
@@ -31023,12 +27780,10 @@ export const LOTS = {
     ],
     cu$: 11400,
     land$: 267205,
-    neighborhood: 'G',
     owner: 'PARKER, KENNETH R - WILL OF',
     taxed$: 372205,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-67': {
     address: '140 PINE POINT RD',
@@ -31042,12 +27797,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 190500,
-    neighborhood: 'G',
     owner: 'RODBELL, KENNETH P & KATHLEEN',
     taxed$: 322300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-68': {
     address: 'PINE POINT RD',
@@ -31061,12 +27814,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 260,
-    neighborhood: 'G',
     owner: 'PARKER, KENNETH R - WILL OF',
     taxed$: 260,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '15-70': {
     address: '758 FAXON HILL RD',
@@ -31080,12 +27831,10 @@ export const LOTS = {
     ],
     cu$: 12400,
     land$: 199807,
-    neighborhood: 'G',
     owner: 'DOUGLAS FAMILY REALTY TRUST',
     taxed$: 317607,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-71': {
     address: 'FAXON HILL RD',
@@ -31099,12 +27848,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 388,
-    neighborhood: 'V',
     owner: 'PARKER, KENNETH R - WILL OF',
     taxed$: 388,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '15-72': {
     address: '19 PINE POINT RD',
@@ -31118,12 +27865,10 @@ export const LOTS = {
     ],
     cu$: 4700,
     land$: 39800,
-    neighborhood: 'D',
     owner: 'PON, MICHAEL T',
     taxed$: 124700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-73': {
     address: 'FAXON HILL RD',
@@ -31137,12 +27882,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 278,
-    neighborhood: 'V',
     owner: 'PARKER, KENNETH R - WILL OF',
     taxed$: 278,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '15-74': {
     address: '739 MILLEN POND RD',
@@ -31156,12 +27899,10 @@ export const LOTS = {
     ],
     cu$: 3300,
     land$: 222500,
-    neighborhood: 'G',
     owner: 'POWELL, ANNE G',
     taxed$: 324700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-75': {
     address: 'MILLEN POND RD',
@@ -31175,12 +27916,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 41500,
-    neighborhood: 'G',
     owner: 'CALLENDER, TIMOTHY W',
     taxed$: 41500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-76': {
     address: '791 MILLEN POND RD',
@@ -31194,12 +27933,10 @@ export const LOTS = {
     ],
     cu$: 2900,
     land$: 67100,
-    neighborhood: 'V',
     owner: 'MACDONALD, LEANDRA ANN',
     taxed$: 70000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-77': {
     address: 'MILLEN POND RD',
@@ -31213,12 +27950,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 68000,
-    neighborhood: 'V',
     owner: 'MUGAR, CAROLYN J',
     taxed$: 68000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-82-01': {
     address: 'MILLEN POND RD',
@@ -31232,12 +27967,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10500,
-    neighborhood: 'E',
     owner: 'ANDERSON, PETER K',
     taxed$: 10500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-83': {
     address: 'MILLEN POND RD',
@@ -31251,12 +27984,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 27500,
-    neighborhood: 'G',
     owner: 'SMITH, WILLIAM T',
     taxed$: 27500,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-87': {
     address: 'MILLEN POND RD',
@@ -31270,12 +28001,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 105546,
-    neighborhood: 'V',
     owner: 'BRIGHTON FAMILY TRUST',
     taxed$: 105546,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-88-01': {
     address: 'MILLEN POND RD',
@@ -31289,12 +28018,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46600,
-    neighborhood: 'G',
     owner: 'BOHNENBERGER REV TRUST',
     taxed$: 46600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-88-02': {
     address: 'MILLEN POND RD',
@@ -31308,12 +28035,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17,
-    neighborhood: 'G',
     owner: 'BRIGHTON FAMILY TRUST',
     taxed$: 17,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-88-03': {
     address: 'MILLEN POND RD',
@@ -31327,12 +28052,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46400,
-    neighborhood: 'G',
     owner: 'BOHNENBERGER, S & GILFEATHER,',
     taxed$: 46400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-96': {
     address: 'FAXON HILL RD',
@@ -31346,12 +28069,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 315,
-    neighborhood: 'F',
     owner: 'ZERJAV, JOHN',
     taxed$: 315,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-20': {
     address: 'OAK TERR',
@@ -31365,12 +28086,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16500,
-    neighborhood: 'W',
     owner: 'HARRINGTON, DENNIS',
     taxed$: 16500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-98': {
     address: 'PRESIDENTIAL DR',
@@ -31384,12 +28103,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1728,
-    neighborhood: 'V',
     owner: 'ZERJAV, JOHN',
     taxed$: 1728,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '15-101': {
     address: 'PRESIDENTIAL DR',
@@ -31403,12 +28120,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24800,
-    neighborhood: 'V',
     owner: 'BRIGHTON, JOHN M.',
     taxed$: 24800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-102': {
     address: '1004 MILLEN POND RD',
@@ -31422,12 +28137,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34800,
-    neighborhood: 'E',
     owner: 'BOHNENBERGER REV TRUST',
     taxed$: 74400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-103': {
     address: '1002 MILLEN POND RD',
@@ -31441,12 +28154,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 35300,
-    neighborhood: 'E',
     owner: 'BOHNENBERGER, S & GILFEATHER,',
     taxed$: 74600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-108': {
     address: 'MILLEN POND RD',
@@ -31460,12 +28171,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 27200,
-    neighborhood: 'V',
     owner: 'JASSEN, DARYL J & TURNER, J C ',
     taxed$: 27200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-111-01': {
     address: 'MILLEN POND RD',
@@ -31479,12 +28188,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 45700,
-    neighborhood: 'G',
     owner: 'SHANNON FAMILY TRUST',
     taxed$: 46600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-137': {
     address: 'ADAMS DR',
@@ -31498,12 +28205,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9300,
-    neighborhood: 'U',
     owner: 'MATHIEU, MICHAEL G',
     taxed$: 9300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-143': {
     address: 'ADAMS DR',
@@ -31517,12 +28222,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11700,
-    neighborhood: 'U',
     owner: 'VISINSKI, ANDREW',
     taxed$: 11700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '15-157': {
     address: 'KING ST',
@@ -31536,12 +28239,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 44000,
-    neighborhood: 'V',
     owner: 'ARECCO, KATHERINE',
     taxed$: 44000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-159': {
     address: '177 KING ST',
@@ -31555,12 +28256,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 18425,
-    neighborhood: 'V',
     owner: 'HUNT, RANDALL E',
     taxed$: 22225,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-160': {
     address: 'KING ST',
@@ -31574,12 +28273,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 651,
-    neighborhood: 'V',
     owner: 'HUNT, RANDALL E',
     taxed$: 651,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '15-161': {
     address: 'KING ST',
@@ -31593,12 +28290,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43200,
-    neighborhood: 'V',
     owner: 'MOY, HOMER',
     taxed$: 43200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-163': {
     address: '116 OLD HAYING RD',
@@ -31612,12 +28307,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 190900,
-    neighborhood: 'G',
     owner: 'VOSS, SUSAN E',
     taxed$: 219300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-164': {
     address: 'FAXON HILL RD',
@@ -31631,12 +28324,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1644,
-    neighborhood: 'V',
     owner: 'BALL, KIMBALL',
     taxed$: 1644,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '15-165': {
     address: 'FAXON HILL RD',
@@ -31650,12 +28341,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1386,
-    neighborhood: 'V',
     owner: 'BALL, MICHAEL',
     taxed$: 1386,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '15-166': {
     address: 'FAXON HILL RD',
@@ -31669,12 +28358,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1706,
-    neighborhood: 'V',
     owner: 'BALL, JESSICA',
     taxed$: 1706,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-167': {
     address: '112 OLD HAYING RD',
@@ -31688,12 +28375,10 @@ export const LOTS = {
     ],
     cu$: 16400,
     land$: 199228,
-    neighborhood: 'G',
     owner: 'CRANDALL, JAMES L REV TR',
     taxed$: 361128,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '15-171': {
     address: 'MILLEN POND RD',
@@ -31707,12 +28392,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20100,
-    neighborhood: 'G',
     owner: 'PACHECO, JOHN D',
     taxed$: 20100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-172': {
     address: 'MILLEN POND RD',
@@ -31726,12 +28409,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20200,
-    neighborhood: 'E',
     owner: 'PACHECO, JOHN D',
     taxed$: 20200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '15-173': {
     address: 'MILLEN POND RD',
@@ -31745,12 +28426,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20600,
-    neighborhood: 'G',
     owner: 'KAVANAGH, JUDITH ANN BROCKWAY',
     taxed$: 20600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '16-2': {
     address: '504 SO MAIN ST',
@@ -31764,12 +28443,10 @@ export const LOTS = {
     ],
     cu$: 10900,
     land$: 40800,
-    neighborhood: 'E',
     owner: 'ATKINS, SHAWN L',
     taxed$: 251900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-21': {
     address: 'MAPLE WAY',
@@ -31783,12 +28460,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16400,
-    neighborhood: 'W',
     owner: 'BADEHAUSEN, JOHN P',
     taxed$: 16400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-22': {
     address: 'MAPLE WAY',
@@ -31802,12 +28477,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15500,
-    neighborhood: 'W',
     owner: 'SARAFIAN, EDWARD GERALD',
     taxed$: 15500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-3': {
     address: '800 SO MAIN ST',
@@ -31821,12 +28494,10 @@ export const LOTS = {
     ],
     cu$: 7400,
     land$: 37808,
-    neighborhood: 'E',
     owner: 'FONTAINE, LOUISE',
     taxed$: 45208,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-24': {
     address: 'MAPLE WAY',
@@ -31840,12 +28511,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19300,
-    neighborhood: 'W',
     owner: 'JANELLE, DAVID J',
     taxed$: 19300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-6': {
     address: 'SO MAIN ST',
@@ -31859,12 +28528,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2105,
-    neighborhood: 'E',
     owner: 'PIECZARKA FAMILY TRUST',
     taxed$: 2105,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-7-04': {
     address: '175 HIGHLAND HAVEN RD',
@@ -31878,12 +28545,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 492,
-    neighborhood: 'V',
     owner: 'J & L REALTY TRUST',
     taxed$: 492,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-7-05': {
     address: 'HIGHLAND HAVEN RD',
@@ -31897,12 +28562,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 193,
-    neighborhood: 'V',
     owner: 'J & L REALTY TRUST',
     taxed$: 193,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-26': {
     address: 'HIGHLAND HAVEN RD',
@@ -31916,12 +28579,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15500,
-    neighborhood: 'W',
     owner: 'LUCAS, JOSEPH A',
     taxed$: 15500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-30': {
     address: 'HIGHLAND HAVEN RD',
@@ -31935,12 +28596,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20700,
-    neighborhood: 'V',
     owner: 'WERNER,  ANGELA M',
     taxed$: 20700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-32': {
     address: 'MAPLE WAY',
@@ -31954,12 +28613,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15500,
-    neighborhood: 'W',
     owner: 'FLETCHER, EDWARD THOMAS',
     taxed$: 15500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-46': {
     address: 'HIGHLAND HAVEN RD',
@@ -31973,12 +28630,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 17000,
-    neighborhood: 'W',
     owner: 'DUGAN, EDWARD M',
     taxed$: 19700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '16-48': {
     address: 'SO MAIN ST',
@@ -31992,12 +28647,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3762,
-    neighborhood: 'V',
     owner: 'J & L REALTY TRUST',
     taxed$: 3762,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '16-57': {
     address: 'SO MAIN ST',
@@ -32011,12 +28664,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2707,
-    neighborhood: 'V',
     owner: 'MACDONALD, LEANDRA ANN',
     taxed$: 2707,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '16-49-01': {
     address: '1074 SO MAIN ST',
@@ -32030,12 +28681,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7876,
-    neighborhood: 'V',
     owner: 'LAFFERTY, ANDREW M.',
     taxed$: 7876,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '16-51': {
     address: '1258 SO MAIN ST',
@@ -32049,12 +28698,10 @@ export const LOTS = {
     ],
     cu$: 2400,
     land$: 0,
-    neighborhood: '',
     owner: 'HUNT II, CHARLES M',
     taxed$: 2400,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '16-51-01': {
     address: 'SO MAIN ST',
@@ -32068,12 +28715,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2091,
-    neighborhood: 'E',
     owner: 'HUNT II, CHARLES M',
     taxed$: 2091,
     usage: '190',
-    use: 'CUFL',
-    zone: '02'
+    use: 'CUFL'
   },
   '16-51-02': {
     address: '1251 SO MAIN ST',
@@ -32087,12 +28732,10 @@ export const LOTS = {
     ],
     cu$: 12300,
     land$: 8781,
-    neighborhood: 'E',
     owner: 'HUNT II, CHARLES M',
     taxed$: 21081,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-53': {
     address: '79 BAILEY RD',
@@ -32106,12 +28749,10 @@ export const LOTS = {
     ],
     cu$: 8500,
     land$: 33300,
-    neighborhood: 'E',
     owner: 'STECZKOWSKI, KAMIL',
     taxed$: 91500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-54': {
     address: 'BAILEY RD',
@@ -32125,12 +28766,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 66,
-    neighborhood: 'V',
     owner: 'DALTO, PATRICIA A',
     taxed$: 66,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '16-56': {
     address: '2 DOLE SCHOOL HOUSE RD',
@@ -32144,12 +28783,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21100,
-    neighborhood: 'V',
     owner: 'RAIMONDI, CARL F JR',
     taxed$: 21100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-60': {
     address: '1399 SO MAIN ST',
@@ -32163,12 +28800,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 32000,
-    neighborhood: 'E',
     owner: 'HEALEY, DANIEL L.',
     taxed$: 40400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-61-02': {
     address: '1693 SO MAIN ST',
@@ -32182,12 +28817,10 @@ export const LOTS = {
     ],
     cu$: 13900,
     land$: 0,
-    neighborhood: '',
     owner: 'DAKOWICZ, JANUSZ & DIANNE W',
     taxed$: 63400,
     usage: '110',
-    use: 'R1',
-    zone: ''
+    use: 'R1'
   },
   '16-62': {
     address: 'SO MAIN ST',
@@ -32201,12 +28834,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14400,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - TC DEED',
     taxed$: 14400,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '16-63': {
     address: 'SO MAIN ST',
@@ -32220,12 +28851,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3774,
-    neighborhood: 'X',
     owner: 'RUSSO JR, JOSEPH',
     taxed$: 3774,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-64': {
     address: 'E WASHINGTON RD',
@@ -32239,12 +28868,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 973,
-    neighborhood: 'X',
     owner: 'BAILEY, GERALD G',
     taxed$: 973,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '16-70-12': {
     address: 'SO MAIN ST',
@@ -32258,12 +28885,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 175,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 175,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-06': {
     address: 'SO MAIN ST',
@@ -32277,12 +28902,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 594,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 594,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-67': {
     address: 'E WASHINGTON RD',
@@ -32296,12 +28919,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2995,
-    neighborhood: 'V',
     owner: 'BAILEY, GERALD G',
     taxed$: 2995,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '16-68': {
     address: '4003 E WASHINGTON RD',
@@ -32315,12 +28936,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26400,
-    neighborhood: 'V',
     owner: 'BASTARACHE, PAULETTE',
     taxed$: 26400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-69': {
     address: 'E WASHINGTON RD',
@@ -32334,12 +28953,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4571,
-    neighborhood: 'V',
     owner: 'WRIGHT, JOHN P TRUST',
     taxed$: 4571,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '16-70-01': {
     address: '963 SO MAIN ST',
@@ -32353,12 +28970,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 91800,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - DPWH',
     taxed$: 270900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '16-70-02': {
     address: '961 SO MAIN ST',
@@ -32372,12 +28987,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 91100,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - TRANS ST',
     taxed$: 95700,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '16-70-03': {
     address: 'SO MAIN ST',
@@ -32391,12 +29004,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 466,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 466,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-04': {
     address: 'SO MAIN ST',
@@ -32410,12 +29021,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 787,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 787,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-05': {
     address: 'SO MAIN ST',
@@ -32429,12 +29038,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 451,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 451,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-07': {
     address: 'SO MAIN ST',
@@ -32448,12 +29055,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 565,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 565,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-08': {
     address: 'SO MAIN ST',
@@ -32467,12 +29072,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 368,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 368,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-09': {
     address: 'SO MAIN ST',
@@ -32486,12 +29089,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 368,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 368,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-10': {
     address: 'SO MAIN ST',
@@ -32505,12 +29106,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 368,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 368,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-11': {
     address: 'SO MAIN ST',
@@ -32524,12 +29123,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 179,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 179,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-14': {
     address: 'E WASHINGTON RD',
@@ -32543,12 +29140,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 218,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 218,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-15': {
     address: 'E WASHINGTON RD',
@@ -32562,12 +29157,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 232,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 232,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-17': {
     address: 'E WASHINGTON RD',
@@ -32581,12 +29174,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 367,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 367,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-18': {
     address: 'E WASHINGTON RD',
@@ -32600,12 +29191,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 170,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 170,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-19': {
     address: 'E WASHINGTON RD',
@@ -32619,12 +29208,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 159,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 159,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-77-09': {
     address: 'E WASHINGTON RD',
@@ -32638,12 +29225,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 552,
-    neighborhood: 'V',
     owner: 'BOREY, LOUIS J',
     taxed$: 552,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-70-21': {
     address: 'E WASHINGTON RD',
@@ -32657,12 +29242,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 256,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 256,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-22': {
     address: 'E WASHINGTON RD',
@@ -32676,12 +29259,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 338,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 338,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-23': {
     address: 'E WASHINGTON RD',
@@ -32695,12 +29276,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 665,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 665,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-24': {
     address: 'E WASHINGTON RD',
@@ -32714,12 +29293,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 521,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 521,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-70-25': {
     address: 'E WASHINGTON RD',
@@ -32733,12 +29310,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 517,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 517,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-95': {
     address: 'E WASHINGTON RD',
@@ -32752,12 +29327,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26000,
-    neighborhood: 'V',
     owner: 'VAN LEEUWEN, JOHANNES',
     taxed$: 26000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-70-26': {
     address: 'E WASHINGTON RD',
@@ -32771,12 +29344,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 774,
-    neighborhood: 'V',
     owner: 'PATENAUDE FAMILY TRUST',
     taxed$: 774,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '16-77-08': {
     address: 'E WASHINGTON RD',
@@ -32790,12 +29361,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 576,
-    neighborhood: 'V',
     owner: 'BOREY, LOUIS J',
     taxed$: 576,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-77-10': {
     address: 'E WASHINGTON RD',
@@ -32809,12 +29378,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 544,
-    neighborhood: 'V',
     owner: 'BOREY, LOUIS J',
     taxed$: 544,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-77-12': {
     address: 'E WASHINGTON RD',
@@ -32828,12 +29395,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 692,
-    neighborhood: 'V',
     owner: 'BOREY, LOUIS J',
     taxed$: 692,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '16-87': {
     address: 'WASHINGTON DR',
@@ -32847,12 +29412,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26600,
-    neighborhood: 'V',
     owner: 'KIRSCH, JOHANN C',
     taxed$: 26600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-96': {
     address: 'E WASHINGTON RD',
@@ -32866,12 +29429,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26100,
-    neighborhood: 'V',
     owner: 'VANLEEUWEN, JOHANNES',
     taxed$: 26100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-104': {
     address: 'E WASHINGTON RD',
@@ -32885,12 +29446,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13000,
-    neighborhood: 'V',
     owner: 'SEAVEY, EARL REAL ESTATE TRUST',
     taxed$: 13000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-106': {
     address: 'E WASHINGTON RD',
@@ -32904,12 +29463,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13100,
-    neighborhood: 'V',
     owner: 'SCHREINER, HELEN',
     taxed$: 13100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-131-03': {
     address: '138 BAILEY RD',
@@ -32923,12 +29480,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 45200,
-    neighborhood: 'E',
     owner: 'TYLER, MICHAEL J',
     taxed$: 147200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-132': {
     address: 'SO MAIN ST',
@@ -32942,12 +29497,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 631,
-    neighborhood: 'X',
     owner: 'KELLOGG, RANDOLPH W',
     taxed$: 631,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '16-133': {
     address: 'SO MAIN ST',
@@ -32961,12 +29514,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7195,
-    neighborhood: 'V',
     owner: 'PARTYKA, STANLEY J. III',
     taxed$: 7195,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '17-1': {
     address: 'E WASHINGTON RD',
@@ -32980,12 +29531,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4842,
-    neighborhood: 'X',
     owner: 'PALUDI, DAMON TRUST',
     taxed$: 4842,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '17-2': {
     address: 'KINGSBURY HILL RD',
@@ -32999,12 +29548,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7480,
-    neighborhood: 'C',
     owner: 'MATA, CRISTIAN',
     taxed$: 7480,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '17-3': {
     address: 'KINGSBURY HILL RD',
@@ -33018,12 +29565,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4332,
-    neighborhood: 'C',
     owner: 'MATA, CRISTIAN',
     taxed$: 4332,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '17-4': {
     address: 'E WASHINGTON RD',
@@ -33037,12 +29582,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2401,
-    neighborhood: 'X',
     owner: 'BAILEY, GERALD G',
     taxed$: 2401,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-13': {
     address: '62 SWEENEY RD',
@@ -33056,12 +29599,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26000,
-    neighborhood: 'C',
     owner: 'DEUSE, DANIEL',
     taxed$: 115100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-3-01': {
     address: '964 JEFTS RD',
@@ -33075,12 +29616,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15000,
-    neighborhood: 'B',
     owner: 'MURDOCK KEITH',
     taxed$: 37300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-38': {
     address: 'WILD ACRE DR',
@@ -33098,12 +29637,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42300,
-    neighborhood: 'V',
     owner: 'GANNON, MICHAEL',
     taxed$: 42300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '19-7': {
     address: '44 BARDEN POND RD',
@@ -33117,12 +29654,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18600,
-    neighborhood: 'B',
     owner: 'CARLSON, RICHARD A',
     taxed$: 18600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '17-39': {
     address: 'WILD ACRE DR',
@@ -33136,12 +29671,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 55700,
-    neighborhood: 'V',
     owner: 'HUOT, ERIN M',
     taxed$: 55700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '17-42': {
     address: 'KINGSBURY HILL RD',
@@ -33155,12 +29688,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4762,
-    neighborhood: 'C',
     owner: 'MATA, CRISTIAN',
     taxed$: 4762,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '17-43': {
     address: 'SMITH POND RD',
@@ -33174,12 +29705,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 141,
-    neighborhood: 'V',
     owner: 'HAKULIN,  ANNA MARIE ANNELLI',
     taxed$: 141,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '18-1': {
     address: 'JEFTS RD',
@@ -33193,12 +29722,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 27351,
-    neighborhood: 'B',
     owner: 'ANDORRA FOREST LTD PARTNERSHIP',
     taxed$: 27351,
     usage: '190',
-    use: 'CUMW',
-    zone: '02'
+    use: 'CUMW'
   },
   '18-3': {
     address: '926 JEFTS RD',
@@ -33212,12 +29739,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15000,
-    neighborhood: 'B',
     owner: 'MURDOCK, RICHARD W. TRUSTEE RE',
     taxed$: 31900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-11-14': {
     address: 'KAREN LN',
@@ -33231,12 +29756,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7,
-    neighborhood: 'C',
     owner: 'MELOON, CHARLES HEIRS',
     taxed$: 7,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '18-4': {
     address: '990 JEFTS RD',
@@ -33250,12 +29773,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 5120,
-    neighborhood: 'B',
     owner: 'STERLING QUALITY CLEANERS, INC',
     taxed$: 6120,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '18-5': {
     address: 'JEFTS RD',
@@ -33269,12 +29790,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1108,
-    neighborhood: 'X',
     owner: 'MARTELLO, GRACE E',
     taxed$: 1108,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-14': {
     address: 'ASHUELOT POND',
@@ -33288,12 +29807,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 49900,
-    neighborhood: 'A',
     owner: 'EMERSON, DAVID J',
     taxed$: 49900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-15': {
     address: 'ASHUELOT POND',
@@ -33307,12 +29824,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46600,
-    neighborhood: 'A',
     owner: 'RATHBUN, CONNIE L',
     taxed$: 46600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-6': {
     address: 'JEFTS RD',
@@ -33326,12 +29841,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 109600,
-    neighborhood: 'X',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 109600,
     usage: '501',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '18-8': {
     address: 'RUSSELL MILLPOND RD',
@@ -33345,12 +29858,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1512,
-    neighborhood: 'X',
     owner: 'AUDUBON SOCIETY OF NH',
     taxed$: 1512,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '18-9': {
     address: 'RUSSELL MILLPOND RD',
@@ -33364,12 +29875,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11964,
-    neighborhood: 'C',
     owner: 'MELOON, CHARLES HEIRS',
     taxed$: 11964,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '18-10': {
     address: '34 RUSSELL MILLPOND RD',
@@ -33383,12 +29892,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 31337,
-    neighborhood: 'C',
     owner: 'KEITH, KRIS S',
     taxed$: 55137,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-11': {
     address: '70 RUSSELL MILLPOND RD',
@@ -33402,12 +29909,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18711,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 18711,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-11-02': {
     address: 'KAREN LN',
@@ -33421,12 +29926,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 59,
-    neighborhood: 'B',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 59,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-11-05': {
     address: 'KAREN LN',
@@ -33440,12 +29943,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 42,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 42,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-11-08': {
     address: 'KAREN LN',
@@ -33459,12 +29960,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 50,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 50,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-11-12': {
     address: 'KAREN LN',
@@ -33478,12 +29977,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17500,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 17500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-12': {
     address: 'JEFTS RD',
@@ -33497,12 +29994,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 7457,
-    neighborhood: 'C',
     owner: 'MELOON, CHARLES HEIRS',
     taxed$: 7457,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '18-16': {
     address: '162 ASHUELOT POND',
@@ -33516,12 +30011,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 69700,
-    neighborhood: 'A',
     owner: 'COTTER, ANN M. TRUST',
     taxed$: 148100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-17': {
     address: '176 ASHUELOT POND',
@@ -33535,12 +30028,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 77400,
-    neighborhood: 'A',
     owner: 'PLUMRIDGE, THOMAS J',
     taxed$: 102800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-18': {
     address: '170 ASHUELOT POND',
@@ -33554,12 +30045,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 67000,
-    neighborhood: 'A',
     owner: 'KOTT, CHARLES E',
     taxed$: 91300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-19': {
     address: 'ASHUELOT POND',
@@ -33573,12 +30062,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20,
-    neighborhood: 'A',
     owner: 'MELOON, CHARLES HEIRS',
     taxed$: 20,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '18-20': {
     address: '154 ASHUELOT POND',
@@ -33592,12 +30079,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 86400,
-    neighborhood: 'A',
     owner: 'DONOFRIO, MICHAEL M',
     taxed$: 132200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-21': {
     address: '148 ASHUELOT POND',
@@ -33611,12 +30096,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 86500,
-    neighborhood: 'A',
     owner: 'DONOFRIO, MICHAEL M',
     taxed$: 97900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-29-01': {
     address: 'KAREN LN',
@@ -33630,12 +30113,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13,
-    neighborhood: 'C',
     owner: 'DUBOWIK, DANIEL',
     taxed$: 13,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-22': {
     address: '144 ASHUELOT POND',
@@ -33649,12 +30130,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 71500,
-    neighborhood: 'A',
     owner: 'SCHNEIDER, GARY L',
     taxed$: 132300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-11': {
     address: '32 SWEENEY RD',
@@ -33668,12 +30147,10 @@ export const LOTS = {
     ],
     cu$: 12500,
     land$: 23700,
-    neighborhood: 'C',
     owner: 'LACASSE, ELLEN',
     taxed$: 36200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-23': {
     address: '140 ASHUELOT POND',
@@ -33687,12 +30164,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 95700,
-    neighborhood: 'A',
     owner: 'DIGIACOMO, LINDA E.',
     taxed$: 163000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-24': {
     address: 'ASHUELOT POND',
@@ -33706,12 +30181,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25,
-    neighborhood: 'A',
     owner: 'MELOON, CHARLES HEIRS',
     taxed$: 25,
     usage: '190',
-    use: 'CUWL',
-    zone: '02'
+    use: 'CUWL'
   },
   '18-25': {
     address: '128 ASHUELOT POND',
@@ -33725,12 +30198,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 86300,
-    neighborhood: 'A',
     owner: 'ERRICO, MICHAEL P',
     taxed$: 112800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-26': {
     address: '124 ASHUELOT POND',
@@ -33744,12 +30215,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 87000,
-    neighborhood: 'A',
     owner: 'ROGUZ, LEON',
     taxed$: 113400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '18-27': {
     address: '114 ASHUELOT POND',
@@ -33763,12 +30232,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 84944,
-    neighborhood: 'A',
     owner: 'MELOON, CHARLES HEIRS',
     taxed$: 117044,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-28': {
     address: '104 ASHUELOT POND',
@@ -33782,12 +30249,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 58800,
-    neighborhood: 'A',
     owner: 'STROUT, DOUGLAS J',
     taxed$: 68400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-29': {
     address: '90 ASHUELOT POND',
@@ -33801,12 +30266,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 79400,
-    neighborhood: 'C',
     owner: 'SPAULDING, CHRISTOPHER S',
     taxed$: 99800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-29-03': {
     address: '96 KAREN LN',
@@ -33820,12 +30283,10 @@ export const LOTS = {
     ],
     cu$: 4500,
     land$: 115000,
-    neighborhood: 'C',
     owner: 'BEEBEE, PAUL A',
     taxed$: 198400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-30': {
     address: '88 ASHUELOT POND',
@@ -33839,12 +30300,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 76000,
-    neighborhood: 'A',
     owner: 'PRATT, MICHELLE, TRUSTEE OF MO',
     taxed$: 87700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-35': {
     address: '166 ASHUELOT POND',
@@ -33858,12 +30317,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 79000,
-    neighborhood: 'A',
     owner: 'RATHBUN, CONNIE L',
     taxed$: 81400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '18-36': {
     address: '84 ASHUELOT POND',
@@ -33877,12 +30334,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 67900,
-    neighborhood: 'A',
     owner: 'STROUT, DOUGLAS',
     taxed$: 83900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '19-1': {
     address: 'VALLEY RD',
@@ -33896,12 +30351,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15300,
-    neighborhood: 'W',
     owner: 'SMITH, ROBERT W 2017 TRUST',
     taxed$: 15300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-8': {
     address: 'BARDEN POND RD',
@@ -33915,12 +30368,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20900,
-    neighborhood: 'B',
     owner: 'PALMIERI, PATRICK T',
     taxed$: 20900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-9': {
     address: 'BARDEN POND RD',
@@ -33934,12 +30385,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20900,
-    neighborhood: 'B',
     owner: 'DONAHUE, KEVIN',
     taxed$: 20900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-10': {
     address: 'BARDEN POND RD',
@@ -33953,12 +30402,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 269,
-    neighborhood: 'B',
     owner: 'DESCHENES, CHARLES',
     taxed$: 269,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-5': {
     address: 'BARDEN POND RD',
@@ -33972,12 +30419,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3349,
-    neighborhood: 'B',
     owner: 'HUMMEL-JOHNSON REV TRUST',
     taxed$: 3349,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '19-11': {
     address: 'BARDEN POND RD',
@@ -33991,12 +30436,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 269,
-    neighborhood: 'B',
     owner: 'DESCHENES, CHARLES',
     taxed$: 269,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-12': {
     address: 'BARDEN POND RD',
@@ -34010,12 +30453,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 288,
-    neighborhood: 'B',
     owner: 'DESCHENES, CHARLES',
     taxed$: 288,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-13': {
     address: 'BARDEN POND RD',
@@ -34029,12 +30470,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22500,
-    neighborhood: 'B',
     owner: 'DONAHUE, LISA C',
     taxed$: 22500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-14': {
     address: 'BARDEN POND RD',
@@ -34048,12 +30487,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22200,
-    neighborhood: 'B',
     owner: 'CARL, RICHARD',
     taxed$: 22200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-15': {
     address: 'BARDEN POND RD',
@@ -34067,12 +30504,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21200,
-    neighborhood: 'B',
     owner: 'NOYES, CATHLEEN A',
     taxed$: 21200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-16': {
     address: 'BARDEN POND RD',
@@ -34086,12 +30521,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21200,
-    neighborhood: 'B',
     owner: 'BALDI, ALISON',
     taxed$: 21200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-17': {
     address: 'BARDEN POND RD',
@@ -34105,12 +30538,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20900,
-    neighborhood: 'B',
     owner: 'TRACY, LISA C',
     taxed$: 20900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-18': {
     address: '50 BARDEN POND RD',
@@ -34124,12 +30555,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 23900,
-    neighborhood: 'C',
     owner: 'TRACY, LISA C',
     taxed$: 56500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-7': {
     address: 'SWEENEY RD',
@@ -34143,12 +30572,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20100,
-    neighborhood: 'C',
     owner: 'ROM, ALAN JAY',
     taxed$: 20100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-19': {
     address: 'BARDEN POND RD',
@@ -34162,12 +30589,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 43500,
-    neighborhood: 'C',
     owner: 'TREPANIER, MARCEL',
     taxed$: 46200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-24': {
     address: '613 KING ST',
@@ -34181,12 +30606,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16387,
-    neighborhood: 'C',
     owner: 'DANA PROPERTIES, LLC',
     taxed$: 16387,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '19-25': {
     address: '467 KING ST',
@@ -34200,12 +30623,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 28794,
-    neighborhood: 'C',
     owner: 'MACEWEN, PETER',
     taxed$: 54994,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-27': {
     address: '851 KING ST',
@@ -34219,12 +30640,10 @@ export const LOTS = {
     ],
     cu$: 7200,
     land$: 28589,
-    neighborhood: 'C',
     owner: 'DESCLOS, JAMES C',
     taxed$: 62089,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-28': {
     address: '859 KING ST',
@@ -34238,12 +30657,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 22400,
-    neighborhood: 'C',
     owner: 'PELOSI JR, ANTHONY M',
     taxed$: 47900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-29': {
     address: '893 KING ST',
@@ -34257,12 +30674,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 26400,
-    neighborhood: 'C',
     owner: 'MAYHEW, CARROLL B & STEVEN C',
     taxed$: 55200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-8': {
     address: '47 SWEENEY RD',
@@ -34276,12 +30691,10 @@ export const LOTS = {
     ],
     cu$: 4800,
     land$: 29200,
-    neighborhood: 'C',
     owner: 'LACASSE, ELLEN',
     taxed$: 57400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-9': {
     address: '17 SWEENEY RD',
@@ -34299,12 +30712,10 @@ export const LOTS = {
     ],
     cu$: 6900,
     land$: 33500,
-    neighborhood: 'C',
     owner: 'DUPUIS JR, PAUL',
     taxed$: 100000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-31': {
     address: '1021 KING ST',
@@ -34318,12 +30729,10 @@ export const LOTS = {
     ],
     cu$: 1300,
     land$: 48249,
-    neighborhood: 'C',
     owner: 'KENDRICK FAMILY LLC',
     taxed$: 72649,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '19-32': {
     address: 'BARDEN POND RD',
@@ -34337,12 +30746,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 582,
-    neighborhood: 'X',
     owner: 'TUTHILL, JOHN & NORA M-TRUSTEE',
     taxed$: 582,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '19-33': {
     address: 'KING ST',
@@ -34356,12 +30763,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 27000,
-    neighborhood: 'C',
     owner: 'QUINN, BRIAN E',
     taxed$: 62900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-1': {
     address: '129 BAILEY RD',
@@ -34375,12 +30780,10 @@ export const LOTS = {
     ],
     cu$: 5100,
     land$: 39300,
-    neighborhood: 'F',
     owner: 'BRIDSCHGE, MARK A',
     taxed$: 99200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-2': {
     address: 'BAILEY RD',
@@ -34394,12 +30797,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26300,
-    neighborhood: 'D',
     owner: 'DUPUIS JR, PAUL',
     taxed$: 26300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-4': {
     address: '35 SWEENEY RD',
@@ -34413,12 +30814,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 30400,
-    neighborhood: 'D',
     owner: 'KIBLIN, RODNEY',
     taxed$: 52900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-5': {
     address: 'SWEENEY RD',
@@ -34432,12 +30831,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1500,
-    neighborhood: 'X',
     owner: 'SPITZ,  ROBERT A',
     taxed$: 1500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-6': {
     address: '49 SWEENEY RD',
@@ -34451,12 +30848,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 22300,
-    neighborhood: 'C',
     owner: 'BRACKETT, STEVEN J',
     taxed$: 31600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-12': {
     address: '42 SWEENEY RD',
@@ -34470,12 +30865,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 26100,
-    neighborhood: 'C',
     owner: 'KALINOWSKI, ROBERT Z',
     taxed$: 68900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-14': {
     address: '76 JUNIPER DR',
@@ -34489,12 +30882,10 @@ export const LOTS = {
     ],
     cu$: 5400,
     land$: 31300,
-    neighborhood: 'C',
     owner: 'ROM, ALAN JAY',
     taxed$: 64000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-15': {
     address: 'SWEENEY RD',
@@ -34508,12 +30899,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19800,
-    neighborhood: 'C',
     owner: 'LEIBER, ELIZABETH',
     taxed$: 19800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-16': {
     address: 'OFF SWEENEY RD',
@@ -34527,12 +30916,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1500,
-    neighborhood: 'X',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 1500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-18': {
     address: '269 BAILEY RD',
@@ -34546,12 +30933,10 @@ export const LOTS = {
     ],
     cu$: 100,
     land$: 21300,
-    neighborhood: 'E',
     owner: 'TRENT, DANIEL',
     taxed$: 31100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-19': {
     address: '283 BAILEY RD',
@@ -34565,12 +30950,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26600,
-    neighborhood: 'D',
     owner: 'DANAHY, MARTIN F',
     taxed$: 40000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-20': {
     address: 'BAILEY RD',
@@ -34584,12 +30967,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22200,
-    neighborhood: 'D',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 22200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-21': {
     address: '27 JUNIPER DR',
@@ -34603,12 +30984,10 @@ export const LOTS = {
     ],
     cu$: 900,
     land$: 34200,
-    neighborhood: 'C',
     owner: 'ROM, ALAN JAY',
     taxed$: 55700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-22': {
     address: 'JUNIPER DR',
@@ -34622,12 +31001,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8300,
-    neighborhood: 'C',
     owner: 'SUGARHOUSE RD ASSOCIATION',
     taxed$: 8300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-23': {
     address: '62 JUNIPER DR',
@@ -34641,12 +31018,10 @@ export const LOTS = {
     ],
     cu$: 3200,
     land$: 30800,
-    neighborhood: 'C',
     owner: 'BERGERON, STEFAN, ARI, JOSHUA',
     taxed$: 66400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-24': {
     address: '50 JUNIPER DR',
@@ -34660,12 +31035,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 32100,
-    neighborhood: 'C',
     owner: 'MACLEOD, HUBERT F',
     taxed$: 73600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-25': {
     address: '48 JUNIPER DR',
@@ -34679,12 +31052,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20200,
-    neighborhood: 'C',
     owner: 'LAMPRON, BETH',
     taxed$: 21700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-26': {
     address: 'JUNIPER DR',
@@ -34698,12 +31069,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20500,
-    neighborhood: 'C',
     owner: 'MORROW, PAUL',
     taxed$: 20500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-27': {
     address: 'BAILEY RD',
@@ -34717,12 +31086,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9800,
-    neighborhood: 'C',
     owner: 'ULIN, MAGARET W',
     taxed$: 9800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-28': {
     address: '40 JUNIPER DR',
@@ -34736,12 +31103,10 @@ export const LOTS = {
     ],
     cu$: 4600,
     land$: 21800,
-    neighborhood: 'C',
     owner: 'LAMPRON, CARA',
     taxed$: 55600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-29': {
     address: 'JUNIPER DR',
@@ -34755,12 +31120,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15400,
-    neighborhood: 'C',
     owner: 'LAMPRON, CARA',
     taxed$: 15400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-30': {
     address: 'JUNIPER DR',
@@ -34774,12 +31137,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15700,
-    neighborhood: 'C',
     owner: 'LAMPRON, CARA',
     taxed$: 15700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-31': {
     address: '369 BAILEY RD',
@@ -34793,12 +31154,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 25800,
-    neighborhood: 'D',
     owner: 'GRUE, NORMAN J.',
     taxed$: 46700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-32': {
     address: '379 BAILEY RD',
@@ -34812,12 +31171,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21900,
-    neighborhood: 'D',
     owner: 'DUNTON, JAMES E',
     taxed$: 21900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-34': {
     address: 'BAILEY RD',
@@ -34831,12 +31188,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16200,
-    neighborhood: 'W',
     owner: 'PANACOPOULOS, YANNI',
     taxed$: 16200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-36': {
     address: 'BAILEY RD',
@@ -34850,12 +31205,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 16200,
-    neighborhood: 'W',
     owner: 'STEVENS, CLAUDIA F',
     taxed$: 16200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-39': {
     address: '525 BAILEY RD',
@@ -34869,12 +31222,10 @@ export const LOTS = {
     ],
     cu$: 16600,
     land$: 40200,
-    neighborhood: 'E',
     owner: 'DEVLIN, NANCY L REVOC TRUST',
     taxed$: 108900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-43': {
     address: '561 BAILEY RD',
@@ -34888,12 +31239,10 @@ export const LOTS = {
     ],
     cu$: 2300,
     land$: 40500,
-    neighborhood: 'E',
     owner: 'STEVENS, ALEC W.',
     taxed$: 70100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-44': {
     address: '577 BAILEY RD',
@@ -34907,12 +31256,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43600,
-    neighborhood: 'E',
     owner: 'GOODWIN, LORI J',
     taxed$: 141600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-45': {
     address: '679 BAILEY RD',
@@ -34926,12 +31273,10 @@ export const LOTS = {
     ],
     cu$: 6300,
     land$: 43649,
-    neighborhood: 'E',
     owner: 'PECK II, WALTER',
     taxed$: 194249,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-46': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -34945,12 +31290,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25800,
-    neighborhood: 'D',
     owner: 'WHITTEMORE, CLARENCE',
     taxed$: 25800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-48': {
     address: '679 BAILEY RD',
@@ -34964,12 +31307,10 @@ export const LOTS = {
     ],
     cu$: 19800,
     land$: 34211,
-    neighborhood: 'E',
     owner: 'CULLEN, ROGER H',
     taxed$: 54011,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-49': {
     address: 'BAILEY RD',
@@ -34983,12 +31324,10 @@ export const LOTS = {
     ],
     cu$: 8600,
     land$: 16052,
-    neighborhood: 'E',
     owner: 'CULLEN, ROGER H',
     taxed$: 24652,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-51': {
     address: '57 LONG POND RD',
@@ -35002,12 +31341,10 @@ export const LOTS = {
     ],
     cu$: 9600,
     land$: 49600,
-    neighborhood: 'D',
     owner: 'GORDON, MICHAEL D',
     taxed$: 195200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-53': {
     address: 'MUD POND RD',
@@ -35021,12 +31358,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1846,
-    neighborhood: 'C',
     owner: 'KARRMANN, MICHAEL K',
     taxed$: 1846,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-54': {
     address: '632 BAILEY RD',
@@ -35040,12 +31375,10 @@ export const LOTS = {
     ],
     cu$: 5100,
     land$: 38814,
-    neighborhood: 'E',
     owner: 'KARRMANN FAM IRREV TRUST',
     taxed$: 263614,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-55': {
     address: 'FOREST RD',
@@ -35059,12 +31392,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2137,
-    neighborhood: 'C',
     owner: 'CULLEN, ROGER H',
     taxed$: 2137,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '20-56': {
     address: '194 FOREST RD',
@@ -35078,12 +31409,10 @@ export const LOTS = {
     ],
     cu$: 1500,
     land$: 19837,
-    neighborhood: 'C',
     owner: 'CULLEN, ROGER H',
     taxed$: 71437,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-57': {
     address: '150 FOREST RD',
@@ -35097,12 +31426,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 21893,
-    neighborhood: 'C',
     owner: 'KARRMANN, MICHAEL K',
     taxed$: 87993,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-58': {
     address: '108 FOREST RD',
@@ -35116,12 +31443,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 33300,
-    neighborhood: 'C',
     owner: 'YOUNGMAN, MARK D',
     taxed$: 49600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-59': {
     address: 'FOREST RD',
@@ -35135,12 +31460,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21100,
-    neighborhood: 'C',
     owner: 'HESS, CHARLES',
     taxed$: 21100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-78': {
     address: 'BALSAM CIR',
@@ -35154,12 +31477,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 23300,
-    neighborhood: 'C',
     owner: 'MULLIKIN, DEREK',
     taxed$: 23300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-60': {
     address: '2 FOREST RD',
@@ -35173,12 +31494,10 @@ export const LOTS = {
     ],
     cu$: 13000,
     land$: 30965,
-    neighborhood: 'C',
     owner: 'CULLEN, ROGER H',
     taxed$: 301665,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-61': {
     address: 'BALSAM CIR',
@@ -35192,12 +31511,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9402,
-    neighborhood: 'C',
     owner: 'CULLEN, ROGER H',
     taxed$: 9402,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-62': {
     address: 'BALSAM CIR',
@@ -35211,12 +31528,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 18700,
-    neighborhood: 'W',
     owner: 'RIORDAN, ROBERT P',
     taxed$: 18700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-63': {
     address: '355 BALSAM CIR',
@@ -35230,12 +31545,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12432,
-    neighborhood: 'W',
     owner: 'HODGE, STEVEN G',
     taxed$: 12432,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-65': {
     address: '253 E SHORE DR',
@@ -35249,12 +31562,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 33900,
-    neighborhood: 'D',
     owner: 'HULSOOR, SHARAD J',
     taxed$: 62700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-103': {
     address: '318 BAILEY RD',
@@ -35268,12 +31579,10 @@ export const LOTS = {
     ],
     cu$: 32800,
     land$: 20300,
-    neighborhood: 'E',
     owner: 'PECK, ROBERT W',
     taxed$: 53100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-66': {
     address: '431 BALSAM CIR',
@@ -35287,12 +31596,10 @@ export const LOTS = {
     ],
     cu$: 46900,
     land$: 33719,
-    neighborhood: 'C',
     owner: 'HODGE, STEVEN G',
     taxed$: 248719,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-67': {
     address: '482 BALSAM CIRCLE',
@@ -35306,12 +31613,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 43200,
-    neighborhood: 'D',
     owner: 'MULLIKIN, DEREK AND CATHERINE',
     taxed$: 183500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-68': {
     address: '69 E SHORE DR',
@@ -35325,12 +31630,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 25800,
-    neighborhood: 'D',
     owner: 'LAPLANTE, BRIAN A.',
     taxed$: 29600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-69': {
     address: '17 E SHORE DR',
@@ -35344,12 +31647,10 @@ export const LOTS = {
     ],
     cu$: 3800,
     land$: 35900,
-    neighborhood: 'D',
     owner: 'TYMINSKI JR, STANLEY J',
     taxed$: 122700,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-70': {
     address: '8 BALSAM CIR',
@@ -35363,12 +31664,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26900,
-    neighborhood: 'C',
     owner: 'MRAZIK, LYDIA DUPUIS',
     taxed$: 26900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-71': {
     address: '87 LONG POND RD',
@@ -35382,12 +31681,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34700,
-    neighborhood: 'D',
     owner: 'PORLIER, PAUL A',
     taxed$: 34700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-72': {
     address: 'BALSAM CIR',
@@ -35401,12 +31698,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19700,
-    neighborhood: 'C',
     owner: 'LAUTZ, DAVID',
     taxed$: 19700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-74': {
     address: 'FOREST RD',
@@ -35420,12 +31715,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 388,
-    neighborhood: 'C',
     owner: 'KARRMANN, MICHAEL K',
     taxed$: 388,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '20-75': {
     address: 'BALSAM CIR',
@@ -35439,12 +31732,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 19800,
-    neighborhood: 'C',
     owner: 'CULLEN, ROGER H',
     taxed$: 19800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-76': {
     address: 'BALSAM CIR',
@@ -35458,12 +31749,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20000,
-    neighborhood: 'C',
     owner: 'CULLEN, ROGER H',
     taxed$: 20000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-77': {
     address: 'BALSAM CIR',
@@ -35477,12 +31766,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20700,
-    neighborhood: 'C',
     owner: 'RIORDAN, DANIELLE',
     taxed$: 20700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-79': {
     address: 'BALSAM CIR',
@@ -35496,12 +31783,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11000,
-    neighborhood: 'C',
     owner: 'CULLEN, ROGER H',
     taxed$: 11000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-80': {
     address: '23 CHESTNUT RD',
@@ -35515,12 +31800,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22100,
-    neighborhood: 'C',
     owner: 'REBELLO, TYLER J',
     taxed$: 57200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-81': {
     address: 'E SHORE DR',
@@ -35534,12 +31817,10 @@ export const LOTS = {
     ],
     cu$: 5100,
     land$: 36800,
-    neighborhood: 'C',
     owner: 'BUSHEY, CECILE',
     taxed$: 41900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-82': {
     address: 'E SHORE DR',
@@ -35553,12 +31834,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 461,
-    neighborhood: 'C',
     owner: 'DESOUZA, MARK',
     taxed$: 461,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-83': {
     address: '186 E SHORE DR',
@@ -35572,12 +31851,10 @@ export const LOTS = {
     ],
     cu$: 200,
     land$: 130503,
-    neighborhood: 'C',
     owner: 'DESOUZA, MARK',
     taxed$: 337403,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-84': {
     address: '136 E SHORE DR',
@@ -35591,12 +31868,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: '',
     owner: 'JOHNSON, MICHAEL PHILIP',
     taxed$: 32200,
     usage: '110',
-    use: 'R1A',
-    zone: ''
+    use: 'R1A'
   },
   '20-85': {
     address: 'E SHORE DR',
@@ -35610,12 +31885,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25700,
-    neighborhood: 'C',
     owner: 'MULLIKIN, DEREK',
     taxed$: 25700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-86': {
     address: '343 LONG POND RD',
@@ -35629,12 +31902,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 46600,
-    neighborhood: 'D',
     owner: 'CABRAL, ROBERT T.',
     taxed$: 223200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-88': {
     address: '247 LONG POND RD',
@@ -35648,12 +31919,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 36200,
-    neighborhood: 'D',
     owner: 'FAUTEUX, RICKY D',
     taxed$: 79400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-89': {
     address: '226 LONG POND RD',
@@ -35667,12 +31936,10 @@ export const LOTS = {
     ],
     cu$: 6200,
     land$: 93900,
-    neighborhood: 'D',
     owner: 'LEWINE, BENJAMIN M',
     taxed$: 227600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-111': {
     address: '228 BAILEY RD',
@@ -35686,12 +31953,10 @@ export const LOTS = {
     ],
     cu$: 2800,
     land$: 43700,
-    neighborhood: 'E',
     owner: 'KOVACS, FRANK',
     taxed$: 137100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-90': {
     address: 'LONG POND RD',
@@ -35705,12 +31970,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 54100,
-    neighborhood: 'D',
     owner: 'LEWINE, BENJAMIN M',
     taxed$: 54100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-91': {
     address: '110 LONG POND RD',
@@ -35724,12 +31987,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 48600,
-    neighborhood: 'D',
     owner: 'FOGG, WILLIAM R',
     taxed$: 124300,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-92': {
     address: '100 LONG POND RD',
@@ -35743,12 +32004,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1128,
-    neighborhood: 'D',
     owner: 'BROOK, KENNETH A',
     taxed$: 1128,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-95': {
     address: 'BAILEY RD',
@@ -35762,12 +32021,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24300,
-    neighborhood: 'E',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 24300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-97': {
     address: '358 BAILEY RD',
@@ -35781,12 +32038,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 34800,
-    neighborhood: 'E',
     owner: 'FEELEY, WALTER',
     taxed$: 104900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-98': {
     address: '360 BAILEY RD',
@@ -35800,12 +32055,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20300,
-    neighborhood: 'E',
     owner: 'FEELEY, WALTER',
     taxed$: 31100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-99': {
     address: '276 BAILEY RD',
@@ -35819,12 +32072,10 @@ export const LOTS = {
     ],
     cu$: 100,
     land$: 10200,
-    neighborhood: 'E',
     owner: 'TOMAS, THOMAS L',
     taxed$: 20200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-100': {
     address: 'BAILEY RD',
@@ -35838,12 +32089,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1500,
-    neighborhood: 'X',
     owner: 'BAXTER, GORDON N',
     taxed$: 1500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-101': {
     address: 'BAILEY RD',
@@ -35857,12 +32106,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 17000,
-    neighborhood: 'V',
     owner: 'WASHINGTON, TOWN OF - TC DEED',
     taxed$: 17000,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '20-102': {
     address: '330 BAILEY RD',
@@ -35876,12 +32123,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24300,
-    neighborhood: 'E',
     owner: 'REYNOLDS, ALAN P',
     taxed$: 24300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-104': {
     address: '302 BAILEY RD',
@@ -35895,12 +32140,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 34700,
-    neighborhood: 'E',
     owner: 'PECK, ROBERT W',
     taxed$: 63200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-106': {
     address: '280 BAILEY RD',
@@ -35914,12 +32157,10 @@ export const LOTS = {
     ],
     cu$: 5500,
     land$: 20300,
-    neighborhood: 'E',
     owner: "O'DWYER, CHRISTOPHER",
     taxed$: 25800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-108': {
     address: '272 BAILEY RD',
@@ -35933,12 +32174,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 20400,
-    neighborhood: 'E',
     owner: 'TOMAS, SETH A.',
     taxed$: 37100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-109': {
     address: '254 BAILEY RD',
@@ -35952,12 +32191,10 @@ export const LOTS = {
     ],
     cu$: 1700,
     land$: 35300,
-    neighborhood: 'E',
     owner: 'FOGG, MARK W',
     taxed$: 94400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-110': {
     address: 'BAILEY RD',
@@ -35971,12 +32208,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21400,
-    neighborhood: 'E',
     owner: 'BAKER, DEBRAH A LIVING TRUST',
     taxed$: 21400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-113': {
     address: '131 WOODPECKER RD',
@@ -35990,12 +32225,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35700,
-    neighborhood: 'D',
     owner: 'DURFEE, JONATHAN R',
     taxed$: 43700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-114': {
     address: 'WOODPECKER RD',
@@ -36009,12 +32242,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3100,
-    neighborhood: 'X',
     owner: 'DURFEE, JONATHAN R',
     taxed$: 3100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-115': {
     address: 'BAILEY RD',
@@ -36028,12 +32259,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 6400,
-    neighborhood: 'X',
     owner: 'BURTON, CAROL HOPE',
     taxed$: 6400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-117': {
     address: 'WOODPECKER RD',
@@ -36047,12 +32276,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9800,
-    neighborhood: 'D',
     owner: 'LAFFERTY, ANDREW M.',
     taxed$: 9800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-118': {
     address: 'WOODPECKER RD',
@@ -36066,12 +32293,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9800,
-    neighborhood: 'D',
     owner: 'LAFFERTY, ANDREW AND KATHERINE',
     taxed$: 9800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-119': {
     address: '113 PHEASANT LN',
@@ -36085,12 +32310,10 @@ export const LOTS = {
     ],
     cu$: 6400,
     land$: 231007,
-    neighborhood: 'C',
     owner: 'SADOCK, DAVID A',
     taxed$: 395607,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-120': {
     address: '120 PHEASANT LN',
@@ -36104,12 +32327,10 @@ export const LOTS = {
     ],
     cu$: 2700,
     land$: 143048,
-    neighborhood: 'C',
     owner: 'HUTCHINGS, LEO G TRUST',
     taxed$: 363248,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-127': {
     address: 'WOODPECKER RD',
@@ -36123,12 +32344,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26100,
-    neighborhood: 'D',
     owner: 'KILDAY JR, GORDON',
     taxed$: 26100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-18': {
     address: '32 MCQUADE RD',
@@ -36142,12 +32361,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 13000,
-    neighborhood: 'C',
     owner: 'PEABODY, CHARLES L REV TRUST',
     taxed$: 13000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-44': {
     address: 'LOOKOUT POINT RD',
@@ -36161,12 +32378,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 6300,
-    neighborhood: 'D',
     owner: 'DEFOSSE, DAVID R',
     taxed$: 6300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-121-01': {
     address: 'NUTHATCH WAY',
@@ -36180,12 +32395,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 233400,
-    neighborhood: 'C',
     owner: 'WASHINGTON, TOWN OF - FOREST',
     taxed$: 233400,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '20-121-03': {
     address: '53 NUTHATCH WAY',
@@ -36199,12 +32412,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 153100,
-    neighborhood: 'C',
     owner: 'KANE, MICHAEL',
     taxed$: 356400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-121-04': {
     address: '59 NUTHATCH WAY',
@@ -36218,12 +32429,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 148400,
-    neighborhood: 'C',
     owner: 'MERCIERI, CARL J',
     taxed$: 360300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-121-05': {
     address: '75 NUTHATCH WAY',
@@ -36237,12 +32446,10 @@ export const LOTS = {
     ],
     cu$: 5000,
     land$: 204200,
-    neighborhood: 'C',
     owner: 'MERCIER JR, CHARLES H',
     taxed$: 427200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-155': {
     address: '475 LONG POND RD',
@@ -36256,12 +32463,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 178800,
-    neighborhood: 'C',
     owner: 'FOWLER, STEPHEN L. & PATRICIA ',
     taxed$: 217900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-123': {
     address: 'FOX RUN RD',
@@ -36275,12 +32480,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 496,
-    neighborhood: 'C',
     owner: 'BUCHANAN, LORNE R J',
     taxed$: 496,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-129': {
     address: '138 WOODPECKER RD',
@@ -36294,12 +32497,10 @@ export const LOTS = {
     ],
     cu$: 21100,
     land$: 40700,
-    neighborhood: 'D',
     owner: 'YOUNGS, HOWARD',
     taxed$: 115600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-130': {
     address: '106 WOODPECKER RD',
@@ -36313,12 +32514,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 27700,
-    neighborhood: 'D',
     owner: 'SHERIDAN, ANDREW J',
     taxed$: 33500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-131': {
     address: 'WOODPECKER RD',
@@ -36332,12 +32531,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 140,
-    neighborhood: 'D',
     owner: 'LAFFERTY, ANDREW M.',
     taxed$: 140,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-133': {
     address: '178 BAILEY RD',
@@ -36351,12 +32548,10 @@ export const LOTS = {
     ],
     cu$: 1400,
     land$: 38500,
-    neighborhood: 'E',
     owner: 'COHEN, ESTHER R',
     taxed$: 56000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-156': {
     address: '467 LONG POND RD',
@@ -36370,12 +32565,10 @@ export const LOTS = {
     ],
     cu$: 4900,
     land$: 205300,
-    neighborhood: 'C',
     owner: 'ANDERSON, HOLLY SOULE',
     taxed$: 296900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-151': {
     address: '522 LONG POND RD',
@@ -36389,12 +32582,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 149900,
-    neighborhood: 'C',
     owner: 'POOLE, RICHARD J',
     taxed$: 206200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-45': {
     address: 'LOOKOUT POINT RD',
@@ -36408,12 +32599,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 9900,
-    neighborhood: 'D',
     owner: 'DEFOSSE, DAVID R',
     taxed$: 11100,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-144': {
     address: '138 PHEASANT LN',
@@ -36427,12 +32616,10 @@ export const LOTS = {
     ],
     cu$: 18600,
     land$: 273900,
-    neighborhood: 'C',
     owner: 'AUGUN, AUDREY J REV TRUST',
     taxed$: 411700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-145': {
     address: '139 PHEASANT LN',
@@ -36446,12 +32633,10 @@ export const LOTS = {
     ],
     cu$: 400,
     land$: 277500,
-    neighborhood: 'C',
     owner: 'PETRY, BENNET & JUDITH 2018 TR',
     taxed$: 337100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-146': {
     address: 'LONG POND RD',
@@ -36465,12 +32650,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4635,
-    neighborhood: 'C',
     owner: 'LONG POND ASSOCIATION',
     taxed$: 4635,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '20-147': {
     address: '549 LONG POND RD',
@@ -36484,12 +32667,10 @@ export const LOTS = {
     ],
     cu$: 18500,
     land$: 214400,
-    neighborhood: 'C',
     owner: 'CIOTTI FAMILY REV TRUST',
     taxed$: 422400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-148': {
     address: '545 LONG POND RD',
@@ -36503,12 +32684,10 @@ export const LOTS = {
     ],
     cu$: 4000,
     land$: 252000,
-    neighborhood: 'C',
     owner: 'GOODRICH, ROBERT',
     taxed$: 377000,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-152': {
     address: '493 LONG POND RD',
@@ -36522,12 +32701,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 121200,
-    neighborhood: 'C',
     owner: 'RAPP, CARL D',
     taxed$: 121200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-153': {
     address: '491 LONG POND RD',
@@ -36541,12 +32718,10 @@ export const LOTS = {
     ],
     cu$: 1100,
     land$: 181000,
-    neighborhood: 'C',
     owner: 'CLARK, JANET SOULE',
     taxed$: 193600,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-154': {
     address: '487 LONG POND RD',
@@ -36560,12 +32735,10 @@ export const LOTS = {
     ],
     cu$: 3000,
     land$: 192500,
-    neighborhood: 'C',
     owner: 'RAPP, CARL D',
     taxed$: 248300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-157': {
     address: '461 LONG POND RD',
@@ -36579,12 +32752,10 @@ export const LOTS = {
     ],
     cu$: 3900,
     land$: 174800,
-    neighborhood: 'C',
     owner: 'MCINTYRE, PATRICIA M.  TRUSTEE',
     taxed$: 272100,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-158': {
     address: '445 LONG POND RD',
@@ -36598,12 +32769,10 @@ export const LOTS = {
     ],
     cu$: 5600,
     land$: 227400,
-    neighborhood: 'C',
     owner: 'WISE JEFFREY & SONJA TRUST',
     taxed$: 259900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-159': {
     address: 'CHESTNUT RD',
@@ -36617,12 +32786,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'HIGHLAND FOREST ASSOCIATION',
     taxed$: 0,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '20-160': {
     address: '85 CHESTNUT RD',
@@ -36636,12 +32803,10 @@ export const LOTS = {
     ],
     cu$: 2100,
     land$: 148800,
-    neighborhood: 'E',
     owner: 'CARROLL, JOHN O',
     taxed$: 176300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-161': {
     address: 'E SHORE DR',
@@ -36655,12 +32820,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 142200,
-    neighborhood: 'C',
     owner: 'BOSETTI, MICHAEL J',
     taxed$: 260500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-181': {
     address: 'BEAVER BROOK RD',
@@ -36674,12 +32837,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34800,
-    neighborhood: 'G',
     owner: 'NGUYEN, NAM X',
     taxed$: 34800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-162': {
     address: '39 BOW RUN TERR',
@@ -36693,12 +32854,10 @@ export const LOTS = {
     ],
     cu$: 1900,
     land$: 222000,
-    neighborhood: 'C',
     owner: 'BOSETTI, MICHAEL J',
     taxed$: 294800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-163': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -36712,12 +32871,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21900,
-    neighborhood: 'D',
     owner: 'STEPHENS, GIANFRANCA J',
     taxed$: 21900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-164': {
     address: 'BAILEY RD',
@@ -36731,12 +32888,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 20300,
-    neighborhood: 'E',
     owner: 'ROM, ALAN JAY',
     taxed$: 20300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-166': {
     address: '46 JUNIPER DR',
@@ -36750,12 +32905,10 @@ export const LOTS = {
     ],
     cu$: 1800,
     land$: 27500,
-    neighborhood: 'C',
     owner: 'LAMPRON, JOSEPH STEPHEN',
     taxed$: 63200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-167': {
     address: '387 BAILEY RD',
@@ -36769,12 +32922,10 @@ export const LOTS = {
     ],
     cu$: 1600,
     land$: 36600,
-    neighborhood: 'E',
     owner: 'FOGG, WILLIAM R.',
     taxed$: 50400,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-168': {
     address: 'HIGHLAND HAVEN RD',
@@ -36788,12 +32939,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 26000,
-    neighborhood: 'E',
     owner: 'WILSON/TOIBB-WILSON TRUST',
     taxed$: 26000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-176': {
     address: '0 BEAVER BROOK RD',
@@ -36807,12 +32956,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 97700,
-    neighborhood: 'D',
     owner: 'KELLEY FAMILY TRUST, SHAWN M.',
     taxed$: 97700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-180': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -36826,12 +32973,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22200,
-    neighborhood: 'D',
     owner: 'HOLM, LORI A',
     taxed$: 22200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-182': {
     address: 'BEAVER BROOK RD',
@@ -36845,12 +32990,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34900,
-    neighborhood: 'G',
     owner: 'STUBBS, SUSAN M',
     taxed$: 34900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-187': {
     address: 'FOX RUN RD',
@@ -36864,12 +33007,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22500,
-    neighborhood: 'D',
     owner: 'KELLEY FAMILY TRUST, SHAWN M.',
     taxed$: 22500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-188': {
     address: 'FOX RUN RD',
@@ -36883,12 +33024,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21900,
-    neighborhood: 'D',
     owner: 'KELLEY FAMILY TRUST, SHAWN M.',
     taxed$: 21900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-189': {
     address: 'FOX RUN RD',
@@ -36902,12 +33041,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 21900,
-    neighborhood: 'D',
     owner: 'KELLEY FAMILY TRUST, SHAWN M.',
     taxed$: 21900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '20-190': {
     address: 'FOX RUN RD',
@@ -36921,12 +33058,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 99400,
-    neighborhood: 'E',
     owner: 'KELLEY FAMILY TRUST, SHAWN M.',
     taxed$: 99400,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-191': {
     address: '527 BAILEY RD',
@@ -36940,12 +33075,10 @@ export const LOTS = {
     ],
     cu$: 1000,
     land$: 20700,
-    neighborhood: 'A',
     owner: 'SMAIL, SHELLY A.',
     taxed$: 45800,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-192': {
     address: 'BAILEY RD',
@@ -36959,12 +33092,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9200,
-    neighborhood: 'D',
     owner: 'DEVLIN, NANCY L REVOC TRUST',
     taxed$: 9200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-2': {
     address: 'SO MAIN ST',
@@ -36978,12 +33109,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 35300,
-    neighborhood: 'E',
     owner: 'PRONCO, ROBERT',
     taxed$: 35300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-3': {
     address: 'OLD COUNTY RD',
@@ -36997,12 +33126,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 456,
-    neighborhood: 'C',
     owner: 'MAINE, CRAIGEN L T REVC FAM TR',
     taxed$: 456,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '21-3-01': {
     address: 'OLD COUNTY RD',
@@ -37016,12 +33143,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 116,
-    neighborhood: 'C',
     owner: 'MAINE, CRAIGEN L T REVC FAM TR',
     taxed$: 116,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '21-4': {
     address: 'SO MAIN ST',
@@ -37035,12 +33160,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 4902,
-    neighborhood: 'E',
     owner: 'NONNO T. REALTY TRUST',
     taxed$: 4902,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '21-5': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -37054,12 +33177,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 5714,
-    neighborhood: 'C',
     owner: 'MAHONY, BRIAN JAMES',
     taxed$: 5714,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '21-11': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -37073,12 +33194,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3273,
-    neighborhood: 'C',
     owner: 'BELL, CRAIG BARROW REVOC TRUST',
     taxed$: 3273,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '21-14': {
     address: 'DOLE SCHOOL HOUSE RD',
@@ -37092,12 +33211,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 28000,
-    neighborhood: 'X',
     owner: 'RICHARD, JAMES H & CAROL A',
     taxed$: 28000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-3': {
     address: 'NO MAIN ST',
@@ -37111,12 +33228,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1284,
-    neighborhood: 'E',
     owner: 'GAITY, DANIEL J',
     taxed$: 1284,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-43': {
     address: 'VALLEY RD',
@@ -37130,12 +33245,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8100,
-    neighborhood: 'E',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 8100,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '22-5': {
     address: 'NO MAIN ST',
@@ -37149,12 +33262,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 3779,
-    neighborhood: 'D',
     owner: 'CILLEY, DONNA J',
     taxed$: 3779,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-60': {
     address: 'NO MAIN ST',
@@ -37168,12 +33279,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 25600,
-    neighborhood: 'E',
     owner: 'TWEEDY, MEGHAN',
     taxed$: 25600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '22-70': {
     address: 'SO MAIN ST',
@@ -37187,12 +33296,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9900,
-    neighborhood: 'D',
     owner: 'WASHINGTON, TOWN OF - COMMON',
     taxed$: 9900,
     usage: '300',
-    use: 'EX-M',
-    zone: '02'
+    use: 'EX-M'
   },
   '23-32': {
     address: 'E WASHINGTON RD',
@@ -37206,12 +33313,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9900,
-    neighborhood: 'E',
     owner: 'DONAHUE, CAROLE A 2004 TRUST',
     taxed$: 9900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '23-33': {
     address: 'E WASHINGTON RD',
@@ -37225,12 +33330,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10200,
-    neighborhood: 'E',
     owner: 'DONAHUE, CAROLE A 2004 TRUST',
     taxed$: 10200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-29': {
     address: 'VALLEY RD',
@@ -37244,12 +33347,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 0,
-    neighborhood: 'E',
     owner: 'TAPP, JOSEPH A',
     taxed$: 0,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-36': {
     address: 'VALLEY RD',
@@ -37263,12 +33364,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37900,
-    neighborhood: 'E',
     owner: 'MACINTYRE, KEVIN AND SUSAN M.',
     taxed$: 37900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-47': {
     address: 'LOOKOUT POINT RD',
@@ -37282,12 +33381,10 @@ export const LOTS = {
     ],
     cu$: 6300,
     land$: 11300,
-    neighborhood: 'D',
     owner: 'WELKES, MORRIS',
     taxed$: 17600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-48': {
     address: '39 LOOKOUT POINT RD',
@@ -37301,12 +33398,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 24300,
-    neighborhood: 'D',
     owner: 'MENSH, ERIC & WENDY JOINT REV ',
     taxed$: 116800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-49': {
     address: 'LOOKOUT POINT RD',
@@ -37320,12 +33415,10 @@ export const LOTS = {
     ],
     cu$: 800,
     land$: 18300,
-    neighborhood: 'D',
     owner: 'COTE IRREVOCABLE TRUST',
     taxed$: 19100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-50': {
     address: '73 LOOKOUT POINT RD',
@@ -37339,12 +33432,10 @@ export const LOTS = {
     ],
     cu$: 700,
     land$: 148000,
-    neighborhood: 'D',
     owner: 'BERTRAND, KERRY',
     taxed$: 227800,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-83': {
     address: 'BEECH WAY',
@@ -37358,12 +33449,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 94900,
-    neighborhood: 'C',
     owner: 'HUBBARD, GEOFFREY',
     taxed$: 94900,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-97': {
     address: 'BEECH WAY',
@@ -37377,12 +33466,10 @@ export const LOTS = {
     ],
     cu$: 400,
     land$: 22700,
-    neighborhood: 'C',
     owner: 'MCFEE, RICHARD D',
     taxed$: 23100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-98': {
     address: 'BIRCH POINT WAY',
@@ -37396,12 +33483,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 22700,
-    neighborhood: 'C',
     owner: 'DUBEY II, FRANK T',
     taxed$: 22700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-106': {
     address: 'COVE RD',
@@ -37415,12 +33500,10 @@ export const LOTS = {
     ],
     cu$: 3100,
     land$: 124900,
-    neighborhood: 'C',
     owner: 'DEVINE, CAROLE AND JAMES',
     taxed$: 128000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-116': {
     address: '216 COVE RD',
@@ -37434,12 +33517,10 @@ export const LOTS = {
     ],
     cu$: 2000,
     land$: 210100,
-    neighborhood: 'C',
     owner: 'NEUBERT, DEAN',
     taxed$: 232200,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-119': {
     address: 'COVE RD',
@@ -37453,12 +33534,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14200,
-    neighborhood: 'C',
     owner: 'REVANE, DONALD W',
     taxed$: 14200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-120': {
     address: 'COVE RD',
@@ -37472,12 +33551,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11500,
-    neighborhood: 'C',
     owner: 'DEVINE, JAMES',
     taxed$: 11500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-120-03': {
     address: 'COVE RD',
@@ -37491,12 +33568,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14100,
-    neighborhood: 'C',
     owner: 'REVANE, DONALD W',
     taxed$: 14100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-120-04': {
     address: 'COVE RD',
@@ -37510,12 +33585,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14500,
-    neighborhood: 'C',
     owner: 'REVANE, DONALD W',
     taxed$: 14500,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-122': {
     address: 'COVE RD',
@@ -37529,12 +33602,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15100,
-    neighborhood: 'C',
     owner: 'WEAVER, ANN',
     taxed$: 15100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-123': {
     address: 'COVE RD',
@@ -37548,12 +33619,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14700,
-    neighborhood: 'C',
     owner: 'BUCHANAN, KEVIN J',
     taxed$: 14700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-128': {
     address: '3 HERMIT ISLAND',
@@ -37567,12 +33636,10 @@ export const LOTS = {
     ],
     cu$: 400,
     land$: 90800,
-    neighborhood: 'A',
     owner: 'STYGLES, STUART',
     taxed$: 106700,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '24-129': {
     address: '2 HERMIT ISLAND',
@@ -37586,12 +33653,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 90800,
-    neighborhood: 'A',
     owner: 'BROWN, BRIAN',
     taxed$: 104600,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '24-133': {
     address: '39 LAKEVIEW TERR',
@@ -37605,12 +33670,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 37500,
-    neighborhood: 'E',
     owner: 'MELVIN FAMILY REVOCABLE TRUST',
     taxed$: 121700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-136': {
     address: '45 LAKEVIEW TERR',
@@ -37624,12 +33687,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 29200,
-    neighborhood: 'C',
     owner: 'BUTTERWORTH, RALPH J',
     taxed$: 165700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '24-139': {
     address: 'LOOKOUT POINT RD',
@@ -37643,12 +33704,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 6000,
-    neighborhood: 'C',
     owner: 'HABESHIAN, ALICIA MARIE',
     taxed$: 6000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-16': {
     address: '22 MCQUADE RD',
@@ -37662,12 +33721,10 @@ export const LOTS = {
     ],
     cu$: 1200,
     land$: 15100,
-    neighborhood: 'C',
     owner: 'HOULE, MATTHEW',
     taxed$: 22100,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-17': {
     address: '40 MCQUADE RD',
@@ -37681,12 +33738,10 @@ export const LOTS = {
     ],
     cu$: 600,
     land$: 13000,
-    neighborhood: 'C',
     owner: 'PEABODY, CHARLES L REV TRUST',
     taxed$: 13600,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-19': {
     address: 'MCQUADE RD',
@@ -37700,12 +33755,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 12000,
-    neighborhood: 'C',
     owner: 'LAVOIE, DANIEL',
     taxed$: 12000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-20': {
     address: '23 MCQUADE RD',
@@ -37719,12 +33772,10 @@ export const LOTS = {
     ],
     cu$: 500,
     land$: 10800,
-    neighborhood: 'C',
     owner: 'DANEAU, JAMES H',
     taxed$: 30800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-28': {
     address: 'VALLEY RD',
@@ -37738,12 +33789,10 @@ export const LOTS = {
     ],
     cu$: 2600,
     land$: 14300,
-    neighborhood: 'E',
     owner: 'BROUTHERS, ROBERT',
     taxed$: 16900,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-29': {
     address: 'VALLEY RD',
@@ -37757,12 +33806,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14200,
-    neighborhood: 'E',
     owner: 'DURIS, ROBERT A & JOAN',
     taxed$: 14200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-31': {
     address: 'VALLEY RD',
@@ -37776,12 +33823,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 10000,
-    neighborhood: 'E',
     owner: 'HICKS, JEFFREY',
     taxed$: 10000,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-32': {
     address: 'VALLEY RD',
@@ -37795,12 +33840,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14800,
-    neighborhood: 'E',
     owner: 'KIROVAC, MARC',
     taxed$: 14800,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-69': {
     address: 'VALLEY RD',
@@ -37814,12 +33857,10 @@ export const LOTS = {
     ],
     cu$: 15700,
     land$: 14200,
-    neighborhood: 'E',
     owner: 'CROMBIE, FREDERICK C III REV T',
     taxed$: 29900,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-75': {
     address: 'HEMLOCK CIR',
@@ -37833,12 +33874,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11200,
-    neighborhood: 'D',
     owner: 'FONE, PATRICIA L',
     taxed$: 11200,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-76': {
     address: 'HEMLOCK CIR',
@@ -37852,12 +33891,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 9700,
-    neighborhood: 'D',
     owner: 'FONE, PATRICIA L',
     taxed$: 9700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-96': {
     address: 'VALLEY RD',
@@ -37871,12 +33908,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 95300,
-    neighborhood: 'E',
     owner: 'HICKS, JEFFREY',
     taxed$: 95300,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '25-102': {
     address: 'VALLEY RD',
@@ -37890,12 +33925,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 119200,
-    neighborhood: 'E',
     owner: 'BOULEY, MICHAEL',
     taxed$: 119200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '25-119': {
     address: 'VALLEY RD',
@@ -37909,12 +33942,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 14700,
-    neighborhood: 'E',
     owner: 'PROCTOR FAMILY TRUST',
     taxed$: 14700,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '25-120': {
     address: 'VALLEY RD',
@@ -37928,12 +33959,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 2000,
-    neighborhood: 'X',
     owner: 'PROCTOR FAMILY TRUST',
     taxed$: 2000,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '5-2': {
     address: 'HALFMOON PD RD',
@@ -37947,12 +33976,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 265900,
-    neighborhood: 'V',
     owner: 'STATE OF NEW HAMPSHIRE',
     taxed$: 265900,
     usage: '500',
-    use: 'EX-S',
-    zone: '02'
+    use: 'EX-S'
   },
   '18-31': {
     address: 'ASHUELOT POND',
@@ -37966,12 +33993,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 300,
-    neighborhood: 'X',
     owner: 'STROUT, DOUGLAS, THOMAS',
     taxed$: 300,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '20-87': {
     address: 'LONG POND RD',
@@ -37985,12 +34010,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 31400,
-    neighborhood: 'D',
     owner: 'CABRAL, ROBERT T.',
     taxed$: 31400,
     usage: '110',
-    use: 'R1A',
-    zone: '02'
+    use: 'R1A'
   },
   '3-4': {
     address: 'BACK MT RD',
@@ -38004,12 +34027,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 11177,
-    neighborhood: 'V',
     owner: 'BUTLER MOUNTAIN HOLDINGS, LLC',
     taxed$: 11177,
     usage: '190',
-    use: 'CUMH',
-    zone: '02'
+    use: 'CUMH'
   },
   '7-2': {
     address: 'TWIN BRIDGE RD',
@@ -38023,12 +34044,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 1727,
-    neighborhood: 'V',
     owner: 'GASKELL, JAMES & GWENDOLYN',
     taxed$: 1727,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '11-42': {
     address: '494 MILLEN POND RD',
@@ -38042,12 +34061,10 @@ export const LOTS = {
     ],
     cu$: 27100,
     land$: 208865,
-    neighborhood: 'F',
     owner: 'HORTON, 2017 TRUST STEVEN L., ',
     taxed$: 418365,
     usage: '110',
-    use: 'R1W',
-    zone: '02'
+    use: 'R1W'
   },
   '20-107': {
     address: '274 BAILEY RD',
@@ -38061,12 +34078,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 15200,
-    neighborhood: 'E',
     owner: 'DEMERS, JEFFREY',
     taxed$: 15200,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '16-77-01': {
     address: 'MILL ST',
@@ -38080,12 +34095,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 544,
-    neighborhood: 'V',
     owner: 'LAWRENCE, KEVIN A',
     taxed$: 544,
     usage: '190',
-    use: 'CUUW',
-    zone: '02'
+    use: 'CUUW'
   },
   '19-34': {
     address: 'BARDEN POND RD',
@@ -38099,12 +34112,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 942,
-    neighborhood: 'B',
     owner: 'TUTHILL, JOHN & NORA M-TRUSTEE',
     taxed$: 942,
     usage: '190',
-    use: 'CUUO',
-    zone: '02'
+    use: 'CUUO'
   },
   '20-52': {
     address: 'BALSAM CIR',
@@ -38118,12 +34129,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 34500,
-    neighborhood: 'C',
     owner: 'RUMSON, KERRI ANN',
     taxed$: 34500,
     usage: '110',
-    use: 'R1',
-    zone: '02'
+    use: 'R1'
   },
   '21-8': {
     address: 'OLD COUNTY RD',
@@ -38137,12 +34146,10 @@ export const LOTS = {
     ],
     cu$: 0,
     land$: 8373,
-    neighborhood: 'C',
     owner: 'MARCHILENA, FRANCIS S',
     taxed$: 8373,
     usage: '190',
-    use: 'CUUH',
-    zone: '02'
+    use: 'CUUH'
   },
   '0-1': {
     address: 'AP UTILITY PROPERTY',
@@ -38151,12 +34158,10 @@ export const LOTS = {
     centers: [],
     cu$: 1365100,
     land$: 0,
-    neighborhood: 'E',
     owner: 'NH ELECTRIC COOP',
     taxed$: 1365100,
     usage: '261',
-    use: 'UTLE',
-    zone: '02'
+    use: 'UTLE'
   },
   '0-2': {
     address: 'UTILITY PROPERTY',
@@ -38165,12 +34170,10 @@ export const LOTS = {
     centers: [],
     cu$: 3490200,
     land$: 0,
-    neighborhood: 'E',
     owner: 'PUBLIC SERVICE CO OF NH',
     taxed$: 3490200,
     usage: '261',
-    use: 'UTLE',
-    zone: '02'
+    use: 'UTLE'
   },
   '23-26': {
     address: 'EAST WASHINGTON ROAD',

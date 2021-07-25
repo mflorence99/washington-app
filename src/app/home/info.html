@@ -21,6 +21,15 @@
       </tr>
 
       <tr>
+        <td>Icons</td>
+        <td>
+          <a href="https://www.flaticon.com/" title="Flaticon"
+            >www.flaticon.com</a
+          >
+        </td>
+      </tr>
+
+      <tr>
         <td>Author</td>
         <td>{{ env.package.author }}</td>
       </tr>
@@ -49,16 +58,86 @@
   <article class="legend">
     <h2>Legend</h2>
     <ul>
-      <li *ngFor="let usage of usages(); trackByUsage">
-        <div
-          [style.background-color]="'var(--shade-u' + usage[0] + ')'"
-          class="code"
-        >
+      <ng-container *ngFor="let usage of usages(); trackByUsage">
+        <li>
+          <div
+            [style.background-color]="'var(--shade-u' + usage[0] + ')'"
+            class="code"
+          >
+            &nbsp;
+          </div>
           &nbsp;
-        </div>
-        &nbsp;
-        <div class="desc">{{ usage[1] }}</div>
-      </li>
+          <div class="desc">{{ usage[1] }}</div>
+        </li>
+
+        <ng-container *ngIf="usage[0] === '190'">
+          <li>
+            <svg-icon
+              [svgStyle]="{
+                      fill: 'var(--shade-CUUH)',
+                      height: '16px',
+                      width: '16px'
+                    }"
+              class="icon"
+              src="assets/cuuh.svg"
+            ></svg-icon>
+            <svg-icon
+              [svgStyle]="{
+                      fill: 'var(--shade-CUMH)',
+                      height: '16px',
+                      width: '16px'
+                    }"
+              class="icon"
+              src="assets/cumh.svg"
+            ></svg-icon>
+            <div class="desc">Un/managed hardwood</div>
+          </li>
+
+          <li>
+            <svg-icon
+              [svgStyle]="{
+                      fill: 'var(--shade-CUUW)',
+                      height: '16px',
+                      width: '16px'
+                    }"
+              class="icon"
+              src="assets/cuuw.svg"
+            ></svg-icon>
+            <svg-icon
+              [svgStyle]="{
+                      fill: 'var(--shade-CUMW)',
+                      height: '16px',
+                      width: '16px'
+                    }"
+              class="icon"
+              src="assets/cumw.svg"
+            ></svg-icon>
+            <div class="desc">Un/managed pine</div>
+          </li>
+
+          <li>
+            <svg-icon
+              [svgStyle]="{
+                      fill: 'var(--shade-CUFL)',
+                      height: '16px',
+                      width: '16px'
+                    }"
+              class="icon"
+              src="assets/cufl.svg"
+            ></svg-icon>
+            <svg-icon
+              [svgStyle]="{
+                      fill: 'var(--shade-CUWL)',
+                      height: '16px',
+                      width: '16px'
+                    }"
+              class="icon"
+              src="assets/cuwl.svg"
+            ></svg-icon>
+            <div class="desc">Farm/Wetland</div>
+          </li>
+        </ng-container>
+      </ng-container>
     </ul>
   </article>
 
