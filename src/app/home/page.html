@@ -64,7 +64,7 @@
   >
     <section
       (resized)="resize($event)"
-      (tap)="selectLot($event.center)"
+      (tap)="selectLot($event.srcEvent)"
       class="content"
     >
       <ng-container *ngIf="tileContainer() as container">

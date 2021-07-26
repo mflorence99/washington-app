@@ -154,7 +154,14 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   // NOTE: this works because we scale the "tap" surface on its center
-  selectLot(point: Point): void {
+  selectLot(event: MouseEvent): void {
+    // we'd like to use [layerX, layerY] but they are non-standard
+    const parent = this.map.nativeElement.parentElement;
+    const point = {
+      x: event.clientX - parent.offsetLeft,
+      y: event.clientY - parent.offsetTop
+    };
+    console.log(point);
     const center = this.centerOfViewport();
     const origin = this.originOfViewport();
     const translate = this.view.view.translate;
@@ -486,25 +493,17 @@ export class HomePage implements AfterViewInit, OnInit {
     // was the most reliable -- looks like the ray cast algorithm
     // gets confused
     // TODO: we should do "find" but keep "filter" for now
-    const lots = polygons.filter((e) => {
-      const raw = e.getAttribute('points');
+    const lots = polygons.filter((polygon) => {
+      const raw = polygon.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
-      // NOTE: a polygon is supposed to close itself and doesn't need
-      // a closing point which ours have -- nonetheless, it doesn't
-      // seem to hurt to keep it in
-      // points.length = points.length - 1;
       return pointInPoly.pointInPolyWindingNumber([point.x, point.y], points);
     });
     // TODO: resolve ambiguous matches by finding the nearest
-    if (lots.length > 1) {
-      const lotIDs = lots.map((p) => p.id);
-      // TODO: temporary logging of matching lots
-      console.log(
-        `%cAmbiguous match: ${lotIDs.join(', ')}`,
-        'color: indianred'
-      );
-      return this.nearestLotID(point, lotIDs);
-    }
-    return lots[0]?.id;
+    const lotIDs = lots.map((p) => p.id);
+    console.log(
+      `%cFound lots: ${lotIDs.join(', ')}`,
+      lots.length > 1 ? 'color: indianred' : 'color: gold'
+    );
+    return lots.length > 1 ? this.nearestLotID(point, lotIDs) : lots[0]?.id;
   }
 }
