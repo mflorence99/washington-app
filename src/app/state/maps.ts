@@ -60,7 +60,7 @@ export const MAPS: Map[] = [
     id: 'lae',
     cxScale: 70,
     ftScale: 200,
-    focus: { x: 3192.9999999995966, y: 3572.7166959073684 },
+    focus: { x: 2126.9999999995966, y: 2855.7634343617374 },
     title: 'Lake Ashuelot'
   }
 ];

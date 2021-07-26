@@ -78,12 +78,18 @@ export class HomePage implements AfterViewInit, OnInit {
 
   maxTranslate(): [number, number] {
     const element = this.map?.nativeElement;
-    if (element) {
+    if (
+      element &&
+      element.parentElement.offsetWidth &&
+      element.offsetWidth &&
+      element.parentElement.offsetHeight &&
+      element.offsetHeight
+    ) {
       return [
         element.parentElement.offsetWidth - element.offsetWidth,
         element.parentElement.offsetHeight - element.offsetHeight
       ];
-    } else return [0, 0];
+    } else return [-Number.MAX_VALUE, -Number.MAX_VALUE];
   }
 
   minTranslate(): [number, number] {
@@ -96,7 +102,13 @@ export class HomePage implements AfterViewInit, OnInit {
 
   minScale(): number {
     const element = this.map?.nativeElement;
-    if (element) {
+    if (
+      element &&
+      element.parentElement.offsetWidth &&
+      element.offsetWidth &&
+      element.parentElement.offsetHeight &&
+      element.offsetHeight
+    ) {
       const minX = element.parentElement.offsetWidth / element.offsetWidth;
       const minY = element.parentElement.offsetHeight / element.offsetHeight;
       // NOTE: make sure that scale is always represented in scales
@@ -105,6 +117,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
+    console.log('%cUI loaded', 'color: gold');
     this.ready();
   }
 
@@ -114,20 +127,14 @@ export class HomePage implements AfterViewInit, OnInit {
     this.createStylesheet();
   }
 
-  ready(): void {
-    console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
-    setTimeout(() => {
-      // make sure view is initialized
-      this.initializeView();
-      // re-search for any past search
-      this.searchFor(this.selection.text);
-    }, 100);
-  }
-
-  resize(_event: ResizedEvent): void {
+  resize(event: ResizedEvent): void {
+    console.log(
+      `%cViewport resized ${event.newWidth}x${event.newHeight}`,
+      'color: gold'
+    );
     // NOTE: we leverage the side-effect of properly clamping the translate
     this.xlate = this.view.view.translate;
-    this.translate(0, 0);
+    this.translate(-0, -0);
   }
 
   scaleDown(): void {
@@ -260,16 +267,13 @@ export class HomePage implements AfterViewInit, OnInit {
     if (center && midPoint) {
       const max = this.maxTranslate();
       const min = this.minTranslate();
-      const translate = [
-        -(Number(center.x) - midPoint.x),
-        -(Number(center.y) - midPoint.y)
+      const translate: [number, number] = [
+        Math.max(max[0], Math.min(min[0], -(Number(center.x) - midPoint.x))),
+        Math.max(max[1], Math.min(min[1], -(Number(center.y) - midPoint.y)))
       ];
-      this.view.translate([
-        Math.max(max[0], Math.min(min[0], translate[0])),
-        Math.max(max[1], Math.min(min[1], translate[1]))
-      ]);
-      // TODO: get ready for a pan-initiated translate -- why so long?
-      setTimeout(() => (this.xlate = this.view.view.translate), 100);
+      this.view.translate(translate);
+      // setup for pan-initiated translate
+      this.xlate = translate;
     } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
   }
 
@@ -297,12 +301,16 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private centerOfViewport(): Point {
     const element = this.map?.nativeElement;
-    if (element) {
+    if (
+      element &&
+      element.parentElement.offsetWidth &&
+      element.parentElement.offsetHeight
+    ) {
       return {
         x: element.parentElement.offsetWidth / 2,
         y: element.parentElement.offsetHeight / 2
       };
-    } else return null;
+    } else return { x: 0, y: 0 };
   }
 
   // NOTE: interval must be MUCH longer than duration of toaster
@@ -407,12 +415,24 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private originOfViewport(): Point {
     const element = this.map?.nativeElement;
-    if (element) {
+    if (
+      element &&
+      element.parentElement.offsetLeft &&
+      element.parentElement.offsetTop
+    ) {
       return {
         x: element.parentElement.offsetLeft,
         y: element.parentElement.offsetTop
       };
-    } else return null;
+    } else return { x: 0, y: 0 };
+  }
+
+  private ready(): void {
+    console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
+    // make sure view is initialized
+    this.initializeView();
+    // re-search for any past search
+    this.searchFor(this.selection.text);
   }
 
   private setProperties(): void {
