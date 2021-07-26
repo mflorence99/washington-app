@@ -25,6 +25,7 @@ import { ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { ResizedEvent } from 'angular-resize-event';
 import { Subject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
@@ -59,6 +60,7 @@ export class HomePage implements AfterViewInit, OnInit {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   animating = true;
   maps: Map[] = MAPS;
+  translating = false;
 
   private checkVersion$ = new Subject<void>();
   private scales = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5];
@@ -71,6 +73,7 @@ export class HomePage implements AfterViewInit, OnInit {
     private http: HttpClient,
     private mc: ModalController,
     public model: ModelState,
+    private platform: Platform,
     public selection: SelectionState,
     private tc: ToastController,
     public view: ViewState
@@ -154,14 +157,8 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   // NOTE: this works because we scale the "tap" surface on its center
-  selectLot(event: MouseEvent): void {
-    // we'd like to use [layerX, layerY] but they are non-standard
-    const parent = this.map.nativeElement.parentElement;
-    const point = {
-      x: event.clientX - parent.offsetLeft,
-      y: event.clientY - parent.offsetTop
-    };
-    console.log(point);
+  selectLot(event: any): void {
+    const point = this.event2point(event);
     const center = this.centerOfViewport();
     const origin = this.originOfViewport();
     const translate = this.view.view.translate;
@@ -256,12 +253,14 @@ export class HomePage implements AfterViewInit, OnInit {
   // NOTE: this is designed to be called by the panstart event
   translateBegin(): void {
     this.animating = false;
+    this.translating = true;
     this.xlate = this.view.view.translate;
   }
 
   // NOTE: this is designed to be called by the panend event
   translateEnd(): void {
     this.animating = true;
+    this.translating = false;
     this.xlate = this.view.view.translate;
   }
 
@@ -343,6 +342,24 @@ export class HomePage implements AfterViewInit, OnInit {
     const style = document.createElement('style');
     document.head.appendChild(style);
     this.stylesheet = style.sheet;
+  }
+
+  // NOTE: mobile browsers appear different to hammer.js
+  // TODO: Firefox still wonky
+  // TODO: Android unknown
+  private event2point(event: any): Point {
+    let point;
+    if (this.platform.is('ios')) point = event.center;
+    else {
+      // we'd like to use [layerX, layerY] but they are non-standard
+      const parent = this.map.nativeElement.parentElement;
+      point = {
+        x: event.srcEvent.clientX - parent.offsetLeft,
+        y: event.srcEvent.clientY - parent.offsetTop
+      };
+    }
+    console.log(point);
+    return point;
   }
 
   private handleActions$(): void {

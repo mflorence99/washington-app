@@ -21,9 +21,13 @@ app-home {
   .map {
     border: 1px solid black;
     box-sizing: content-box;
-    cursor: move;
+    cursor: normal;
     position: relative;
     touch-action: none;
+  }
+
+  .map.translating {
+    cursor: move;
   }
 
   .lots svg,

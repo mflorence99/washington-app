@@ -64,7 +64,7 @@
   >
     <section
       (resized)="resize($event)"
-      (tap)="selectLot($event.srcEvent)"
+      (tap)="selectLot($event)"
       class="content"
     >
       <ng-container *ngIf="tileContainer() as container">
@@ -74,6 +74,7 @@
           (panend)="translateEnd()"
           (panstart)="translateBegin()"
           [class.animating]="animating"
+          [class.translating]="translating"
           [style.height.px]="container.height"
           [style.width.px]="container.width"
           class="map"
