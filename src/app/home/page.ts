@@ -25,7 +25,6 @@ import { ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import { ResizedEvent } from 'angular-resize-event';
 import { Subject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
@@ -73,7 +72,6 @@ export class HomePage implements AfterViewInit, OnInit {
     private http: HttpClient,
     private mc: ModalController,
     public model: ModelState,
-    private platform: Platform,
     public selection: SelectionState,
     private tc: ToastController,
     public view: ViewState
@@ -157,7 +155,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   // NOTE: this works because we scale the "tap" surface on its center
-  selectLot(event: any): void {
+  selectLot(event: HammerInput): void {
     const point = this.event2point(event);
     const center = this.centerOfViewport();
     const origin = this.originOfViewport();
@@ -344,21 +342,13 @@ export class HomePage implements AfterViewInit, OnInit {
     this.stylesheet = style.sheet;
   }
 
-  // NOTE: mobile browsers appear different to hammer.js
-  // TODO: Firefox still wonky
-  // TODO: Android unknown
-  private event2point(event: any): Point {
-    let point;
-    if (this.platform.is('ios')) point = event.center;
-    else {
-      // we'd like to use [layerX, layerY] but they are non-standard
-      const parent = this.map.nativeElement.parentElement;
-      point = {
-        x: event.srcEvent.clientX - parent.offsetLeft,
-        y: event.srcEvent.clientY - parent.offsetTop
-      };
+  private event2point(event: HammerInput): Point {
+    const point = event.center;
+    const container = this.map.nativeElement.parentElement;
+    if (container.style.position === 'relative') {
+      point.x -= container.offsetLeft;
+      point.y -= container.offsetTop;
     }
-    console.log(point);
     return point;
   }
 
@@ -439,11 +429,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private originOfViewport(): Point {
     const element = this.map?.nativeElement;
-    if (
-      element &&
-      element.parentElement.offsetLeft &&
-      element.parentElement.offsetTop
-    ) {
+    if (element) {
       return {
         x: element.parentElement.offsetLeft,
         y: element.parentElement.offsetTop
@@ -453,10 +439,12 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private ready(): void {
     console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
-    // make sure view is initialized
-    this.initializeView();
-    // re-search for any past search
-    this.searchFor(this.selection.text);
+    setTimeout(() => {
+      // make sure view is initialized
+      this.initializeView();
+      // re-search for any past search
+      this.searchFor(this.selection.text);
+    }, 0);
   }
 
   private setProperties(): void {
