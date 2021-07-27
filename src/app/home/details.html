@@ -21,7 +21,11 @@
 
         <tr>
           <td>Area</td>
-          <td>{{ lot.area | number: '1.0-2' }} acres</td>
+          <td [ngPlural]="lot.area">
+            {{ lot.area | number: '1.0-2' }}
+            <ng-template ngPluralCase="=1">acre</ng-template>
+            <ng-template ngPluralCase="other">acres</ng-template>
+          </td>
         </tr>
 
         <tr>
