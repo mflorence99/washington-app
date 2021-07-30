@@ -1,5 +1,5 @@
-import { DESC_BY_USAGE } from '../state/lots';
-import { DESC_BY_USE } from '../state/lots';
+import { DESC_BY_USAGE } from '../state/parcels';
+import { DESC_BY_USE } from '../state/parcels';
 import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
 

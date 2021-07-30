@@ -1,6 +1,6 @@
 import { Lot } from './parcels';
-import { PARCELS_BY_ADDRESS } from './parcels';
-import { PARCELS_BY_ID } from './parcels';
+import { LOTS_BY_ADDRESS } from './parcels';
+import { LOTS_BY_ID } from './parcels';
 
 import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
@@ -59,9 +59,9 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
     let lots;
     if (text) {
       const byAddress = this.isAddress(text);
-      if (byAddress) lots = PARCELS_BY_ADDRESS[byAddress];
+      if (byAddress) lots = LOTS_BY_ADDRESS[byAddress];
       const byLotID = this.isLotID(text);
-      if (byLotID) lots = PARCELS_BY_ID[byLotID];
+      if (byLotID) lots = LOTS_BY_ID[byLotID];
     }
     setTimeout(() => this.found(lots ? lots : []), 0);
   }

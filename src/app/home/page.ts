@@ -3,10 +3,10 @@ import { DestroyService } from '../services/destroy';
 import { DetailsComponent } from './details';
 import { InfoComponent } from './info';
 import { Lot } from '../state/parcels';
+import { LOTS_BY_ID } from '../state/parcels';
 import { Map } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
-import { PARCELS_BY_ID } from '../state/parcels';
 import { Point } from '../state/maps';
 import { SelectionState } from '../state/selection';
 import { Tile } from '../state/tiles';
@@ -183,7 +183,7 @@ export class HomePage implements AfterViewInit, OnInit {
       const lotID = this.whichLotID(point);
       // find the lots selected
       if (lotID) {
-        const lots = PARCELS_BY_ID[lotID];
+        const lots = LOTS_BY_ID[lotID];
         if (lots) {
           this.unhighlightLots();
           this.highlightLots(lots, 'var(--ion-color-danger)');
@@ -412,7 +412,7 @@ export class HomePage implements AfterViewInit, OnInit {
   private nearestLotID(point: Point, lotIDs: string[]): string {
     let lastDistance = Number.MAX_VALUE;
     let nearestLotID = null;
-    const lots = lotIDs.flatMap((lotID) => PARCELS_BY_ID[lotID]);
+    const lots = lotIDs.flatMap((lotID) => LOTS_BY_ID[lotID]);
     lots.forEach((lot) => {
       const center = this.centerOfLots([lot]);
       const distance = Math.abs(

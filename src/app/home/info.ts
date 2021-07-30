@@ -1,5 +1,5 @@
-import { DESC_BY_USAGE } from '../state/lots';
-import { USAGES } from '../state/lots';
+import { DESC_BY_USAGE } from '../state/parcels';
+import { USAGES } from '../state/parcels';
 
 import { environment } from '../../environments/environment';
 

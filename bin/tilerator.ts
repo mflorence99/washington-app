@@ -1,5 +1,6 @@
 import { catchError } from 'rxjs/operators';
 import { concatMap } from 'rxjs/operators';
+import { copyFileSync } from 'fs';
 import { createCanvas } from 'canvas';
 import { from } from 'rxjs';
 import { loadImage } from 'canvas';
@@ -8,6 +9,13 @@ import { of } from 'rxjs';
 import { writeFileSync } from 'fs';
 
 import rimraf from 'rimraf';
+
+const names = ['center', 'east', 'highland', 'island', 'lae', 'washington'];
+
+// first, copy over all the SVGs of the polygons
+names.forEach((name) =>
+  copyFileSync(`/home/mflo/Downloads/${name}.svg`, `src/app/home/${name}.svg`)
+);
 
 // seems like the best choice, but we could choose dynamically
 // depending on image dimensions
@@ -58,7 +66,7 @@ export const TILES: Tiles = ${JSON.stringify(tiles, null, 2)};
 `;
 
 // @see https://dev.to/j3nnning/resolve-promises-in-sequence-with-rxjs-concatmap-58a
-from(['center', 'east', 'highland', 'island', 'lae', 'washington'])
+from(names)
   .pipe(
     concatMap((name) =>
       loadImage(`/home/mflo/Downloads/${name}.png`).then((image) => {
