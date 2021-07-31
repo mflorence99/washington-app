@@ -58,20 +58,19 @@ app-home {
     --background: var(--ion-color-dark);
   }
 
-  .menu-icon {
-    font-size: 14px;
-  }
-
   .menu-item {
     padding: 0;
   }
 
   .scale {
-    border-color: var(--ion-color-dark);
+    background-color: rgba(var(--ion-color-dark-rgb), 0.75);
+    border-color: var(--ion-color-light);
     border-style: solid;
     border-width: 0 1px 1px 1px;
+    bottom: 1rem;
     font-size: smaller;
-    margin-right: 1rem;
+    left: 1rem;
+    position: absolute;
     text-align: center;
     transition: width 0.5s ease-in-out;
     width: 80px;

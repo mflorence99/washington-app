@@ -1,5 +1,9 @@
 import { Map } from './maps';
 import { MAPS } from './maps';
+import { Tile } from './tiles';
+import { TILE_CONTAINERS } from './tiles';
+import { TileContainer } from './tiles';
+import { TILES } from './tiles';
 
 import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
@@ -12,7 +16,8 @@ import { StateRepository } from '@ngxs-labs/data/decorators';
 import { patch } from '@ngxs/store/operators';
 
 export interface ModelStateModel {
-  map: Map;
+  mapID: string;
+  tracker: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -20,24 +25,50 @@ export interface ModelStateModel {
 @State<ModelStateModel>({
   name: 'map',
   defaults: {
-    map: MAPS[0]
+    mapID: 'washington',
+    tracker: false
   }
 })
 export class ModelState extends NgxsDataRepository<ModelStateModel> {
   // actions
 
   @DataAction({ insideZone: true })
-  switchTo(@Payload('ModelState.switchTo') map: Map): void {
-    this.ctx.setState(patch({ map }));
-    setTimeout(() => this.switchedTo(map), 0);
+  switchTo(@Payload('ModelState.switchTo') mapID: string): void {
+    this.ctx.setState(patch({ mapID }));
+    setTimeout(() => this.switchedTo(mapID), 0);
   }
 
   @DataAction({ insideZone: true })
-  switchedTo(@Payload('ModelState.switchedTo') _map: Map): void {}
+  switchedTo(@Payload('ModelState.switchedTo') _mapID: string): void {}
+
+  @DataAction({ insideZone: true })
+  track(@Payload('ModelState.track') tracker: boolean): void {
+    this.ctx.setState(patch({ tracker }));
+    setTimeout(() => this.tracking(tracker), 0);
+  }
+
+  @DataAction({ insideZone: true })
+  tracking(@Payload('ModelState.tracking') _tracker: boolean): void {}
 
   // accessors
 
   @Computed() get map(): Map {
-    return this.snapshot.map;
+    return MAPS[this.snapshot.mapID];
+  }
+
+  @Computed() get mapID(): string {
+    return this.snapshot.mapID;
+  }
+
+  @Computed() get tiles(): Tile[] {
+    return TILES[this.snapshot.mapID];
+  }
+
+  @Computed() get tileContainer(): TileContainer {
+    return TILE_CONTAINERS[this.snapshot.mapID];
+  }
+
+  @Computed() get tracker(): boolean {
+    return this.snapshot.tracker;
   }
 }

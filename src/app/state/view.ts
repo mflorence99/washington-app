@@ -40,7 +40,7 @@ export class ViewState extends NgxsDataRepository<ViewStateModel> {
 
   @DataAction({ insideZone: true })
   initialize(@Payload('ViewState.initialize') view: View): void {
-    const mapID = this.model.map.id;
+    const mapID = this.model.mapID;
     if (!this.ctx.getState()[mapID])
       this.ctx.setState(patch({ [mapID]: view }));
     setTimeout(() => this.initialized(view), 0);
@@ -51,7 +51,7 @@ export class ViewState extends NgxsDataRepository<ViewStateModel> {
 
   @DataAction({ insideZone: true })
   scale(@Payload('ViewState.scale') scale: number): void {
-    const mapID = this.model.map.id;
+    const mapID = this.model.mapID;
     if (!this.ctx.getState()[mapID])
       this.ctx.setState(patch({ [mapID]: ViewState.defaultView() }));
     this.ctx.setState(patch({ [mapID]: patch({ scale }) }));
@@ -63,7 +63,7 @@ export class ViewState extends NgxsDataRepository<ViewStateModel> {
 
   @DataAction({ insideZone: true })
   translate(@Payload('ViewState.translate') [x, y]: [number, number]): void {
-    const mapID = this.model.map.id;
+    const mapID = this.model.mapID;
     if (!this.ctx.getState()[mapID])
       this.ctx.setState(patch({ [mapID]: ViewState.defaultView() }));
     this.ctx.setState(patch({ [mapID]: patch({ translate: [x, y] }) }));
@@ -78,6 +78,6 @@ export class ViewState extends NgxsDataRepository<ViewStateModel> {
   // accessors
 
   @Computed() get view(): View {
-    return this.snapshot[this.model.map.id] ?? ViewState.defaultView();
+    return this.snapshot[this.model.mapID] ?? ViewState.defaultView();
   }
 }

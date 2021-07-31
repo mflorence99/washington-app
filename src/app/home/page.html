@@ -7,17 +7,17 @@
   <ion-content>
     <ion-list>
       <ion-item
-        *ngFor="let map of maps; trackBy: trackByMap"
+        *ngFor="let item of maps | keyvalue"
         class="menu-item"
-        (tap)="switchTo(map)"
-        [color]="map.id === model.map.id ? 'primary' : null"
+        (tap)="switchTo(item.key)"
+        [color]="item.key === model.mapID ? 'primary' : null"
         button
         lines="full"
       >
         <ion-avatar slot="start">
           <img src="assets/favicon.png" />
         </ion-avatar>
-        <ion-label>{{ map.title }}</ion-label>
+        <ion-label>{{ item.value.title }}</ion-label>
       </ion-item>
 
       <ion-item (tap)="showInfo()" class="menu-item" button lines="full">
@@ -35,24 +35,25 @@
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-button (tap)="showMenu()" color="dark" fill="clear"
-          ><ion-icon
-            class="menu-icon"
-            name="menu-sharp"
-            slot="start"
-          ></ion-icon>
+          ><ion-icon name="menu-sharp" slot="start"></ion-icon>
           <header class="title" slot="end">
             {{ model.map.title }}
           </header></ion-button
         >
       </ion-buttons>
 
-      <article
-        [style.width.px]="model.map.cxScale * view.view.scale"
-        class="scale"
-        slot="end"
-      >
-        {{ model.map.ftScale }}'
-      </article>
+      <ion-buttons slot="end">
+        <ion-toggle
+          #tracker
+          (ngModelChange)="track($event)"
+          [ngModel]="model.tracker"
+          color="primary"
+        ></ion-toggle>
+        <ion-icon
+          [color]="model.tracker? 'primary' : 'dark'"
+          name="locate-sharp"
+        ></ion-icon>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
@@ -67,34 +68,30 @@
       (press)="selectLot($event)"
       class="content"
     >
-      <ng-container *ngIf="tileContainer() as container">
-        <article
-          #map
-          (pan)="translate($event.deltaX, $event.deltaY)"
-          (panend)="translateEnd()"
-          (panstart)="translateBegin()"
-          [class.animating]="animating"
-          [class.translating]="translating"
-          [style.height.px]="container.height"
-          [style.width.px]="container.width"
-          class="map"
+      <article
+        #map
+        (pan)="translate($event.deltaX, $event.deltaY)"
+        (panend)="translateEnd()"
+        (panstart)="translateBegin()"
+        [class.animating]="animating"
+        [class.translating]="translating"
+        [style.height.px]="model.tileContainer.height"
+        [style.width.px]="model.tileContainer.width"
+        class="map"
+      >
+        <ion-img
+          *ngFor="let tile of model.tiles"
+          [src]="tile.fileName"
+          [style.left.px]="tile.x"
+          [style.top.px]="tile.y"
+          [style.height.px]="tile.height"
+          [style.width.px]="tile.width"
+          class="tile"
         >
-          <ng-container *ngIf="tiles() as tiles">
-            <ion-img
-              *ngFor="let tile of tiles"
-              [src]="tile.fileName"
-              [style.left.px]="tile.x"
-              [style.top.px]="tile.y"
-              [style.height.px]="tile.height"
-              [style.width.px]="tile.width"
-              class="tile"
-            >
-            </ion-img>
-          </ng-container>
-        </article>
-      </ng-container>
+        </ion-img>
+      </article>
 
-      <ng-container [ngSwitch]="model.map.id">
+      <ng-container [ngSwitch]="model.mapID">
         <app-center
           *ngSwitchCase="'center'"
           [class.animating]="animating"
@@ -143,6 +140,10 @@
       placeholder="Lot # or address"
     ></ion-searchbar>
   </ion-content>
+
+  <article [style.width.px]="model.map.cxScale * view.view.scale" class="scale">
+    {{ model.map.ftScale }}'
+  </article>
 
   <ion-buttons class="zoom">
     <ion-button

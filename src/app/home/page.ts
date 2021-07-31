@@ -1,18 +1,15 @@
 import { Build } from '../state/build';
 import { DestroyService } from '../services/destroy';
 import { DetailsComponent } from './details';
+import { GeometryService } from '../services/geometry';
 import { InfoComponent } from './info';
 import { Lot } from '../state/parcels';
 import { LOTS_BY_ID } from '../state/parcels';
-import { Map } from '../state/maps';
+import { Maps } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
 import { Point } from '../state/maps';
 import { SelectionState } from '../state/selection';
-import { Tile } from '../state/tiles';
-import { TILE_CONTAINERS } from '../state/tiles';
-import { TileContainer } from '../state/tiles';
-import { TILES } from '../state/tiles';
 import { ViewState } from '../state/view';
 
 import { environment } from '../../environments/environment';
@@ -55,10 +52,11 @@ import pointInPoly from 'point-in-polygon-extended';
 export class HomePage implements AfterViewInit, OnInit {
   @ViewChild('map') map: ElementRef<HTMLImageElement>;
   @ViewChild('menu') menu: Components.IonMenu;
+  @ViewChild('tracker') tracker: Components.IonToggle;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   animating = true;
-  maps: Map[] = MAPS;
+  maps: Maps = MAPS;
   translating = false;
 
   private checkVersion$ = new Subject<void>();
@@ -69,6 +67,7 @@ export class HomePage implements AfterViewInit, OnInit {
   constructor(
     private actions$: Actions,
     private destroy$: DestroyService,
+    private geometry: GeometryService,
     private http: HttpClient,
     private mc: ModalController,
     public model: ModelState,
@@ -214,25 +213,24 @@ export class HomePage implements AfterViewInit, OnInit {
     setTimeout((): any => this.menu?.close(true), 0);
   }
 
-  switchTo(map: Map): void {
-    if (map.id !== this.model.map.id) {
+  switchTo(mapID: string): void {
+    if (mapID !== this.model.mapID) {
       this.xlate = null;
-      this.model.switchTo(map);
+      this.model.switchTo(mapID);
     }
     // NOTE: close the menu later so the transition can be seen
     setTimeout((): any => this.menu?.close(true), 0);
   }
 
-  tileContainer(): TileContainer {
-    return TILE_CONTAINERS[this.model.map.id];
-  }
-
-  tiles(): Tile[] {
-    return TILES[this.model.map.id];
-  }
-
-  trackByMap(index: number, map: Map): string {
-    return map.id;
+  track(tracker: boolean): void {
+    if (tracker !== this.model.tracker) {
+      if (tracker) {
+        navigator.geolocation.getCurrentPosition(
+          () => this.model.track(true),
+          () => (this.tracker.checked = false)
+        );
+      } else this.model.track(false);
+    }
   }
 
   // NOTE: this is designed to be called by the pan event
@@ -394,7 +392,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   private initializeView(): void {
-    const focus = this.model.map.focus;
+    const focus = this.geometry.latlon2xy(this.model.map.focus);
     const midPoint = this.centerOfViewport();
     const max = this.maxTranslate();
     const min = this.minTranslate();
