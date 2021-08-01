@@ -42,7 +42,7 @@
         >
       </ion-buttons>
 
-      <ion-buttons slot="end">
+      <ion-buttons *ngIf="trackable" slot="end">
         <ion-toggle
           #toggler
           (ngModelChange)="track($event)"
@@ -52,6 +52,7 @@
         <ion-icon
           [color]="model.tracker? 'primary' : 'dark'"
           name="locate-sharp"
+          size="large"
         ></ion-icon>
       </ion-buttons>
     </ion-toolbar>
@@ -94,8 +95,6 @@
       <app-tracker
         *ngIf="model.tracker"
         [class.animating]="animating"
-        [style.height.px]="model.tileContainer.height"
-        [style.width.px]="model.tileContainer.width"
         class="tracker"
       ></app-tracker>
 

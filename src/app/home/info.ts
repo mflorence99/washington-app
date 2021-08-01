@@ -11,7 +11,8 @@ import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // NOTE: need Default to change SVG attributes
+  changeDetection: ChangeDetectionStrategy.Default,
   // NOTE: so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
   selector: 'app-info',

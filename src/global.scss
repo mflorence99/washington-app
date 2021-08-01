@@ -37,6 +37,13 @@ h6 {
   --app-translate-x: 0;
   --app-translate-y: 0;
 
+  --ball-accuracy: 0;
+  --ball-heading: 0;
+  --ball-heading-visibility: 'hidden';
+  --ball-interval: 0;
+  --ball-translate-x: 0;
+  --ball-translate-y: 0;
+
   // land use color shading
   // @see https://www.gismanual.com/style/ColorConventions.pdf
   // @see map-maker

@@ -1,0 +1,26 @@
+<svg
+  attr.viewPort="0 0 {{ model.tileContainer.width }} {{
+    model.tileContainer.height
+  }}"
+  [attr.width]="model.tileContainer.width"
+  [attr.height]="model.tileContainer.height"
+>
+  <defs>
+    <radialGradient id="accuracy">
+      <stop offset="0%" stop-color="rgba(66, 140, 255, 0.75)" />
+      <stop offset="100%" stop-color="rgba(66, 140, 255, 0.05)" />
+    </radialGradient>
+
+    <radialGradient id="heading">
+      <stop offset="50%" stop-color="rgba(66, 140, 255, 0.75)" />
+      <stop offset="100%" stop-color="rgba(66, 140, 255, 0.1)" />
+    </radialGradient>
+  </defs>
+
+  <g class="track-ball">
+    <circle class="accuracy" />
+    <polygon class="heading" points="0,0 -20,-40 20,-40" />
+    <circle class="outer" />
+    <circle class="inner" />
+  </g>
+</svg>

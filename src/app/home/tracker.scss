@@ -1,3 +1,55 @@
 app-tracker {
   display: block;
+
+  .track-ball {
+    cx: 0;
+    cy: 0;
+    transform: translate(
+      calc(var(--ball-translate-x) * 1px),
+      calc(var(--ball-translate-y) * 1px)
+    );
+    transition-duration: calc(var(--ball-interval) * 1ms);
+    transition-property: transform;
+    transition-timing-function: linear;
+
+    .accuracy {
+      fill: url('#accuracy');
+      // NOTE: exaggerate accuracy
+      r: calc((var(--ball-accuracy) / var(--app-scale)) * 3px);
+    }
+
+    .heading {
+      fill: url('#heading');
+      transform: rotate(calc(var(--ball-heading) * 1deg))
+        scale(calc(1 / var(--app-scale)));
+      transition-duration: calc(var(--ball-interval) * 1ms);
+      transition-property: transform;
+      transition-timing-function: linear;
+      visibility: var(--ball-heading-visibility);
+    }
+
+    .inner {
+      animation: ANIMATE_TRACKER 2.5s ease-in-out infinite;
+      fill: var(--ion-color-primary);
+      r: calc(10px / var(--app-scale));
+    }
+
+    .outer {
+      fill: var(--ion-color-primary-contrast);
+      r: calc(13px / var(--app-scale));
+      stroke: var(--ion-color-primary);
+    }
+  }
+}
+
+@keyframes ANIMATE_TRACKER {
+  0% {
+    r: calc(10px / var(--app-scale));
+  }
+  50% {
+    r: calc(6px / var(--app-scale));
+  }
+  100% {
+    r: calc(10px / var(--app-scale));
+  }
 }

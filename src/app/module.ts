@@ -1,3 +1,4 @@
+import { GeoSimulatorService } from './services/geo-simulator';
 import { HammerConfig } from './services/hammer';
 import { LogRocketPluginModule } from './state/plugins/logrocket';
 import { ModelState } from './state/model';
@@ -13,8 +14,8 @@ import * as Sentry from '@sentry/angular';
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { BrowserModule } from '@angular/platform-browser';
-import { CanvasModule } from '@ng-web-apis/canvas';
 import { ErrorHandler } from '@angular/core';
+import { GeolocationService } from '@ng-web-apis/geolocation';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
@@ -40,7 +41,6 @@ import { RouteReuseStrategy } from '@angular/router';
     AngularResizedEventModule,
     AngularSvgIconModule.forRoot(),
     BrowserModule,
-    CanvasModule,
     GoogleMapsModule,
     HammerModule,
     HttpClientModule,
@@ -64,6 +64,12 @@ import { RouteReuseStrategy } from '@angular/router';
         logErrors: true,
         showDialog: true
       })
+    },
+    {
+      provide: GeolocationService,
+      useClass: environment.production
+        ? GeolocationService
+        : GeoSimulatorService
     },
     {
       provide: HAMMER_GESTURE_CONFIG,

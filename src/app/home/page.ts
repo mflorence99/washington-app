@@ -19,7 +19,9 @@ import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
 import { ElementRef } from '@angular/core';
+import { GEOLOCATION_SUPPORT } from '@ng-web-apis/geolocation';
 import { HttpClient } from '@angular/common/http';
+import { Inject } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
@@ -73,6 +75,7 @@ export class HomePage implements AfterViewInit, OnInit {
     public model: ModelState,
     public selection: SelectionState,
     private tc: ToastController,
+    @Inject(GEOLOCATION_SUPPORT) public trackable: boolean,
     public view: ViewState
   ) {}
 
@@ -381,7 +384,7 @@ export class HomePage implements AfterViewInit, OnInit {
     // NOTE: pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
-        animation: FILL 1s ease-in-out;
+        animation: HIGHLIGHT_LOTS 1s ease-in-out;
         fill: ${stroke};
         fill-opacity: 0;
         stroke: ${stroke};

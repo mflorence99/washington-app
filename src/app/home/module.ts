@@ -12,7 +12,6 @@ import { WashingtonComponent } from './washington';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { CanvasModule } from '@ng-web-apis/canvas';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -36,7 +35,6 @@ import { NgModule } from '@angular/core';
   imports: [
     AngularResizedEventModule,
     AngularSvgIconModule,
-    CanvasModule,
     CommonModule,
     FormsModule,
     GoogleMapsModule,
