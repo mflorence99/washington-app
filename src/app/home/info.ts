@@ -3,6 +3,7 @@ import { USAGES } from '../state/parcels';
 
 import { environment } from '../../environments/environment';
 
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { HostBinding } from '@angular/core';
 import { ModalController } from '@ionic/angular';
@@ -10,6 +11,7 @@ import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   // NOTE: so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
   selector: 'app-info',
@@ -32,10 +34,6 @@ export class InfoComponent {
     if (event.newWidth === event.newHeight) this.cssClass = 'square';
     else if (event.newWidth > event.newHeight) this.cssClass = 'landscape';
     else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
-  }
-
-  trackByUsage(index: number, usage: [string, string]): string {
-    return usage[0];
   }
 
   usages(): [string, string][] {

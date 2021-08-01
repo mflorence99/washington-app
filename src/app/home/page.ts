@@ -52,7 +52,7 @@ import pointInPoly from 'point-in-polygon-extended';
 export class HomePage implements AfterViewInit, OnInit {
   @ViewChild('map') map: ElementRef<HTMLImageElement>;
   @ViewChild('menu') menu: Components.IonMenu;
-  @ViewChild('tracker') tracker: Components.IonToggle;
+  @ViewChild('toggler') toggler: Components.IonToggle;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   animating = true;
@@ -227,7 +227,7 @@ export class HomePage implements AfterViewInit, OnInit {
       if (tracker) {
         navigator.geolocation.getCurrentPosition(
           () => this.model.track(true),
-          () => (this.tracker.checked = false)
+          () => (this.toggler.checked = false)
         );
       } else this.model.track(false);
     }

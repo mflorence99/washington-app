@@ -13,7 +13,8 @@ app-home {
   // @see page.ts
 
   .lots,
-  .map {
+  .map,
+  .tracker {
     display: block;
     position: absolute;
   }
@@ -31,7 +32,8 @@ app-home {
   }
 
   .lots svg,
-  .map {
+  .map,
+  .tracker {
     transform: translate(
       calc(var(--app-translate-x) * 1px),
       calc(var(--app-translate-y) * 1px)
@@ -39,11 +41,13 @@ app-home {
   }
 
   .lots.animating svg,
-  .map.animating {
+  .map.animating,
+  .tracker.animating {
     transition: transform 0.5s ease-in-out;
   }
 
-  .lots {
+  .lots,
+  .tracker {
     pointer-events: none;
     top: 0;
   }
@@ -96,7 +100,6 @@ app-home {
   }
 
   .title {
-    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
   }

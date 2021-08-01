@@ -44,7 +44,7 @@
 
       <ion-buttons slot="end">
         <ion-toggle
-          #tracker
+          #toggler
           (ngModelChange)="track($event)"
           [ngModel]="model.tracker"
           color="primary"
@@ -90,6 +90,14 @@
         >
         </ion-img>
       </article>
+
+      <app-tracker
+        *ngIf="model.tracker"
+        [class.animating]="animating"
+        [style.height.px]="model.tileContainer.height"
+        [style.width.px]="model.tileContainer.width"
+        class="tracker"
+      ></app-tracker>
 
       <ng-container [ngSwitch]="model.mapID">
         <app-center

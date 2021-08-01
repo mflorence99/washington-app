@@ -58,7 +58,7 @@
   <article class="legend">
     <h2>Legend</h2>
     <ul>
-      <ng-container *ngFor="let usage of usages(); trackByUsage">
+      <ng-container *ngFor="let usage of usages()">
         <li>
           <div
             [style.background-color]="'var(--shade-u' + usage[0] + ')'"
