@@ -2,47 +2,49 @@ import BOUNDARY from '../../assets/boundary.json';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs';
+import { Subscriber } from 'rxjs';
+
+import { finalize } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable()
-export class GeoSimulatorService extends Observable<void> {
-  private counter = 0;
-  private lastPoint;
-  private simulator$ = new Subject<GeolocationPosition>();
-
+export class GeoSimulatorService extends Observable<GeolocationPosition> {
   constructor() {
-    // client will listen on geolocation$
-    super((subscriber: any) => this.simulator$.subscribe(subscriber));
-    // coordinates of test path
-    const coords = BOUNDARY.features[0].geometry.coordinates[0];
-    setInterval(() => {
-      // every N ms emit a new position
-      const point = coords[this.counter];
-      const geolocation = {
-        coords: {
-          latitude: point[1],
-          longitude: point[0],
-          altitude: null,
-          accuracy: Math.random() * 10,
-          altitudeAccuracy: null,
-          heading: this.lastPoint
-            ? this.bearing(
-                this.lastPoint[1],
-                this.lastPoint[0],
-                point[1],
-                point[0]
-              )
-            : null,
-          speed: null
-        },
-        timestamp: Date.now()
-      };
-      // setup for next point
-      this.simulator$.next(geolocation);
-      this.counter += 1;
-      if (this.counter === coords.length) this.counter = 0;
-      this.lastPoint = point;
-    }, 250);
+    let counter = 0;
+    let lastPoint: number[] = null;
+    let loopID = null;
+    super((subscriber: Subscriber<GeolocationPosition>) => {
+      // coordinates of test path
+      const coords = BOUNDARY.features[0].geometry.coordinates[0];
+      loopID = setInterval(() => {
+        // every N ms emit a new position
+        const point = coords[counter];
+        const geolocation = {
+          coords: {
+            latitude: point[1],
+            longitude: point[0],
+            altitude: null,
+            accuracy: Math.random() * 10,
+            altitudeAccuracy: null,
+            heading: lastPoint
+              ? this.bearing(lastPoint[1], lastPoint[0], point[1], point[0])
+              : null,
+            speed: null
+          },
+          timestamp: Date.now()
+        };
+        // setup for next point
+        if (counter === 50) subscriber.error({ code: 1, message: 'xxx' });
+        else subscriber.next(geolocation);
+        counter += 1;
+        if (counter === coords.length) counter = 0;
+        lastPoint = point;
+      }, 250);
+    });
+    return this.pipe(
+      finalize(() => clearInterval(loopID)),
+      shareReplay({ bufferSize: 1, refCount: true })
+    ) as GeoSimulatorService;
   }
 
   // @see https://stackoverflow.com/questions/46590154/calculate-bearing-between-2-points-with-javascript

@@ -43,17 +43,15 @@
       </ion-buttons>
 
       <ion-buttons *ngIf="trackable" slot="end">
-        <ion-toggle
-          #toggler
-          (ngModelChange)="showTracker($event)"
-          [ngModel]="model.tracker"
-          color="primary"
-        ></ion-toggle>
-        <ion-icon
-          [color]="model.tracker? 'primary' : 'dark'"
-          name="locate-sharp"
-          size="large"
-        ></ion-icon>
+        <ion-button
+          (tap)="showTracker(!model.tracker)"
+          color="dark"
+          fill="clear"
+          ><ion-icon
+            [color]="model.tracker? 'primary' : 'dark'"
+            name="locate-sharp"
+          ></ion-icon
+        ></ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

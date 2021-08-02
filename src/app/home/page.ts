@@ -56,7 +56,6 @@ import pointInPoly from 'point-in-polygon-extended';
 export class HomePage implements AfterViewInit, OnInit {
   @ViewChild('map') map: ElementRef<HTMLImageElement>;
   @ViewChild('menu') menu: Components.IonMenu;
-  @ViewChild('toggler') toggler: Components.IonToggle;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   animating = true;
@@ -223,8 +222,14 @@ export class HomePage implements AfterViewInit, OnInit {
 
   showTracker(tracker: boolean): void {
     if (tracker) {
-      this.geolocation$.pipe(take(1)).subscribe(
-        (position) => {
+      this.geolocation$.pipe(take(1)).subscribe({
+        error: (error) => {
+          console.error(error);
+          this.currentPositionNotAvailable();
+          this.model.track(false);
+        },
+
+        next: (position) => {
           const point = {
             lat: position.coords.latitude,
             lon: position.coords.longitude
@@ -233,9 +238,8 @@ export class HomePage implements AfterViewInit, OnInit {
           if (mapID == null) this.currentPositionOffMap();
           else if (mapID !== this.model.mapID) this.currentPositionOnMap(mapID);
           this.model.track(true);
-        },
-        () => (this.toggler.checked = false)
-      );
+        }
+      });
     } else this.model.track(false);
   }
 
@@ -355,11 +359,21 @@ export class HomePage implements AfterViewInit, OnInit {
     this.stylesheet = style.sheet;
   }
 
+  private currentPositionNotAvailable(): void {
+    this.tc
+      .create({
+        message: 'GPS signal unavailable',
+        duration: 2500,
+        color: 'light'
+      })
+      .then((toast) => toast.present());
+  }
+
   private currentPositionOffMap(): void {
     this.tc
       .create({
         message: 'You are currently outside Washington',
-        duration: 5000,
+        duration: 2500,
         color: 'light'
       })
       .then((toast) => toast.present());
