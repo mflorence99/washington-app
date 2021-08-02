@@ -1,12 +1,14 @@
+import { DestroyService } from '../services/destroy';
 import { GeometryService } from '../services/geometry';
 import { ModelState } from '../state/model';
 import { ViewState } from '../state/view';
 
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { GeolocationService } from '@ng-web-apis/geolocation';
 import { ViewEncapsulation } from '@angular/core';
+
+import { takeUntil } from 'rxjs/operators';
 
 const M2FT = 3.28084;
 
@@ -15,15 +17,16 @@ const M2FT = 3.28084;
   changeDetection: ChangeDetectionStrategy.Default,
   // NOTE: so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
+  providers: [DestroyService],
   selector: 'app-tracker',
   styleUrls: ['./tracker.scss'],
   templateUrl: './tracker.svg'
 })
 export class TrackerComponent {
-  private lastTimestamp;
+  private lastTimestamp = 0;
 
   constructor(
-    private cdf: ChangeDetectorRef,
+    private destroy$: DestroyService,
     private geolocation$: GeolocationService,
     private geometry: GeometryService,
     public model: ModelState,
@@ -33,7 +36,7 @@ export class TrackerComponent {
   }
 
   private handleGeoLocation$(): void {
-    this.geolocation$.subscribe((position) => {
+    this.geolocation$.pipe(takeUntil(this.destroy$)).subscribe((position) => {
       // convert location to position over map
       const location = this.geometry.latlon2xy({
         lat: position.coords.latitude,
@@ -46,18 +49,20 @@ export class TrackerComponent {
       // what is interval between last reading?
       const interval = position.timestamp - this.lastTimestamp;
       this.lastTimestamp = position.timestamp;
-      // shortcut only
+      // TODO: how to control direction of rotation animation?
       const heading = position.coords.heading;
       const headingVisibility = heading != null && !isNaN(heading);
       // set properties and repaint
       const style = document.body.style;
       style.setProperty('--ball-accuracy', `${accuracy}`);
       style.setProperty('--ball-heading', `${heading}`);
-      style.setProperty('--ball-heading-visibility', `${headingVisibility}`);
+      style.setProperty(
+        '--ball-heading-visibility',
+        `${headingVisibility ? 'visible' : 'hidden'}`
+      );
       style.setProperty('--ball-interval', `${interval}`);
       style.setProperty('--ball-translate-x', `${location.x}`);
       style.setProperty('--ball-translate-y', `${location.y}`);
-      this.cdf.markForCheck();
     });
   }
 }

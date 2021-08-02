@@ -15,7 +15,7 @@
         lines="full"
       >
         <ion-avatar slot="start">
-          <img src="assets/favicon.png" />
+          <img src="assets/favicon.svg" />
         </ion-avatar>
         <ion-label>{{ item.value.title }}</ion-label>
       </ion-item>
@@ -45,7 +45,7 @@
       <ion-buttons *ngIf="trackable" slot="end">
         <ion-toggle
           #toggler
-          (ngModelChange)="track($event)"
+          (ngModelChange)="showTracker($event)"
           [ngModel]="model.tracker"
           color="primary"
         ></ion-toggle>

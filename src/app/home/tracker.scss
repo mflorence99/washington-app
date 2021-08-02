@@ -29,7 +29,7 @@ app-tracker {
     }
 
     .inner {
-      animation: ANIMATE_TRACKER 2.5s ease-in-out infinite;
+      animation: ANIMATE_TRACKER 3s ease-in-out infinite;
       fill: var(--ion-color-primary);
       r: calc(10px / var(--app-scale));
     }
@@ -47,7 +47,7 @@ app-tracker {
     r: calc(10px / var(--app-scale));
   }
   50% {
-    r: calc(6px / var(--app-scale));
+    r: calc(7px / var(--app-scale));
   }
   100% {
     r: calc(10px / var(--app-scale));

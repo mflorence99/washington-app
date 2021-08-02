@@ -122,6 +122,8 @@ export class HomePage implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     console.log('%cUI loaded', 'color: gold');
     this.ready();
+    // NOTE: analyze the initial position of the tracker if it's showing
+    this.showTracker(this.model.tracker);
   }
 
   ngOnInit(): void {
@@ -216,6 +218,18 @@ export class HomePage implements AfterViewInit, OnInit {
     setTimeout((): any => this.menu?.close(true), 0);
   }
 
+  showTracker(tracker: boolean): void {
+    if (tracker) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position.coords);
+          this.model.track(true);
+        },
+        () => (this.toggler.checked = false)
+      );
+    } else this.model.track(false);
+  }
+
   switchTo(mapID: string): void {
     if (mapID !== this.model.mapID) {
       this.xlate = null;
@@ -223,17 +237,6 @@ export class HomePage implements AfterViewInit, OnInit {
     }
     // NOTE: close the menu later so the transition can be seen
     setTimeout((): any => this.menu?.close(true), 0);
-  }
-
-  track(tracker: boolean): void {
-    if (tracker !== this.model.tracker) {
-      if (tracker) {
-        navigator.geolocation.getCurrentPosition(
-          () => this.model.track(true),
-          () => (this.toggler.checked = false)
-        );
-      } else this.model.track(false);
-    }
   }
 
   // NOTE: this is designed to be called by the pan event
@@ -333,7 +336,7 @@ export class HomePage implements AfterViewInit, OnInit {
         catchError(() => of(environment.build))
       )
       .subscribe((build: Build) => {
-        if (build.id !== environment.build.id) this.wereToast();
+        if (build.id !== environment.build.id) this.newVersionDetected();
       });
   }
 
@@ -428,6 +431,34 @@ export class HomePage implements AfterViewInit, OnInit {
     return nearestLotID;
   }
 
+  private newVersionDetected(): void {
+    this.tc
+      .create({
+        header: 'New version detected',
+        message: 'Reload?',
+        duration: 5000,
+        color: 'light',
+        buttons: [
+          {
+            side: 'end',
+            text: 'Now',
+            handler: (): void => {
+              window.location.reload();
+            }
+          },
+          {
+            text: 'Later',
+            role: 'cancel',
+            handler: (): void => {
+              this.checkVersion$.next();
+              this.checkVersion$.complete();
+            }
+          }
+        ]
+      })
+      .then((toast) => toast.present());
+  }
+
   private originOfViewport(): Point {
     const element = this.map?.nativeElement;
     if (element) {
@@ -458,34 +489,6 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private unhighlightLots(): void {
     while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
-  }
-
-  private wereToast(): void {
-    this.tc
-      .create({
-        header: 'New version detected',
-        message: 'Reload?',
-        duration: 5000,
-        color: 'light',
-        buttons: [
-          {
-            side: 'end',
-            text: 'Now',
-            handler: (): void => {
-              window.location.reload();
-            }
-          },
-          {
-            text: 'Later',
-            role: 'cancel',
-            handler: (): void => {
-              this.checkVersion$.next();
-              this.checkVersion$.complete();
-            }
-          }
-        ]
-      })
-      .then((toast) => toast.present());
   }
 
   private whichLotID(point: Point): string {

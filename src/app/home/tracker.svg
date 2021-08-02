@@ -12,7 +12,7 @@
     </radialGradient>
 
     <radialGradient id="heading">
-      <stop offset="50%" stop-color="rgba(66, 140, 255, 0.75)" />
+      <stop offset="50%" stop-color="rgba(66, 140, 255, 0.5)" />
       <stop offset="100%" stop-color="rgba(66, 140, 255, 0.1)" />
     </radialGradient>
   </defs>
