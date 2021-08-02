@@ -1,4 +1,4 @@
-import { Point } from './maps';
+import { Point } from '../services/geometry';
 
 import PARCELS from '../../assets/parcels.json';
 

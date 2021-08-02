@@ -1,20 +1,5 @@
-// NOTE: a hack we can live ewith to accomodatedifferent Point types
-export interface Point {
-  lat?: number;
-  lng?: number;
-  lon?: number;
-  x?: number;
-  y?: number;
-}
-
-export interface Rectangle {
-  bottom?: number;
-  height?: number;
-  left: number;
-  right?: number;
-  top: number;
-  width?: number;
-}
+import { Point } from '../services/geometry';
+import { Rectangle } from '../services/geometry';
 
 export interface Map {
   bbox: Rectangle;

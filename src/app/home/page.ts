@@ -8,7 +8,7 @@ import { LOTS_BY_ID } from '../state/parcels';
 import { Maps } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
-import { Point } from '../state/maps';
+import { Point } from '../services/geometry';
 import { SelectionState } from '../state/selection';
 import { ViewState } from '../state/view';
 
@@ -20,6 +20,7 @@ import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
 import { ElementRef } from '@angular/core';
 import { GEOLOCATION_SUPPORT } from '@ng-web-apis/geolocation';
+import { GeolocationService } from '@ng-web-apis/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
 import { ModalController } from '@ionic/angular';
@@ -35,6 +36,7 @@ import { filter } from 'rxjs/operators';
 import { merge } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
@@ -69,6 +71,7 @@ export class HomePage implements AfterViewInit, OnInit {
   constructor(
     private actions$: Actions,
     private destroy$: DestroyService,
+    private geolocation$: GeolocationService,
     private geometry: GeometryService,
     private http: HttpClient,
     private mc: ModalController,
@@ -220,9 +223,15 @@ export class HomePage implements AfterViewInit, OnInit {
 
   showTracker(tracker: boolean): void {
     if (tracker) {
-      navigator.geolocation.getCurrentPosition(
+      this.geolocation$.pipe(take(1)).subscribe(
         (position) => {
-          console.log(position.coords);
+          const point = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude
+          };
+          const mapID = this.geometry.whichMap(point);
+          if (mapID == null) this.currentPositionOffMap();
+          else if (mapID !== this.model.mapID) this.currentPositionOnMap(mapID);
           this.model.track(true);
         },
         () => (this.toggler.checked = false)
@@ -344,6 +353,41 @@ export class HomePage implements AfterViewInit, OnInit {
     const style = document.createElement('style');
     document.head.appendChild(style);
     this.stylesheet = style.sheet;
+  }
+
+  private currentPositionOffMap(): void {
+    this.tc
+      .create({
+        message: 'You are currently outside Washington',
+        duration: 5000,
+        color: 'light'
+      })
+      .then((toast) => toast.present());
+  }
+
+  private currentPositionOnMap(mapID: string): void {
+    const map = MAPS[mapID];
+    this.tc
+      .create({
+        header: `You are currently in ${map.title}`,
+        message: 'Load the map?',
+        duration: 5000,
+        color: 'light',
+        buttons: [
+          {
+            side: 'end',
+            text: 'Yes',
+            handler: (): void => {
+              this.switchTo(mapID);
+            }
+          },
+          {
+            text: 'No',
+            role: 'cancel'
+          }
+        ]
+      })
+      .then((toast) => toast.present());
   }
 
   private event2point(event: HammerInput): Point {

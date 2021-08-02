@@ -1,7 +1,25 @@
+import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
-import { Point } from '../state/maps';
 
 import { Injectable } from '@angular/core';
+
+// NOTE: a hack we can live with to accomodatedifferent Point types
+export interface Point {
+  lat?: number;
+  lng?: number;
+  lon?: number;
+  x?: number;
+  y?: number;
+}
+
+export interface Rectangle {
+  bottom?: number;
+  height?: number;
+  left: number;
+  right?: number;
+  top: number;
+  width?: number;
+}
 
 const RAD2DEG = 180 / Math.PI;
 const PI_4 = Math.PI / 4;
@@ -9,6 +27,18 @@ const PI_4 = Math.PI / 4;
 @Injectable({ providedIn: 'root' })
 export class GeometryService {
   constructor(private model: ModelState) {}
+
+  whichMap(point: Point): string {
+    return Object.keys(MAPS).find((mapID) => {
+      const map = MAPS[mapID];
+      const inside =
+        point.lon >= map.bbox.left &&
+        point.lon < map.bbox.right &&
+        point.lat >= map.bbox.bottom &&
+        point.lat < map.bbox.top;
+      return inside;
+    });
+  }
 
   /* eslint-disable @typescript-eslint/member-ordering */
 
@@ -26,14 +56,14 @@ export class GeometryService {
     return { x, y };
   }
 
-  xy2latlon({ x, y }): Point {
+  xy2latlon(point: Point): Point {
     const lon =
       this.model.map.bbox.left +
-      (x / this.model.tileContainer.width) *
+      (point.x / this.model.tileContainer.width) *
         (this.model.map.bbox.right - this.model.map.bbox.left);
     const lat =
       this.model.map.bbox.top +
-      (y / this.model.tileContainer.height) *
+      (point.y / this.model.tileContainer.height) *
         (this.model.map.bbox.bottom - this.model.map.bbox.top);
     return { lat, lon };
   }
