@@ -52,6 +52,17 @@
             name="locate-sharp"
           ></ion-icon
         ></ion-button>
+
+        <ion-button
+          (tap)="followTracker(!model.following)"
+          [disabled]="!model.tracker"
+          color="dark"
+          fill="clear"
+          ><ion-icon
+            [color]="model.following? 'primary' : 'dark'"
+            name="navigate"
+          ></ion-icon
+        ></ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -77,6 +88,7 @@
         [style.height.px]="model.tileContainer.height"
         [style.width.px]="model.tileContainer.width"
         class="map"
+        id="theMap"
       >
         <ion-img
           *ngFor="let tile of model.tiles"
@@ -94,6 +106,7 @@
         *ngIf="model.tracker"
         [class.animating]="animating"
         class="tracker"
+        id="theTracker"
       ></app-tracker>
 
       <ng-container [ngSwitch]="model.mapID">
@@ -101,36 +114,42 @@
           *ngSwitchCase="'center'"
           [class.animating]="animating"
           class="lots"
+          id="theLots"
         ></app-center>
 
         <app-east
           *ngSwitchCase="'east'"
           [class.animating]="animating"
           class="lots"
+          id="theLots"
         ></app-east>
 
         <app-highland
           *ngSwitchCase="'highland'"
           [class.animating]="animating"
           class="lots"
+          id="theLots"
         ></app-highland>
 
         <app-island
           *ngSwitchCase="'island'"
           [class.animating]="animating"
           class="lots"
+          id="theLots"
         ></app-island>
 
         <app-lae
           *ngSwitchCase="'lae'"
           [class.animating]="animating"
           class="lots"
+          id="theLots"
         ></app-lae>
 
         <app-washington
           *ngSwitchDefault
           [class.animating]="animating"
           class="lots"
+          id="theLots"
         ></app-washington>
       </ng-container>
     </section>
@@ -152,8 +171,8 @@
 
   <ion-buttons class="zoom">
     <ion-button
-      (tap)="scaleUp()"
-      [disabled]="view.view.scale >= maxScale()"
+      (tap)="geometry.scaleUp()"
+      [disabled]="view.view.scale >= geometry.maxScale()"
       [strong]="true"
       color="light"
       expand="block"
@@ -161,8 +180,8 @@
       ><ion-icon name="add-sharp" size="large"></ion-icon
     ></ion-button>
     <ion-button
-      (tap)="scaleDown()"
-      [disabled]="view.view.scale <= minScale()"
+      (tap)="geometry.scaleDown()"
+      [disabled]="view.view.scale <= geometry.minScale()"
       [strong]="true"
       color="light"
       expand="block"

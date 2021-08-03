@@ -6,8 +6,8 @@ import { ViewState } from '../state/view';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { GeolocationService } from '@ng-web-apis/geolocation';
-import { ViewEncapsulation } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { ViewEncapsulation } from '@angular/core';
 
 import { takeUntil } from 'rxjs/operators';
 

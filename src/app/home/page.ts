@@ -10,7 +10,6 @@ import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
 import { SelectionState } from '../state/selection';
 import { ViewState } from '../state/view';
-import { XY } from '../services/geometry';
 
 import { environment } from '../../environments/environment';
 
@@ -18,7 +17,6 @@ import { Actions } from '@ngxs/store';
 import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
-import { ElementRef } from '@angular/core';
 import { GEOLOCATION_SUPPORT } from '@ng-web-apis/geolocation';
 import { GeolocationService } from '@ng-web-apis/geolocation';
 import { HttpClient } from '@angular/common/http';
@@ -40,11 +38,6 @@ import { take } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
-import centroid from 'polygon-centroid';
-import pointInPoly from 'point-in-polygon-extended';
-
-// NOTE: we tried to support pinch to zoom but it wasn't satisfactory
-
 @Component({
   // NOTE: so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
@@ -54,7 +47,6 @@ import pointInPoly from 'point-in-polygon-extended';
   templateUrl: './page.html'
 })
 export class HomePage implements AfterViewInit, OnInit {
-  @ViewChild('map') map: ElementRef<HTMLImageElement>;
   @ViewChild('menu') menu: Components.IonMenu;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -63,7 +55,6 @@ export class HomePage implements AfterViewInit, OnInit {
   translating = false;
 
   private checkVersion$ = new Subject<void>();
-  private scales = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5];
   private stylesheet: CSSStyleSheet;
   private xlate: [number, number];
 
@@ -71,7 +62,7 @@ export class HomePage implements AfterViewInit, OnInit {
     private actions$: Actions,
     private destroy$: DestroyService,
     private geolocation$: GeolocationService,
-    private geometry: GeometryService,
+    public geometry: GeometryService,
     private http: HttpClient,
     private mc: ModalController,
     public model: ModelState,
@@ -81,44 +72,8 @@ export class HomePage implements AfterViewInit, OnInit {
     public view: ViewState
   ) {}
 
-  maxTranslate(): [number, number] {
-    const element = this.map?.nativeElement;
-    if (
-      element &&
-      element.parentElement.offsetWidth &&
-      element.offsetWidth &&
-      element.parentElement.offsetHeight &&
-      element.offsetHeight
-    ) {
-      return [
-        element.parentElement.offsetWidth - element.offsetWidth,
-        element.parentElement.offsetHeight - element.offsetHeight
-      ];
-    } else return [-Number.MAX_VALUE, -Number.MAX_VALUE];
-  }
-
-  minTranslate(): [number, number] {
-    return [0, 0];
-  }
-
-  maxScale(): number {
-    return this.scales[this.scales.length - 1];
-  }
-
-  minScale(): number {
-    const element = this.map?.nativeElement;
-    if (
-      element &&
-      element.parentElement.offsetWidth &&
-      element.offsetWidth &&
-      element.parentElement.offsetHeight &&
-      element.offsetHeight
-    ) {
-      const minX = element.parentElement.offsetWidth / element.offsetWidth;
-      const minY = element.parentElement.offsetHeight / element.offsetHeight;
-      // NOTE: make sure that scale is always represented in scales
-      return Math.round(Math.max(minX, minY, this.scales[0]) * 10) / 10;
-    } else return this.scales[0];
+  followTracker(following: boolean): void {
+    this.model.follow(following);
   }
 
   ngAfterViewInit(): void {
@@ -144,17 +99,6 @@ export class HomePage implements AfterViewInit, OnInit {
     this.translate(-0, -0);
   }
 
-  scaleDown(): void {
-    const ix = this.scales.findIndex((scale) => scale === this.view.view.scale);
-    if (ix > 0) this.view.scale(this.scales[ix - 1]);
-  }
-
-  scaleUp(): void {
-    const ix = this.scales.findIndex((scale) => scale === this.view.view.scale);
-    if (ix < this.scales.length - 1 && ix !== -1)
-      this.view.scale(this.scales[ix + 1]);
-  }
-
   searchFor(text: string): void {
     console.log(`%cSearching for ${text}`, 'color: skyblue');
     this.selection.searchFor(text);
@@ -162,9 +106,9 @@ export class HomePage implements AfterViewInit, OnInit {
 
   // NOTE: this works because we scale the "tap" surface on its center
   selectLot(event: HammerInput): void {
-    const point = this.event2point(event);
-    const center = this.centerOfViewport();
-    const origin = this.originOfViewport();
+    const point = this.geometry.event2point(event);
+    const center = this.geometry.centerOfViewport();
+    const origin = this.geometry.originOfViewport();
     const translate = this.view.view.translate;
     const scale = this.view.view.scale;
     if (center && origin) {
@@ -186,7 +130,7 @@ export class HomePage implements AfterViewInit, OnInit {
       const dy = cy - cy / scale;
       const oy = origin.y / scale;
       point.y += dy - oy + xlate.y;
-      const lotID = this.whichLotID(point);
+      const lotID = this.geometry.whichLotID(point);
       // find the lots selected
       if (lotID) {
         const lots = LOTS_BY_ID[lotID];
@@ -205,10 +149,6 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  showMenu(): void {
-    this.menu?.open();
-  }
-
   showInfo(): void {
     this.mc
       .create({
@@ -218,6 +158,10 @@ export class HomePage implements AfterViewInit, OnInit {
       .then((modal) => modal.present());
     // NOTE: close the menu later so the transition can be seen
     setTimeout((): any => this.menu?.close(true), 0);
+  }
+
+  showMenu(): void {
+    this.menu?.open();
   }
 
   showTracker(tracker: boolean): void {
@@ -255,8 +199,8 @@ export class HomePage implements AfterViewInit, OnInit {
   // NOTE: this is designed to be called by the pan event
   translate(deltaX: number, deltaY: number): void {
     if (this.xlate) {
-      const max = this.maxTranslate();
-      const min = this.minTranslate();
+      const max = this.geometry.maxTranslate();
+      const min = this.geometry.minTranslate();
       const translate = [deltaX + this.xlate[0], deltaY + this.xlate[1]];
       this.view.translate([
         Math.max(max[0], Math.min(min[0], translate[0])),
@@ -280,59 +224,6 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   // private methods
-
-  private centerLotsInViewport(lots: Lot[]): void {
-    // put the center of the lots in the middle of the viewport
-    const center = this.centerOfLots(lots);
-    const midPoint = this.centerOfViewport();
-    if (center && midPoint) {
-      const max = this.maxTranslate();
-      const min = this.minTranslate();
-      const translate: [number, number] = [
-        Math.max(max[0], Math.min(min[0], -(Number(center.x) - midPoint.x))),
-        Math.max(max[1], Math.min(min[1], -(Number(center.y) - midPoint.y)))
-      ];
-      this.view.translate(translate);
-      // setup for pan-initiated translate
-      this.xlate = translate;
-    } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
-  }
-
-  private centerOfLots(lots: Lot[]): XY {
-    // find the center of each lot
-    const centers = lots.reduce((acc, lot) => {
-      const polygon = document.getElementById(lot.id);
-      if (polygon) {
-        const raw = polygon.getAttribute('points');
-        const points = raw.split(' ').map((point) => {
-          const [x, y] = point.split(',');
-          // NOTE: centroid wants points in XY format
-          return { x: Number(x), y: Number(y) };
-        });
-        acc.push(centroid(points));
-      } else
-        console.log(`%cCan't find polygon for ${lot.id}`, 'color: indianred');
-      return acc;
-    }, []);
-    // return the center of the centers
-    if (centers.length === 0) return null;
-    else if (centers.length === 1) return centers[0];
-    else return centroid(centers);
-  }
-
-  private centerOfViewport(): XY {
-    const element = this.map?.nativeElement;
-    if (
-      element &&
-      element.parentElement.offsetWidth &&
-      element.parentElement.offsetHeight
-    ) {
-      return {
-        x: element.parentElement.offsetWidth / 2,
-        y: element.parentElement.offsetHeight / 2
-      };
-    } else return { x: 0, y: 0 };
-  }
 
   // NOTE: interval must be MUCH longer than duration of toaster
   private checkVersion(): void {
@@ -404,16 +295,6 @@ export class HomePage implements AfterViewInit, OnInit {
       .then((toast) => toast.present());
   }
 
-  private event2point(event: HammerInput): XY {
-    const point = event.center;
-    const container = this.map.nativeElement.parentElement;
-    if (container.style.position === 'relative') {
-      point.x -= container.offsetLeft;
-      point.y -= container.offsetTop;
-    }
-    return point;
-  }
-
   private handleActions$(): void {
     this.actions$
       .pipe(
@@ -441,7 +322,7 @@ export class HomePage implements AfterViewInit, OnInit {
           this.unhighlightLots();
           if (lots.length > 0) {
             this.highlightLots(lots);
-            this.centerLotsInViewport(lots);
+            this.xlate = this.geometry.centerLotsInViewport(lots);
           }
         }
       });
@@ -455,7 +336,7 @@ export class HomePage implements AfterViewInit, OnInit {
         fill: ${stroke};
         fill-opacity: 0;
         stroke: ${stroke};
-        stroke-width: ${5 / this.view.view.scale}
+        stroke-width: ${4 / this.view.view.scale}
       }`;
       this.stylesheet.insertRule(rule);
     });
@@ -463,9 +344,9 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private initializeView(): void {
     const focus = this.geometry.latlon2xy(this.model.map.focus);
-    const midPoint = this.centerOfViewport();
-    const max = this.maxTranslate();
-    const min = this.minTranslate();
+    const midPoint = this.geometry.centerOfViewport();
+    const max = this.geometry.maxTranslate();
+    const min = this.geometry.minTranslate();
     const view = ViewState.defaultView();
     const translate = [-(focus.x - midPoint.x), -(focus.y - midPoint.y)];
     this.view.initialize({
@@ -475,24 +356,6 @@ export class HomePage implements AfterViewInit, OnInit {
         Math.max(max[1], Math.min(min[1], translate[1]))
       ]
     });
-  }
-
-  private nearestLotID(point: XY, lotIDs: string[]): string {
-    let lastDistance = Number.MAX_VALUE;
-    let nearestLotID = null;
-    const lots = lotIDs.flatMap((lotID) => LOTS_BY_ID[lotID]);
-    lots.forEach((lot) => {
-      const center = this.centerOfLots([lot]);
-      const distance = Math.abs(
-        Math.hypot(point.x - center.x, point.y - center.y)
-      );
-      console.log(`Distance to ${lot.id} is ${distance}`);
-      if (distance < lastDistance) {
-        lastDistance = distance;
-        nearestLotID = lot.id;
-      }
-    });
-    return nearestLotID;
   }
 
   private newVersionDetected(): void {
@@ -523,16 +386,6 @@ export class HomePage implements AfterViewInit, OnInit {
       .then((toast) => toast.present());
   }
 
-  private originOfViewport(): XY {
-    const element = this.map?.nativeElement;
-    if (element) {
-      return {
-        x: element.parentElement.offsetLeft,
-        y: element.parentElement.offsetTop
-      };
-    } else return { x: 0, y: 0 };
-  }
-
   private ready(): void {
     console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
     setTimeout(() => {
@@ -553,30 +406,5 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private unhighlightLots(): void {
     while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
-  }
-
-  private whichLotID(point: XY): string {
-    const polygons = Array.from(
-      document.querySelectorAll<SVGGeometryElement>(
-        'app-home .lots svg g polygon'
-      )
-    );
-    // @see robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
-    // we tried them all and pointInPoly.pointInPolyWindingNumber
-    // was the most reliable -- looks like the ray cast algorithm
-    // gets confused
-    // TODO: we should do "find" but keep "filter" for now
-    const lots = polygons.filter((polygon) => {
-      const raw = polygon.getAttribute('points');
-      const points = raw.split(' ').map((p) => p.split(','));
-      return pointInPoly.pointInPolyWindingNumber([point.x, point.y], points);
-    });
-    // TODO: resolve ambiguous matches by finding the nearest
-    const lotIDs = lots.map((p) => p.id);
-    console.log(
-      `%cFound lots: ${lotIDs.join(', ')}`,
-      lots.length > 1 ? 'color: indianred' : 'color: gold'
-    );
-    return lots.length > 1 ? this.nearestLotID(point, lotIDs) : lots[0]?.id;
   }
 }

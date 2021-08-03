@@ -5,32 +5,32 @@ app-tracker {
     cx: 0;
     cy: 0;
     transform: translate(
-      calc(var(--ball-translate-x) * 1px),
-      calc(var(--ball-translate-y) * 1px)
-    );
+        calc(var(--ball-translate-x) * 1px),
+        calc(var(--ball-translate-y) * 1px)
+      )
+      scale(calc(1 / var(--app-scale)));
 
     .accuracy {
       fill: url('#accuracy');
       // NOTE: don't let the accuracy ball get too big
-      r: min(calc((var(--ball-accuracy) / var(--app-scale)) * 1px), 64px);
+      r: min(calc(var(--ball-accuracy) * 1px), 48px);
     }
 
     .heading {
       fill: url('#heading');
-      transform: rotate(calc(var(--ball-heading) * 1deg))
-        scale(calc(1 / var(--app-scale)));
+      transform: rotate(calc(var(--ball-heading) * 1deg));
       visibility: var(--ball-heading-visibility);
     }
 
     .inner {
       animation: ANIMATE_TRACKER 3s ease-in-out infinite;
       fill: var(--ball-color);
-      r: calc(10px / var(--app-scale));
+      r: 10px;
     }
 
     .outer {
       fill: white;
-      r: calc(13px / var(--app-scale));
+      r: 13px;
       stroke: var(--ball-color);
     }
   }
@@ -45,12 +45,12 @@ app-tracker {
 
 @keyframes ANIMATE_TRACKER {
   0% {
-    r: calc(10px / var(--app-scale));
+    r: 10px;
   }
   50% {
-    r: calc(7px / var(--app-scale));
+    r: 7px;
   }
   100% {
-    r: calc(10px / var(--app-scale));
+    r: 10px;
   }
 }
