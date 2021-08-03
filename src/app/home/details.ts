@@ -42,7 +42,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.mapOptions = {
-      // TODO: aaaargh! we picked "lon" when we should've picked "lng"
+      // NOTE: Google uses "lng" when we picked "lon"
       center: { lat: this.lot.centers[0].lat, lng: this.lot.centers[0].lon },
       disableDefaultUI: false,
       fullscreenControl: false,

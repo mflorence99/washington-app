@@ -1,4 +1,4 @@
-import { Point } from '../services/geometry';
+import { LatLon } from '../services/geometry';
 
 import PARCELS from '../../assets/parcels.json';
 
@@ -6,7 +6,7 @@ export interface Lot {
   address: string;
   area: number;
   building$: number;
-  centers: Point[];
+  centers: LatLon[];
   cu$: number;
   id: string;
   land$: number;

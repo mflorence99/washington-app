@@ -1,10 +1,10 @@
-import { Point } from '../services/geometry';
+import { LatLon } from '../services/geometry';
 import { Rectangle } from '../services/geometry';
 
 export interface Map {
   bbox: Rectangle;
   cxScale: number;
-  focus: Point;
+  focus: LatLon;
   ftScale: number;
   title: string;
 }

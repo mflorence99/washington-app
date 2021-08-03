@@ -3,11 +3,11 @@ import { ModelState } from '../state/model';
 
 import { Injectable } from '@angular/core';
 
-// NOTE: a hack we can live with to accomodatedifferent Point types
-export interface Point {
+export interface LatLon {
   lat?: number;
-  lng?: number;
   lon?: number;
+}
+export interface XY {
   x?: number;
   y?: number;
 }
@@ -28,7 +28,7 @@ const PI_4 = Math.PI / 4;
 export class GeometryService {
   constructor(private model: ModelState) {}
 
-  whichMap(point: Point): string {
+  whichMap(point: LatLon): string {
     return Object.keys(MAPS).find((mapID) => {
       const map = MAPS[mapID];
       const inside =
@@ -42,7 +42,7 @@ export class GeometryService {
 
   /* eslint-disable @typescript-eslint/member-ordering */
 
-  latlon2xy(point: Point): Point {
+  latlon2xy(point: LatLon): XY {
     const x =
       ((this.lon2x(point.lon) - this.lon2x(this.model.map.bbox.left)) *
         this.model.tileContainer.width) /
@@ -56,7 +56,7 @@ export class GeometryService {
     return { x, y };
   }
 
-  xy2latlon(point: Point): Point {
+  xy2latlon(point: XY): LatLon {
     const lon =
       this.model.map.bbox.left +
       (point.x / this.model.tileContainer.width) *

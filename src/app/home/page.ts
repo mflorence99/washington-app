@@ -8,9 +8,9 @@ import { LOTS_BY_ID } from '../state/parcels';
 import { Maps } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
-import { Point } from '../services/geometry';
 import { SelectionState } from '../state/selection';
 import { ViewState } from '../state/view';
+import { XY } from '../services/geometry';
 
 import { environment } from '../../environments/environment';
 
@@ -192,7 +192,7 @@ export class HomePage implements AfterViewInit, OnInit {
         const lots = LOTS_BY_ID[lotID];
         if (lots) {
           this.unhighlightLots();
-          this.highlightLots(lots, 'var(--ion-color-danger)');
+          this.highlightLots(lots);
           this.mc
             .create({
               component: DetailsComponent,
@@ -298,7 +298,7 @@ export class HomePage implements AfterViewInit, OnInit {
     } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
   }
 
-  private centerOfLots(lots: Lot[]): Point {
+  private centerOfLots(lots: Lot[]): XY {
     // find the center of each lot
     const centers = lots.reduce((acc, lot) => {
       const polygon = document.getElementById(lot.id);
@@ -306,7 +306,7 @@ export class HomePage implements AfterViewInit, OnInit {
         const raw = polygon.getAttribute('points');
         const points = raw.split(' ').map((point) => {
           const [x, y] = point.split(',');
-          // NOTE: centroid wants points in Point format
+          // NOTE: centroid wants points in XY format
           return { x: Number(x), y: Number(y) };
         });
         acc.push(centroid(points));
@@ -320,7 +320,7 @@ export class HomePage implements AfterViewInit, OnInit {
     else return centroid(centers);
   }
 
-  private centerOfViewport(): Point {
+  private centerOfViewport(): XY {
     const element = this.map?.nativeElement;
     if (
       element &&
@@ -404,7 +404,7 @@ export class HomePage implements AfterViewInit, OnInit {
       .then((toast) => toast.present());
   }
 
-  private event2point(event: HammerInput): Point {
+  private event2point(event: HammerInput): XY {
     const point = event.center;
     const container = this.map.nativeElement.parentElement;
     if (container.style.position === 'relative') {
@@ -426,22 +426,28 @@ export class HomePage implements AfterViewInit, OnInit {
           this.ready();
         } else if (
           action['ViewState.initialized'] ||
-          action['ViewState.scaled'] ||
           action['ViewState.translated']
         ) {
           this.setProperties();
+        } else if (action['ViewState.scaled']) {
+          this.setProperties();
+          const lots = this.selection.lots;
+          if (lots.length > 0) {
+            this.unhighlightLots();
+            this.highlightLots(lots);
+          }
         } else if (action['SelectionState.found']) {
-          const lots = action['SelectionState.found'];
+          const lots = this.selection.lots;
           this.unhighlightLots();
           if (lots.length > 0) {
-            this.highlightLots(lots, 'var(--ion-color-danger)');
+            this.highlightLots(lots);
             this.centerLotsInViewport(lots);
           }
         }
       });
   }
 
-  private highlightLots(lots: Lot[], stroke: string): void {
+  private highlightLots(lots: Lot[], stroke = 'var(--ion-color-danger)'): void {
     // NOTE: pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
@@ -449,7 +455,7 @@ export class HomePage implements AfterViewInit, OnInit {
         fill: ${stroke};
         fill-opacity: 0;
         stroke: ${stroke};
-        stroke-width: ${Math.max(3, 3 / this.view.view.scale)}
+        stroke-width: ${5 / this.view.view.scale}
       }`;
       this.stylesheet.insertRule(rule);
     });
@@ -471,7 +477,7 @@ export class HomePage implements AfterViewInit, OnInit {
     });
   }
 
-  private nearestLotID(point: Point, lotIDs: string[]): string {
+  private nearestLotID(point: XY, lotIDs: string[]): string {
     let lastDistance = Number.MAX_VALUE;
     let nearestLotID = null;
     const lots = lotIDs.flatMap((lotID) => LOTS_BY_ID[lotID]);
@@ -517,7 +523,7 @@ export class HomePage implements AfterViewInit, OnInit {
       .then((toast) => toast.present());
   }
 
-  private originOfViewport(): Point {
+  private originOfViewport(): XY {
     const element = this.map?.nativeElement;
     if (element) {
       return {
@@ -549,7 +555,7 @@ export class HomePage implements AfterViewInit, OnInit {
     while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
   }
 
-  private whichLotID(point: Point): string {
+  private whichLotID(point: XY): string {
     const polygons = Array.from(
       document.querySelectorAll<SVGGeometryElement>(
         'app-home .lots svg g polygon'
