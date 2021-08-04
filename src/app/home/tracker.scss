@@ -1,9 +1,12 @@
 app-tracker {
   display: block;
 
+  /* stylelint-disable indentation, property-no-unknown */
+
   .track-ball {
     cx: 0;
     cy: 0;
+    // NOTE: must translate BEFORE scale here
     transform: translate(
         calc(var(--ball-translate-x) * 1px),
         calc(var(--ball-translate-y) * 1px)
@@ -24,14 +27,14 @@ app-tracker {
 
     .inner {
       animation: ANIMATE_TRACKER 3s ease-in-out infinite;
-      fill: var(--ball-color);
+      fill: var(--ion-color-primary);
       r: 10px;
     }
 
     .outer {
-      fill: white;
+      fill: var(--ion-color-primary-contrast);
       r: 13px;
-      stroke: var(--ball-color);
+      stroke: var(--ion-color-primary);
     }
   }
 

@@ -2,6 +2,7 @@ import { DestroyService } from '../services/destroy';
 import { GeometryService } from '../services/geometry';
 import { ModelState } from '../state/model';
 import { ViewState } from '../state/view';
+import { XY } from '../services/geometry';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
@@ -47,6 +48,11 @@ export class TrackerComponent {
       .then((toast) => toast.present());
   }
 
+  private followTracker(location: XY): void {
+    if (!this.geometry.isPointInViewport(location))
+      this.geometry.centerPointInViewport(location);
+  }
+
   private handleGeoLocation$(): void {
     this.geolocation$.pipe(takeUntil(this.destroy$)).subscribe({
       error: (error) => {
@@ -57,10 +63,13 @@ export class TrackerComponent {
 
       next: (position) => {
         // convert location to position over map
-        const location = this.geometry.latlon2xy({
+        const latlon = {
           lat: position.coords.latitude,
           lon: position.coords.longitude
-        });
+        };
+        const mapIDs = this.geometry.whichMapIDs(latlon);
+        const xy = this.geometry.latlon2xy(latlon);
+        if (this.model.follower && mapIDs.length !== 0) this.followTracker(xy);
         // convert accuracy from meters to feet to pixels
         const accuracy =
           (position.coords.accuracy * M2FT * this.model.map.cxScale) /
@@ -74,15 +83,14 @@ export class TrackerComponent {
         // set properties and repaint
         const style = document.body.style;
         style.setProperty('--ball-accuracy', `${accuracy}`);
-        style.setProperty('--ball-color', 'var(--ion-color-primary)');
         style.setProperty('--ball-heading', `${heading}`);
         style.setProperty(
           '--ball-heading-visibility',
           `${headingVisibility ? 'visible' : 'hidden'}`
         );
         style.setProperty('--ball-interval', `${interval}`);
-        style.setProperty('--ball-translate-x', `${location.x}`);
-        style.setProperty('--ball-translate-y', `${location.y}`);
+        style.setProperty('--ball-translate-x', `${xy.x}`);
+        style.setProperty('--ball-translate-y', `${xy.y}`);
       }
     });
   }

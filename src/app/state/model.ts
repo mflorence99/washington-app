@@ -16,7 +16,7 @@ import { StateRepository } from '@ngxs-labs/data/decorators';
 import { patch } from '@ngxs/store/operators';
 
 export interface ModelStateModel {
-  following: boolean;
+  follower: boolean;
   mapID: string;
   tracker: boolean;
 }
@@ -26,7 +26,7 @@ export interface ModelStateModel {
 @State<ModelStateModel>({
   name: 'map',
   defaults: {
-    following: false,
+    follower: false,
     mapID: 'washington',
     tracker: false
   }
@@ -35,9 +35,13 @@ export class ModelState extends NgxsDataRepository<ModelStateModel> {
   // actions
 
   @DataAction({ insideZone: true })
-  follow(@Payload('ModelState.follow') following: boolean): void {
-    this.ctx.setState(patch({ following }));
+  follow(@Payload('ModelState.follow') follower: boolean): void {
+    this.ctx.setState(patch({ follower }));
+    setTimeout(() => this.following(follower), 0);
   }
+
+  @DataAction({ insideZone: true })
+  following(@Payload('ModelState.following') _follower: boolean): void {}
 
   @DataAction({ insideZone: true })
   switchTo(@Payload('ModelState.switchTo') mapID: string): void {
@@ -51,12 +55,16 @@ export class ModelState extends NgxsDataRepository<ModelStateModel> {
   @DataAction({ insideZone: true })
   track(@Payload('ModelState.track') tracker: boolean): void {
     this.ctx.setState(patch({ tracker }));
+    setTimeout(() => this.tracking(tracker), 0);
   }
+
+  @DataAction({ insideZone: true })
+  tracking(@Payload('ModelState.tracking') _tracker: boolean): void {}
 
   // accessors
 
-  @Computed() get following(): boolean {
-    return this.snapshot.following;
+  @Computed() get follower(): boolean {
+    return this.snapshot.follower;
   }
 
   @Computed() get map(): Map {

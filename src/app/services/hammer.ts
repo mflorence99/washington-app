@@ -16,11 +16,10 @@ export class HammerConfig extends HammerGestureConfig {
     pan: {
       direction: Hammer.DIRECTION_ALL,
       enable: true,
-      threshold: 3
+      threshold: 10
     },
-    // pinch: { enable: true, pointers: 2 },
     pinch: { enable: false },
-    press: { enable: true },
+    press: { enable: false },
     rotate: { enable: false },
     swipe: { enable: false },
     tap: { enable: true }

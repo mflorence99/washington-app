@@ -3,12 +3,12 @@ import { DESC_BY_USE } from '../state/parcels';
 import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
 
+import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { HostBinding } from '@angular/core';
 import { Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
 
@@ -21,7 +21,7 @@ import { ViewEncapsulation } from '@angular/core';
   styleUrls: ['./details.scss'],
   templateUrl: './details.html'
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements AfterViewInit {
   @HostBinding('class') cssClass: 'landscape' | 'portrait' | 'square' =
     'square';
 
@@ -40,7 +40,7 @@ export class DetailsComponent implements OnInit {
     return `https://www.google.com/maps/@?api=1&map_action=map&center=${this.lot.centers[0].lat}%2c${this.lot.centers[0].lon}&basemap=satellite&zoom=16`;
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.mapOptions = {
       // NOTE: Google uses "lng" when we picked "lon"
       center: { lat: this.lot.centers[0].lat, lng: this.lot.centers[0].lon },

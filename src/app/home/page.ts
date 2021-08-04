@@ -95,7 +95,6 @@ export class HomePage implements AfterViewInit, OnInit {
       'color: gold'
     );
     // NOTE: we leverage the side-effect of properly clamping the translate
-    this.xlate = this.view.view.translate;
     this.translate(-0, -0);
   }
 
@@ -111,40 +110,38 @@ export class HomePage implements AfterViewInit, OnInit {
     const origin = this.geometry.originOfViewport();
     const translate = this.view.view.translate;
     const scale = this.view.view.scale;
-    if (center && origin) {
-      const xlate = {
-        x: -translate[0],
-        y: -translate[1]
-      };
-      // cx            the distance of a point from the center
-      // cx/scale      the actual distance in unscaled units
-      // cx - cx/scale the delta from scaling
-      // so ...
-      // x += cx - cx/scale
-      // y += cy - cy/scale
-      const cx = center.x - point.x;
-      const dx = cx - cx / scale;
-      const ox = origin.x / scale;
-      point.x += dx - ox + xlate.x;
-      const cy = center.y - point.y;
-      const dy = cy - cy / scale;
-      const oy = origin.y / scale;
-      point.y += dy - oy + xlate.y;
-      const lotID = this.geometry.whichLotID(point);
-      // find the lots selected
-      if (lotID) {
-        const lots = LOTS_BY_ID[lotID];
-        if (lots) {
-          this.unhighlightLots();
-          this.highlightLots(lots);
-          this.mc
-            .create({
-              component: DetailsComponent,
-              componentProps: { lot: lots[0] },
-              swipeToClose: true
-            })
-            .then((modal) => modal.present());
-        }
+    const xlate = {
+      x: -translate[0],
+      y: -translate[1]
+    };
+    // cx            the distance of a point from the center
+    // cx/scale      the actual distance in unscaled units
+    // cx - cx/scale the delta from scaling
+    // so ...
+    // x += cx - cx/scale
+    // y += cy - cy/scale
+    const cx = center.x - point.x;
+    const dx = cx - cx / scale;
+    const ox = origin.x / scale;
+    point.x += dx - ox + xlate.x;
+    const cy = center.y - point.y;
+    const dy = cy - cy / scale;
+    const oy = origin.y / scale;
+    point.y += dy - oy + xlate.y;
+    const lotID = this.geometry.whichLotID(point);
+    // find the lots selected
+    if (lotID) {
+      const lots = LOTS_BY_ID[lotID];
+      if (lots) {
+        this.unhighlightLots();
+        this.highlightLots(lots);
+        this.mc
+          .create({
+            component: DetailsComponent,
+            componentProps: { lot: lots[0] },
+            swipeToClose: true
+          })
+          .then((modal) => modal.present());
       }
     }
   }
@@ -174,13 +171,13 @@ export class HomePage implements AfterViewInit, OnInit {
         },
 
         next: (position) => {
-          const point = {
+          const mapIDs = this.geometry.whichMapIDs({
             lat: position.coords.latitude,
             lon: position.coords.longitude
-          };
-          const mapID = this.geometry.whichMap(point);
-          if (mapID == null) this.currentPositionOffMap();
-          else if (mapID !== this.model.mapID) this.currentPositionOnMap(mapID);
+          });
+          if (mapIDs.length === 0) this.currentPositionOffMap();
+          else if (!mapIDs.includes(this.model.mapID))
+            this.currentPositionOnMap(mapIDs[0]);
           this.model.track(true);
         }
       });
@@ -189,7 +186,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   switchTo(mapID: string): void {
     if (mapID !== this.model.mapID) {
-      this.xlate = null;
+      // this.xlate = null;
       this.model.switchTo(mapID);
     }
     // NOTE: close the menu later so the transition can be seen
@@ -198,7 +195,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   // NOTE: this is designed to be called by the pan event
   translate(deltaX: number, deltaY: number): void {
-    if (this.xlate) {
+    if (this.translating && this.xlate) {
       const max = this.geometry.maxTranslate();
       const min = this.geometry.minTranslate();
       const translate = [deltaX + this.xlate[0], deltaY + this.xlate[1]];
@@ -312,6 +309,7 @@ export class HomePage implements AfterViewInit, OnInit {
           this.setProperties();
         } else if (action['ViewState.scaled']) {
           this.setProperties();
+          if (!this.translating) this.xlate = this.view.view.translate;
           const lots = this.selection.lots;
           if (lots.length > 0) {
             this.unhighlightLots();
@@ -322,7 +320,7 @@ export class HomePage implements AfterViewInit, OnInit {
           this.unhighlightLots();
           if (lots.length > 0) {
             this.highlightLots(lots);
-            this.xlate = this.geometry.centerLotsInViewport(lots);
+            this.geometry.centerLotsInViewport(lots);
           }
         }
       });

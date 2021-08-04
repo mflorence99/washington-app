@@ -38,21 +38,19 @@ const PI_4 = Math.PI / 4;
 export class GeometryService {
   constructor(private model: ModelState, private view: ViewState) {}
 
-  centerLotsInViewport(lots: Lot[]): [number, number] {
-    let translate: [number, number] = null;
+  centerLotsInViewport(lots: Lot[]): void {
     // put the center of the lots in the middle of the viewport
     const center = this.centerOfLots(lots);
-    const midPoint = this.centerOfViewport();
-    if (center && midPoint) {
+    if (center) {
+      const midPoint = this.centerOfViewport();
       const max = this.maxTranslate();
       const min = this.minTranslate();
-      translate = [
+      const translate: [number, number] = [
         Math.max(max[0], Math.min(min[0], -(Number(center.x) - midPoint.x))),
         Math.max(max[1], Math.min(min[1], -(Number(center.y) - midPoint.y)))
       ];
       this.view.translate(translate);
     } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
-    return translate;
   }
 
   centerOfLots(lots: Lot[]): XY {
@@ -91,6 +89,18 @@ export class GeometryService {
     } else return { x: 0, y: 0 };
   }
 
+  centerPointInViewport(point: XY): void {
+    // put the point in the middle of the viewport
+    const midPoint = this.centerOfViewport();
+    const max = this.maxTranslate();
+    const min = this.minTranslate();
+    const translate: [number, number] = [
+      Math.max(max[0], Math.min(min[0], -(Number(point.x) - midPoint.x))),
+      Math.max(max[1], Math.min(min[1], -(Number(point.y) - midPoint.y)))
+    ];
+    this.view.translate(translate);
+  }
+
   event2point(event: HammerInput): XY {
     const point = event.center;
     const container = document.getElementById('theMap').parentElement;
@@ -99,6 +109,45 @@ export class GeometryService {
       point.y -= container.offsetTop;
     }
     return point;
+  }
+
+  // NOTE: this works because we scale the viewport on its center
+  isPointInViewport(point: XY): boolean {
+    const center = this.centerOfViewport();
+    const origin = this.originOfViewport();
+    const translate = this.view.view.translate;
+    const scale = this.view.view.scale;
+    const xlate = {
+      x: -translate[0],
+      y: -translate[1]
+    };
+    // tl            top left corner of viewport
+    // cx            the distance of edge from the center
+    // cx/scale      the actual distance in unscaled units
+    // cx - cx/scale the delta from scaling
+    // so ...
+    // tl.x = cx - cx/scale
+    // tl.y = cy - cy/scale
+    const tl = this.event2point({ center: { x: 0, y: 0 } } as HammerInput);
+    const cx = center.x;
+    const dx = cx - cx / scale;
+    const ox = origin.x / scale;
+    tl.x = dx - ox + xlate.x;
+    const cy = center.y;
+    const dy = cy - cy / scale;
+    const oy = origin.y / scale;
+    tl.y = dy - oy + xlate.y;
+    // w             the width of the viewport
+    // w/scale       the actual width in unscaled units
+    // so ...
+    // br.x = tl.x + w/scale
+    // br.y = tl.y + h/scale
+    const w = (center.x * 2) / scale;
+    const h = (center.y * 2) / scale;
+    const br = { x: tl.x + w, y: tl.y + h };
+    return (
+      point.x >= tl.x && point.x < br.x && point.y >= tl.y && point.y < br.y
+    );
   }
 
   lat2y(lat: number): number {
@@ -226,8 +275,8 @@ export class GeometryService {
     return lots.length > 1 ? this.nearestLotID(point, lotIDs) : lots[0]?.id;
   }
 
-  whichMap(point: LatLon): string {
-    return Object.keys(MAPS).find((mapID) => {
+  whichMapIDs(point: LatLon): string[] {
+    return Object.keys(MAPS).filter((mapID) => {
       const map = MAPS[mapID];
       const inside =
         point.lon >= map.bbox.left &&

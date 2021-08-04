@@ -54,12 +54,12 @@
         ></ion-button>
 
         <ion-button
-          (tap)="followTracker(!model.following)"
+          (tap)="followTracker(!model.follower)"
           [disabled]="!model.tracker"
           color="dark"
           fill="clear"
           ><ion-icon
-            [color]="model.following? 'primary' : 'dark'"
+            [color]="model.follower? 'primary' : 'dark'"
             name="navigate"
           ></ion-icon
         ></ion-button>
@@ -75,7 +75,7 @@
   >
     <section
       (resized)="resize($event)"
-      (press)="selectLot($event)"
+      (tap)="selectLot($event)"
       class="content"
     >
       <article
