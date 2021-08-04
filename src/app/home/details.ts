@@ -1,5 +1,6 @@
 import { DESC_BY_USAGE } from '../state/parcels';
 import { DESC_BY_USE } from '../state/parcels';
+import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
 
 import { AfterViewInit } from '@angular/core';
@@ -28,7 +29,7 @@ export class DetailsComponent implements AfterViewInit {
 
   mapOptions: google.maps.MapOptions = {};
 
-  constructor(private mc: ModalController) {}
+  constructor(public api: GoogleService, private mc: ModalController) {}
 
   dismiss(): void {
     this.mc.dismiss();

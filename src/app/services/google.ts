@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
+import { mapTo } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
@@ -19,6 +20,7 @@ export class GoogleService {
         'callback'
       )
       .pipe(
+        mapTo(true),
         tap(() =>
           console.log(
             '%cSingleton Google Maps API script loaded',
@@ -26,13 +28,7 @@ export class GoogleService {
           )
         ),
         shareReplay({ bufferSize: 1, refCount: false }),
-        map(() => true),
-        tap(() =>
-          console.log(
-            '%cSingleton Google Maps API script reused',
-            'color: lightgreen'
-          )
-        ),
+        delay(10),
         catchError(() => of(false))
       );
   }

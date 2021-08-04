@@ -3,7 +3,7 @@
     <h1>{{ lot.id }} &bull; {{ lot.address }}</h1>
   </header>
 
-  <article class="map">
+  <article *ngIf="api.ready$ | async; else noMap" class="map">
     <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
   </article>
 
