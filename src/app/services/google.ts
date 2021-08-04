@@ -25,8 +25,14 @@ export class GoogleService {
             'color: tomato'
           )
         ),
-        shareReplay(),
+        shareReplay({ bufferSize: 1, refCount: false }),
         map(() => true),
+        tap(() =>
+          console.log(
+            '%cSingleton Google Maps API script reused',
+            'color: lightgreen'
+          )
+        ),
         catchError(() => of(false))
       );
   }

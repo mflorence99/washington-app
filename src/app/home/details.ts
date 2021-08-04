@@ -1,11 +1,9 @@
 import { DESC_BY_USAGE } from '../state/parcels';
 import { DESC_BY_USE } from '../state/parcels';
-import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
 
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { HostBinding } from '@angular/core';
 import { Input } from '@angular/core';
@@ -30,11 +28,7 @@ export class DetailsComponent implements AfterViewInit {
 
   mapOptions: google.maps.MapOptions = {};
 
-  constructor(
-    public api: GoogleService,
-    private cdf: ChangeDetectorRef,
-    private mc: ModalController
-  ) {}
+  constructor(private mc: ModalController) {}
 
   dismiss(): void {
     this.mc.dismiss();
@@ -56,8 +50,6 @@ export class DetailsComponent implements AfterViewInit {
       mapTypeId: 'hybrid',
       zoom: 15
     };
-    // TODO: need to "tickle" map on mobile after first load -- no idea why
-    setTimeout(() => this.cdf.detectChanges(), 0);
   }
 
   resize(event: ResizedEvent): void {
