@@ -1,6 +1,7 @@
 import { Build } from '../state/build';
 import { DestroyService } from '../services/destroy';
 import { DetailsComponent } from './details';
+import { GeolocationService } from '../services/geolocation';
 import { GeometryService } from '../services/geometry';
 import { InfoComponent } from './info';
 import { Lot } from '../state/parcels';
@@ -17,10 +18,7 @@ import { Actions } from '@ngxs/store';
 import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
-import { GEOLOCATION_SUPPORT } from '@ng-web-apis/geolocation';
-import { GeolocationService } from '@ng-web-apis/geolocation';
 import { HttpClient } from '@angular/common/http';
-import { Inject } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
@@ -52,6 +50,7 @@ export class HomePage implements AfterViewInit, OnInit {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   animating = true;
   maps: Maps = MAPS;
+  trackable = 'geolocation' in navigator;
   translating = false;
 
   private checkVersion$ = new Subject<void>();
@@ -68,7 +67,6 @@ export class HomePage implements AfterViewInit, OnInit {
     public model: ModelState,
     public selection: SelectionState,
     private tc: ToastController,
-    @Inject(GEOLOCATION_SUPPORT) public trackable: boolean,
     public view: ViewState
   ) {}
 

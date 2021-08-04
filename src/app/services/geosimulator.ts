@@ -7,19 +7,20 @@ import { Subscriber } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { shareReplay } from 'rxjs/operators';
 
-@Injectable()
-export class GeoSimulatorService extends Observable<GeolocationPosition> {
+@Injectable({ providedIn: 'root' })
+export class GeosimulatorService extends Observable<GeolocationPosition> {
   constructor() {
     let counter = 0;
     let lastPoint: number[] = null;
     let loopID = null;
+
     super((subscriber: Subscriber<GeolocationPosition>) => {
       // coordinates of test path
       const coords = BOUNDARY.features[0].geometry.coordinates[0];
       loopID = setInterval(() => {
         // every N ms emit a new position
         const point = coords[counter];
-        const geolocation = {
+        const position = {
           coords: {
             latitude: point[1],
             longitude: point[0],
@@ -35,16 +36,17 @@ export class GeoSimulatorService extends Observable<GeolocationPosition> {
         };
         // setup for next point
         if (counter === 50) subscriber.error({ code: 1, message: 'xxx' });
-        else subscriber.next(geolocation);
+        else subscriber.next(position);
         counter += 1;
         if (counter === coords.length) counter = 0;
         lastPoint = point;
       }, 250);
     });
+
     return this.pipe(
       finalize(() => clearInterval(loopID)),
       shareReplay({ bufferSize: 1, refCount: true })
-    ) as GeoSimulatorService;
+    ) as GeosimulatorService;
   }
 
   // @see https://stackoverflow.com/questions/46590154/calculate-bearing-between-2-points-with-javascript

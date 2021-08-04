@@ -1,4 +1,5 @@
-import { GeoSimulatorService } from './services/geo-simulator';
+import { GeolocationService } from './services/geolocation';
+import { GeosimulatorService } from './services/geosimulator';
 import { HammerConfig } from './services/hammer';
 import { LogRocketPluginModule } from './state/plugins/logrocket';
 import { ModelState } from './state/model';
@@ -15,7 +16,6 @@ import { AngularResizedEventModule } from 'angular-resize-event';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler } from '@angular/core';
-import { GeolocationService } from '@ng-web-apis/geolocation';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
@@ -76,7 +76,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       provide: GeolocationService,
       useClass: environment.production
         ? GeolocationService
-        : GeoSimulatorService
+        : GeosimulatorService
     },
     {
       provide: HAMMER_GESTURE_CONFIG,

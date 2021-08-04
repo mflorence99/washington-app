@@ -1,4 +1,5 @@
 import { DestroyService } from '../services/destroy';
+import { GeolocationService } from '../services/geolocation';
 import { GeometryService } from '../services/geometry';
 import { ModelState } from '../state/model';
 import { ViewState } from '../state/view';
@@ -6,7 +7,6 @@ import { XY } from '../services/geometry';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
-import { GeolocationService } from '@ng-web-apis/geolocation';
 import { ToastController } from '@ionic/angular';
 import { ViewEncapsulation } from '@angular/core';
 
