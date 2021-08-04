@@ -51,6 +51,8 @@ export class DetailsComponent implements AfterViewInit {
       mapTypeId: 'hybrid',
       zoom: 15
     };
+    // @see https://stackoverflow.com/questions/18509973/google-maps-api-showing-blank-map
+    dispatchEvent(new Event('resize'));
   }
 
   resize(event: ResizedEvent): void {
