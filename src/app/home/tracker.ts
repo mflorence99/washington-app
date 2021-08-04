@@ -69,7 +69,8 @@ export class TrackerComponent {
         };
         const mapIDs = this.geometry.whichMapIDs(latlon);
         const xy = this.geometry.latlon2xy(latlon);
-        if (this.model.follower && mapIDs.length !== 0) this.followTracker(xy);
+        if (this.model.follower && mapIDs.includes(this.model.mapID))
+          this.followTracker(xy);
         // convert accuracy from meters to feet to pixels
         const accuracy =
           (position.coords.accuracy * M2FT * this.model.map.cxScale) /

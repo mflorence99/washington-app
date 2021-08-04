@@ -4,6 +4,16 @@
 
     <table>
       <tr>
+        <td>Version</td>
+        <td>{{ env.package.version }}</td>
+      </tr>
+
+      <tr>
+        <td>Build</td>
+        <td>{{ env.build.id }} {{ env.build.date | date }}</td>
+      </tr>
+
+      <tr>
         <td>Hillshade</td>
         <td><a href="https://arcgis.com" target="_blank">ArcGIS Online</a></td>
       </tr>
@@ -45,16 +55,6 @@
             >{{ env.package.license }}</a
           >
         </td>
-      </tr>
-
-      <tr>
-        <td>Version</td>
-        <td>{{ env.package.version }}</td>
-      </tr>
-
-      <tr>
-        <td>Build</td>
-        <td>{{ env.build.id }} {{ env.build.date | date }}</td>
       </tr>
     </table>
   </article>

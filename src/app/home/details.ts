@@ -5,6 +5,7 @@ import { Lot } from '../state/parcels';
 
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { HostBinding } from '@angular/core';
 import { Input } from '@angular/core';
@@ -29,7 +30,11 @@ export class DetailsComponent implements AfterViewInit {
 
   mapOptions: google.maps.MapOptions = {};
 
-  constructor(public api: GoogleService, private mc: ModalController) {}
+  constructor(
+    public api: GoogleService,
+    private cdf: ChangeDetectorRef,
+    private mc: ModalController
+  ) {}
 
   dismiss(): void {
     this.mc.dismiss();
@@ -51,6 +56,8 @@ export class DetailsComponent implements AfterViewInit {
       mapTypeId: 'hybrid',
       zoom: 15
     };
+    // TODO: need to "tickle" map on mobile after first load -- no idea why
+    setTimeout(() => this.cdf.detectChanges(), 0);
   }
 
   resize(event: ResizedEvent): void {

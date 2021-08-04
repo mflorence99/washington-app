@@ -307,9 +307,9 @@ export class HomePage implements AfterViewInit, OnInit {
           action['ViewState.translated']
         ) {
           this.setProperties();
+          if (!this.translating) this.xlate = this.view.view.translate;
         } else if (action['ViewState.scaled']) {
           this.setProperties();
-          if (!this.translating) this.xlate = this.view.view.translate;
           const lots = this.selection.lots;
           if (lots.length > 0) {
             this.unhighlightLots();

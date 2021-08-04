@@ -29,6 +29,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { Router } from '@angular/router';
 import { RouteReuseStrategy } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   bootstrap: [RootPage],
@@ -54,7 +55,13 @@ import { RouteReuseStrategy } from '@angular/router';
     }),
     NgxsDataPluginModule.forRoot(),
     LogRocketPluginModule.forRoot(),
-    RootRouting
+    RootRouting,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: false,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
 
   providers: [
