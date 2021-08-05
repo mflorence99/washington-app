@@ -4,20 +4,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subscriber } from 'rxjs';
 
+import { combineLatest } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { shareReplay } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class GeolocationService extends Observable<GeolocationPosition> {
   constructor() {
-    let lastPosition = null;
-    let stationaryPositionID = null;
     let watchPositionID = null;
 
     super((subscriber: Subscriber<GeolocationPosition>) => {
       watchPositionID = navigator.geolocation.watchPosition(
         (position) => {
-          lastPosition = position;
+          // lastPosition = position;
           subscriber.next(position);
         },
         (error) => {
@@ -25,20 +27,23 @@ export class GeolocationService extends Observable<GeolocationPosition> {
           subscriber.error(error);
         }
       );
-
-      // NOTE: the UI reacts to movement so keep ticking
-      // even if we're stationary
-      stationaryPositionID = setInterval(() => {
-        if (lastPosition) subscriber.next(lastPosition);
-      }, 1000);
     });
 
-    return this.pipe(
+    // NOTE: pace locations at a regular interval, as the UI
+    // depends on "motion" to detect position
+    return combineLatest({
+      position: this,
+      tick: timer(0, 1000)
+    }).pipe(
       finalize(() => {
         navigator.geolocation.clearWatch(watchPositionID);
-        clearInterval(stationaryPositionID);
       }),
-      shareReplay({ bufferSize: 1, refCount: true })
+      map(({ position }) => ({
+        coords: position.coords,
+        timestamp: Date.now()
+      })),
+      shareReplay({ bufferSize: 1, refCount: true }),
+      tap(console.log)
     ) as GeolocationService;
   }
 }

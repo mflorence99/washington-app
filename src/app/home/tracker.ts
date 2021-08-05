@@ -55,6 +55,10 @@ export class TrackerComponent {
 
   private handleGeoLocation$(): void {
     this.geolocation$.pipe(takeUntil(this.destroy$)).subscribe({
+      complete: () => {
+        console.error('Geolocation stream has completed');
+      },
+
       error: (error) => {
         console.error(error);
         this.currentPositionLost();
@@ -76,7 +80,9 @@ export class TrackerComponent {
           (position.coords.accuracy * M2FT * this.model.map.cxScale) /
           this.model.map.ftScale;
         // what is interval between last reading?
-        const interval = position.timestamp - this.lastTimestamp;
+        const interval = this.lastTimestamp
+          ? position.timestamp - this.lastTimestamp
+          : 0;
         this.lastTimestamp = position.timestamp;
         // TODO: how to control direction of rotation animation?
         const heading = position.coords.heading;

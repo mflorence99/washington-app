@@ -162,6 +162,10 @@ export class HomePage implements AfterViewInit, OnInit {
   showTracker(tracker: boolean): void {
     if (tracker) {
       this.geolocation$.pipe(take(1)).subscribe({
+        complete: () => {
+          console.error('Geolocation stream has completed');
+        },
+
         error: (error) => {
           console.error(error);
           this.currentPositionNotAvailable();

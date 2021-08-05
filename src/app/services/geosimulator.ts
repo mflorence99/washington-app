@@ -34,9 +34,12 @@ export class GeosimulatorService extends Observable<GeolocationPosition> {
           },
           timestamp: Date.now()
         };
+        // NOTE: simulate loss of GPS signal
+        if (counter === 50) {
+          console.error('Geosimulator simulated loss of GPS signal');
+          subscriber.error();
+        } else subscriber.next(position);
         // setup for next point
-        if (counter === 50) subscriber.error({ code: 1, message: 'xxx' });
-        else subscriber.next(position);
         counter += 1;
         if (counter === coords.length) counter = 0;
         lastPoint = point;
