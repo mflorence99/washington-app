@@ -8,7 +8,6 @@ import { combineLatest } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { shareReplay } from 'rxjs/operators';
-import { tap } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -42,8 +41,7 @@ export class GeolocationService extends Observable<GeolocationPosition> {
         coords: position.coords,
         timestamp: Date.now()
       })),
-      shareReplay({ bufferSize: 1, refCount: true }),
-      tap(console.log)
+      shareReplay({ bufferSize: 1, refCount: true })
     ) as GeolocationService;
   }
 }

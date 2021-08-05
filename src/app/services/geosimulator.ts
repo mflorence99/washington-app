@@ -43,7 +43,7 @@ export class GeosimulatorService extends Observable<GeolocationPosition> {
         counter += 1;
         if (counter === coords.length) counter = 0;
         lastPoint = point;
-      }, 250);
+      }, 100);
     });
 
     return this.pipe(

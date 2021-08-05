@@ -112,7 +112,7 @@ export class GeometryService {
   }
 
   // NOTE: this works because we scale the viewport on its center
-  isPointInViewport(point: XY): boolean {
+  isPointInViewport(point: XY, margin = 0): boolean {
     const center = this.centerOfViewport();
     const origin = this.originOfViewport();
     const translate = this.view.view.translate;
@@ -128,22 +128,22 @@ export class GeometryService {
     // so ...
     // tl.x = cx - cx/scale
     // tl.y = cy - cy/scale
-    const tl = this.event2point({ center: { x: 0, y: 0 } } as HammerInput);
+    const tl = { x: 0, y: 0 };
     const cx = center.x;
     const dx = cx - cx / scale;
     const ox = origin.x / scale;
-    tl.x = dx - ox + xlate.x;
+    tl.x = dx - ox + xlate.x + margin;
     const cy = center.y;
     const dy = cy - cy / scale;
     const oy = origin.y / scale;
-    tl.y = dy - oy + xlate.y;
+    tl.y = dy - oy + xlate.y + margin;
     // w             the width of the viewport
     // w/scale       the actual width in unscaled units
     // so ...
     // br.x = tl.x + w/scale
     // br.y = tl.y + h/scale
-    const w = (center.x * 2) / scale;
-    const h = (center.y * 2) / scale;
+    const w = ((center.x - margin * 2) * 2) / scale;
+    const h = ((center.y - margin * 2) * 2) / scale;
     const br = { x: tl.x + w, y: tl.y + h };
     return (
       point.x >= tl.x && point.x < br.x && point.y >= tl.y && point.y < br.y

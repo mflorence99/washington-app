@@ -48,8 +48,10 @@ export class TrackerComponent {
       .then((toast) => toast.present());
   }
 
+  // NOTE: the margin makes sure the tracker doesn't
+  // get too close to the edge
   private followTracker(location: XY): void {
-    if (!this.geometry.isPointInViewport(location))
+    if (!this.geometry.isPointInViewport(location, 56))
       this.geometry.centerPointInViewport(location);
   }
 
