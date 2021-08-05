@@ -57,9 +57,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LogRocketPluginModule.forRoot(),
     RootRouting,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: false,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
+      enabled: true,
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],

@@ -13,8 +13,12 @@
     "build": "ng build",
     "clean:deps": "rm -rf node_modules && rm package-lock.json && npm install",
     "hittester": "ts-node --dir bin hittester.ts",
+    "ionic:build:after": "npm run ngsw:rebuild",
+    "ionic:serve:before": "echo {} > src/ngsw.json && cp www/ngsw.json src/ngsw.json",
     "lint": "ng lint",
     "ng": "ng",
+    "ngsw:rebuild": "ngsw-config www ngsw-config.json && cp www/ngsw.json src/ngsw.json",
+    "postbuild": "npm run ngsw:rebuild",
     "start": "ng serve",
     "tilerator": "ts-node --dir bin tilerator.ts"
   },
