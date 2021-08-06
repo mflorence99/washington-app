@@ -25,6 +25,14 @@
       }
     },
     {
+      "name": "png",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/png/*"]
+      }
+    },
+    {
       "name": "svg",
       "installMode": "prefetch",
       "updateMode": "prefetch",

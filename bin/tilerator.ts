@@ -10,12 +10,15 @@ import { writeFileSync } from 'fs';
 
 import rimraf from 'rimraf';
 
+const imagemin = require('imagemin');
+const imageminWebp = require('imagemin-webp');
+
 const names = ['center', 'east', 'highland', 'island', 'lae', 'washington'];
 
 // first, copy over all the SVGs of the polygons
-names.forEach((name) =>
-  copyFileSync(`/home/mflo/Downloads/${name}.svg`, `src/app/home/${name}.svg`)
-);
+for (const name of names) {
+  copyFileSync(`/home/mflo/Downloads/${name}.svg`, `src/app/home/${name}.svg`);
+}
 
 // seems like the best choice, but we could choose dynamically
 // depending on image dimensions
@@ -29,6 +32,15 @@ const slices = (total: number, size: number): number[] => {
   for (ix = 0; ix < total - size; ix += size) array.push(size);
   if (total - ix > 0) array.push(total - ix);
   return array;
+};
+
+// helper: convert images to webp
+const minify = async (src: string, dest: string): Promise<void> => {
+  await imagemin([src], {
+    destination: dest,
+    plugins: [imageminWebp({ quality: 85 })]
+  });
+  rimraf.sync(src);
 };
 
 // these are the constructs we export so the app can generate the tiles
@@ -97,13 +109,13 @@ from(names)
 
             // draw a slice of the image into the canvas
             ctx.drawImage(image, x, y, width, height, 0, 0, width, height);
-            const buffer = canvas.toBuffer('image/jpeg', { quality: 0.85 });
+            const buffer = canvas.toBuffer('image/jpeg', { quality: 1 });
             writeFileSync(`${path}/tile-${ix}-${iy}.jpeg`, buffer);
 
             // accumulate tiles index
             // NOTE:  awkward -- different root in app
             tiles[name].push({
-              fileName: `assets/${name}/tile-${ix}-${iy}.jpeg`,
+              fileName: `assets/${name}/tile-${ix}-${iy}.webp`,
               height,
               width,
               x,
@@ -125,5 +137,10 @@ from(names)
     })
   )
   .subscribe({
-    complete: () => writeFileSync('src/app/state/tiles.ts', emitTiles())
+    complete: () => {
+      for (const name of names) {
+        minify(`src/assets/${name}/*.jpeg`, `src/assets/${name}`);
+      }
+      writeFileSync('src/app/state/tiles.ts', emitTiles());
+    }
   });

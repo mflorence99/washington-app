@@ -81,6 +81,8 @@
     "eslint-plugin-import-splitnsort": "^1",
     "eslint-plugin-jsdoc": "^36",
     "eslint-plugin-prefer-arrow": "^1",
+    "imagemin": "7.0.1",
+    "imagemin-webp": "^6.0.0",
     "prettier": "^2",
     "prettier-plugin-package": "^1",
     "rimraf": "^3.0.2",

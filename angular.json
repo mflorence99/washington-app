@@ -55,6 +55,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "src/png",
+                "output": "png"
+              },
+              {
+                "glob": "**/*",
                 "input": "src/svg",
                 "output": "svg"
               },
