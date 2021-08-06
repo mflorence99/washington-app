@@ -69,7 +69,8 @@
                 "output": "."
               },
               "src/ngsw.json",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/unsupported.html"
             ],
             "buildOptimizer": false,
             "extractLicenses": false,
