@@ -23,6 +23,7 @@ import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { Subject } from 'rxjs';
+import { SwUpdate } from '@angular/service-worker';
 import { ToastController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
@@ -66,6 +67,7 @@ export class HomePage implements AfterViewInit, OnInit {
     private mc: ModalController,
     public model: ModelState,
     public selection: SelectionState,
+    private swUpdate: SwUpdate,
     private tc: ToastController,
     public view: ViewState
   ) {}
@@ -226,6 +228,13 @@ export class HomePage implements AfterViewInit, OnInit {
 
   // NOTE: interval must be MUCH longer than duration of toaster
   private checkVersion(): void {
+    if (this.swUpdate.isEnabled) this.checkVersionServiceWorker();
+    // NOTE: do this as backup anyway as we always enable the service
+    // worker, but can't tell if it failed to load
+    this.checkVersionLegacy();
+  }
+
+  private checkVersionLegacy(): void {
     timer(5000, 120000)
       .pipe(
         takeUntil(merge(this.checkVersion$, this.destroy$)),
@@ -241,6 +250,16 @@ export class HomePage implements AfterViewInit, OnInit {
       .subscribe((build: Build) => {
         if (build.id !== environment.build.id) this.newVersionDetected();
       });
+  }
+
+  private checkVersionServiceWorker(): void {
+    merge(this.swUpdate.available, this.swUpdate.unrecoverable)
+      .pipe(
+        takeUntil(merge(this.checkVersion$, this.destroy$)),
+        catchError(() => of(null)),
+        filter((event) => !!event)
+      )
+      .subscribe(() => this.newVersionDetected());
   }
 
   private createStylesheet(): void {
