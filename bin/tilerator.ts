@@ -114,7 +114,7 @@ from(names)
             // accumulate tiles index
             // NOTE:  awkward -- different root in app
             tiles[name].push({
-              fileName: `assets/${name}/tile-${ix}-${iy}.webp`,
+              fileName: `assets/${name}/tile-${ix}-${iy}.jpeg`,
               height,
               width,
               x,
