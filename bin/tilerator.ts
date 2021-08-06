@@ -8,10 +8,9 @@ import { mkdirSync } from 'fs';
 import { of } from 'rxjs';
 import { writeFileSync } from 'fs';
 
+import imagemin from 'imagemin';
+import imageminWebp from 'imagemin-webp';
 import rimraf from 'rimraf';
-
-const imagemin = require('imagemin');
-const imageminWebp = require('imagemin-webp');
 
 const names = ['center', 'east', 'highland', 'island', 'lae', 'washington'];
 
@@ -109,7 +108,7 @@ from(names)
 
             // draw a slice of the image into the canvas
             ctx.drawImage(image, x, y, width, height, 0, 0, width, height);
-            const buffer = canvas.toBuffer('image/jpeg', { quality: 1 });
+            const buffer = canvas.toBuffer('image/jpeg', { quality: 0.75 });
             writeFileSync(`${path}/tile-${ix}-${iy}.jpeg`, buffer);
 
             // accumulate tiles index
@@ -138,9 +137,10 @@ from(names)
   )
   .subscribe({
     complete: () => {
-      for (const name of names) {
-        minify(`src/assets/${name}/*.jpeg`, `src/assets/${name}`);
-      }
+      // NOTE: unfortunately, we can't do this yet, thanks to Safari
+      // for (const name of names) {
+      //   minify(`src/assets/${name}/*.jpeg`, `src/assets/${name}`);
+      // }
       writeFileSync('src/app/state/tiles.ts', emitTiles());
     }
   });
