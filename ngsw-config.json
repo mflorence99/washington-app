@@ -5,72 +5,99 @@
     {
       "name": "app",
       "installMode": "prefetch",
-      "resources": {
-        "files": ["/index.html", "/manifest.webmanifest", "/*.css", "/*.js"]
-      }
-    },
-    {
-      "name": "ionicons",
-      "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": ["/svg/*"]
+        "files": [
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js",
+          "/*.json"
+        ]
       }
     },
     {
       "name": "assets",
-      "installMode": "lazy",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/*"]
       }
     },
     {
-      "name": "assets-center",
-      "installMode": "lazy",
+      "name": "svg",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/svg/*"]
+      }
+    },
+    {
+      "name": "map-center",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/center/*"]
       }
     },
     {
-      "name": "assets-east",
-      "installMode": "lazy",
+      "name": "map-east",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/east/*"]
       }
     },
     {
-      "name": "assets-highland",
-      "installMode": "lazy",
+      "name": "map-highland",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/highland/*"]
       }
     },
     {
-      "name": "assets-island",
-      "installMode": "lazy",
+      "name": "map-island",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/island/*"]
       }
     },
     {
-      "name": "assets-lae",
-      "installMode": "lazy",
+      "name": "map-lae",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/lae/*"]
       }
     },
     {
-      "name": "assets-washington",
-      "installMode": "lazy",
+      "name": "map-washington",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/washington/*"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "google-fonts",
+      "urls": ["https://fonts.googleapis.com/**"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "30d"
+      }
+    },
+    {
+      "name": "google-maps",
+      "urls": ["https://maps.googleapis.com/**"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "30d"
       }
     }
   ]

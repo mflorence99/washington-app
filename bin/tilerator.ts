@@ -97,7 +97,7 @@ from(names)
 
             // draw a slice of the image into the canvas
             ctx.drawImage(image, x, y, width, height, 0, 0, width, height);
-            const buffer = canvas.toBuffer('image/jpeg', { quality: 0.95 });
+            const buffer = canvas.toBuffer('image/jpeg', { quality: 0.85 });
             writeFileSync(`${path}/tile-${ix}-${iy}.jpeg`, buffer);
 
             // accumulate tiles index

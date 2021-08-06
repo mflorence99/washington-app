@@ -54,9 +54,9 @@
                 "output": "assets"
               },
               {
-                "glob": "**/*.svg",
-                "input": "node_modules/ionicons/dist/ionicons/svg",
-                "output": "./svg"
+                "glob": "**/*",
+                "input": "src/svg",
+                "output": "svg"
               },
               {
                 "glob": "ngsw-worker.js",

@@ -15,7 +15,7 @@
         lines="full"
       >
         <ion-avatar slot="start">
-          <img src="assets/favicon.svg" />
+          <img src="svg/favicon.svg" />
         </ion-avatar>
         <ion-label>{{ item.value.title }}</ion-label>
       </ion-item>
@@ -35,7 +35,7 @@
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-button (tap)="showMenu()" color="dark" fill="clear"
-          ><ion-icon name="menu-sharp" slot="start"></ion-icon>
+          ><ion-icon src="svg/menu-sharp.svg" slot="start"></ion-icon>
           <header class="title" slot="end">
             {{ model.map.title }}
           </header></ion-button
@@ -49,7 +49,7 @@
           fill="clear"
           ><ion-icon
             [color]="model.tracker? 'primary' : 'dark'"
-            name="locate-sharp"
+            src="svg/locate-sharp.svg"
           ></ion-icon
         ></ion-button>
 
@@ -60,7 +60,7 @@
           fill="clear"
           ><ion-icon
             [color]="model.follower? 'primary' : 'dark'"
-            name="navigate"
+            src="svg/navigate.svg"
           ></ion-icon
         ></ion-button>
       </ion-buttons>
@@ -159,9 +159,11 @@
       [debounce]="500"
       [value]="selection.text"
       class="searchbar"
+      clearIcon="close-sharp"
       enterkeyhint="Search"
       inputmode="search"
       placeholder="Lot # or address"
+      searchIcon="search-sharp"
     ></ion-searchbar>
   </ion-content>
 
@@ -177,7 +179,7 @@
       color="light"
       expand="block"
       fill="clear"
-      ><ion-icon name="add-sharp" size="large"></ion-icon
+      ><ion-icon src="svg/add-sharp.svg" size="large"></ion-icon
     ></ion-button>
     <ion-button
       (tap)="geometry.scaleDown()"
@@ -185,7 +187,7 @@
       [strong]="true"
       color="light"
       expand="block"
-      ><ion-icon name="remove-sharp" size="large"></ion-icon
+      ><ion-icon src="svg/remove-sharp.svg" size="large"></ion-icon
     ></ion-button>
     <article class="readout">{{ view.view.scale | percent }}</article>
   </ion-buttons>
