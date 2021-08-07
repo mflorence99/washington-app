@@ -1,6 +1,6 @@
 <section (resized)="resize($event)">
   <header class="header">
-    <h1>{{ lot.id }} &bull; {{ lot.address }}</h1>
+    <h4>{{ lot.id }} &bull; {{ lot.address }}</h4>
   </header>
 
   <article *ngIf="api.ready$ | async; else noMap" class="map">

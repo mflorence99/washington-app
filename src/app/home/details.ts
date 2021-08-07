@@ -55,9 +55,13 @@ export class DetailsComponent implements AfterViewInit {
       mapTypeId: 'hybrid',
       zoom: 15
     };
-    // tickle the map to oversome blank map issue
-    // @see https://stackoverflow.com/questions/60157687/angular-google-maps-works-first-time-then-blank-on-mobile-screens-only
-    setTimeout(() => this.map?.fitBounds(this.map.getBounds()), 0);
+    // try to correct blank maps problem
+    // if (this.cssClass === 'landscape') this.cssClass = 'portrait';
+    // if (this.cssClass === 'portrait') this.cssClass = 'landscape';
+    // setTimeout(() => {
+    //   if (this.cssClass === 'portrait') this.cssClass = 'landscape';
+    //   if (this.cssClass === 'landscape') this.cssClass = 'portrait';
+    // }, 2500);
   }
 
   resize(event: ResizedEvent): void {
