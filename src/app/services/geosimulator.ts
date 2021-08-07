@@ -1,3 +1,5 @@
+import { Params } from './params';
+
 import BOUNDARY from '../../assets/boundary.json';
 
 import { Injectable } from '@angular/core';
@@ -9,7 +11,7 @@ import { shareReplay } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class GeosimulatorService extends Observable<GeolocationPosition> {
-  constructor() {
+  constructor(params: Params) {
     let counter = 0;
     let lastPoint: number[] = null;
     let loopID = null;
@@ -43,7 +45,7 @@ export class GeosimulatorService extends Observable<GeolocationPosition> {
         counter += 1;
         if (counter === coords.length) counter = 0;
         lastPoint = point;
-      }, 100);
+      }, params.geosimulator.maxIntervalBetweenPositions);
     });
 
     return this.pipe(

@@ -15,8 +15,7 @@ export class HammerConfig extends HammerGestureConfig {
   overrides = {
     pan: {
       direction: Hammer.DIRECTION_ALL,
-      enable: true,
-      threshold: 10
+      enable: true
     },
     pinch: { enable: false },
     press: { enable: false },

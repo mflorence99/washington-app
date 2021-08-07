@@ -2,12 +2,13 @@ import { DestroyService } from '../services/destroy';
 import { GeolocationService } from '../services/geolocation';
 import { GeometryService } from '../services/geometry';
 import { ModelState } from '../state/model';
+import { Params } from '../services/params';
+import { SingletonToastService } from '../services/toast';
 import { ViewState } from '../state/view';
 import { XY } from '../services/geometry';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { ViewEncapsulation } from '@angular/core';
 
 import { takeUntil } from 'rxjs/operators';
@@ -32,20 +33,19 @@ export class TrackerComponent {
     private geolocation$: GeolocationService,
     private geometry: GeometryService,
     public model: ModelState,
-    private tc: ToastController,
+    private params: Params,
+    private stc: SingletonToastService,
     public view: ViewState
   ) {
     this.handleGeoLocation$();
   }
 
   private currentPositionLost(): void {
-    this.tc
-      .create({
-        message: 'GPS signal lost',
-        duration: 2500,
-        color: 'light'
-      })
-      .then((toast) => toast.present());
+    this.stc.createAndPresent({
+      message: 'GPS signal lost',
+      duration: this.params.common.toastDuration,
+      color: 'light'
+    });
   }
 
   // NOTE: the margin makes sure the tracker doesn't

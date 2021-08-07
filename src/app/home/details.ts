@@ -2,16 +2,15 @@ import { DESC_BY_USAGE } from '../state/parcels';
 import { DESC_BY_USE } from '../state/parcels';
 import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
+import { Params } from '../services/params';
 
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
-import { GoogleMap } from '@angular/google-maps';
 import { HostBinding } from '@angular/core';
 import { Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ResizedEvent } from 'angular-resize-event';
-import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -29,19 +28,16 @@ export class DetailsComponent implements AfterViewInit {
 
   @Input() lot: Lot;
 
-  @ViewChild(GoogleMap) map: GoogleMap;
-
   mapOptions: google.maps.MapOptions = {};
 
-  constructor(public api: GoogleService, private mc: ModalController) {}
+  constructor(
+    public api: GoogleService,
+    private mc: ModalController,
+    private params: Params
+  ) {}
 
   dismiss(): void {
     this.mc.dismiss();
-  }
-
-  // NOTE: not currently used; instead you can click "Google" on the map
-  googleLink(): string {
-    return `https://www.google.com/maps/@?api=1&map_action=map&center=${this.lot.centers[0].lat}%2c${this.lot.centers[0].lon}&basemap=satellite&zoom=16`;
   }
 
   ngAfterViewInit(): void {
@@ -52,8 +48,8 @@ export class DetailsComponent implements AfterViewInit {
       fullscreenControl: false,
       keyboardShortcuts: false,
       mapTypeControl: false,
-      mapTypeId: 'hybrid',
-      zoom: 15
+      mapTypeId: this.params.home.details.mapTypeId,
+      zoom: this.params.home.details.zoom
     };
   }
 

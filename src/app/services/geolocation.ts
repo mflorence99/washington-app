@@ -1,5 +1,7 @@
 // @see https://github.com/ng-web-apis/geolocation/blob/master/projects/geolocation/src/services/geolocation.service.ts
 
+import { Params } from './params';
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subscriber } from 'rxjs';
@@ -12,7 +14,7 @@ import { timer } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class GeolocationService extends Observable<GeolocationPosition> {
-  constructor() {
+  constructor(params: Params) {
     let watchPositionID = null;
 
     super((subscriber: Subscriber<GeolocationPosition>) => {
@@ -32,7 +34,7 @@ export class GeolocationService extends Observable<GeolocationPosition> {
     // depends on "motion" to detect position
     return combineLatest({
       position: this,
-      tick: timer(0, 1000)
+      tick: timer(0, params.geolocation.maxIntervalBetweenPositions)
     }).pipe(
       finalize(() => {
         navigator.geolocation.clearWatch(watchPositionID);

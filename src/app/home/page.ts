@@ -9,7 +9,10 @@ import { LOTS_BY_ID } from '../state/parcels';
 import { Maps } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
+import { Params } from '../services/params';
 import { SelectionState } from '../state/selection';
+import { SingletonModalService } from '../services/modal';
+import { SingletonToastService } from '../services/toast';
 import { ViewState } from '../state/view';
 
 import { environment } from '../../environments/environment';
@@ -19,12 +22,10 @@ import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Components } from '@ionic/core';
 import { HttpClient } from '@angular/common/http';
-import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { Subject } from 'rxjs';
 import { SwUpdate } from '@angular/service-worker';
-import { ToastController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
@@ -64,11 +65,12 @@ export class HomePage implements AfterViewInit, OnInit {
     private geolocation$: GeolocationService,
     public geometry: GeometryService,
     private http: HttpClient,
-    private mc: ModalController,
     public model: ModelState,
+    private params: Params,
     public selection: SelectionState,
+    private smc: SingletonModalService,
+    private stc: SingletonToastService,
     private swUpdate: SwUpdate,
-    private tc: ToastController,
     public view: ViewState
   ) {}
 
@@ -106,7 +108,7 @@ export class HomePage implements AfterViewInit, OnInit {
   // NOTE: this works because we scale the "tap" surface on its center
   selectLot(event: HammerInput): void {
     const point = this.geometry.event2point(event);
-    const center = this.geometry.centerOfViewport();
+    const center = this.geometry.xyCenterOfViewport();
     const origin = this.geometry.originOfViewport();
     const translate = this.view.view.translate;
     const scale = this.view.view.scale;
@@ -135,24 +137,20 @@ export class HomePage implements AfterViewInit, OnInit {
       if (lots) {
         this.unhighlightLots();
         this.highlightLots(lots);
-        this.mc
-          .create({
-            component: DetailsComponent,
-            componentProps: { lot: lots[0] },
-            swipeToClose: true
-          })
-          .then((modal) => modal.present());
+        this.smc.createAndPresent({
+          component: DetailsComponent,
+          componentProps: { lot: lots[0] },
+          swipeToClose: true
+        });
       }
     }
   }
 
   showInfo(): void {
-    this.mc
-      .create({
-        component: InfoComponent,
-        swipeToClose: true
-      })
-      .then((modal) => modal.present());
+    this.smc.createAndPresent({
+      component: InfoComponent,
+      swipeToClose: true
+    });
     // NOTE: close the menu later so the transition can be seen
     setTimeout((): any => this.menu?.close(true), 0);
   }
@@ -235,7 +233,10 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   private checkVersionLegacy(): void {
-    timer(5000, 120000)
+    timer(
+      this.params.home.page.checkVersionAfter,
+      this.params.home.page.checkVersionInterval
+    )
       .pipe(
         takeUntil(merge(this.checkVersion$, this.destroy$)),
         mergeMap(() =>
@@ -269,48 +270,42 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   private currentPositionNotAvailable(): void {
-    this.tc
-      .create({
-        message: 'GPS signal unavailable',
-        duration: 2500,
-        color: 'light'
-      })
-      .then((toast) => toast.present());
+    this.stc.createAndPresent({
+      message: 'GPS signal unavailable',
+      duration: this.params.common.toastDuration,
+      color: 'light'
+    });
   }
 
   private currentPositionOffMap(): void {
-    this.tc
-      .create({
-        message: 'You are currently outside Washington',
-        duration: 2500,
-        color: 'light'
-      })
-      .then((toast) => toast.present());
+    this.stc.createAndPresent({
+      message: 'You are currently outside Washington',
+      duration: this.params.common.toastDuration,
+      color: 'light'
+    });
   }
 
   private currentPositionOnMap(mapID: string): void {
     const map = MAPS[mapID];
-    this.tc
-      .create({
-        header: `You are currently in ${map.title}`,
-        message: 'Load the map?',
-        duration: 5000,
-        color: 'light',
-        buttons: [
-          {
-            side: 'end',
-            text: 'Yes',
-            handler: (): void => {
-              this.switchTo(mapID);
-            }
-          },
-          {
-            text: 'No',
-            role: 'cancel'
+    this.stc.createAndPresent({
+      header: `You are currently in ${map.title}`,
+      message: 'Load the map?',
+      duration: this.params.common.toastDuration,
+      color: 'light',
+      buttons: [
+        {
+          side: 'end',
+          text: 'Yes',
+          handler: (): void => {
+            this.switchTo(mapID);
           }
-        ]
-      })
-      .then((toast) => toast.present());
+        },
+        {
+          text: 'No',
+          role: 'cancel'
+        }
+      ]
+    });
   }
 
   private handleActions$(): void {
@@ -320,34 +315,70 @@ export class HomePage implements AfterViewInit, OnInit {
         filter(({ status }) => status === 'SUCCESSFUL')
       )
       .subscribe(({ action }) => {
-        if (action['ModelState.switchedTo']) {
-          this.setProperties();
-          this.ready();
-        } else if (
-          action['ViewState.initialized'] ||
-          action['ViewState.translated']
-        ) {
-          this.setProperties();
-          if (!this.translating) this.xlate = this.view.view.translate;
-        } else if (action['ViewState.scaled']) {
-          this.setProperties();
-          const lots = this.selection.lots;
-          if (lots.length > 0) {
-            this.unhighlightLots();
-            this.highlightLots(lots);
-          }
-        } else if (action['SelectionState.found']) {
-          const lots = this.selection.lots;
+        this.handleModelSwitchedTo(action);
+        this.handleViewInitialized(action);
+        this.handleSelectionFound(action);
+        this.handleViewScaled(action);
+        this.handleViewTranslated(action);
+      });
+  }
+
+  private handleModelSwitchedTo(action: Object): void {
+    if (action['ModelState.switchedTo']) {
+      this.setProperties();
+      this.ready();
+    }
+  }
+
+  private handleSelectionFound(action: Object): void {
+    if (action['SelectionState.found']) {
+      const lots = this.selection.lots;
+      if (lots.length > 0) {
+        const mapIDs = this.geometry.whichMapIDs(
+          this.geometry.latlonCenterOfLots(lots)
+        );
+        if (!mapIDs.includes(this.model.mapID))
+          this.lotFoundOnMap(lots[0], mapIDs[0]);
+        else {
           this.unhighlightLots();
           if (lots.length > 0) {
             this.highlightLots(lots);
             this.geometry.centerLotsInViewport(lots);
           }
         }
-      });
+      }
+    }
   }
 
-  private highlightLots(lots: Lot[], stroke = 'var(--ion-color-danger)'): void {
+  private handleViewInitialized(action: Object): void {
+    if (action['ViewState.initialized']) {
+      this.setProperties();
+      if (!this.translating) this.xlate = this.view.view.translate;
+    }
+  }
+
+  private handleViewScaled(action: Object): void {
+    if (action['ViewState.scaled']) {
+      this.setProperties();
+      const lots = this.selection.lots;
+      if (lots.length > 0) {
+        this.unhighlightLots();
+        this.highlightLots(lots);
+      }
+    }
+  }
+
+  private handleViewTranslated(action: Object): void {
+    if (action['ViewState.translated']) {
+      this.setProperties();
+      if (!this.translating) this.xlate = this.view.view.translate;
+    }
+  }
+
+  private highlightLots(
+    lots: Lot[],
+    stroke = this.params.home.page.highlightedLotOutline
+  ): void {
     // NOTE: pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
@@ -363,7 +394,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private initializeView(): void {
     const focus = this.geometry.latlon2xy(this.model.map.focus);
-    const midPoint = this.geometry.centerOfViewport();
+    const midPoint = this.geometry.xyCenterOfViewport();
     const max = this.geometry.maxTranslate();
     const min = this.geometry.minTranslate();
     const view = ViewState.defaultView();
@@ -377,32 +408,53 @@ export class HomePage implements AfterViewInit, OnInit {
     });
   }
 
-  private newVersionDetected(): void {
-    this.tc
-      .create({
-        header: 'New version detected',
-        message: 'Reload?',
-        duration: 5000,
-        color: 'light',
-        buttons: [
-          {
-            side: 'end',
-            text: 'Now',
-            handler: (): void => {
-              window.location.reload();
-            }
-          },
-          {
-            text: 'Later',
-            role: 'cancel',
-            handler: (): void => {
-              this.checkVersion$.next();
-              this.checkVersion$.complete();
-            }
+  private lotFoundOnMap(lot: Lot, mapID: string): void {
+    const map = MAPS[mapID];
+    this.stc.createAndPresent({
+      header: `Lot ${lot.id} is in ${map.title}`,
+      message: 'Load the map?',
+      duration: this.params.common.toastDuration,
+      color: 'light',
+      buttons: [
+        {
+          side: 'end',
+          text: 'Yes',
+          handler: (): void => {
+            this.switchTo(mapID);
           }
-        ]
-      })
-      .then((toast) => toast.present());
+        },
+        {
+          text: 'No',
+          role: 'cancel'
+        }
+      ]
+    });
+  }
+
+  private newVersionDetected(): void {
+    this.stc.createAndPresent({
+      header: 'New version detected',
+      message: 'Reload?',
+      duration: this.params.common.toastDuration,
+      color: 'light',
+      buttons: [
+        {
+          side: 'end',
+          text: 'Now',
+          handler: (): void => {
+            window.location.reload();
+          }
+        },
+        {
+          text: 'Later',
+          role: 'cancel',
+          handler: (): void => {
+            this.checkVersion$.next();
+            this.checkVersion$.complete();
+          }
+        }
+      ]
+    });
   }
 
   private ready(): void {

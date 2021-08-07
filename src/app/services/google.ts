@@ -1,3 +1,5 @@
+import { Params } from './params';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,17 +14,16 @@ import { tap } from 'rxjs/operators';
 
 let authenticated = true;
 
-// eslint-disable-next-line @typescript-eslint/dot-notation
-window['gm_authFailure'] = (): boolean => (authenticated = false);
+globalThis.gm_authFailure = (): boolean => (authenticated = false);
 
 @Injectable({ providedIn: 'root' })
 export class GoogleService {
   ready$: Observable<boolean>;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, params: Params) {
     this.ready$ = http
       .jsonp(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAYavpwIUZOayj72XA3AZYJeYjlVscqvk',
+        `https://maps.googleapis.com/maps/api/js?key=${params.google.apiKey}`,
         'callback'
       )
       .pipe(

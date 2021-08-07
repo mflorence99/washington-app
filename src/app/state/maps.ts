@@ -87,6 +87,6 @@ export const MAPS: Maps = {
     cxScale: 87,
     ftScale: 1000,
     focus: { lat: 43.1762428946279, lon: -72.09665550585218 },
-    title: 'Full Map'
+    title: 'Washington'
   }
 };

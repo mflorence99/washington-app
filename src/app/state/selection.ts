@@ -1,6 +1,7 @@
 import { Lot } from './parcels';
 import { LOTS_BY_ADDRESS } from './parcels';
 import { LOTS_BY_ID } from './parcels';
+import { Params } from '../services/params';
 
 import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
@@ -11,25 +12,6 @@ import { State } from '@ngxs/store';
 import { StateRepository } from '@ngxs-labs/data/decorators';
 
 import { patch } from '@ngxs/store/operators';
-
-/* eslint-disable @typescript-eslint/naming-convention */
-const ALIASES = {
-  CIRCLE: 'CIR',
-  DRIVE: 'DR',
-  EAST: 'E',
-  HEIGHTS: 'HGTS',
-  IS: 'ISLAND',
-  LANE: 'LN',
-  MOUNTAIN: 'MT',
-  NORTH: 'N',
-  ROAD: 'RD',
-  SOUTH: 'S',
-  STREET: 'STREET',
-  TERRACE: 'TERR',
-  WASH: 'WASHINGTON',
-  WEST: 'W'
-};
-/* eslint-enable @typescript-eslint/naming-convention */
 
 export interface SelectionStateModel {
   lots: Lot[];
@@ -46,6 +28,9 @@ export interface SelectionStateModel {
   }
 })
 export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
+  constructor(private params: Params) {
+    super();
+  }
   // actions
 
   @DataAction({ insideZone: true })
@@ -80,15 +65,16 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
 
   private isAddress(text: string): string {
     if (!text.includes('-')) {
+      const aliases = this.params.selection.aliases;
       let normalized = text.toUpperCase();
       // replace multiple spaces with one
       normalized = normalized.replace(/\s\s+/g, ' ');
       const regex = new RegExp(
-        '\\b(' + Object.keys(ALIASES).join('|') + ')\\b',
+        '\\b(' + Object.keys(aliases).join('|') + ')\\b',
         'gi'
       );
       // replace common aliases
-      normalized = normalized.replace(regex, (matched) => ALIASES[matched]);
+      normalized = normalized.replace(regex, (matched) => aliases[matched]);
       console.log(normalized);
       return normalized;
     } else return null;

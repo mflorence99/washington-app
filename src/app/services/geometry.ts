@@ -4,6 +4,7 @@ import { Lot } from '../state/parcels';
 import { LOTS_BY_ID } from '../state/parcels';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
+import { Params } from './params';
 import { ViewState } from '../state/view';
 
 import { Injectable } from '@angular/core';
@@ -29,20 +30,19 @@ export interface Rectangle {
   width?: number;
 }
 
-export const SCALES = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5];
-
-const RAD2DEG = 180 / Math.PI;
-const PI_4 = Math.PI / 4;
-
 @Injectable({ providedIn: 'root' })
 export class GeometryService {
-  constructor(private model: ModelState, private view: ViewState) {}
+  constructor(
+    private model: ModelState,
+    private params: Params,
+    private view: ViewState
+  ) {}
 
   centerLotsInViewport(lots: Lot[]): void {
     // put the center of the lots in the middle of the viewport
-    const center = this.centerOfLots(lots);
+    const center = this.xyCenterOfLots(lots);
     if (center) {
-      const midPoint = this.centerOfViewport();
+      const midPoint = this.xyCenterOfViewport();
       const max = this.maxTranslate();
       const min = this.minTranslate();
       const translate: [number, number] = [
@@ -53,45 +53,9 @@ export class GeometryService {
     } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
   }
 
-  centerOfLots(lots: Lot[]): XY {
-    // find the center of each lot
-    const centers = lots.reduce((acc, lot) => {
-      const polygon = document.getElementById(lot.id);
-      if (polygon) {
-        const raw = polygon.getAttribute('points');
-        const points = raw.split(' ').map((point) => {
-          const [x, y] = point.split(',');
-          // NOTE: centroid wants points in XY format
-          return { x: Number(x), y: Number(y) };
-        });
-        acc.push(centroid(points));
-      } else
-        console.log(`%cCan't find polygon for ${lot.id}`, 'color: indianred');
-      return acc;
-    }, []);
-    // return the center of the centers
-    if (centers.length === 0) return null;
-    else if (centers.length === 1) return centers[0];
-    else return centroid(centers);
-  }
-
-  centerOfViewport(): XY {
-    const element = document.getElementById('theMap');
-    if (
-      element &&
-      element.parentElement.offsetWidth &&
-      element.parentElement.offsetHeight
-    ) {
-      return {
-        x: element.parentElement.offsetWidth / 2,
-        y: element.parentElement.offsetHeight / 2
-      };
-    } else return { x: 0, y: 0 };
-  }
-
   centerPointInViewport(point: XY): void {
     // put the point in the middle of the viewport
-    const midPoint = this.centerOfViewport();
+    const midPoint = this.xyCenterOfViewport();
     const max = this.maxTranslate();
     const min = this.minTranslate();
     const translate: [number, number] = [
@@ -113,7 +77,7 @@ export class GeometryService {
 
   // NOTE: this works because we scale the viewport on its center
   isPointInViewport(point: XY, margin = 0): boolean {
-    const center = this.centerOfViewport();
+    const center = this.xyCenterOfViewport();
     const origin = this.originOfViewport();
     const translate = this.view.view.translate;
     const scale = this.view.view.scale;
@@ -151,7 +115,7 @@ export class GeometryService {
   }
 
   lat2y(lat: number): number {
-    return Math.log(Math.tan((lat / 90 + 1) * PI_4)) * RAD2DEG;
+    return Math.log(Math.tan((lat / 90 + 1) * (Math.PI / 4))) * (180 / Math.PI);
   }
 
   latlon2xy(point: LatLon): XY {
@@ -168,12 +132,27 @@ export class GeometryService {
     return { x, y };
   }
 
+  latlonCenterOfLots(lots: Lot[]): LatLon {
+    const centers = lots.flatMap((lot) => lot.centers);
+    // return the center of the centers
+    if (centers.length === 0) return null;
+    else if (centers.length === 1) return centers[0];
+    else {
+      // NOTE: because centroid requires XY format
+      const center = centroid(
+        centers.map((c: LatLon): XY => ({ x: c.lon, y: c.lat }))
+      );
+      return { lat: center.y, lon: center.x };
+    }
+  }
+
   lon2x(lon: number): number {
     return lon;
   }
 
   maxScale(): number {
-    return SCALES[SCALES.length - 1];
+    const scales = this.params.geometry.scales;
+    return scales[scales.length - 1];
   }
 
   maxTranslate(): [number, number] {
@@ -204,8 +183,11 @@ export class GeometryService {
       const minX = element.parentElement.offsetWidth / element.offsetWidth;
       const minY = element.parentElement.offsetHeight / element.offsetHeight;
       // NOTE: make sure that scale is always represented in scales
-      return Math.round(Math.max(minX, minY, SCALES[0]) * 10) / 10;
-    } else return SCALES[0];
+      return (
+        Math.round(Math.max(minX, minY, this.params.geometry.scales[0]) * 10) /
+        10
+      );
+    } else return this.params.geometry.scales[0];
   }
 
   minTranslate(): [number, number] {
@@ -217,7 +199,7 @@ export class GeometryService {
     let nearestLotID = null;
     const lots = lotIDs.flatMap((lotID) => LOTS_BY_ID[lotID]);
     lots.forEach((lot) => {
-      const center = this.centerOfLots([lot]);
+      const center = this.xyCenterOfLots([lot]);
       const distance = Math.abs(
         Math.hypot(point.x - center.x, point.y - center.y)
       );
@@ -241,13 +223,18 @@ export class GeometryService {
   }
 
   scaleDown(): void {
-    const ix = SCALES.findIndex((scale) => scale === this.view.view.scale);
-    if (ix > 0) this.view.scale(SCALES[ix - 1]);
+    const ix = this.params.geometry.scales.findIndex(
+      (scale) => scale === this.view.view.scale
+    );
+    if (ix > 0) this.view.scale(this.params.geometry.scales[ix - 1]);
   }
 
   scaleUp(): void {
-    const ix = SCALES.findIndex((scale) => scale === this.view.view.scale);
-    if (ix < SCALES.length - 1 && ix !== -1) this.view.scale(SCALES[ix + 1]);
+    const ix = this.params.geometry.scales.findIndex(
+      (scale) => scale === this.view.view.scale
+    );
+    if (ix < this.params.geometry.scales.length - 1 && ix !== -1)
+      this.view.scale(this.params.geometry.scales[ix + 1]);
   }
 
   whichLotID(point: XY): string {
@@ -303,7 +290,43 @@ export class GeometryService {
     return { lat, lon };
   }
 
+  xyCenterOfLots(lots: Lot[]): XY {
+    // find the center of each lot
+    const centers = lots.reduce((acc, lot) => {
+      const polygon = document.getElementById(lot.id);
+      if (polygon) {
+        const raw = polygon.getAttribute('points');
+        const points = raw.split(' ').map((point) => {
+          const [x, y] = point.split(',');
+          // NOTE: centroid wants points in XY format
+          return { x: Number(x), y: Number(y) };
+        });
+        acc.push(centroid(points));
+      } else
+        console.log(`%cCan't find polygon for ${lot.id}`, 'color: indianred');
+      return acc;
+    }, []);
+    // return the center of the centers
+    if (centers.length === 0) return null;
+    else if (centers.length === 1) return centers[0];
+    else return centroid(centers);
+  }
+
+  xyCenterOfViewport(): XY {
+    const element = document.getElementById('theMap');
+    if (
+      element &&
+      element.parentElement.offsetWidth &&
+      element.parentElement.offsetHeight
+    ) {
+      return {
+        x: element.parentElement.offsetWidth / 2,
+        y: element.parentElement.offsetHeight / 2
+      };
+    } else return { x: 0, y: 0 };
+  }
+
   y2lat(y: number): number {
-    return (Math.atan(Math.exp(y / RAD2DEG)) / PI_4 - 1) * 90;
+    return (Math.atan(Math.exp(y / (180 / Math.PI))) / (Math.PI / 4) - 1) * 90;
   }
 }
