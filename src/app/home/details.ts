@@ -6,10 +6,12 @@ import { Lot } from '../state/parcels';
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
+import { GoogleMap } from '@angular/google-maps';
 import { HostBinding } from '@angular/core';
 import { Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ResizedEvent } from 'angular-resize-event';
+import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -26,6 +28,8 @@ export class DetailsComponent implements AfterViewInit {
     'square';
 
   @Input() lot: Lot;
+
+  @ViewChild(GoogleMap) map: GoogleMap;
 
   mapOptions: google.maps.MapOptions = {};
 
@@ -51,6 +55,9 @@ export class DetailsComponent implements AfterViewInit {
       mapTypeId: 'hybrid',
       zoom: 15
     };
+    // tickle the map to oversome blank map issue
+    // @see https://stackoverflow.com/questions/60157687/angular-google-maps-works-first-time-then-blank-on-mobile-screens-only
+    setTimeout(() => this.map?.fitBounds(this.map.getBounds()), 0);
   }
 
   resize(event: ResizedEvent): void {
