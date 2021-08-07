@@ -55,13 +55,6 @@ export class DetailsComponent implements AfterViewInit {
       mapTypeId: 'hybrid',
       zoom: 15
     };
-    // try to correct blank maps problem
-    // if (this.cssClass === 'landscape') this.cssClass = 'portrait';
-    // if (this.cssClass === 'portrait') this.cssClass = 'landscape';
-    // setTimeout(() => {
-    //   if (this.cssClass === 'portrait') this.cssClass = 'landscape';
-    //   if (this.cssClass === 'landscape') this.cssClass = 'portrait';
-    // }, 2500);
   }
 
   resize(event: ResizedEvent): void {
