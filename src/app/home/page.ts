@@ -97,41 +97,45 @@ export class HomePage implements AfterViewInit, OnInit {
       'color: gold'
     );
     // NOTE: we leverage the side-effect of properly clamping the translate
-    this.translate(-0, -0);
+    this.translate(-0, -0, true);
+  }
+
+  scaleDown(): void {
+    const ix = this.params.geometry.scales.findIndex(
+      (scale) => scale === this.view.view.scale
+    );
+    if (ix > 0) this.view.scale(this.params.geometry.scales[ix - 1]);
+    // NOTE: we leverage the side-effect of properly clamping the translate
+    this.translate(-0, -0, true);
+  }
+
+  scaleUp(): void {
+    const ix = this.params.geometry.scales.findIndex(
+      (scale) => scale === this.view.view.scale
+    );
+    if (ix < this.params.geometry.scales.length - 1 && ix !== -1)
+      this.view.scale(this.params.geometry.scales[ix + 1]);
+    // NOTE: we leverage the side-effect of properly clamping the translate
+    this.translate(-0, -0, true);
+  }
+
+  searchCancel(): void {
+    console.log('%cCancelling search', 'color: darkorange');
+    this.selection.searchCancel();
   }
 
   searchFor(text: string): void {
-    console.log(`%cSearching for ${text}`, 'color: skyblue');
-    this.selection.searchFor(text);
+    if (!text) this.searchCancel();
+    else {
+      console.log(`%cSearching for ${text}`, 'color: skyblue');
+      this.selection.searchFor(text);
+    }
   }
 
   // NOTE: this works because we scale the "tap" surface on its center
   selectLot(event: HammerInput): void {
-    const point = this.geometry.event2point(event);
-    const center = this.geometry.xyCenterOfViewport();
-    const origin = this.geometry.originOfViewport();
-    const translate = this.view.view.translate;
-    const scale = this.view.view.scale;
-    const xlate = {
-      x: -translate[0],
-      y: -translate[1]
-    };
-    // cx            the distance of a point from the center
-    // cx/scale      the actual distance in unscaled units
-    // cx - cx/scale the delta from scaling
-    // so ...
-    // x += cx - cx/scale
-    // y += cy - cy/scale
-    const cx = center.x - point.x;
-    const dx = cx - cx / scale;
-    const ox = origin.x / scale;
-    point.x += dx - ox + xlate.x;
-    const cy = center.y - point.y;
-    const dy = cy - cy / scale;
-    const oy = origin.y / scale;
-    point.y += dy - oy + xlate.y;
+    const point = this.geometry.event2xy(event);
     const lotID = this.geometry.whichLotID(point);
-    // find the lots selected
     if (lotID) {
       const lots = LOTS_BY_ID[lotID];
       if (lots) {
@@ -196,8 +200,8 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   // NOTE: this is designed to be called by the pan event
-  translate(deltaX: number, deltaY: number): void {
-    if (this.translating && this.xlate) {
+  translate(deltaX: number, deltaY: number, force = false): void {
+    if ((this.translating || force) && this.xlate) {
       const max = this.geometry.maxTranslate();
       const min = this.geometry.minTranslate();
       const translate = [deltaX + this.xlate[0], deltaY + this.xlate[1]];
@@ -332,6 +336,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private handleSelectionFound(action: Object): void {
     if (action['SelectionState.found']) {
+      this.unhighlightLots();
       const lots = this.selection.lots;
       if (lots.length > 0) {
         const mapIDs = this.geometry.whichMapIDs(
@@ -340,11 +345,8 @@ export class HomePage implements AfterViewInit, OnInit {
         if (!mapIDs.includes(this.model.mapID))
           this.lotFoundOnMap(lots[0], mapIDs[0]);
         else {
-          this.unhighlightLots();
-          if (lots.length > 0) {
-            this.highlightLots(lots);
-            this.geometry.centerLotsInViewport(lots);
-          }
+          this.highlightLots(lots);
+          this.geometry.centerLotsInViewport(lots);
         }
       }
     }
@@ -425,7 +427,10 @@ export class HomePage implements AfterViewInit, OnInit {
         },
         {
           text: 'No',
-          role: 'cancel'
+          role: 'cancel',
+          handler: (): void => {
+            this.searchCancel();
+          }
         }
       ]
     });

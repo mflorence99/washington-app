@@ -20,7 +20,6 @@ app-home {
   }
 
   .map {
-    border: 1px solid black;
     box-sizing: content-box;
     cursor: normal;
     position: relative;
@@ -59,7 +58,7 @@ app-home {
   }
 
   .main {
-    --background: var(--ion-color-dark);
+    --background: url('/svg/halftone.svg');
   }
 
   .menu-item {

@@ -39,6 +39,12 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   }
 
   @DataAction({ insideZone: true })
+  searchCancel(@Payload('SelectionState.searchCancel') text = undefined): void {
+    this.ctx.setState(patch({ text }));
+    setTimeout(() => this.found([]), 0);
+  }
+
+  @DataAction({ insideZone: true })
   searchFor(@Payload('SelectionState.searchFor') text: string): void {
     this.ctx.setState(patch({ text }));
     let lots;

@@ -173,7 +173,7 @@
 
   <ion-buttons class="zoom">
     <ion-button
-      (tap)="geometry.scaleUp()"
+      (tap)="scaleUp()"
       [disabled]="view.view.scale >= geometry.maxScale()"
       [strong]="true"
       color="light"
@@ -182,7 +182,7 @@
       ><ion-icon src="svg/add-sharp.svg" size="large"></ion-icon
     ></ion-button>
     <ion-button
-      (tap)="geometry.scaleDown()"
+      (tap)="scaleDown()"
       [disabled]="view.view.scale <= geometry.minScale()"
       [strong]="true"
       color="light"

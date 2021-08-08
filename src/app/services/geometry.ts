@@ -65,14 +65,14 @@ export class GeometryService {
     this.view.translate(translate);
   }
 
-  event2point(event: HammerInput): XY {
-    const point = event.center;
-    const container = document.getElementById('theMap').parentElement;
-    if (container.style.position === 'relative') {
-      point.x -= container.offsetLeft;
-      point.y -= container.offsetTop;
+  event2xy(event: HammerInput): XY {
+    const xy = event.center;
+    const theMap = document.getElementById('theMap').parentElement;
+    if (theMap.style.position === 'relative') {
+      xy.x -= theMap.offsetLeft;
+      xy.y -= theMap.offsetTop;
     }
-    return point;
+    return xy;
   }
 
   // NOTE: this works because we scale the viewport on its center
@@ -156,42 +156,57 @@ export class GeometryService {
   }
 
   maxTranslate(): [number, number] {
-    const element = document.getElementById('theMap');
-    if (
-      element &&
-      element.parentElement.offsetWidth &&
-      element.offsetWidth &&
-      element.parentElement.offsetHeight &&
-      element.offsetHeight
-    ) {
-      return [
-        element.parentElement.offsetWidth - element.offsetWidth,
-        element.parentElement.offsetHeight - element.offsetHeight
-      ];
-    } else return [-Number.MAX_VALUE, -Number.MAX_VALUE];
+    const center = this.xyCenterOfViewport();
+    const scale = this.view.view.scale;
+    // [-w, -h]      nominal minimum translate
+    // cx            the distance of edge from the center
+    // cx/scale      the actual distance in unscaled units
+    // cx - cx/scale the delta from scaling
+    // so ...
+    // max(x) = cx - cx/scale
+    // max(y) = cy - cy/scale
+    const tl = this.event2xy({ center: { x: 0, y: 0 } } as HammerInput);
+    const br = {
+      x: -this.model.tileContainer.width,
+      y: -this.model.tileContainer.height
+    };
+    const cx = center.x;
+    const dx = cx - cx / scale;
+    const ox = tl.x / scale;
+    const w = (center.x * 2) / scale;
+    br.x += ox + dx + w;
+    const cy = center.y;
+    const dy = cy - cy / scale;
+    const oy = tl.y / scale;
+    const h = (center.y * 2) / scale;
+    br.y += oy + dy + h;
+    return [br.x, br.y];
   }
 
   minScale(): number {
-    const element = document.getElementById('theMap');
-    if (
-      element &&
-      element.parentElement.offsetWidth &&
-      element.offsetWidth &&
-      element.parentElement.offsetHeight &&
-      element.offsetHeight
-    ) {
-      const minX = element.parentElement.offsetWidth / element.offsetWidth;
-      const minY = element.parentElement.offsetHeight / element.offsetHeight;
-      // NOTE: make sure that scale is always represented in scales
-      return (
-        Math.round(Math.max(minX, minY, this.params.geometry.scales[0]) * 10) /
-        10
-      );
-    } else return this.params.geometry.scales[0];
+    return this.params.geometry.scales[0];
   }
 
   minTranslate(): [number, number] {
-    return [0, 0];
+    const center = this.xyCenterOfViewport();
+    const scale = this.view.view.scale;
+    // [0, 0]        nominal minimum translate
+    // cx            the distance of edge from the center
+    // cx/scale      the actual distance in unscaled units
+    // cx - cx/scale the delta from scaling
+    // so ...
+    // min(x) = cx - cx/scale
+    // min(y) = cy - cy/scale
+    const tl = this.event2xy({ center: { x: 0, y: 0 } } as HammerInput);
+    const cx = center.x;
+    const dx = cx - cx / scale;
+    const ox = tl.x / scale;
+    tl.x = ox + dx;
+    const cy = center.y;
+    const dy = cy - cy / scale;
+    const oy = tl.y / scale;
+    tl.y = oy + dy;
+    return [tl.x, tl.y];
   }
 
   nearestLotID(point: XY, lotIDs: string[]): string {
@@ -213,31 +228,39 @@ export class GeometryService {
   }
 
   originOfViewport(): XY {
-    const element = document.getElementById('theMap');
-    if (element) {
+    const theMap = document.getElementById('theMap');
+    if (theMap) {
       return {
-        x: element.parentElement.offsetLeft,
-        y: element.parentElement.offsetTop
+        x: theMap.parentElement.offsetLeft,
+        y: theMap.parentElement.offsetTop
       };
     } else return { x: 0, y: 0 };
   }
 
-  scaleDown(): void {
-    const ix = this.params.geometry.scales.findIndex(
-      (scale) => scale === this.view.view.scale
-    );
-    if (ix > 0) this.view.scale(this.params.geometry.scales[ix - 1]);
-  }
-
-  scaleUp(): void {
-    const ix = this.params.geometry.scales.findIndex(
-      (scale) => scale === this.view.view.scale
-    );
-    if (ix < this.params.geometry.scales.length - 1 && ix !== -1)
-      this.view.scale(this.params.geometry.scales[ix + 1]);
-  }
-
   whichLotID(point: XY): string {
+    const center = this.xyCenterOfViewport();
+    const origin = this.originOfViewport();
+    const translate = this.view.view.translate;
+    const scale = this.view.view.scale;
+    const xlate = {
+      x: -translate[0],
+      y: -translate[1]
+    };
+    // cx            the distance of a point from the center
+    // cx/scale      the actual distance in unscaled units
+    // cx - cx/scale the delta from scaling
+    // so ...
+    // x += cx - cx/scale
+    // y += cy - cy/scale
+    const cx = center.x - point.x;
+    const dx = cx - cx / scale;
+    const ox = origin.x / scale;
+    point.x += dx - ox + xlate.x;
+    const cy = center.y - point.y;
+    const dy = cy - cy / scale;
+    const oy = origin.y / scale;
+    point.y += dy - oy + xlate.y;
+    // find the polygons that define the lots
     const polygons = Array.from(
       document.querySelectorAll<SVGGeometryElement>(
         'app-home .lots svg g polygon'
@@ -313,15 +336,15 @@ export class GeometryService {
   }
 
   xyCenterOfViewport(): XY {
-    const element = document.getElementById('theMap');
+    const theMap = document.getElementById('theMap');
     if (
-      element &&
-      element.parentElement.offsetWidth &&
-      element.parentElement.offsetHeight
+      theMap &&
+      theMap.parentElement.offsetWidth &&
+      theMap.parentElement.offsetHeight
     ) {
       return {
-        x: element.parentElement.offsetWidth / 2,
-        y: element.parentElement.offsetHeight / 2
+        x: theMap.parentElement.offsetWidth / 2,
+        y: theMap.parentElement.offsetHeight / 2
       };
     } else return { x: 0, y: 0 };
   }
