@@ -11,9 +11,9 @@ import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({
-  // NOTE: need Default to change SVG attributes
+  // 👇 need Default to change SVG attributes
   changeDetection: ChangeDetectionStrategy.Default,
-  // NOTE: so that we can manipulate the actual stylesheet in code
+  // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
   selector: 'app-info',
   styleUrls: ['./info.scss'],

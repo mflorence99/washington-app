@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import Hammer from 'hammerjs';
 
-// NOTE: we tried to support pinch to zoom but it wasn't satisfactory
+// 👇 we tried to support pinch to zoom but it wasn't satisfactory
 
 @Injectable()
 export class HammerConfig extends HammerGestureConfig {

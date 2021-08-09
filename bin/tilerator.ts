@@ -48,7 +48,7 @@ const tiles = {};
 
 // helper: emit tiles
 const emitTiles = (): string => `
-// NOTE: auto-generated; do not edit
+// 👇 auto-generated; do not edit
 
 export interface TileContainer {
   height: number;
@@ -76,7 +76,7 @@ export const TILE_CONTAINERS: TileContainers = ${JSON.stringify(
 export const TILES: Tiles = ${JSON.stringify(tiles, null, 2)};
 `;
 
-// @see https://dev.to/j3nnning/resolve-promises-in-sequence-with-rxjs-concatmap-58a
+// 👀  https://dev.to/j3nnning/resolve-promises-in-sequence-with-rxjs-concatmap-58a
 from(names)
   .pipe(
     concatMap((name) =>
@@ -112,7 +112,7 @@ from(names)
             writeFileSync(`${path}/tile-${ix}-${iy}.jpeg`, buffer);
 
             // accumulate tiles index
-            // NOTE:  awkward -- different root in app
+            // 👇  awkward -- different root in app
             tiles[name].push({
               fileName: `assets/${name}/tile-${ix}-${iy}.jpeg`,
               height,
@@ -137,7 +137,7 @@ from(names)
   )
   .subscribe({
     complete: () => {
-      // NOTE: unfortunately, we can't do this yet, thanks to Safari
+      // 👇 unfortunately, we can't do this yet, thanks to Safari
       // for (const name of names) {
       //   minify(`src/assets/${name}/*.jpeg`, `src/assets/${name}`);
       // }

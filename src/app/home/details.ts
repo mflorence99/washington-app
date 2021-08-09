@@ -14,9 +14,9 @@ import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({
-  // NOTE: need Default to change SVG attributes
+  // 👇 need Default to change SVG attributes
   changeDetection: ChangeDetectionStrategy.Default,
-  // NOTE: so that we can manipulate the actual stylesheet in code
+  // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
   selector: 'app-details',
   styleUrls: ['./details.scss'],
@@ -42,7 +42,7 @@ export class DetailsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.mapOptions = {
-      // NOTE: Google uses "lng" when we picked "lon"
+      // 👇 Google uses "lng" when we picked "lon"
       center: { lat: this.lot.centers[0].lat, lng: this.lot.centers[0].lon },
       disableDefaultUI: false,
       fullscreenControl: false,

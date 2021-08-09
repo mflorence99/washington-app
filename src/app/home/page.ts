@@ -34,12 +34,13 @@ import { filter } from 'rxjs/operators';
 import { merge } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { retryBackoff } from 'backoff-rxjs';
 import { take } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
 @Component({
-  // NOTE: so that we can manipulate the actual stylesheet in code
+  // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
   providers: [DestroyService],
   selector: 'app-home',
@@ -81,7 +82,7 @@ export class HomePage implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     console.log('%cUI loaded', 'color: gold');
     this.ready();
-    // NOTE: analyze the initial position of the tracker if it's showing
+    // 👇 analyze the initial position of the tracker if it's showing
     this.showTracker(this.model.tracker);
   }
 
@@ -96,7 +97,7 @@ export class HomePage implements AfterViewInit, OnInit {
       `%cViewport resized ${event.newWidth}x${event.newHeight}`,
       'color: gold'
     );
-    // NOTE: we leverage the side-effect of properly clamping the translate
+    // 👇 we leverage the side-effect of properly clamping the translate
     this.translate(-0, -0, true);
   }
 
@@ -105,7 +106,7 @@ export class HomePage implements AfterViewInit, OnInit {
       (scale) => scale === this.view.view.scale
     );
     if (ix > 0) this.view.scale(this.params.geometry.scales[ix - 1]);
-    // NOTE: we leverage the side-effect of properly clamping the translate
+    // 👇 we leverage the side-effect of properly clamping the translate
     this.translate(-0, -0, true);
   }
 
@@ -115,7 +116,7 @@ export class HomePage implements AfterViewInit, OnInit {
     );
     if (ix < this.params.geometry.scales.length - 1 && ix !== -1)
       this.view.scale(this.params.geometry.scales[ix + 1]);
-    // NOTE: we leverage the side-effect of properly clamping the translate
+    // 👇 we leverage the side-effect of properly clamping the translate
     this.translate(-0, -0, true);
   }
 
@@ -154,7 +155,7 @@ export class HomePage implements AfterViewInit, OnInit {
       component: InfoComponent,
       swipeToClose: true
     });
-    // NOTE: close the menu later so the transition can be seen
+    // 👇 close the menu later so the transition can be seen
     setTimeout((): any => this.menu?.close(true), 0);
   }
 
@@ -164,28 +165,25 @@ export class HomePage implements AfterViewInit, OnInit {
 
   showTracker(tracker: boolean): void {
     if (tracker) {
-      this.geolocation$.pipe(take(1)).subscribe({
-        complete: () => {
-          console.error('Geolocation stream has completed');
-        },
-
-        error: (error) => {
-          console.error(error);
-          this.currentPositionNotAvailable();
-          this.model.track(false);
-        },
-
-        next: (position) => {
-          const mapIDs = this.geometry.whichMapIDs({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude
-          });
-          if (mapIDs.length === 0) this.currentPositionOffMap();
-          else if (!mapIDs.includes(this.model.mapID))
-            this.currentPositionOnMap(mapIDs[0]);
-          this.model.track(true);
-        }
-      });
+      const params = this.params.home.page.backoff;
+      this.geolocation$
+        .pipe(
+          take(1),
+          // 👀 https://indepth.dev/posts/1260/power-of-rxjs-when-using-exponential-backoff
+          retryBackoff({
+            initialInterval: params.initialInterval,
+            maxInterval: params.maxInterval,
+            maxRetries: params.maxRetries,
+            resetOnSuccess: true,
+            shouldRetry: (error: GeolocationPositionError) =>
+              error.code !== GeolocationPositionError.PERMISSION_DENIED
+          })
+        )
+        .subscribe({
+          complete: this.showTrackerComplete.bind(this),
+          error: this.showTrackerError.bind(this),
+          next: this.showTrackerNext.bind(this)
+        });
     } else this.model.track(false);
   }
 
@@ -194,11 +192,11 @@ export class HomePage implements AfterViewInit, OnInit {
       // this.xlate = null;
       this.model.switchTo(mapID);
     }
-    // NOTE: close the menu later so the transition can be seen
+    // 👇 close the menu later so the transition can be seen
     setTimeout((): any => this.menu?.close(true), 0);
   }
 
-  // NOTE: this is designed to be called by the pan event
+  // 👇 this is designed to be called by the pan event
   translate(deltaX: number, deltaY: number, force = false): void {
     if ((this.translating || force) && this.xlate) {
       const max = this.geometry.maxTranslate();
@@ -211,14 +209,14 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  // NOTE: this is designed to be called by the panstart event
+  // 👇 this is designed to be called by the panstart event
   translateBegin(): void {
     this.animating = false;
     this.translating = true;
     this.xlate = this.view.view.translate;
   }
 
-  // NOTE: this is designed to be called by the panend event
+  // 👇 this is designed to be called by the panend event
   translateEnd(): void {
     this.animating = true;
     this.translating = false;
@@ -227,10 +225,10 @@ export class HomePage implements AfterViewInit, OnInit {
 
   // private methods
 
-  // NOTE: interval must be MUCH longer than duration of toaster
+  // 👇 interval must be MUCH longer than duration of toaster
   private checkVersion(): void {
     if (this.swUpdate.isEnabled) this.checkVersionServiceWorker();
-    // NOTE: do this as backup anyway as we always enable the service
+    // 👇 do this as backup anyway as we always enable the service
     // worker, but can't tell if it failed to load
     this.checkVersionLegacy();
   }
@@ -380,7 +378,7 @@ export class HomePage implements AfterViewInit, OnInit {
     lots: Lot[],
     stroke = this.params.home.page.highlightedLotOutline
   ): void {
-    // NOTE: pay attention to globals.scss
+    // 👇 pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
         animation: HIGHLIGHT_LOTS 1s ease-in-out;
@@ -477,6 +475,29 @@ export class HomePage implements AfterViewInit, OnInit {
     style.setProperty('--app-scale', `${view.scale}`);
     style.setProperty('--app-translate-x', `${view.translate[0]}`);
     style.setProperty('--app-translate-y', `${view.translate[1]}`);
+  }
+
+  private showTrackerComplete(): void {
+    console.log('%cGeolocation stream has completed', 'color: darkorange');
+  }
+
+  private showTrackerError(error: GeolocationPositionError): void {
+    // 👇 we don't really care at this point why -- could be
+    // unavailable or authorization withdrawn
+    console.error('🔥 Geolocation stream error', error);
+    this.currentPositionNotAvailable();
+    this.model.track(false);
+  }
+
+  private showTrackerNext(position: GeolocationPosition): void {
+    const mapIDs = this.geometry.whichMapIDs({
+      lat: position.coords.latitude,
+      lon: position.coords.longitude
+    });
+    if (mapIDs.length === 0) this.currentPositionOffMap();
+    else if (!mapIDs.includes(this.model.mapID))
+      this.currentPositionOnMap(mapIDs[0]);
+    this.model.track(true);
   }
 
   private unhighlightLots(): void {

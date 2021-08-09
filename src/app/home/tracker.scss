@@ -6,7 +6,7 @@ app-tracker {
   .track-ball {
     cx: 0;
     cy: 0;
-    // NOTE: must translate BEFORE scale here
+    // 👇 must translate BEFORE scale here
     transform: translate(
         calc(var(--ball-translate-x) * 1px),
         calc(var(--ball-translate-y) * 1px)
@@ -15,7 +15,7 @@ app-tracker {
 
     .accuracy {
       fill: url('#accuracy');
-      // NOTE: don't let the accuracy ball get too big
+      // 👇 don't let the accuracy ball get too big
       r: min(calc(var(--ball-accuracy) * 1px), 48px);
     }
 

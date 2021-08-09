@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { switchMap } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 
-// @see https://stackoverflow.com/questions/4428915/how-do-i-catch-an-invalid-api-key-for-google-maps
+// 👀  https://stackoverflow.com/questions/4428915/how-do-i-catch-an-invalid-api-key-for-google-maps
 
 let authenticated = true;
 
@@ -34,7 +34,7 @@ export class GoogleService {
           )
         ),
         shareReplay(),
-        switchMap(() => of(authenticated)),
+        mergeMap(() => of(authenticated)),
         catchError(() => of(false))
       );
   }

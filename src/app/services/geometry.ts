@@ -1,4 +1,4 @@
-// @see https://wiki.openstreetmap.org/wiki/Mercator#JavaScript_.28or_ActionScript.29
+// 👀  https://wiki.openstreetmap.org/wiki/Mercator#JavaScript_.28or_ActionScript.29
 
 import { Lot } from '../state/parcels';
 import { LOTS_BY_ID } from '../state/parcels';
@@ -73,7 +73,7 @@ export class GeometryService {
     return xy;
   }
 
-  // NOTE: this works because we scale the viewport on its center
+  // 👇 this works because we scale the viewport on its center
   isPointInViewport(xy: XY, margin = 0): boolean {
     const center = this.xyCenterOfViewport();
     const translate = this.view.view.translate;
@@ -133,7 +133,7 @@ export class GeometryService {
     if (centers.length === 0) return null;
     else if (centers.length === 1) return centers[0];
     else {
-      // NOTE: because centroid requires XY format
+      // 👇 because centroid requires XY format
       const center = centroid(
         centers.map((c: LatLon): XY => ({ x: c.lon, y: c.lat }))
       );
@@ -261,11 +261,11 @@ export class GeometryService {
         'app-home .lots svg g polygon'
       )
     );
-    // @see robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
+    // 👀  robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
     // we tried them all and pointInPoly.pointInPolyWindingNumber
     // was the most reliable -- looks like the ray cast algorithm
     // gets confused
-    // NOTE: if trouble, replace "find" with "filter"
+    // 👇 if trouble, replace "find" with "filter"
     const lot = polygons.find((polygon) => {
       const raw = polygon.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
@@ -273,7 +273,7 @@ export class GeometryService {
     });
     if (lot) console.log(`%cFound lot: ${lot.id}`, 'color: gold');
     return lot?.id;
-    // NOTE: resolve ambiguous matches by finding the nearest
+    // 👇 resolve ambiguous matches by finding the nearest
     // const lotIDs = lots.map((p) => p.id);
     // console.log(
     //   `%cFound lots: ${lotIDs.join(', ')}`,
@@ -318,7 +318,7 @@ export class GeometryService {
         const raw = polygon.getAttribute('points');
         const points = raw.split(' ').map((point) => {
           const [x, y] = point.split(',');
-          // NOTE: centroid wants points in XY format
+          // 👇 centroid wants points in XY format
           return { x: Number(x), y: Number(y) };
         });
         acc.push(centroid(points));

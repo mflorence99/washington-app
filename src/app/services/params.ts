@@ -20,8 +20,9 @@ export class Params {
   };
 
   google = {
-    // NOTE: don't panic! domain protected
-    apiKey: 'AIzaSyCAYavpwIUZOayj72XA3AZYJeYjlVscqvk'
+    // 👇 don't panic! domain protected
+    apiKey: 'AIzaSyCAYavpwIUZOayj72XA3AZYJeYjlVscqvk',
+    unauthorizedApiKey: 'xxx'
   };
 
   home = {
@@ -30,12 +31,21 @@ export class Params {
       zoom: 15
     },
     page: {
-      // NOTE: make sure AFTER service worker check of 30s
+      backoff: {
+        initialInterval: 100,
+        maxInterval: 1000,
+        maxRetries: 5
+      },
+      // 👇 make sure AFTER service worker check of 30s
       checkVersionAfter: 60 * 1000, // ms
       checkVersionInterval: 120 * 1000, // ms
       highlightedLotOutline: 'var(--ion-color-danger)'
     },
     tracker: {
+      backoff: {
+        initialInterval: 100,
+        maxInterval: 5 * 1000
+      },
       margin: 64
     }
   };

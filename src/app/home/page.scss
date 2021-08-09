@@ -9,8 +9,8 @@ app-home {
     width: 100%;
   }
 
-  // NOTE: .lots selector is used in code
-  // @see page.ts
+  // 👇 .lots selector is used in code
+  // 👀  page.ts
 
   .lots,
   .map,
@@ -51,7 +51,7 @@ app-home {
     top: 0;
   }
 
-  // NOTE: this is overridden in page.ts when lot is highlighted
+  // 👇 this is overridden in page.ts when lot is highlighted
   .lots svg g polygon {
     fill: none;
     stroke: none;

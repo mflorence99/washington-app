@@ -1,4 +1,4 @@
-// @see https://github.com/ng-web-apis/geolocation/blob/master/projects/geolocation/src/services/geolocation.service.ts
+// 👀  https://github.com/ng-web-apis/geolocation/blob/master/projects/geolocation/src/services/geolocation.service.ts
 
 import { Params } from './params';
 
@@ -19,18 +19,17 @@ export class GeolocationService extends Observable<GeolocationPosition> {
 
     super((subscriber: Subscriber<GeolocationPosition>) => {
       watchPositionID = navigator.geolocation.watchPosition(
-        (position) => {
-          // lastPosition = position;
+        (position: GeolocationPosition) => {
           subscriber.next(position);
         },
-        (error) => {
-          console.error(error);
+        (error: GeolocationPositionError) => {
+          console.error('🔥 Geolocation position error', error);
           subscriber.error(error);
         }
       );
     });
 
-    // NOTE: pace locations at a regular interval, as the UI
+    // 👇 pace locations at a regular interval, as the UI
     // depends on "motion" to detect position
     return combineLatest({
       position: this,

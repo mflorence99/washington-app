@@ -8,13 +8,13 @@ import { NgxsPlugin } from '@ngxs/store';
 
 import { tap } from 'rxjs/operators';
 
-// NOTE: we're never going to use LogRocket as it's too expensive
+// 👇 we're never going to use LogRocket as it's too expensive
 // for this vanity project -- but it made us think about NGXS plugins
 // and even thouigh this logger is a super hack, I like the output better
 
 // const reduxMiddleware = LogRocket.reduxMiddleware({});
 
-// @see https://www.ngxs.io/plugins/intro
+// 👀  https://www.ngxs.io/plugins/intro
 
 export const LOGROCKET_PLUGIN_OPTIONS = new InjectionToken(
   'LOGROCKET_PLUGIN_OPTIONS'
@@ -24,12 +24,12 @@ export const LOGROCKET_PLUGIN_OPTIONS = new InjectionToken(
 export class LogRocketPlugin implements NgxsPlugin {
   constructor(@Inject(LOGROCKET_PLUGIN_OPTIONS) private options: any) {}
 
-  // NOTE: these colors hacked to look OK in dark mode
+  // 👇 these colors hacked to look OK in dark mode
 
   handle(state, action, next): any {
-    // NOTE: action is of class NgxsDataAction, which isn't a real
+    // 👇 action is of class NgxsDataAction, which isn't a real
     // exported class for some reason
-    // @see https://github.com/ngxs-labs/data/blob/5e8706bc43d671b05d227d05118ea0aaa821d769/lib/internals/src/utils/action/dynamic-action.ts
+    // 👀  https://github.com/ngxs-labs/data/blob/5e8706bc43d671b05d227d05118ea0aaa821d769/lib/internals/src/utils/action/dynamic-action.ts
     const key = Object.keys(action)[0] ?? action.constructor.name;
     const payload = action[key];
 
