@@ -132,10 +132,9 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  // NOTE: this works because we scale the "tap" surface on its center
   selectLot(event: HammerInput): void {
-    const point = this.geometry.event2xy(event);
-    const lotID = this.geometry.whichLotID(point);
+    const xy = this.geometry.event2xy(event);
+    const lotID = this.geometry.whichLotID(xy);
     if (lotID) {
       const lots = LOTS_BY_ID[lotID];
       if (lots) {

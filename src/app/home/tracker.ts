@@ -51,7 +51,12 @@ export class TrackerComponent {
   // NOTE: the margin makes sure the tracker doesn't
   // get too close to the edge
   private followTracker(location: XY): void {
-    if (!this.geometry.isPointInViewport(location, 56))
+    if (
+      !this.geometry.isPointInViewport(
+        location,
+        this.params.home.tracker.margin
+      )
+    )
       this.geometry.centerPointInViewport(location);
   }
 

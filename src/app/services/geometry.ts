@@ -39,7 +39,6 @@ export class GeometryService {
   ) {}
 
   centerLotsInViewport(lots: Lot[]): void {
-    // put the center of the lots in the middle of the viewport
     const center = this.xyCenterOfLots(lots);
     if (center) {
       const midPoint = this.xyCenterOfViewport();
@@ -53,14 +52,13 @@ export class GeometryService {
     } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
   }
 
-  centerPointInViewport(point: XY): void {
-    // put the point in the middle of the viewport
+  centerPointInViewport(xy: XY): void {
     const midPoint = this.xyCenterOfViewport();
     const max = this.maxTranslate();
     const min = this.minTranslate();
     const translate: [number, number] = [
-      Math.max(max[0], Math.min(min[0], -(Number(point.x) - midPoint.x))),
-      Math.max(max[1], Math.min(min[1], -(Number(point.y) - midPoint.y)))
+      Math.max(max[0], Math.min(min[0], -(Number(xy.x) - midPoint.x))),
+      Math.max(max[1], Math.min(min[1], -(Number(xy.y) - midPoint.y)))
     ];
     this.view.translate(translate);
   }
@@ -76,9 +74,8 @@ export class GeometryService {
   }
 
   // NOTE: this works because we scale the viewport on its center
-  isPointInViewport(point: XY, margin = 0): boolean {
+  isPointInViewport(xy: XY, margin = 0): boolean {
     const center = this.xyCenterOfViewport();
-    const origin = this.originOfViewport();
     const translate = this.view.view.translate;
     const scale = this.view.view.scale;
     const xlate = {
@@ -92,40 +89,38 @@ export class GeometryService {
     // so ...
     // tl.x = cx - cx/scale
     // tl.y = cy - cy/scale
-    const tl = { x: 0, y: 0 };
+    const tl = this.event2xy({ center: { x: 0, y: 0 } } as HammerInput);
     const cx = center.x;
     const dx = cx - cx / scale;
-    const ox = origin.x / scale;
-    tl.x = dx - ox + xlate.x + margin;
+    const ox = (tl.x - margin) / scale;
+    tl.x = dx - ox + xlate.x;
     const cy = center.y;
     const dy = cy - cy / scale;
-    const oy = origin.y / scale;
-    tl.y = dy - oy + xlate.y + margin;
+    const oy = (tl.y - margin) / scale;
+    tl.y = dy - oy + xlate.y;
     // w             the width of the viewport
     // w/scale       the actual width in unscaled units
     // so ...
     // br.x = tl.x + w/scale
     // br.y = tl.y + h/scale
-    const w = ((center.x - margin * 2) * 2) / scale;
-    const h = ((center.y - margin * 2) * 2) / scale;
+    const w = ((center.x - margin) * 2) / scale;
+    const h = ((center.y - margin) * 2) / scale;
     const br = { x: tl.x + w, y: tl.y + h };
-    return (
-      point.x >= tl.x && point.x < br.x && point.y >= tl.y && point.y < br.y
-    );
+    return xy.x >= tl.x && xy.x < br.x && xy.y >= tl.y && xy.y < br.y;
   }
 
   lat2y(lat: number): number {
     return Math.log(Math.tan((lat / 90 + 1) * (Math.PI / 4))) * (180 / Math.PI);
   }
 
-  latlon2xy(point: LatLon): XY {
+  latlon2xy(latlon: LatLon): XY {
     const x =
-      ((this.lon2x(point.lon) - this.lon2x(this.model.map.bbox.left)) *
+      ((this.lon2x(latlon.lon) - this.lon2x(this.model.map.bbox.left)) *
         this.model.tileContainer.width) /
       (this.lon2x(this.model.map.bbox.right) -
         this.lon2x(this.model.map.bbox.left));
     const y =
-      ((this.lat2y(point.lat) - this.lat2y(this.model.map.bbox.top)) *
+      ((this.lat2y(latlon.lat) - this.lat2y(this.model.map.bbox.top)) *
         this.model.tileContainer.height) /
       (this.lat2y(this.model.map.bbox.bottom) -
         this.lat2y(this.model.map.bbox.top));
@@ -157,6 +152,7 @@ export class GeometryService {
 
   maxTranslate(): [number, number] {
     const center = this.xyCenterOfViewport();
+    const margin = this.params.geometry.margin;
     const scale = this.view.view.scale;
     // [-w, -h]      nominal minimum translate
     // cx            the distance of edge from the center
@@ -173,12 +169,12 @@ export class GeometryService {
     const cx = center.x;
     const dx = cx - cx / scale;
     const ox = tl.x / scale;
-    const w = (center.x * 2) / scale;
+    const w = ((center.x + margin / 2) * 2) / scale;
     br.x += ox + dx + w;
     const cy = center.y;
     const dy = cy - cy / scale;
     const oy = tl.y / scale;
-    const h = (center.y * 2) / scale;
+    const h = ((center.y + margin / 2) * 2) / scale;
     br.y += oy + dy + h;
     return [br.x, br.y];
   }
@@ -189,6 +185,7 @@ export class GeometryService {
 
   minTranslate(): [number, number] {
     const center = this.xyCenterOfViewport();
+    const margin = this.params.geometry.margin;
     const scale = this.view.view.scale;
     // [0, 0]        nominal minimum translate
     // cx            the distance of edge from the center
@@ -200,24 +197,22 @@ export class GeometryService {
     const tl = this.event2xy({ center: { x: 0, y: 0 } } as HammerInput);
     const cx = center.x;
     const dx = cx - cx / scale;
-    const ox = tl.x / scale;
+    const ox = (tl.x - margin) / scale;
     tl.x = ox + dx;
     const cy = center.y;
     const dy = cy - cy / scale;
-    const oy = tl.y / scale;
+    const oy = (tl.y - margin) / scale;
     tl.y = oy + dy;
     return [tl.x, tl.y];
   }
 
-  nearestLotID(point: XY, lotIDs: string[]): string {
+  nearestLotID(xy: XY, lotIDs: string[]): string {
     let lastDistance = Number.MAX_VALUE;
     let nearestLotID = null;
     const lots = lotIDs.flatMap((lotID) => LOTS_BY_ID[lotID]);
     lots.forEach((lot) => {
       const center = this.xyCenterOfLots([lot]);
-      const distance = Math.abs(
-        Math.hypot(point.x - center.x, point.y - center.y)
-      );
+      const distance = Math.abs(Math.hypot(xy.x - center.x, xy.y - center.y));
       console.log(`Distance to ${lot.id} is ${distance}`);
       if (distance < lastDistance) {
         lastDistance = distance;
@@ -237,7 +232,7 @@ export class GeometryService {
     } else return { x: 0, y: 0 };
   }
 
-  whichLotID(point: XY): string {
+  whichLotID(xy: XY): string {
     const center = this.xyCenterOfViewport();
     const origin = this.originOfViewport();
     const translate = this.view.view.translate;
@@ -252,14 +247,14 @@ export class GeometryService {
     // so ...
     // x += cx - cx/scale
     // y += cy - cy/scale
-    const cx = center.x - point.x;
+    const cx = center.x - xy.x;
     const dx = cx - cx / scale;
     const ox = origin.x / scale;
-    point.x += dx - ox + xlate.x;
-    const cy = center.y - point.y;
+    xy.x += dx - ox + xlate.x;
+    const cy = center.y - xy.y;
     const dy = cy - cy / scale;
     const oy = origin.y / scale;
-    point.y += dy - oy + xlate.y;
+    xy.y += dy - oy + xlate.y;
     // find the polygons that define the lots
     const polygons = Array.from(
       document.querySelectorAll<SVGGeometryElement>(
@@ -274,7 +269,7 @@ export class GeometryService {
     const lots = polygons.filter((polygon) => {
       const raw = polygon.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
-      return pointInPoly.pointInPolyWindingNumber([point.x, point.y], points);
+      return pointInPoly.pointInPolyWindingNumber([xy.x, xy.y], points);
     });
     // TODO: resolve ambiguous matches by finding the nearest
     const lotIDs = lots.map((p) => p.id);
@@ -282,17 +277,17 @@ export class GeometryService {
       `%cFound lots: ${lotIDs.join(', ')}`,
       lots.length > 1 ? 'color: indianred' : 'color: gold'
     );
-    return lots.length > 1 ? this.nearestLotID(point, lotIDs) : lots[0]?.id;
+    return lots.length > 1 ? this.nearestLotID(xy, lotIDs) : lots[0]?.id;
   }
 
-  whichMapIDs(point: LatLon): string[] {
+  whichMapIDs(latlon: LatLon): string[] {
     return Object.keys(MAPS).filter((mapID) => {
       const map = MAPS[mapID];
       const inside =
-        point.lon >= map.bbox.left &&
-        point.lon < map.bbox.right &&
-        point.lat >= map.bbox.bottom &&
-        point.lat < map.bbox.top;
+        latlon.lon >= map.bbox.left &&
+        latlon.lon < map.bbox.right &&
+        latlon.lat >= map.bbox.bottom &&
+        latlon.lat < map.bbox.top;
       return inside;
     });
   }
@@ -301,14 +296,14 @@ export class GeometryService {
     return x;
   }
 
-  xy2latlon(point: XY): LatLon {
+  xy2latlon(xy: XY): LatLon {
     const lon =
       this.model.map.bbox.left +
-      (point.x / this.model.tileContainer.width) *
+      (xy.x / this.model.tileContainer.width) *
         (this.model.map.bbox.right - this.model.map.bbox.left);
     const lat =
       this.model.map.bbox.top +
-      (point.y / this.model.tileContainer.height) *
+      (xy.y / this.model.tileContainer.height) *
         (this.model.map.bbox.bottom - this.model.map.bbox.top);
     return { lat, lon };
   }

@@ -11,6 +11,7 @@ export class Params {
   };
 
   geometry = {
+    margin: -32,
     scales: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5]
   };
 
@@ -32,6 +33,9 @@ export class Params {
       checkVersionAfter: 5000,
       checkVersionInterval: 120000,
       highlightedLotOutline: 'var(--ion-color-danger)'
+    },
+    tracker: {
+      margin: 64
     }
   };
 
