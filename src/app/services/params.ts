@@ -30,8 +30,9 @@ export class Params {
       zoom: 15
     },
     page: {
-      checkVersionAfter: 5000,
-      checkVersionInterval: 120000,
+      // NOTE: make sure AFTER service worker check of 30s
+      checkVersionAfter: 60 * 1000, // ms
+      checkVersionInterval: 120 * 1000, // ms
       highlightedLotOutline: 'var(--ion-color-danger)'
     },
     tracker: {
