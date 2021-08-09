@@ -265,19 +265,21 @@ export class GeometryService {
     // we tried them all and pointInPoly.pointInPolyWindingNumber
     // was the most reliable -- looks like the ray cast algorithm
     // gets confused
-    // TODO: we should do "find" but keep "filter" for now
-    const lots = polygons.filter((polygon) => {
+    // NOTE: if trouble, replace "find" with "filter"
+    const lot = polygons.find((polygon) => {
       const raw = polygon.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
       return pointInPoly.pointInPolyWindingNumber([xy.x, xy.y], points);
     });
-    // TODO: resolve ambiguous matches by finding the nearest
-    const lotIDs = lots.map((p) => p.id);
-    console.log(
-      `%cFound lots: ${lotIDs.join(', ')}`,
-      lots.length > 1 ? 'color: indianred' : 'color: gold'
-    );
-    return lots.length > 1 ? this.nearestLotID(xy, lotIDs) : lots[0]?.id;
+    if (lot) console.log(`%cFound lot: ${lot.id}`, 'color: gold');
+    return lot?.id;
+    // NOTE: resolve ambiguous matches by finding the nearest
+    // const lotIDs = lots.map((p) => p.id);
+    // console.log(
+    //   `%cFound lots: ${lotIDs.join(', ')}`,
+    //   lots.length > 1 ? 'color: indianred' : 'color: gold'
+    // );
+    // return lots.length > 1 ? this.nearestLotID(xy, lotIDs) : lots[0]?.id;
   }
 
   whichMapIDs(latlon: LatLon): string[] {
