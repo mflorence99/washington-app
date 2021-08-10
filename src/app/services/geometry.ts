@@ -38,6 +38,24 @@ export class GeometryService {
     private view: ViewState
   ) {}
 
+  // 👀  https://stackoverflow.com/questions/46590154/calculate-bearing-between-2-points-with-javascript
+  bearing(from: LatLon, to: LatLon): number {
+    const p = {
+      lat: this.degrees2radians(from.lat),
+      lon: this.degrees2radians(from.lon)
+    };
+    const q = {
+      lat: this.degrees2radians(to.lat),
+      lon: this.degrees2radians(to.lon)
+    };
+    const y = Math.sin(q.lon - p.lon) * Math.cos(q.lat);
+    const x =
+      Math.cos(p.lat) * Math.sin(q.lat) -
+      Math.sin(p.lat) * Math.cos(q.lat) * Math.cos(q.lon - p.lon);
+    const bearing = this.radians2degrees(Math.atan2(y, x));
+    return (bearing + 360) % 360;
+  }
+
   centerLotsInViewport(lots: Lot[]): void {
     const center = this.xyCenterOfLots(lots);
     if (center) {
@@ -61,6 +79,10 @@ export class GeometryService {
       Math.max(max[1], Math.min(min[1], -(Number(xy.y) - midPoint.y)))
     ];
     this.view.translate(translate);
+  }
+
+  degrees2radians(degrees: number): number {
+    return (degrees * Math.PI) / 180;
   }
 
   event2xy(event: HammerInput): XY {
@@ -179,6 +201,10 @@ export class GeometryService {
     return [br.x, br.y];
   }
 
+  meters2feet(meters: number): number {
+    return meters * 3.28084;
+  }
+
   minScale(): number {
     return this.params.geometry.scales[0];
   }
@@ -230,6 +256,10 @@ export class GeometryService {
         y: theMap.parentElement.offsetTop
       };
     } else return { x: 0, y: 0 };
+  }
+
+  radians2degrees(radians: number): number {
+    return (radians * 180) / Math.PI;
   }
 
   whichLotID(xy: XY): string {

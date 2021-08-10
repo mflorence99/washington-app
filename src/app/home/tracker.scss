@@ -27,14 +27,14 @@ app-tracker {
 
     .inner {
       animation: ANIMATE_TRACKER 3s ease-in-out infinite;
-      fill: var(--ion-color-primary);
+      fill: var(--ball-color);
       r: 10px;
     }
 
     .outer {
       fill: var(--ion-color-primary-contrast);
       r: 13px;
-      stroke: var(--ion-color-primary);
+      stroke: var(--ball-color);
     }
   }
 

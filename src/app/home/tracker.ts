@@ -14,8 +14,6 @@ import { ViewEncapsulation } from '@angular/core';
 import { retryBackoff } from 'backoff-rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-const M2FT = 3.28084;
-
 @Component({
   // 👇 need Default to change SVG attributes
   changeDetection: ChangeDetectionStrategy.Default,
@@ -72,8 +70,13 @@ export class TrackerComponent {
           initialInterval: params.initialInterval,
           maxInterval: params.maxInterval,
           resetOnSuccess: true,
-          shouldRetry: (error: GeolocationPositionError) =>
-            error.code !== GeolocationPositionError.PERMISSION_DENIED
+          shouldRetry: (error: GeolocationPositionError) => {
+            const style = document.body.style;
+            style.setProperty('--ball-accuracy', `0`);
+            style.setProperty('--ball-color', 'var(--ion-color-medium');
+            style.setProperty('--ball-heading-visibility', 'hidden');
+            return error.code !== GeolocationPositionError.PERMISSION_DENIED;
+          }
         })
       )
       .subscribe({
@@ -88,6 +91,8 @@ export class TrackerComponent {
   }
 
   private handleGeolocationError(error: GeolocationPositionError): void {
+    // 👇 we don't really care at this point why -- could be
+    // unavailable or authorization withdrawn
     console.error('🔥 Geolocation stream error', error);
     this.currentPositionLost();
     this.model.track(false);
@@ -105,7 +110,8 @@ export class TrackerComponent {
       this.followTracker(xy);
     // convert accuracy from meters to feet to pixels
     const accuracy =
-      (position.coords.accuracy * M2FT * this.model.map.cxScale) /
+      (this.geometry.meters2feet(position.coords.accuracy) *
+        this.model.map.cxScale) /
       this.model.map.ftScale;
     // what is interval between last reading?
     const interval = this.lastTimestamp
@@ -118,6 +124,7 @@ export class TrackerComponent {
     // set properties and repaint
     const style = document.body.style;
     style.setProperty('--ball-accuracy', `${accuracy}`);
+    style.setProperty('--ball-color', 'var(--ion-color-primary');
     style.setProperty('--ball-heading', `${heading}`);
     style.setProperty(
       '--ball-heading-visibility',

@@ -1,3 +1,4 @@
+import { GeometryService } from './geometry';
 import { Params } from './params';
 
 import BOUNDARY from '../../assets/boundary.json';
@@ -11,7 +12,7 @@ import { shareReplay } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class GeosimulatorService extends Observable<GeolocationPosition> {
-  constructor(params: Params) {
+  constructor(geometry: GeometryService, params: Params) {
     let counter = 0;
     let lastPoint: number[] = null;
     let loopID = null;
@@ -30,7 +31,10 @@ export class GeosimulatorService extends Observable<GeolocationPosition> {
             accuracy: Math.random() * 10,
             altitudeAccuracy: null,
             heading: lastPoint
-              ? this.bearing(lastPoint[1], lastPoint[0], point[1], point[0])
+              ? geometry.bearing(
+                  { lat: lastPoint[1], lon: lastPoint[0] },
+                  { lat: point[1], lon: point[0] }
+                )
               : null,
             speed: null
           },
@@ -56,32 +60,5 @@ export class GeosimulatorService extends Observable<GeolocationPosition> {
       finalize(() => clearInterval(loopID)),
       shareReplay({ bufferSize: 1, refCount: true })
     ) as GeosimulatorService;
-  }
-
-  // 👀  https://stackoverflow.com/questions/46590154/calculate-bearing-between-2-points-with-javascript
-
-  private bearing(
-    startLat: number,
-    startLng: number,
-    destLat: number,
-    destLng: number
-  ): number {
-    startLat = this.toRadians(startLat);
-    startLng = this.toRadians(startLng);
-    destLat = this.toRadians(destLat);
-    destLng = this.toRadians(destLng);
-    const y = Math.sin(destLng - startLng) * Math.cos(destLat);
-    const x =
-      Math.cos(startLat) * Math.sin(destLat) -
-      Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
-    const bearing = this.toDegrees(Math.atan2(y, x));
-    return (bearing + 360) % 360;
-  }
-  private toDegrees(radians: number): number {
-    return (radians * 180) / Math.PI;
-  }
-
-  private toRadians(degrees: number): number {
-    return (degrees * Math.PI) / 180;
   }
 }
