@@ -15,8 +15,7 @@ import { retryBackoff } from 'backoff-rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  // 👇 need Default to change SVG attributes
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
   providers: [DestroyService],

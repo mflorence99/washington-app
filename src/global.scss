@@ -21,6 +21,10 @@
 /* theme colors */
 @import 'colors.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 // 👇 undo what ionic/typography hath wrought
 
 h1,

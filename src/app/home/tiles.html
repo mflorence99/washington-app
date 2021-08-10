@@ -1,0 +1,17 @@
+<div
+  *ngFor="let tile of model.tiles; trackBy: trackByFileName"
+  [attr.src]="tile.fileName"
+  [style.left.px]="tile.x"
+  [style.top.px]="tile.y"
+  [style.height.px]="tile.height"
+  [style.width.px]="tile.width"
+  class="placeholder"
+>
+  <img
+    *ngIf="visibleTiles.has(tile.fileName)"
+    (error)="tileError(tile.fileName)"
+    (load)="tileLoaded(tile.fileName)"
+    [src]="tile.fileName"
+    class="tile"
+  />
+</div>

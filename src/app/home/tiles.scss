@@ -1,0 +1,11 @@
+app-tiles {
+  display: block;
+
+  .placeholder {
+    position: absolute;
+
+    .tile {
+      display: block;
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { HomeRouting } from './routing';
 import { InfoComponent } from './info';
 import { IslandComponent } from './island';
 import { LAEComponent } from './lae';
+import { TilesComponent } from './tiles';
 import { TrackerComponent } from './tracker';
 import { WashingtonComponent } from './washington';
 
@@ -28,6 +29,7 @@ import { NgModule } from '@angular/core';
     InfoComponent,
     IslandComponent,
     LAEComponent,
+    TilesComponent,
     TrackerComponent,
     WashingtonComponent
   ],

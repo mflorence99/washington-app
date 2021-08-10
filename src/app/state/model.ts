@@ -18,6 +18,7 @@ import { patch } from '@ngxs/store/operators';
 export interface ModelStateModel {
   follower: boolean;
   mapID: string;
+  stabile: boolean;
   tracker: boolean;
 }
 
@@ -28,6 +29,7 @@ export interface ModelStateModel {
   defaults: {
     follower: false,
     mapID: 'washington',
+    stabile: false,
     tracker: false
   }
 })
@@ -42,6 +44,15 @@ export class ModelState extends NgxsDataRepository<ModelStateModel> {
 
   @DataAction({ insideZone: true })
   following(@Payload('ModelState.following') _follower: boolean): void {}
+
+  @DataAction({ insideZone: true })
+  stabilize(@Payload('ModelState.stabilize') stabile: boolean): void {
+    this.ctx.setState(patch({ stabile }));
+    setTimeout(() => this.stabilized(stabile), 50);
+  }
+
+  @DataAction({ insideZone: true })
+  stabilized(@Payload('ModelState.stabilized') _stabile: boolean): void {}
 
   @DataAction({ insideZone: true })
   switchTo(@Payload('ModelState.switchTo') mapID: string): void {
@@ -73,6 +84,10 @@ export class ModelState extends NgxsDataRepository<ModelStateModel> {
 
   @Computed() get mapID(): string {
     return this.snapshot.mapID;
+  }
+
+  @Computed() get stabile(): boolean {
+    return this.snapshot.stabile;
   }
 
   @Computed() get tiles(): Tile[] {

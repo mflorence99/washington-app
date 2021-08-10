@@ -77,9 +77,9 @@
       (resized)="resize($event)"
       (tap)="selectLot($event)"
       class="content"
+      id="theViewport"
     >
       <article
-        #map
         (pan)="translate($event.deltaX, $event.deltaY)"
         (panend)="translateEnd()"
         (panstart)="translateBegin()"
@@ -90,16 +90,7 @@
         class="map"
         id="theMap"
       >
-        <ion-img
-          *ngFor="let tile of model.tiles"
-          [src]="tile.fileName"
-          [style.left.px]="tile.x"
-          [style.top.px]="tile.y"
-          [style.height.px]="tile.height"
-          [style.width.px]="tile.width"
-          class="tile"
-        >
-        </ion-img>
+        <app-tiles class="tiles" id="theTiles"> </app-tiles>
       </article>
 
       <app-tracker

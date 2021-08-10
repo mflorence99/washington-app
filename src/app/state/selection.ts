@@ -39,7 +39,7 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   }
 
   @DataAction({ insideZone: true })
-  searchCancel(@Payload('SelectionState.searchCancel') text = undefined): void {
+  searchCancel(@Payload('SelectionState.searchCancel') text = ''): void {
     this.ctx.setState(patch({ text }));
     setTimeout(() => this.found([]), 0);
   }

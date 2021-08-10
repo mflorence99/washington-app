@@ -87,6 +87,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+    this.model.stabilize(false);
     this.handleActions$();
     this.checkVersion();
     this.createStylesheet();
@@ -189,7 +190,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   switchTo(mapID: string): void {
     if (mapID !== this.model.mapID) {
-      // this.xlate = null;
+      this.model.stabilize(false);
       this.model.switchTo(mapID);
     }
     // 👇 close the menu later so the transition can be seen
@@ -460,12 +461,10 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   private ready(): void {
-    console.log(`%cReady for map ${this.model.map.title}`, 'color: gold');
     setTimeout(() => {
-      // make sure view is initialized
       this.initializeView();
-      // re-search for any past search
       this.searchFor(this.selection.text);
+      this.model.stabilize(true);
     }, 0);
   }
 

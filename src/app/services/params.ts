@@ -41,6 +41,10 @@ export class Params {
       checkVersionInterval: 120 * 1000, // ms
       highlightedLotOutline: 'var(--ion-color-danger)'
     },
+    tiles: {
+      // 👇 size of one tile
+      intersectionMargin: 256
+    },
     tracker: {
       backoff: {
         initialInterval: 100,
