@@ -34,17 +34,6 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   // actions
 
   @DataAction({ insideZone: true })
-  found(@Payload('SelectionState.found') lots: Lot[]): void {
-    this.ctx.setState(patch({ lots }));
-  }
-
-  @DataAction({ insideZone: true })
-  searchCancel(@Payload('SelectionState.searchCancel') text = ''): void {
-    this.ctx.setState(patch({ text }));
-    setTimeout(() => this.found([]), 0);
-  }
-
-  @DataAction({ insideZone: true })
   searchFor(@Payload('SelectionState.searchFor') text: string): void {
     this.ctx.setState(patch({ text }));
     let lots;
@@ -54,7 +43,7 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
       const byLotID = this.isLotID(text);
       if (byLotID) lots = LOTS_BY_ID[byLotID];
     }
-    setTimeout(() => this.found(lots ? lots : []), 0);
+    this.ctx.setState(patch({ lots: lots ?? [] }));
   }
 
   // accessors

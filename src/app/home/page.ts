@@ -121,17 +121,9 @@ export class HomePage implements AfterViewInit, OnInit {
     this.translate(-0, -0, true);
   }
 
-  searchCancel(): void {
-    console.log('%cCancelling search', 'color: darkorange');
-    this.selection.searchCancel();
-  }
-
   searchFor(text: string): void {
-    if (!text) this.searchCancel();
-    else {
-      console.log(`%cSearching for ${text}`, 'color: skyblue');
-      this.selection.searchFor(text);
-    }
+    console.log(`%cSearching for ${text}`, 'color: skyblue');
+    this.selection.searchFor(text);
   }
 
   selectLot(event: HammerInput): void {
@@ -156,8 +148,7 @@ export class HomePage implements AfterViewInit, OnInit {
       component: InfoComponent,
       swipeToClose: true
     });
-    // 👇 close the menu later so the transition can be seen
-    setTimeout((): any => this.menu?.close(true), 0);
+    this.menu?.close(true);
   }
 
   showMenu(): void {
@@ -193,8 +184,7 @@ export class HomePage implements AfterViewInit, OnInit {
       this.model.stabilize(false);
       this.model.switchTo(mapID);
     }
-    // 👇 close the menu later so the transition can be seen
-    setTimeout((): any => this.menu?.close(true), 0);
+    this.menu?.close(true);
   }
 
   // 👇 this is designed to be called by the pan event
@@ -317,26 +307,26 @@ export class HomePage implements AfterViewInit, OnInit {
         filter(({ status }) => status === 'SUCCESSFUL')
       )
       .subscribe(({ action }) => {
-        this.handleModelSwitchedTo(action);
-        this.handleViewInitialized(action);
-        this.handleSelectionFound(action);
-        this.handleViewScaled(action);
-        this.handleViewTranslated(action);
+        this.handleModelSwitchTo(action);
+        this.handleViewInitialize(action);
+        this.handleSelectionSearchFor(action);
+        this.handleViewScale(action);
+        this.handleViewTranslate(action);
       });
   }
 
-  private handleModelSwitchedTo(action: Object): void {
-    if (action['ModelState.switchedTo']) {
+  private handleModelSwitchTo(action: Object): void {
+    if (action['ModelState.switchTo']) {
       this.setProperties();
       this.ready();
     }
   }
 
-  private handleSelectionFound(action: Object): void {
-    if (action['SelectionState.found']) {
+  private handleSelectionSearchFor(action: Object): void {
+    if (action['SelectionState.searchFor']) {
       this.unhighlightLots();
       const lots = this.selection.lots;
-      if (lots.length > 0) {
+      if (lots?.length > 0) {
         const mapIDs = this.geometry.whichMapIDs(
           this.geometry.latlonCenterOfLots(lots)
         );
@@ -350,15 +340,15 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  private handleViewInitialized(action: Object): void {
-    if (action['ViewState.initialized']) {
+  private handleViewInitialize(action: Object): void {
+    if (action['ViewState.initialize']) {
       this.setProperties();
       if (!this.translating) this.xlate = this.view.view.translate;
     }
   }
 
-  private handleViewScaled(action: Object): void {
-    if (action['ViewState.scaled']) {
+  private handleViewScale(action: Object): void {
+    if (action['ViewState.scale']) {
       this.setProperties();
       const lots = this.selection.lots;
       if (lots.length > 0) {
@@ -368,8 +358,8 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  private handleViewTranslated(action: Object): void {
-    if (action['ViewState.translated']) {
+  private handleViewTranslate(action: Object): void {
+    if (action['ViewState.translate']) {
       this.setProperties();
       if (!this.translating) this.xlate = this.view.view.translate;
     }
@@ -427,7 +417,7 @@ export class HomePage implements AfterViewInit, OnInit {
           text: 'No',
           role: 'cancel',
           handler: (): void => {
-            this.searchCancel();
+            this.searchFor('');
           }
         }
       ]
@@ -461,11 +451,9 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   private ready(): void {
-    setTimeout(() => {
-      this.initializeView();
-      this.searchFor(this.selection.text);
-      this.model.stabilize(true);
-    }, 0);
+    this.initializeView();
+    this.searchFor(this.selection.text);
+    this.model.stabilize(true);
   }
 
   private setProperties(): void {

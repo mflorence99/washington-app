@@ -39,38 +39,22 @@ export class ModelState extends NgxsDataRepository<ModelStateModel> {
   @DataAction({ insideZone: true })
   follow(@Payload('ModelState.follow') follower: boolean): void {
     this.ctx.setState(patch({ follower }));
-    setTimeout(() => this.following(follower), 0);
   }
-
-  @DataAction({ insideZone: true })
-  following(@Payload('ModelState.following') _follower: boolean): void {}
 
   @DataAction({ insideZone: true })
   stabilize(@Payload('ModelState.stabilize') stabile: boolean): void {
     this.ctx.setState(patch({ stabile }));
-    setTimeout(() => this.stabilized(stabile), 50);
   }
-
-  @DataAction({ insideZone: true })
-  stabilized(@Payload('ModelState.stabilized') _stabile: boolean): void {}
 
   @DataAction({ insideZone: true })
   switchTo(@Payload('ModelState.switchTo') mapID: string): void {
     this.ctx.setState(patch({ mapID }));
-    setTimeout(() => this.switchedTo(mapID), 0);
   }
-
-  @DataAction({ insideZone: true })
-  switchedTo(@Payload('ModelState.switchedTo') _mapID: string): void {}
 
   @DataAction({ insideZone: true })
   track(@Payload('ModelState.track') tracker: boolean): void {
     this.ctx.setState(patch({ tracker }));
-    setTimeout(() => this.tracking(tracker), 0);
   }
-
-  @DataAction({ insideZone: true })
-  tracking(@Payload('ModelState.tracking') _tracker: boolean): void {}
 
   // accessors
 

@@ -5,7 +5,6 @@ import { Tile } from '../state/tiles';
 import { ViewState } from '../state/view';
 
 import { Actions } from '@ngxs/store';
-import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
@@ -18,7 +17,6 @@ import { filter } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  // 👇 need Default to change SVG attributes
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
@@ -69,26 +67,27 @@ export class TilesComponent implements OnDestroy, OnInit {
         filter(({ status }) => status === 'SUCCESSFUL')
       )
       .subscribe(({ action }) => {
-        this.handleModelStabilized(action);
+        this.handleModelStabilize(action);
       });
   }
 
-  private handleModelStabilized(action: Object): void {
-    if (action['ModelState.stabilized']) {
-      this.intersectionObserve();
+  private handleModelStabilize(action: Object): void {
+    if (action['ModelState.stabilize']) {
+      setTimeout(() => {
+        this.intersectionObserve();
+        //   const entries = this.io.takeRecords();
+        //   this.intersectionCallback(entries);
+      }, 500);
     }
   }
 
-  private intersectionCallback(
-    entries: IntersectionObserverEntry[],
-    _observer: IntersectionObserver
-  ): void {
+  private intersectionCallback(entries: IntersectionObserverEntry[]): void {
     entries.forEach((entry) => {
       const src = entry.target.getAttribute('src');
       if (entry.isIntersecting) this.visibleTiles.add(src);
       else this.visibleTiles.delete(src);
     });
-    this.cdf.detectChanges();
+    this.cdf.markForCheck();
   }
 
   private intersectionObserve(): void {
@@ -102,6 +101,5 @@ export class TilesComponent implements OnDestroy, OnInit {
     const placeholders =
       this.host.nativeElement.querySelectorAll('.placeholder');
     placeholders.forEach((placeholder) => this.io.observe(placeholder));
-    this.cdf.detectChanges();
   }
 }
