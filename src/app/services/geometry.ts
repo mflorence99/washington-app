@@ -67,7 +67,7 @@ export class GeometryService {
         Math.max(max[1], Math.min(min[1], -(Number(center.y) - midPoint.y)))
       ];
       this.view.translate(translate);
-    } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
+    }
   }
 
   centerXYInViewport({ x, y }): void {
@@ -352,8 +352,7 @@ export class GeometryService {
           return { x: Number(x), y: Number(y) };
         });
         acc.push(centroid(points));
-      } else
-        console.log(`%cCan't find polygon for ${lot.id}`, 'color: indianred');
+      }
       return acc;
     }, []);
     // return the center of the centers

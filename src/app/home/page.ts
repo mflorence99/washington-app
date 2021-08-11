@@ -80,14 +80,14 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('%cUI loaded', 'color: gold');
-    this.ready();
+    // 👇 clear lot search on ial load
+    this.selection.searchFor('');
     // 👇 analyze the initial position of the tracker if it's showing
     this.showTracker(this.model.tracker);
+    this.initializeView();
   }
 
   ngOnInit(): void {
-    this.model.stabilize(false);
     this.handleActions$();
     this.checkVersion();
     this.createStylesheet();
@@ -180,10 +180,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   switchTo(mapID: string): void {
-    if (mapID !== this.model.mapID) {
-      this.model.stabilize(false);
-      this.model.switchTo(mapID);
-    }
+    if (mapID !== this.model.mapID) this.model.switchTo(mapID);
     this.menu?.close(true);
   }
 
@@ -317,8 +314,8 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private handleModelSwitchTo(action: Object): void {
     if (action['ModelState.switchTo']) {
+      this.initializeView();
       this.setProperties();
-      this.ready();
     }
   }
 
@@ -389,6 +386,7 @@ export class HomePage implements AfterViewInit, OnInit {
     const min = this.geometry.minTranslate();
     const view = ViewState.defaultView();
     const translate = [-(focus.x - midPoint.x), -(focus.y - midPoint.y)];
+    // 👇 only effective if view is empty
     this.view.initialize({
       scale: view.scale,
       translate: [
@@ -411,6 +409,8 @@ export class HomePage implements AfterViewInit, OnInit {
           text: 'Yes',
           handler: (): void => {
             this.switchTo(mapID);
+            // TODO: ⚠️ timeout just a hack -- how to tell if lots rebuilt?
+            setTimeout(() => this.searchFor(this.selection.text), 50);
           }
         },
         {
@@ -448,12 +448,6 @@ export class HomePage implements AfterViewInit, OnInit {
         }
       ]
     });
-  }
-
-  private ready(): void {
-    this.initializeView();
-    this.searchFor(this.selection.text);
-    this.model.stabilize(true);
   }
 
   private setProperties(): void {

@@ -11,6 +11,8 @@
     *ngIf="visibleTiles.has(tile.fileName)"
     (error)="tileError(tile.fileName)"
     (load)="tileLoaded(tile.fileName)"
+    [attr.height]="tile.height"
+    [attr.width]="tile.width"
     [src]="tile.fileName"
     class="tile"
   />

@@ -114,7 +114,7 @@ export class TrackerComponent {
       ? position.timestamp - this.lastTimestamp
       : 0;
     this.lastTimestamp = position.timestamp;
-    // TODO: how to control direction of rotation animation?
+    // TODO: ⚠️ how to control direction of rotation animation?
     const heading = position.coords.heading;
     const headingVisibility = heading != null && !isNaN(heading);
     // set properties and repaint
