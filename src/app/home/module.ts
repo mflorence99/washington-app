@@ -1,15 +1,10 @@
-import { CenterComponent } from './center';
 import { DetailsComponent } from './details';
-import { EastComponent } from './east';
-import { HighlandComponent } from './highland';
 import { HomePage } from './page';
 import { HomeRouting } from './routing';
 import { InfoComponent } from './info';
-import { IslandComponent } from './island';
-import { LAEComponent } from './lae';
+import { LotsComponent } from './lots';
 import { TilesComponent } from './tiles';
 import { TrackerComponent } from './tracker';
-import { WashingtonComponent } from './washington';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -22,16 +17,11 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [
     HomePage,
-    CenterComponent,
     DetailsComponent,
-    EastComponent,
-    HighlandComponent,
     InfoComponent,
-    IslandComponent,
-    LAEComponent,
+    LotsComponent,
     TilesComponent,
-    TrackerComponent,
-    WashingtonComponent
+    TrackerComponent
   ],
 
   imports: [

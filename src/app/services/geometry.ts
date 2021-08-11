@@ -70,13 +70,13 @@ export class GeometryService {
     } else console.log(`%cCan't select lots ${lots[0].id}`, 'color: indianred');
   }
 
-  centerPointInViewport(xy: XY): void {
+  centerXYInViewport({ x, y }): void {
     const midPoint = this.xyCenterOfViewport();
     const max = this.maxTranslate();
     const min = this.minTranslate();
     const translate: [number, number] = [
-      Math.max(max[0], Math.min(min[0], -(Number(xy.x) - midPoint.x))),
-      Math.max(max[1], Math.min(min[1], -(Number(xy.y) - midPoint.y)))
+      Math.max(max[0], Math.min(min[0], -(x - midPoint.x))),
+      Math.max(max[1], Math.min(min[1], -(y - midPoint.y)))
     ];
     this.view.translate(translate);
   }
@@ -86,17 +86,17 @@ export class GeometryService {
   }
 
   event2xy(event: HammerInput): XY {
-    const xy = event.center;
+    let { x, y } = event.center;
     const theMap = document.getElementById('theMap').parentElement;
     if (theMap.style.position === 'relative') {
-      xy.x -= theMap.offsetLeft;
-      xy.y -= theMap.offsetTop;
+      x -= theMap.offsetLeft;
+      y -= theMap.offsetTop;
     }
-    return xy;
+    return { x, y };
   }
 
   // 👇 this works because we scale the viewport on its center
-  isPointInViewport(xy: XY, margin = 0): boolean {
+  isXYInViewport({ x, y }, margin = 0): boolean {
     const center = this.xyCenterOfViewport();
     const translate = this.view.view.translate;
     const scale = this.view.view.scale;
@@ -128,21 +128,21 @@ export class GeometryService {
     const w = ((center.x - margin) * 2) / scale;
     const h = ((center.y - margin) * 2) / scale;
     const br = { x: tl.x + w, y: tl.y + h };
-    return xy.x >= tl.x && xy.x < br.x && xy.y >= tl.y && xy.y < br.y;
+    return x >= tl.x && x < br.x && y >= tl.y && y < br.y;
   }
 
   lat2y(lat: number): number {
     return Math.log(Math.tan((lat / 90 + 1) * (Math.PI / 4))) * (180 / Math.PI);
   }
 
-  latlon2xy(latlon: LatLon): XY {
+  latlon2xy({ lat, lon }): XY {
     const x =
-      ((this.lon2x(latlon.lon) - this.lon2x(this.model.map.bbox.left)) *
+      ((this.lon2x(lon) - this.lon2x(this.model.map.bbox.left)) *
         this.model.tileContainer.width) /
       (this.lon2x(this.model.map.bbox.right) -
         this.lon2x(this.model.map.bbox.left));
     const y =
-      ((this.lat2y(latlon.lat) - this.lat2y(this.model.map.bbox.top)) *
+      ((this.lat2y(lat) - this.lat2y(this.model.map.bbox.top)) *
         this.model.tileContainer.height) /
       (this.lat2y(this.model.map.bbox.bottom) -
         this.lat2y(this.model.map.bbox.top));
@@ -232,13 +232,13 @@ export class GeometryService {
     return [tl.x, tl.y];
   }
 
-  nearestLotID(xy: XY, lotIDs: string[]): string {
+  nearestLotID({ x, y }, lotIDs: string[]): string {
     let lastDistance = Number.MAX_VALUE;
     let nearestLotID = null;
     const lots = lotIDs.flatMap((lotID) => LOTS_BY_ID[lotID]);
     lots.forEach((lot) => {
       const center = this.xyCenterOfLots([lot]);
-      const distance = Math.abs(Math.hypot(xy.x - center.x, xy.y - center.y));
+      const distance = Math.abs(Math.hypot(x - center.x, y - center.y));
       console.log(`Distance to ${lot.id} is ${distance}`);
       if (distance < lastDistance) {
         lastDistance = distance;
@@ -262,7 +262,7 @@ export class GeometryService {
     return (radians * 180) / Math.PI;
   }
 
-  whichLotID(xy: XY): string {
+  whichLotID({ x, y }): string {
     const center = this.xyCenterOfViewport();
     const origin = this.originOfViewport();
     const translate = this.view.view.translate;
@@ -277,14 +277,14 @@ export class GeometryService {
     // so ...
     // x += cx - cx/scale
     // y += cy - cy/scale
-    const cx = center.x - xy.x;
+    const cx = center.x - x;
     const dx = cx - cx / scale;
     const ox = origin.x / scale;
-    xy.x += dx - ox + xlate.x;
-    const cy = center.y - xy.y;
+    x += dx - ox + xlate.x;
+    const cy = center.y - y;
     const dy = cy - cy / scale;
     const oy = origin.y / scale;
-    xy.y += dy - oy + xlate.y;
+    y += dy - oy + xlate.y;
     // find the polygons that define the lots
     const polygons = Array.from(
       document.querySelectorAll<SVGGeometryElement>(
@@ -299,7 +299,7 @@ export class GeometryService {
     const lot = polygons.find((polygon) => {
       const raw = polygon.getAttribute('points');
       const points = raw.split(' ').map((p) => p.split(','));
-      return pointInPoly.pointInPolyWindingNumber([xy.x, xy.y], points);
+      return pointInPoly.pointInPolyWindingNumber([x, y], points);
     });
     if (lot) console.log(`%cFound lot: ${lot.id}`, 'color: gold');
     return lot?.id;
@@ -312,14 +312,14 @@ export class GeometryService {
     // return lots.length > 1 ? this.nearestLotID(xy, lotIDs) : lots[0]?.id;
   }
 
-  whichMapIDs(latlon: LatLon): string[] {
+  whichMapIDs({ lat, lon }): string[] {
     return Object.keys(MAPS).filter((mapID) => {
       const map = MAPS[mapID];
       const inside =
-        latlon.lon >= map.bbox.left &&
-        latlon.lon < map.bbox.right &&
-        latlon.lat >= map.bbox.bottom &&
-        latlon.lat < map.bbox.top;
+        lon >= map.bbox.left &&
+        lon < map.bbox.right &&
+        lat >= map.bbox.bottom &&
+        lat < map.bbox.top;
       return inside;
     });
   }
@@ -328,14 +328,14 @@ export class GeometryService {
     return x;
   }
 
-  xy2latlon(xy: XY): LatLon {
+  xy2latlon({ x, y }): LatLon {
     const lon =
       this.model.map.bbox.left +
-      (xy.x / this.model.tileContainer.width) *
+      (x / this.model.tileContainer.width) *
         (this.model.map.bbox.right - this.model.map.bbox.left);
     const lat =
       this.model.map.bbox.top +
-      (xy.y / this.model.tileContainer.height) *
+      (y / this.model.tileContainer.height) *
         (this.model.map.bbox.bottom - this.model.map.bbox.top);
     return { lat, lon };
   }

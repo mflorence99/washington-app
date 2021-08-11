@@ -1,6 +1,5 @@
 import { catchError } from 'rxjs/operators';
 import { concatMap } from 'rxjs/operators';
-import { copyFileSync } from 'fs';
 import { createCanvas } from 'canvas';
 import { from } from 'rxjs';
 import { loadImage } from 'canvas';
@@ -13,11 +12,6 @@ import imageminWebp from 'imagemin-webp';
 import rimraf from 'rimraf';
 
 const names = ['center', 'east', 'highland', 'island', 'lae', 'washington'];
-
-// first, copy over all the SVGs of the polygons
-for (const name of names) {
-  copyFileSync(`/home/mflo/Downloads/${name}.svg`, `src/app/home/${name}.svg`);
-}
 
 // seems like the best choice, but we could choose dynamically
 // depending on image dimensions

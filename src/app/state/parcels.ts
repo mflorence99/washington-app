@@ -3,22 +3,25 @@ import { LatLon } from '../services/geometry';
 import PARCELS from '../../assets/parcels.json';
 
 export interface Lot {
-  address: string;
+  address?: string;
   area: number;
+  boundaries: LatLon[][];
   building$: number;
   centers: LatLon[];
   cu$: number;
   id: string;
   land$: number;
-  owner: string;
+  owner?: string;
   taxed$: number;
   usage: string;
-  use: string;
+  use?: string;
 }
 
 export const DESC_BY_USAGE = PARCELS.descByUsage;
 
 export const DESC_BY_USE = PARCELS.descByUse;
+
+export const LOTS = PARCELS.lots;
 
 export const LOTS_BY_ADDRESS: Record<string, Lot[]> = PARCELS.lots.reduce(
   (acc, lot) => {

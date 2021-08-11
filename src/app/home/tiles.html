@@ -1,5 +1,5 @@
 <div
-  *ngFor="let tile of model.tiles; trackBy: trackByFileName"
+  *ngFor="let tile of tiles; trackBy: trackByFileName"
   [attr.src]="tile.fileName"
   [style.left.px]="tile.x"
   [style.top.px]="tile.y"

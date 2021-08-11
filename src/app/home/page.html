@@ -90,7 +90,8 @@
         class="map"
         id="theMap"
       >
-        <app-tiles class="tiles" id="theTiles"> </app-tiles>
+        <app-tiles [tiles]="model.tiles" class="tiles" id="theTiles">
+        </app-tiles>
       </article>
 
       <app-tracker
@@ -100,49 +101,13 @@
         id="theTracker"
       ></app-tracker>
 
-      <ng-container [ngSwitch]="model.mapID">
-        <app-center
-          *ngSwitchCase="'center'"
-          [class.animating]="animating"
-          class="lots"
-          id="theLots"
-        ></app-center>
-
-        <app-east
-          *ngSwitchCase="'east'"
-          [class.animating]="animating"
-          class="lots"
-          id="theLots"
-        ></app-east>
-
-        <app-highland
-          *ngSwitchCase="'highland'"
-          [class.animating]="animating"
-          class="lots"
-          id="theLots"
-        ></app-highland>
-
-        <app-island
-          *ngSwitchCase="'island'"
-          [class.animating]="animating"
-          class="lots"
-          id="theLots"
-        ></app-island>
-
-        <app-lae
-          *ngSwitchCase="'lae'"
-          [class.animating]="animating"
-          class="lots"
-          id="theLots"
-        ></app-lae>
-
-        <app-washington
-          *ngSwitchDefault
-          [class.animating]="animating"
-          class="lots"
-          id="theLots"
-        ></app-washington>
-      </ng-container>
+      <app-lots
+        [class.animating]="animating"
+        [map]="model.map"
+        [tileContainer]="model.tileContainer"
+        class="lots"
+        id="theLots"
+      ></app-lots>
     </section>
 
     <ion-searchbar
