@@ -102,8 +102,10 @@
       ></app-tracker>
 
       <app-lots
+        (polygonsReady)="searchFor(selection.text)"
         [class.animating]="animating"
         [map]="model.map"
+        [mapID]="model.mapID"
         [tileContainer]="model.tileContainer"
         class="lots"
         id="theLots"

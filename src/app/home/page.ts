@@ -80,8 +80,6 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    // 👇 clear lot search on ial load
-    this.selection.searchFor('');
     // 👇 analyze the initial position of the tracker if it's showing
     this.showTracker(this.model.tracker);
     this.initializeView();
@@ -285,9 +283,7 @@ export class HomePage implements AfterViewInit, OnInit {
         {
           side: 'end',
           text: 'Yes',
-          handler: (): void => {
-            this.switchTo(mapID);
-          }
+          handler: (): void => this.switchTo(mapID)
         },
         {
           text: 'No',
@@ -407,18 +403,12 @@ export class HomePage implements AfterViewInit, OnInit {
         {
           side: 'end',
           text: 'Yes',
-          handler: (): void => {
-            this.switchTo(mapID);
-            // TODO: ⚠️ timeout just a hack -- how to tell if lots rebuilt?
-            setTimeout(() => this.searchFor(this.selection.text), 50);
-          }
+          handler: (): void => this.switchTo(mapID)
         },
         {
           text: 'No',
           role: 'cancel',
-          handler: (): void => {
-            this.searchFor('');
-          }
+          handler: (): void => this.searchFor('')
         }
       ]
     });
@@ -434,9 +424,7 @@ export class HomePage implements AfterViewInit, OnInit {
         {
           side: 'end',
           text: 'Now',
-          handler: (): void => {
-            window.location.reload();
-          }
+          handler: (): void => window.location.reload()
         },
         {
           text: 'Later',

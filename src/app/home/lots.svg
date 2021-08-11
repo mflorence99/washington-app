@@ -10,4 +10,7 @@
       </g>
     </ng-container>
   </ng-container>
+
+  <!-- 👇 marker so we can tell when polygons are loaded -->
+  <g [attr.mapID]="mapID"></g>
 </svg>

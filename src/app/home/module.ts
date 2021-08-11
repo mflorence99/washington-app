@@ -3,6 +3,7 @@ import { HomePage } from './page';
 import { HomeRouting } from './routing';
 import { InfoComponent } from './info';
 import { LotsComponent } from './lots';
+import { RetrySrcDirective } from './retry-src';
 import { TilesComponent } from './tiles';
 import { TrackerComponent } from './tracker';
 
@@ -20,6 +21,7 @@ import { NgModule } from '@angular/core';
     DetailsComponent,
     InfoComponent,
     LotsComponent,
+    RetrySrcDirective,
     TilesComponent,
     TrackerComponent
   ],

@@ -41,6 +41,9 @@ export class Params {
       checkVersionInterval: 120 * 1000, // ms
       highlightedLotOutline: 'var(--ion-color-danger)'
     },
+    retrySrc: {
+      interval: 3 * 1000
+    },
     tiles: {
       // 👇 size of one tile
       intersectionMargin: 256

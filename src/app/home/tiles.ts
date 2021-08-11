@@ -49,14 +49,6 @@ export class TilesComponent implements OnDestroy, OnInit {
     });
   }
 
-  tileError(src: string): void {
-    console.log(`%cTile ${src} error`, 'color: orchid');
-  }
-
-  tileLoaded(src: string): void {
-    console.log(`%cTile ${src} loaded`, 'color: seagreen');
-  }
-
   trackByFileName(ix: number, tile: Tile): string {
     return tile.fileName;
   }
