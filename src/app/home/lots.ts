@@ -67,7 +67,9 @@ export class LotsComponent implements OnDestroy, OnInit {
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes') {
         const target = mutation.target as SVGElement;
-        this.polygonsReady.emit(target.getAttribute('mapID'));
+        const mapID = target.getAttribute('mapID');
+        console.log(`%cPolygons ready for mapID ${mapID}`, 'color: plum');
+        this.polygonsReady.emit(mapID);
       }
     });
   }

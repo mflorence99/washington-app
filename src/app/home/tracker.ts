@@ -38,9 +38,9 @@ export class TrackerComponent {
     this.handleGeoLocation$();
   }
 
-  private currentPositionLost(): void {
+  private currentPositionLost(error: GeolocationPositionError): void {
     this.stc.createAndPresent({
-      message: 'GPS signal unavailable',
+      message: `GPS tracking ${error.message}`,
       duration: this.params.common.toastDuration,
       color: 'light'
     });
@@ -71,30 +71,26 @@ export class TrackerComponent {
             style.setProperty('--ball-accuracy', `0`);
             style.setProperty('--ball-color', 'var(--ion-color-medium');
             style.setProperty('--ball-heading-visibility', 'hidden');
-            return error.code !== GeolocationPositionError.PERMISSION_DENIED;
+            // 👇 GeolocationPositionError.PERMISSION_DENIED throws error on iOS
+            return error.code !== 1;
           }
         })
       )
       .subscribe({
-        complete: this.handleGeolocationComplete.bind(this),
         error: this.handleGeolocationError.bind(this),
-        next: this.handleGeolocationNext.bind(this)
+        next: this.handleGeolocationPosition.bind(this)
       });
   }
 
-  private handleGeolocationComplete(): void {
-    console.log('%cGeolocation stream has completed', 'color: darkorange');
-  }
-
   private handleGeolocationError(error: GeolocationPositionError): void {
-    // 👇 we don't really care at this point why -- could be
-    // unavailable or authorization withdrawn
-    console.error('🔥 Geolocation stream error', error);
-    this.currentPositionLost();
+    // 👇 because shouldRetry has no maxRetries, we should only get here
+    // on a PERMISSION_DENIED error
+    console.error('🔥 Geolocation handleGeolocationError', error);
+    this.currentPositionLost(error);
     this.model.track(false);
   }
 
-  private handleGeolocationNext(position: GeolocationPosition): void {
+  private handleGeolocationPosition(position: GeolocationPosition): void {
     // convert location to position over map
     const latlon = {
       lat: position.coords.latitude,

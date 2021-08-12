@@ -165,14 +165,13 @@ export class HomePage implements AfterViewInit, OnInit {
             maxInterval: params.maxInterval,
             maxRetries: params.maxRetries,
             resetOnSuccess: true,
-            shouldRetry: (error: GeolocationPositionError) =>
-              error.code !== GeolocationPositionError.PERMISSION_DENIED
+            // 👇 GeolocationPositionError.PERMISSION_DENIED throws error on iOS
+            shouldRetry: (error: GeolocationPositionError) => error.code !== 1
           })
         )
         .subscribe({
-          complete: this.showTrackerComplete.bind(this),
           error: this.showTrackerError.bind(this),
-          next: this.showTrackerNext.bind(this)
+          next: this.showTrackerPosition.bind(this)
         });
     } else this.model.track(false);
   }
@@ -256,9 +255,9 @@ export class HomePage implements AfterViewInit, OnInit {
     this.stylesheet = style.sheet;
   }
 
-  private currentPositionNotAvailable(): void {
+  private currentPositionNotAvailable(error: GeolocationPositionError): void {
     this.stc.createAndPresent({
-      message: 'GPS signal unavailable',
+      message: `GPS signal ${error.message}`,
       duration: this.params.common.toastDuration,
       color: 'light'
     });
@@ -446,19 +445,15 @@ export class HomePage implements AfterViewInit, OnInit {
     style.setProperty('--app-translate-y', `${view.translate[1]}`);
   }
 
-  private showTrackerComplete(): void {
-    console.log('%cGeolocation stream has completed', 'color: darkorange');
-  }
-
   private showTrackerError(error: GeolocationPositionError): void {
-    // 👇 we don't really care at this point why -- could be
-    // unavailable or authorization withdrawn
-    console.error('🔥 Geolocation stream error', error);
-    this.currentPositionNotAvailable();
+    // 👇 we should only get here on PERMISSION_DENIED or after all
+    // maxRetries hsve been attempted
+    console.error('🔥 Geolocation showTrackerError', error);
+    this.currentPositionNotAvailable(error);
     this.model.track(false);
   }
 
-  private showTrackerNext(position: GeolocationPosition): void {
+  private showTrackerPosition(position: GeolocationPosition): void {
     const mapIDs = this.geometry.whichMapIDs({
       lat: position.coords.latitude,
       lon: position.coords.longitude
@@ -466,6 +461,7 @@ export class HomePage implements AfterViewInit, OnInit {
     if (mapIDs.length === 0) this.currentPositionOffMap();
     else if (!mapIDs.includes(this.model.mapID))
       this.currentPositionOnMap(mapIDs[0]);
+    this.model.follow(true);
     this.model.track(true);
   }
 

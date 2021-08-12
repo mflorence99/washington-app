@@ -51,7 +51,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       developmentMode: !environment.production
     }),
     NgxsStoragePluginModule.forRoot({
-      key: ['map', 'selection', 'view']
+      key: ['map', 'view']
     }),
     NgxsDataPluginModule.forRoot(),
     LogRocketPluginModule.forRoot(),

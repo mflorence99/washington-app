@@ -7,7 +7,7 @@ export class Params {
   };
 
   geolocation = {
-    maxIntervalBetweenPositions: 1000
+    maxIntervalBetweenPositions: 3 * 1000
   };
 
   geometry = {
