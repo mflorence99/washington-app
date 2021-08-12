@@ -88,25 +88,5 @@
         "files": ["/assets/washington/*"]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "google-fonts",
-      "urls": ["https://fonts.googleapis.com/**"],
-      "cacheConfig": {
-        "strategy": "performance",
-        "maxSize": 100,
-        "maxAge": "30d"
-      }
-    },
-    {
-      "name": "google-maps",
-      "urls": ["https://maps.googleapis.com/**"],
-      "cacheConfig": {
-        "strategy": "performance",
-        "maxSize": 100,
-        "maxAge": "30d"
-      }
-    }
   ]
 }
