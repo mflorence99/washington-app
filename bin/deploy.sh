@@ -15,9 +15,12 @@ git push origin main
 
 ionic build --prod
 
-cp -R www/* ../mflorence99.github.io
 
 cd ../mflorence99.github.io
+
+git rm -r -q *
+
+cp -R ../washington-app/www/* .
 
 git add . *
 git commit -m "$message"
