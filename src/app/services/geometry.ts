@@ -16,10 +16,6 @@ export interface LatLon {
   lat: number;
   lon: number;
 }
-export interface XY {
-  x: number;
-  y: number;
-}
 
 export interface Rectangle {
   bottom?: number;
@@ -28,6 +24,11 @@ export interface Rectangle {
   right?: number;
   top: number;
   width?: number;
+}
+
+export interface XY {
+  x: number;
+  y: number;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -88,6 +89,7 @@ export class GeometryService {
   event2xy(event: HammerInput): XY {
     let { x, y } = event.center;
     const theMap = document.getElementById('theMap').parentElement;
+    // TODO: 👇 we only know this emprically from testing with Firefox
     if (theMap.style.position === 'relative') {
       x -= theMap.offsetLeft;
       y -= theMap.offsetTop;
@@ -95,7 +97,6 @@ export class GeometryService {
     return { x, y };
   }
 
-  // 👇 this works because we scale the viewport on its center
   isXYInViewport({ x, y }, margin = 0): boolean {
     const center = this.xyCenterOfViewport();
     const translate = this.view.view.translate;
@@ -104,6 +105,7 @@ export class GeometryService {
       x: -translate[0],
       y: -translate[1]
     };
+    // 👇 this works because we scale the viewport on its center
     // tl            top left corner of viewport
     // cx            the distance of edge from the center
     // cx/scale      the actual distance in unscaled units
@@ -176,6 +178,7 @@ export class GeometryService {
     const center = this.xyCenterOfViewport();
     const margin = this.params.geometry.margin;
     const scale = this.view.view.scale;
+    // 👇 this works because we scale the viewport on its center
     // [-w, -h]      nominal minimum translate
     // cx            the distance of edge from the center
     // cx/scale      the actual distance in unscaled units
@@ -213,6 +216,7 @@ export class GeometryService {
     const center = this.xyCenterOfViewport();
     const margin = this.params.geometry.margin;
     const scale = this.view.view.scale;
+    // 👇 this works because we scale the viewport on its center
     // [0, 0]        nominal minimum translate
     // cx            the distance of edge from the center
     // cx/scale      the actual distance in unscaled units
@@ -271,6 +275,7 @@ export class GeometryService {
       x: -translate[0],
       y: -translate[1]
     };
+    // 👇 this works because we scale the viewport on its center
     // cx            the distance of a point from the center
     // cx/scale      the actual distance in unscaled units
     // cx - cx/scale the delta from scaling
@@ -291,7 +296,7 @@ export class GeometryService {
         'app-home .lots svg g polygon'
       )
     );
-    // 👀  robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
+    // 👀 robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
     // we tried them all and pointInPoly.pointInPolyWindingNumber
     // was the most reliable -- looks like the ray cast algorithm
     // gets confused

@@ -210,7 +210,6 @@ export class HomePage implements AfterViewInit, OnInit {
 
   // private methods
 
-  // 👇 interval must be MUCH longer than duration of toaster
   private checkVersion(): void {
     if (this.swUpdate.isEnabled) this.checkVersionServiceWorker();
     // 👇 do this as backup anyway as we always enable the service
@@ -219,6 +218,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   private checkVersionLegacy(): void {
+    // 👇 interval must be MUCH longer than duration of toaster
     timer(
       this.params.home.page.checkVersionAfter,
       this.params.home.page.checkVersionInterval
@@ -462,7 +462,6 @@ export class HomePage implements AfterViewInit, OnInit {
     else if (!mapIDs.includes(this.model.mapID))
       this.currentPositionOnMap(mapIDs[0]);
     this.model.follow(true);
-    this.model.track(true);
   }
 
   private unhighlightLots(): void {

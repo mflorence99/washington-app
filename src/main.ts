@@ -30,10 +30,8 @@ Sentry.init({
   tracesSampleRate: 1.0
 });
 
-if (environment.production) {
-  enableProdMode();
-}
+if (environment.production) enableProdMode();
 
 platformBrowserDynamic()
   .bootstrapModule(RootModule)
-  .catch((err) => console.log(err));
+  .catch((error) => console.log(error));
