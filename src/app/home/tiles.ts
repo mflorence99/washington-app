@@ -49,10 +49,6 @@ export class TilesComponent implements OnDestroy, OnInit {
     });
   }
 
-  trackByFileName(ix: number, tile: Tile): string {
-    return tile.fileName;
-  }
-
   private intersectionCallback(
     intersections: IntersectionObserverEntry[]
   ): void {

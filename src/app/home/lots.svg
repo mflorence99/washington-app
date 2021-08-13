@@ -3,10 +3,10 @@
   [attr.height]="tileContainer.height"
   attr.viewPort="0 0 {{ tileContainer.width }} {{ tileContainer.height }}"
 >
-  <ng-container *ngFor="let lot of lots()">
+  <ng-container *ngFor="let lot of lots">
     <ng-container *ngFor="let boundary of lot.boundaries">
-      <g *ngIf="points(boundary) as points">
-        <polygon [attr.points]="points" [id]="lot.id" />
+      <g>
+        <polygon [attr.points]="points(boundary)" [id]="lot.id" />
       </g>
     </ng-container>
   </ng-container>

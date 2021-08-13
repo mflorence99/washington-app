@@ -51,7 +51,7 @@ export class Params {
     tracker: {
       backoff: {
         initialInterval: 100,
-        maxInterval: 5 * 1000
+        maxInterval: 1000
       },
       margin: 64
     }

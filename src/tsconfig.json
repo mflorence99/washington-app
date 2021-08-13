@@ -15,10 +15,15 @@
     "module": "es2020",
     "moduleResolution": "node",
     "outDir": "../dist/out-tsc",
+    "preserveSymlinks": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "target": "es2015"
   },
-  "files": ["main.ts", "polyfills.ts"],
+  "files": [
+    "main.ts",
+    "polyfills.ts",
+    "/home/mflo/mflorence99/washington-mapmaker/src/app/parcel-data.ts"
+  ],
   "include": ["**/*.d.ts"]
 }

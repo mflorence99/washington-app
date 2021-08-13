@@ -1,6 +1,5 @@
 import { LatLon } from '../services/geometry';
-
-import PARCELS from '../../assets/parcels.json';
+import { PARCELS } from './parcel-data';
 
 export interface Lot {
   address?: string;

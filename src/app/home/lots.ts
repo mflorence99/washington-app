@@ -20,6 +20,8 @@ import { Output } from '@angular/core';
   templateUrl: './lots.svg'
 })
 export class LotsComponent implements OnDestroy, OnInit {
+  lots: Lot[] = LOTS;
+
   @Input() map: Map;
   @Input() mapID: string;
   @Output() polygonsReady = new EventEmitter<string>();
@@ -30,10 +32,6 @@ export class LotsComponent implements OnDestroy, OnInit {
   private mo: MutationObserver;
 
   constructor(private geometry: GeometryService, private host: ElementRef) {}
-
-  lots(): Lot[] {
-    return LOTS;
-  }
 
   ngOnDestroy(): void {
     this.mo?.disconnect();
@@ -49,18 +47,12 @@ export class LotsComponent implements OnDestroy, OnInit {
   }
 
   points(boundary: LatLon[]): string {
-    const polygon = boundary.map((point: LatLon) =>
-      this.geometry.latlon2xy(point)
-    );
-    // only emit if at least partially inside clip
-    const inside = polygon.some(
-      ({ x, y }) =>
-        x >= 0 &&
-        x < this.tileContainer.width &&
-        y >= 0 &&
-        y < this.tileContainer.height
-    );
-    return inside ? polygon.map(({ x, y }) => `${x},${y}`).join(' ') : null;
+    return boundary
+      .map((point: LatLon) => {
+        const { x, y } = this.geometry.latlon2xy(point);
+        return `${x},${y}`;
+      })
+      .join(' ');
   }
 
   private mutationCallback(mutations: MutationRecord[]): void {

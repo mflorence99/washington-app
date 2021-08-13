@@ -461,7 +461,7 @@ export class HomePage implements AfterViewInit, OnInit {
     if (mapIDs.length === 0) this.currentPositionOffMap();
     else if (!mapIDs.includes(this.model.mapID))
       this.currentPositionOnMap(mapIDs[0]);
-    this.model.follow(true);
+    this.model.track(true);
   }
 
   private unhighlightLots(): void {

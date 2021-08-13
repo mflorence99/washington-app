@@ -8,6 +8,7 @@ import { Params } from './params';
 import { ViewState } from '../state/view';
 
 import { Injectable } from '@angular/core';
+import { Memoize } from 'typescript-memoize';
 
 import centroid from 'polygon-centroid';
 import pointInPoly from 'point-in-polygon-extended';
@@ -134,20 +135,20 @@ export class GeometryService {
   }
 
   lat2y(lat: number): number {
-    return Math.log(Math.tan((lat / 90 + 1) * (Math.PI / 4))) * (180 / Math.PI);
+    // 👇 we should do this, but the simplification is MUCH faster
+    // and accurate enough over the area we cover
+    // Math.log(Math.tan((lat / 90 + 1) * (Math.PI / 4))) * (180 / Math.PI);
+    return lat;
   }
 
   latlon2xy({ lat, lon }): XY {
+    const bbox = this.bbox2xy(this.model.mapID);
     const x =
-      ((this.lon2x(lon) - this.lon2x(this.model.map.bbox.left)) *
-        this.model.tileContainer.width) /
-      (this.lon2x(this.model.map.bbox.right) -
-        this.lon2x(this.model.map.bbox.left));
+      ((this.lon2x(lon) - bbox.left) * this.model.tileContainer.width) /
+      (bbox.right - bbox.left);
     const y =
-      ((this.lat2y(lat) - this.lat2y(this.model.map.bbox.top)) *
-        this.model.tileContainer.height) /
-      (this.lat2y(this.model.map.bbox.bottom) -
-        this.lat2y(this.model.map.bbox.top));
+      ((this.lat2y(lat) - bbox.top) * this.model.tileContainer.height) /
+      (bbox.bottom - bbox.top);
     return { x, y };
   }
 
@@ -382,5 +383,16 @@ export class GeometryService {
 
   y2lat(y: number): number {
     return (Math.atan(Math.exp(y / (180 / Math.PI))) / (Math.PI / 4) - 1) * 90;
+  }
+
+  // 👇 mapID is passed as a parameters simply to defeat memo cache
+  @Memoize()
+  private bbox2xy(_mapID: string): Rectangle {
+    return {
+      bottom: this.lat2y(this.model.map.bbox.bottom),
+      left: this.lon2x(this.model.map.bbox.left),
+      right: this.lon2x(this.model.map.bbox.right),
+      top: this.lat2y(this.model.map.bbox.top)
+    };
   }
 }
