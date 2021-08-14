@@ -39,7 +39,8 @@ export class Params {
       // 👇 make sure AFTER service worker check of 30s
       checkVersionAfter: 60 * 1000, // ms
       checkVersionInterval: 120 * 1000, // ms
-      highlightedLotOutline: 'var(--ion-color-danger)'
+      highlightedLotOutline: 'var(--ion-color-danger)',
+      showLotsDelay: 1000
     },
     retrySrc: {
       interval: 3 * 1000

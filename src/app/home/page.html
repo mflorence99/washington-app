@@ -102,7 +102,8 @@
       ></app-tracker>
 
       <app-lots
-        (polygonsReady)="searchFor(selection.text)"
+        *ngIf="lotsShowing"
+        (lotsLoaded)="lotsLoaded()"
         [class.animating]="animating"
         [map]="model.map"
         [mapID]="model.mapID"
@@ -123,6 +124,10 @@
       placeholder="Lot # or address"
       searchIcon="search-sharp"
     ></ion-searchbar>
+
+    <article *ngIf="!(lotsReady || lotsShowing)" class="loading">
+      <ion-spinner color="light" name="lines"></ion-spinner>
+    </article>
   </ion-content>
 
   <article [style.width.px]="model.map.cxScale * view.view.scale" class="scale">

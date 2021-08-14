@@ -22,9 +22,9 @@ import { Output } from '@angular/core';
 export class LotsComponent implements OnDestroy, OnInit {
   lots: Lot[] = LOTS;
 
+  @Output() lotsLoaded = new EventEmitter<string>();
   @Input() map: Map;
   @Input() mapID: string;
-  @Output() polygonsReady = new EventEmitter<string>();
   @Input() tileContainer: TileContainer;
 
   // 👉 all the MutationObserver trickery is to tell when polygons are loaded
@@ -61,7 +61,7 @@ export class LotsComponent implements OnDestroy, OnInit {
         const target = mutation.target as SVGElement;
         const mapID = target.getAttribute('mapID');
         console.log(`%cPolygons ready for mapID ${mapID}`, 'color: plum');
-        this.polygonsReady.emit(mapID);
+        this.lotsLoaded.emit(mapID);
       }
     });
   }

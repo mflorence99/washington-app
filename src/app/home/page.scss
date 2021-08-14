@@ -9,13 +9,20 @@ app-home {
     width: 100%;
   }
 
+  .loading {
+    display: grid;
+    height: 100%;
+    place-items: center;
+    position: absolute;
+    width: 100%;
+  }
+
   // 👇 .lots selector is used in code
   // 👀  page.ts
 
   .lots,
   .map,
   .tracker {
-    display: block;
     position: absolute;
   }
 
@@ -43,6 +50,7 @@ app-home {
     transition: transform 0.5s ease-in-out;
   }
 
+  .loading,
   .lots,
   .tracker {
     pointer-events: none;

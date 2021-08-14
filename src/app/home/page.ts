@@ -48,11 +48,17 @@ import { timer } from 'rxjs';
   templateUrl: './page.html'
 })
 export class HomePage implements AfterViewInit, OnInit {
+  animating = true;
+
+  // 👇 constructing the polygons for the lots takes a long time
+  // and we don't need them right away
+  lotsReady = false;
+  lotsShowing = false;
+
+  maps: Maps = MAPS;
+
   @ViewChild('menu') menu: Components.IonMenu;
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  animating = true;
-  maps: Maps = MAPS;
   trackable = 'geolocation' in navigator;
   translating = false;
 
@@ -79,14 +85,18 @@ export class HomePage implements AfterViewInit, OnInit {
     this.model.follow(following);
   }
 
+  lotsLoaded(): void {
+    this.lotsReady = true;
+    this.selection.searchFor(this.selection.text);
+  }
+
   ngAfterViewInit(): void {
-    // 👇 analyze the initial position of the tracker if it's showing
-    this.showTracker(this.model.tracker);
-    this.initializeView();
+    this.model.switchTo(this.model.mapID);
   }
 
   ngOnInit(): void {
     this.handleActions$();
+    if (this.model.tracker) this.initializeGeolocation$();
     this.checkVersion();
     this.createStylesheet();
   }
@@ -154,30 +164,17 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   showTracker(tracker: boolean): void {
-    if (tracker) {
-      const params = this.params.home.page.backoff;
-      this.geolocation$
-        .pipe(
-          take(1),
-          // 👀 https://indepth.dev/posts/1260/power-of-rxjs-when-using-exponential-backoff
-          retryBackoff({
-            initialInterval: params.initialInterval,
-            maxInterval: params.maxInterval,
-            maxRetries: params.maxRetries,
-            resetOnSuccess: true,
-            // 👇 GeolocationPositionError.PERMISSION_DENIED throws error on iOS
-            shouldRetry: (error: GeolocationPositionError) => error.code !== 1
-          })
-        )
-        .subscribe({
-          error: this.showTrackerError.bind(this),
-          next: this.showTrackerPosition.bind(this)
-        });
-    } else this.model.track(false);
+    if (tracker) this.initializeGeolocation$();
+    else this.model.track(false);
   }
 
   switchTo(mapID: string): void {
-    if (mapID !== this.model.mapID) this.model.switchTo(mapID);
+    if (mapID !== this.model.mapID) {
+      // 👀 see handleModelSwitchTo for when we turn lots back on
+      this.lotsReady = false;
+      this.lotsShowing = false;
+      this.model.switchTo(mapID);
+    }
     this.menu?.close(true);
   }
 
@@ -309,6 +306,10 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private handleModelSwitchTo(action: Object): void {
     if (action['ModelState.switchTo']) {
+      setTimeout(
+        () => (this.lotsShowing = true),
+        this.params.home.page.showLotsDelay
+      );
       this.initializeView();
       this.setProperties();
     }
@@ -372,6 +373,46 @@ export class HomePage implements AfterViewInit, OnInit {
       }`;
       this.stylesheet.insertRule(rule);
     });
+  }
+
+  private initializeGeolocation$(): void {
+    const params = this.params.home.page.backoff;
+    this.geolocation$
+      .pipe(
+        take(1),
+        // 👀 https://indepth.dev/posts/1260/power-of-rxjs-when-using-exponential-backoff
+        retryBackoff({
+          initialInterval: params.initialInterval,
+          maxInterval: params.maxInterval,
+          maxRetries: params.maxRetries,
+          resetOnSuccess: true,
+          // 👇 GeolocationPositionError.PERMISSION_DENIED throws error on iOS
+          shouldRetry: (error: GeolocationPositionError) => error.code !== 1
+        })
+      )
+      .subscribe({
+        error: this.initializeGeolocationError.bind(this),
+        next: this.initializeGeolocationPosition.bind(this)
+      });
+  }
+
+  private initializeGeolocationError(error: GeolocationPositionError): void {
+    // 👇 we should only get here on PERMISSION_DENIED or after all
+    // maxRetries hsve been attempted
+    console.error('🔥 Geolocation showTrackerError', error);
+    this.currentPositionNotAvailable(error);
+    this.model.track(false);
+  }
+
+  private initializeGeolocationPosition(position: GeolocationPosition): void {
+    const mapIDs = this.geometry.whichMapIDs({
+      lat: position.coords.latitude,
+      lon: position.coords.longitude
+    });
+    if (mapIDs.length === 0) this.currentPositionOffMap();
+    else if (!mapIDs.includes(this.model.mapID))
+      this.currentPositionOnMap(mapIDs[0]);
+    this.model.track(true);
   }
 
   private initializeView(): void {
@@ -443,25 +484,6 @@ export class HomePage implements AfterViewInit, OnInit {
     style.setProperty('--app-scale', `${view.scale}`);
     style.setProperty('--app-translate-x', `${view.translate[0]}`);
     style.setProperty('--app-translate-y', `${view.translate[1]}`);
-  }
-
-  private showTrackerError(error: GeolocationPositionError): void {
-    // 👇 we should only get here on PERMISSION_DENIED or after all
-    // maxRetries hsve been attempted
-    console.error('🔥 Geolocation showTrackerError', error);
-    this.currentPositionNotAvailable(error);
-    this.model.track(false);
-  }
-
-  private showTrackerPosition(position: GeolocationPosition): void {
-    const mapIDs = this.geometry.whichMapIDs({
-      lat: position.coords.latitude,
-      lon: position.coords.longitude
-    });
-    if (mapIDs.length === 0) this.currentPositionOffMap();
-    else if (!mapIDs.includes(this.model.mapID))
-      this.currentPositionOnMap(mapIDs[0]);
-    this.model.track(true);
   }
 
   private unhighlightLots(): void {
