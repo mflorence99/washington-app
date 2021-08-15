@@ -15,7 +15,10 @@ import { StateRepository } from '@ngxs-labs/data/decorators';
 
 import { patch } from '@ngxs/store/operators';
 
+export type DetailsType = 'assessor' | 'measure';
+
 export interface ModelStateModel {
+  details: DetailsType;
   follower: boolean;
   mapID: string;
   tracker: boolean;
@@ -26,6 +29,7 @@ export interface ModelStateModel {
 @State<ModelStateModel>({
   name: 'map',
   defaults: {
+    details: 'assessor',
     follower: false,
     mapID: 'washington',
     tracker: false
@@ -33,6 +37,11 @@ export interface ModelStateModel {
 })
 export class ModelState extends NgxsDataRepository<ModelStateModel> {
   // actions
+
+  @DataAction({ insideZone: true })
+  detailsTo(@Payload('ModelState.detailsTo') details: DetailsType): void {
+    this.ctx.setState(patch({ details }));
+  }
 
   @DataAction({ insideZone: true })
   follow(@Payload('ModelState.follow') follower: boolean): void {
@@ -50,6 +59,10 @@ export class ModelState extends NgxsDataRepository<ModelStateModel> {
   }
 
   // accessors
+
+  @Computed() get details(): DetailsType {
+    return this.snapshot.details;
+  }
 
   @Computed() get follower(): boolean {
     return this.snapshot.follower;

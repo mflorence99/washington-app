@@ -13,6 +13,14 @@ app-details {
       grid-area: header;
     }
 
+    .footnotes {
+      font-size: smaller;
+    }
+
+    .lot {
+      grid-area: lot;
+    }
+
     .map {
       grid-area: map;
       height: 100%;
@@ -34,59 +42,131 @@ app-details {
     }
 
     .table {
-      grid-area: table;
+      table {
+        td,
+        th {
+          padding-bottom: 8px;
+          padding-right: 8px;
+        }
 
-      td {
-        padding-bottom: 8px;
-        padding-right: 8px;
-      }
+        td:first-child {
+          font-weight: bold;
+          overflow: hidden;
+          position: relative;
+          white-space: nowrap;
+          width: 40%;
 
-      td:first-child {
-        font-weight: bold;
-        overflow: hidden;
-        position: relative;
-        white-space: nowrap;
-        width: 33%;
+          &::after {
+            content: '........................................................';
+            position: absolute;
+          }
+        }
 
-        &::after {
-          content: '........................................................';
-          position: absolute;
+        td:last-child,
+        th:last-child {
+          padding-left: 8px;
+        }
+
+        th {
+          font-weight: bold;
+          text-align: left;
+          text-transform: uppercase;
+        }
+
+        tr {
+          vertical-align: top;
         }
       }
 
-      td:last-child {
-        padding-left: 8px;
+      .table.assessor {
+        grid-area: table-assessor;
       }
 
-      tr {
-        vertical-align: top;
+      .table.measure {
+        grid-area: table-measure;
       }
     }
   }
 }
 
-app-details.landscape section {
+app-details.landscape.assessor section {
   grid-template-areas:
     'header header'
-    'map table';
+    'map table-assessor';
   grid-template-columns: 3fr 2fr;
   grid-template-rows: auto 1fr;
+
+  .lot,
+  .table.measure {
+    display: none;
+  }
 }
 
-app-details.portrait section {
+app-details.portrait.assessor section {
   grid-template-areas:
     'header'
     'map'
-    'table';
+    'table-assessor';
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr 1fr;
+
+  .lot,
+  .table.measure {
+    display: none;
+  }
 }
 
-app-details.square section {
+app-details.square.assessor section {
   grid-template-areas:
     'header'
     'map'
-    'table';
+    'table-assessor';
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
+
+  .lot,
+  .table.measure {
+    display: none;
+  }
+}
+
+app-details.landscape.measure section {
+  grid-template-areas:
+    'header header'
+    'lot table-measure';
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: auto 1fr;
+
+  .map,
+  .table.assessor {
+    display: none;
+  }
+}
+
+app-details.portrait.measure section {
+  grid-template-areas:
+    'header'
+    'lot'
+    'table-measure';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 1fr;
+
+  .map,
+  .table.assessor {
+    display: none;
+  }
+}
+
+app-details.square.measure section {
+  grid-template-areas:
+    'header'
+    'lot'
+    'table-measure';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  .map,
+  .table.assessor {
+    display: none;
+  }
 }

@@ -40,6 +40,10 @@ export class GeometryService {
     private view: ViewState
   ) {}
 
+  acres2sqft(acres: number): number {
+    return acres * 43560;
+  }
+
   // 👀  https://stackoverflow.com/questions/46590154/calculate-bearing-between-2-points-with-javascript
   bearing(from: LatLon, to: LatLon): number {
     const p = {
@@ -85,6 +89,20 @@ export class GeometryService {
 
   degrees2radians(degrees: number): number {
     return (degrees * Math.PI) / 180;
+  }
+
+  // 👀  https://www.geodatasource.com/developers/javascript
+  distance(from: LatLon, to: LatLon): number {
+    const Θ1 = (Math.PI * from.lat) / 180;
+    const Θ2 = (Math.PI * to.lat) / 180;
+    const Θ = (Math.PI * (from.lon - to.lon)) / 180;
+    let dist =
+      Math.sin(Θ1) * Math.sin(Θ2) + Math.cos(Θ1) * Math.cos(Θ2) * Math.cos(Θ);
+    dist = Math.min(dist, 1);
+    dist = Math.acos(dist);
+    dist = (dist * 180) / Math.PI;
+    dist = dist * 60 * 1.1515 * 5280;
+    return Math.abs(dist);
   }
 
   event2xy(event: HammerInput): XY {

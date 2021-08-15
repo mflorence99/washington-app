@@ -52,16 +52,16 @@ h6 {
   // land use color shading
   // 👀  https://www.gismanual.com/style/ColorConventions.pdf
   // 👀  also repo washington-mapmaker
-  --shade-u110: var(--mat-brown-300);
-  --shade-u120: var(--mat-brown-500);
-  --shade-u190: var(--mat-yellow-200);
-  --shade-u260: var(--mat-red-200);
-  --shade-u261: var(--mat-purple-200);
-  --shade-u300: var(--mat-cyan-200);
-  --shade-u400: var(--mat-orange-200);
-  --shade-u500: #d9e697;
-  --shade-u501: #acd19e;
-  --shade-u999: var(--mat-gray-300);
+  --shade-u110: var(--rgb-brown-300);
+  --shade-u120: var(--rgb-brown-500);
+  --shade-u190: var(--rgb-yellow-200);
+  --shade-u260: var(--rgb-red-200);
+  --shade-u261: var(--rgb-purple-200);
+  --shade-u300: var(--rgb-cyan-200);
+  --shade-u400: var(--rgb-orange-200);
+  --shade-u500: 190, 219, 75; // #BEDBAF
+  --shade-u501: 170, 204, 155; // #aacc9b
+  --shade-u999: var(--rgb-gray-300);
 
   --shade-CUMH: var(--mat-brown-500);
   --shade-CUMW: var(--mat-brown-500);

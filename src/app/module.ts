@@ -5,6 +5,7 @@ import { HammerConfig } from './services/hammer';
 import { HomePage } from './home/page';
 import { InfoComponent } from './home/info';
 import { LogRocketPluginModule } from './state/plugins/logrocket';
+import { LotComponent } from './home/lot';
 import { LotsComponent } from './home/lots';
 import { ModelState } from './state/model';
 import { RetrySrcDirective } from './home/retry-src';
@@ -41,6 +42,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HomePage,
     DetailsComponent,
     InfoComponent,
+    LotComponent,
     LotsComponent,
     RetrySrcDirective,
     TilesComponent,

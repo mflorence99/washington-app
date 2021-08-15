@@ -1,7 +1,10 @@
 import { DESC_BY_USAGE } from '../state/parcels';
 import { DESC_BY_USE } from '../state/parcels';
+import { DetailsType } from '../state/model';
+import { GeometryService } from '../services/geometry';
 import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
+import { ModelState } from '../state/model';
 import { Params } from '../services/params';
 
 import { AfterViewInit } from '@angular/core';
@@ -22,18 +25,29 @@ import { ViewEncapsulation } from '@angular/core';
   templateUrl: './details.html'
 })
 export class DetailsComponent implements AfterViewInit {
-  @HostBinding('class') cssClass: 'landscape' | 'portrait' | 'square' =
-    'square';
-
   @Input() lot: Lot;
 
   mapOptions: google.maps.MapOptions = {};
+  orientation: 'landscape' | 'portrait' | 'square' = 'square';
 
   constructor(
     public api: GoogleService,
+    public geometry: GeometryService,
     private mc: ModalController,
+    public model: ModelState,
     private params: Params
-  ) {}
+  ) {
+    // correct for earlier version where model.details not set
+    if (!this.model.details) this.model.detailsTo('assessor');
+  }
+
+  @HostBinding('class') get cssClass(): string {
+    return `${this.orientation} ${this.model.details}`;
+  }
+
+  detailsTo(type: DetailsType): void {
+    this.model.detailsTo(type);
+  }
 
   dismiss(): void {
     this.mc.dismiss();
@@ -53,9 +67,9 @@ export class DetailsComponent implements AfterViewInit {
   }
 
   resize(event: ResizedEvent): void {
-    if (event.newWidth === event.newHeight) this.cssClass = 'square';
-    else if (event.newWidth > event.newHeight) this.cssClass = 'landscape';
-    else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
+    if (event.newWidth === event.newHeight) this.orientation = 'square';
+    else if (event.newWidth > event.newHeight) this.orientation = 'landscape';
+    else if (event.newWidth < event.newHeight) this.orientation = 'portrait';
   }
 
   usageDescription(): string {

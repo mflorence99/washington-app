@@ -4,13 +4,17 @@ import { PARCELS } from './parcel-data';
 export interface Lot {
   address?: string;
   area: number;
+  areas: number[];
   boundaries: LatLon[][];
   building$: number;
   centers: LatLon[];
   cu$: number;
+  elevations: number[];
   id: string;
   land$: number;
+  lengths: number[][];
   owner?: string;
+  perimeters: number[];
   taxed$: number;
   usage: string;
   use?: string;

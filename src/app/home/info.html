@@ -65,7 +65,7 @@
       <ng-container *ngFor="let usage of usages()">
         <li>
           <div
-            [style.background-color]="'var(--shade-u' + usage[0] + ')'"
+            [style.background-color]="'rgba(var(--shade-u' + usage[0] + '), 1)'"
             class="code"
           >
             &nbsp;

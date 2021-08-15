@@ -14,7 +14,7 @@ export class HammerConfig extends HammerGestureConfig {
       enable: true
     },
     pinch: { enable: false },
-    press: { enable: false },
+    press: { enable: true },
     rotate: { enable: false },
     swipe: { enable: false },
     tap: { enable: true }

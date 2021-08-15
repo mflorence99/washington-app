@@ -11,8 +11,18 @@
     <article class="nomap">Google Maps not currently available</article>
   </ng-template>
 
-  <article class="table">
+  <article class="lot">
+    <app-lot [lot]="lot"></app-lot>
+  </article>
+
+  <article class="table assessor">
     <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Assessor Data</th>
+        </tr>
+      </thead>
       <tbody>
         <tr *ngIf="lot.owner">
           <td>Owner</td>
@@ -61,9 +71,71 @@
     </table>
   </article>
 
+  <article class="table measure">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th [attr.colspan]="lot.boundaries.length">Calculated Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Area <sup>[1]</sup></td>
+          <td *ngFor="let area of lot.areas">
+            {{ area | number: '1.2-2' }} acres <br />
+            {{ geometry.acres2sqft(area) | number: '1.0-0' }} sq ft
+          </td>
+        </tr>
+
+        <tr>
+          <td>Perimeter</td>
+          <td *ngFor="let perimeter of lot.perimeters">
+            {{ perimeter | number: '1.0-0' }} ft <br />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Elevation <sup>[2]</sup></td>
+          <td *ngFor="let elevation of lot.elevations">
+            {{ elevation | number: '1.0-0' }} ft <br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer class="footnotes">
+      <p>
+        <sup>[1]</sup> May not equal assessed acreage <br />
+        <sup>[2]</sup> At center of lot
+      </p>
+    </footer>
+  </article>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (tap)="dismiss()" size="small">
-      <ion-icon src="svg/close.svg"></ion-icon>
+    <ion-fab-button
+      (press)="dismiss()"
+      (tap)="fabList.activated? dismiss() : null"
+      color="primary"
+    >
+      <ion-icon src="svg/more.svg"></ion-icon>
     </ion-fab-button>
+
+    <ion-fab-list #fabList side="top">
+      <ion-fab-button
+        (tap)="detailsTo('assessor')"
+        [disabled]="model.details === 'assessor'"
+        color="secondary"
+      >
+        <ion-icon src="svg/money.svg"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        (tap)="detailsTo('measure')"
+        [disabled]="model.details === 'measure'"
+        color="secondary"
+      >
+        <ion-icon src="svg/measure.svg"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
   </ion-fab>
 </section>
