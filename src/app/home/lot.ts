@@ -1,6 +1,7 @@
 import { GeometryService } from '../services/geometry';
 import { LatLon } from '../services/geometry';
 import { Lot } from '../state/parcels';
+import { Params } from '../services/params';
 import { Rectangle } from '../services/geometry';
 import { XY } from '../services/geometry';
 
@@ -33,16 +34,15 @@ export class LotComponent {
     width: 0
   };
 
-  edgeLengths: { length: number; path: LatLon[] }[] = [];
+  edgeLengths: { length: number; points: LatLon[] }[] = [];
 
+  ft2px = 0;
   ftLotHeight = 0;
   ftLotWidth = 0;
 
   @Input() lot: Lot;
 
-  constructor(private geometry: GeometryService) {}
-
-  coalesceLengths(): any {}
+  constructor(private geometry: GeometryService, private params: Params) {}
 
   // 👇 much simplified version of geometry code suitable for small area
   latlon2xy({ lat, lon }): XY {
@@ -73,10 +73,6 @@ export class LotComponent {
   }
 
   resize(event: ResizedEvent): void {
-    console.log(
-      `%cLot resized ${event.newWidth}x${event.newHeight}`,
-      'color: steelblue'
-    );
     // compute bounding coordinates of lot
     this.lot.boundaries.forEach((boundary) => {
       boundary.forEach((point) => {
@@ -86,6 +82,7 @@ export class LotComponent {
         this.bbox.bottom = Math.min(this.bbox.bottom, point.lat);
       });
     });
+
     // extent of lot in feet
     this.ftLotHeight = this.geometry.distance(
       { lat: this.bbox.top, lon: this.bbox.left },
@@ -95,6 +92,7 @@ export class LotComponent {
       { lat: this.bbox.top, lon: this.bbox.left },
       { lat: this.bbox.top, lon: this.bbox.right }
     );
+
     // extent of viewport in pixels with 5% margin all around
     const pxViewport = {
       height: event.newHeight * 0.9,
@@ -102,9 +100,11 @@ export class LotComponent {
       top: event.newHeight * 0.05,
       width: event.newWidth * 0.9
     };
+
     // calculate dimensions of lot
     const arLot = this.ftLotWidth / this.ftLotHeight;
     const arViewport = pxViewport.width / pxViewport.height;
+    this.ft2px = pxViewport.width / this.ftLotWidth;
     if (arViewport >= arLot) {
       this.dims.height = pxViewport.height;
       this.dims.width = pxViewport.height * arLot;
@@ -118,20 +118,66 @@ export class LotComponent {
         pxViewport.top + (pxViewport.height - this.dims.height) / 2;
       this.dims.left = pxViewport.left;
     }
-    // coalesce lengths of lot edges
+
+    // 👇 the hard part!
+    this.coalesceEdgeLengths();
+  }
+
+  // 👇 we don't want the commas that the DecimalPipe introduces
+  round(value: number): number {
+    return Math.round(value);
+  }
+
+  private coalesceEdgeLengths(): void {
     this.edgeLengths = [];
     this.lot.lengths.forEach((length, ix) => {
-      let edgeLength = { length: 0, path: [] };
+      // we will coalesce "short" lengths into one path
+      let edgeLength = { length: 0, points: [] };
+      let lastBearing;
       length.forEach((value, iy) => {
-        edgeLength.length += value;
-        edgeLength.path.push(this.lot.boundaries[ix][iy]);
-        edgeLength.path.push(this.lot.boundaries[ix][iy + 1]);
-        if (edgeLength.length > this.ftLotWidth * 0.2) {
-          this.edgeLengths.push(edgeLength);
-          edgeLength = { length: 0, path: [] };
+        const p = this.lot.boundaries[ix][iy];
+        const q = this.lot.boundaries[ix][iy + 1];
+
+        // calculate the bearing between this pont and the last
+        let bearing;
+        if (edgeLength.points.length > 0) {
+          const r = edgeLength.points[edgeLength.points.length - 1];
+          bearing = this.geometry.bearing(r, q);
         }
+
+        // if we have a "complete" path, push it & prepare for next
+        // 🧨 EXPERIMENTAL
+        if (
+          edgeLength.points.length > 0 &&
+          (Math.abs(lastBearing - bearing) > 30 ||
+            edgeLength.length * this.ft2px > 200)
+        ) {
+          this.sortPointsClockwise(edgeLength.points, this.lot.centers[ix]);
+          this.edgeLengths.push(edgeLength);
+          edgeLength = { length: 0, points: [] };
+        }
+        lastBearing = bearing;
+
+        // accumulate the current path
+        edgeLength.length += value;
+        if (edgeLength.points.length === 0) edgeLength.points.push(p);
+        edgeLength.points.push(q);
       });
-      if (edgeLength.length > 0) this.edgeLengths.push(edgeLength);
+
+      // add any uncompleted edge length to list
+      if (edgeLength.length > 0) {
+        this.sortPointsClockwise(edgeLength.points, this.lot.centers[ix]);
+        this.edgeLengths.push(edgeLength);
+      }
     });
+  }
+
+  // 👀 https://stackoverflow.com/questions/6989100/sort-points-in-clockwise-order
+  private sortPointsClockwise(points: LatLon[], center: LatLon): void {
+    points.sort(
+      (a, b) =>
+        (a.lon - center.lon) * (b.lat - center.lat) -
+        (b.lon - center.lon) * (a.lat - center.lat)
+    );
   }
 }
