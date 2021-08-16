@@ -30,9 +30,6 @@ export class Params {
       mapTypeId: 'hybrid',
       zoom: 15
     },
-    lot: {
-      maxPathLengthRatio: 0.2
-    },
     page: {
       backoff: {
         initialInterval: 100,

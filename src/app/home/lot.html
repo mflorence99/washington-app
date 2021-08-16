@@ -7,8 +7,8 @@
     <!-- 👇 textPath only works when referenced by href -->
     <defs>
       <path
-        *ngFor="let edgeLength of edgeLengths; let ix = index"
-        [attr.d]="path(edgeLength.points)"
+        *ngFor="let lotLine of lotLines; let ix = index"
+        [attr.d]="path(lotLine.path)"
         [id]="'_textPath_' + ix"
       />
     </defs>
@@ -26,24 +26,24 @@
       </ng-container>
 
       <!-- 👇 annotate the length of each boudary edge -->
-      <ng-container *ngFor="let edgeLength of edgeLengths; let ix = index">
+      <ng-container *ngFor="let lotLine of lotLines; let ix = index">
         <text class="annotation">
           <textPath
             [attr.href]="'#_textPath_' + ix"
             text-anchor="middle"
             startOffset="50%"
           >
-            <tspan dy="-8">{{ round(edgeLength.length) }}</tspan>
+            <tspan dy="-8">{{ round(lotLine.length) }}</tspan>
           </textPath>
         </text>
 
         <!-- 👇 draw a marker at the boundary vertices -->
-        <ng-container *ngIf="latlon2xy(edgeLength.points[0]) as xy">
+        <ng-container *ngIf="latlon2xy(lotLine.path[0]) as xy">
           <circle [attr.cx]="xy.x" [attr.cy]="xy.y" class="marker" />
         </ng-container>
 
         <ng-container
-          *ngIf="latlon2xy(edgeLength.points[edgeLength.points.length - 1]) as xy"
+          *ngIf="latlon2xy(lotLine.path[lotLine.path.length - 1]) as xy"
         >
           <circle [attr.cx]="xy.x" [attr.cy]="xy.y" class="marker" />
         </ng-container>

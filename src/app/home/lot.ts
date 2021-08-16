@@ -11,6 +11,12 @@ import { Input } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
 
+interface LotLine {
+  bearing: number;
+  length: number;
+  path: LatLon[];
+}
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
@@ -34,13 +40,13 @@ export class LotComponent {
     width: 0
   };
 
-  edgeLengths: { length: number; points: LatLon[] }[] = [];
-
   ft2px = 0;
   ftLotHeight = 0;
   ftLotWidth = 0;
 
   @Input() lot: Lot;
+
+  lotLines: LotLine[] = [];
 
   constructor(private geometry: GeometryService, private params: Params) {}
 
@@ -63,8 +69,8 @@ export class LotComponent {
     }, '');
   }
 
-  points(boundary: LatLon[]): string {
-    return boundary
+  points(points: LatLon[]): string {
+    return points
       .map((point: LatLon) => {
         const { x, y } = this.latlon2xy(point);
         return `${x},${y}`;
@@ -120,7 +126,7 @@ export class LotComponent {
     }
 
     // 👇 the hard part!
-    this.coalesceEdgeLengths();
+    this.lotLines = this.makeLotLines();
   }
 
   // 👇 we don't want the commas that the DecimalPipe introduces
@@ -128,52 +134,64 @@ export class LotComponent {
     return Math.round(value);
   }
 
-  private coalesceEdgeLengths(): void {
-    this.edgeLengths = [];
-    this.lot.lengths.forEach((length, ix) => {
-      // we will coalesce "short" lengths into one path
-      let edgeLength = { length: 0, points: [] };
-      let lastBearing;
-      length.forEach((value, iy) => {
+  private isLineReallyShort(length: number): boolean {
+    return length * this.ft2px < 4;
+  }
+
+  private isLineStraight(p: number, q: number): boolean {
+    // TODO: parameterize
+    const threshold = 30;
+    const straight =
+      Math.abs(p - q) < threshold || Math.abs(p - q) > 360 - threshold;
+    if (!straight)
+      console.log(`%sLine not straight: ${p} ${q}`, 'color: palegreen');
+    return straight;
+  }
+  private makeLotLine(): LotLine {
+    return { bearing: 0, length: 0, path: [] };
+  }
+
+  private makeLotLines(): LotLine[] {
+    const lotLines: LotLine[] = [];
+    this.lot.lengths.forEach((lengths, ix) => {
+      let lotLine = this.makeLotLine();
+      lengths.reduce((acc, length, iy) => {
         const p = this.lot.boundaries[ix][iy];
         const q = this.lot.boundaries[ix][iy + 1];
+        const bearing = this.geometry.bearing(p, q);
 
-        // calculate the bearing between this pont and the last
-        let bearing;
-        if (edgeLength.points.length > 0) {
-          const r = edgeLength.points[edgeLength.points.length - 1];
-          bearing = this.geometry.bearing(r, q);
+        if (iy === 0) {
+          lotLine.bearing = bearing;
+          lotLine.length = length;
+          lotLine.path = [p, q];
+        } else {
+          if (
+            !this.isLineStraight(bearing, lotLine.bearing) &&
+            !this.isLineReallyShort(length)
+          ) {
+            this.sortPathClockwise(lotLine.path, this.lot.centers[ix]);
+            acc.push(lotLine);
+            lotLine = this.makeLotLine();
+          }
+          lotLine.bearing = bearing;
+          lotLine.length += length;
+          if (lotLine.path.length === 0) lotLine.path.push(p);
+          lotLine.path.push(q);
         }
 
-        // if we have a "complete" path, push it & prepare for next
-        // 🧨 EXPERIMENTAL
-        if (
-          edgeLength.points.length > 0 &&
-          (Math.abs(lastBearing - bearing) > 30 ||
-            edgeLength.length * this.ft2px > 200)
-        ) {
-          this.sortPointsClockwise(edgeLength.points, this.lot.centers[ix]);
-          this.edgeLengths.push(edgeLength);
-          edgeLength = { length: 0, points: [] };
-        }
-        lastBearing = bearing;
+        return acc;
+      }, lotLines);
 
-        // accumulate the current path
-        edgeLength.length += value;
-        if (edgeLength.points.length === 0) edgeLength.points.push(p);
-        edgeLength.points.push(q);
-      });
-
-      // add any uncompleted edge length to list
-      if (edgeLength.length > 0) {
-        this.sortPointsClockwise(edgeLength.points, this.lot.centers[ix]);
-        this.edgeLengths.push(edgeLength);
+      if (lotLine.path.length > 0) {
+        this.sortPathClockwise(lotLine.path, this.lot.centers[ix]);
+        lotLines.push(lotLine);
       }
     });
+    return lotLines;
   }
 
   // 👀 https://stackoverflow.com/questions/6989100/sort-points-in-clockwise-order
-  private sortPointsClockwise(points: LatLon[], center: LatLon): void {
+  private sortPathClockwise(points: LatLon[], center: LatLon): void {
     points.sort(
       (a, b) =>
         (a.lon - center.lon) * (b.lat - center.lat) -
