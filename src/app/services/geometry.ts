@@ -62,6 +62,23 @@ export class GeometryService {
     return (bearing + 360) % 360;
   }
 
+  // 👀 https://medium.com/@francoisromain/smooth-a-svg-path-with-cubic-bezier-curves-e37b49d46c74
+  bezier(
+    latlon: LatLon,
+    ix: number,
+    latlons: LatLon[],
+    latlon2xy = this.latlon2xy.bind(this)
+  ): string {
+    const ok = (p): boolean => p < latlons.length - 1 && p >= 0;
+    const current = latlon2xy(latlon);
+    const next = ok(ix + 1) ? latlon2xy(latlons[ix + 1]) : undefined;
+    const previous = ok(ix - 1) ? latlon2xy(latlons[ix - 1]) : undefined;
+    const pprevious = ok(ix - 2) ? latlon2xy(latlons[ix - 2]) : undefined;
+    const start = this.bezierControlPoint(previous, pprevious, current);
+    const end = this.bezierControlPoint(current, previous, next, true);
+    return `C ${start.x},${start.y} ${end.x},${end.y} ${current.x},${current.y}`;
+  }
+
   centerLotsInViewport(lots: Lot[]): void {
     const center = this.xyCenterOfLots(lots);
     if (center) {
@@ -85,6 +102,15 @@ export class GeometryService {
       Math.max(max[1], Math.min(min[1], -(y - midPoint.y)))
     ];
     this.view.translate(translate);
+  }
+
+  // 👀 https://stackoverflow.com/questions/16282330/find-centerpoint-of-polygon-in-javascript
+  centerize(points: LatLon[]): LatLon {
+    const lons = points.map((point) => point.lon);
+    const lats = points.map((point) => point.lat);
+    const cx = (Math.min(...lons) + Math.max(...lons)) / 2;
+    const cy = (Math.min(...lats) + Math.max(...lats)) / 2;
+    return { lat: cy, lon: cx };
   }
 
   degrees2radians(degrees: number): number {
@@ -411,6 +437,36 @@ export class GeometryService {
       left: this.lon2x(this.model.map.bbox.left),
       right: this.lon2x(this.model.map.bbox.right),
       top: this.lat2y(this.model.map.bbox.top)
+    };
+  }
+
+  // 👀 https://medium.com/@francoisromain/smooth-a-svg-path-with-cubic-bezier-curves-e37b49d46c74
+
+  private bezierControlPoint(
+    current: XY,
+    previous: XY,
+    next: XY,
+    reverse = false
+  ): XY {
+    previous = previous ?? current;
+    next = next ?? current;
+    // properties of opposed line
+    const lineProps = this.bezierLineProps(previous, next);
+    // if is end-control-point, add PI to the angle to go backward
+    const angle = lineProps.angle + (reverse ? Math.PI : 0);
+    const length = lineProps.length * this.params.geometry.bezierSmoothing;
+    // control point position is relative to the current point
+    const x = current.x + Math.cos(angle) * length;
+    const y = current.y + Math.sin(angle) * length;
+    return { x, y };
+  }
+
+  private bezierLineProps(p: XY, q: XY): { angle: number; length: number } {
+    const lx = q.x - p.x;
+    const ly = q.y - p.y;
+    return {
+      angle: Math.atan2(ly, lx),
+      length: Math.sqrt(Math.pow(lx, 2) + Math.pow(ly, 2))
     };
   }
 }

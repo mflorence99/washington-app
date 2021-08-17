@@ -9,20 +9,36 @@ app-lot {
   .dimensions {
     height: 100%;
     margin: 0;
+    overflow: hidden;
+    position: relative;
     width: 100%;
 
-    .annotation {
-      font-size: smaller;
+    .lot-context,
+    .lot-lines {
+      height: 100%;
+      position: absolute;
+      width: 100%;
     }
 
-    .boundary {
-      stroke: var(--ion-color-danger);
-      stroke-width: 3;
+    .lot-context {
+      // TODO:👇 this is a guess
+      transform: scale(1.6);
     }
 
-    .marker {
-      fill: var(--ion-color-danger-shade);
-      r: 5;
+    .lot-lines {
+      .annotation {
+        font-size: smaller;
+      }
+
+      .boundary {
+        stroke: var(--ion-color-danger);
+        stroke-width: 3;
+      }
+
+      .marker {
+        fill: var(--ion-color-danger-shade);
+        r: 5;
+      }
     }
   }
 }

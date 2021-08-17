@@ -1,4 +1,5 @@
 import { GeometryService } from '../services/geometry';
+import { GoogleService } from '../services/google';
 import { LatLon } from '../services/geometry';
 import { Lot } from '../state/parcels';
 import { Params } from '../services/params';
@@ -7,8 +8,10 @@ import { XY } from '../services/geometry';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
+import { GoogleMap } from '@angular/google-maps';
 import { Input } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
+import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 interface LotLine {
@@ -33,6 +36,8 @@ export class LotComponent {
     right: Number.MIN_SAFE_INTEGER
   };
 
+  center: LatLon;
+
   dims: Rectangle = {
     height: 0,
     left: 0,
@@ -48,7 +53,21 @@ export class LotComponent {
 
   lotLines: LotLine[] = [];
 
-  constructor(private geometry: GeometryService, private params: Params) {}
+  @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
+
+  mapOptions: google.maps.MapOptions = {
+    disableDefaultUI: true,
+    fullscreenControl: false,
+    keyboardShortcuts: false,
+    mapTypeControl: false,
+    mapTypeId: 'terrain'
+  };
+
+  constructor(
+    public api: GoogleService,
+    private geometry: GeometryService,
+    private params: Params
+  ) {}
 
   // 👇 much simplified version of geometry code suitable for small area
   latlon2xy({ lat, lon }): XY {
@@ -61,18 +80,25 @@ export class LotComponent {
     return { x, y };
   }
 
-  path(points: LatLon[]): string {
-    return points.reduce((acc, point, ix) => {
-      const { x, y } = this.latlon2xy(point);
+  path(latlons: LatLon[]): string {
+    return latlons.reduce((acc, latlon, ix) => {
+      const { x, y } = this.latlon2xy(latlon);
       if (ix === 0) return `M ${x} ${y}`;
-      return `${acc} L ${x} ${y}`;
+      else if (latlons.length <= 3) return `${acc} L ${x} ${y}`;
+      else
+        return `${acc} ${this.geometry.bezier(
+          latlon,
+          ix,
+          latlons,
+          this.latlon2xy.bind(this)
+        )}`;
     }, '');
   }
 
-  points(points: LatLon[]): string {
-    return points
-      .map((point: LatLon) => {
-        const { x, y } = this.latlon2xy(point);
+  points(latlons: LatLon[]): string {
+    return latlons
+      .map((latlon: LatLon) => {
+        const { x, y } = this.latlon2xy(latlon);
         return `${x},${y}`;
       })
       .join(' ');
@@ -89,6 +115,12 @@ export class LotComponent {
       });
     });
 
+    // ... and its center
+    this.center = {
+      lat: this.bbox.top - (this.bbox.top - this.bbox.bottom) / 2,
+      lon: this.bbox.left + (this.bbox.right - this.bbox.left) / 2
+    };
+
     // extent of lot in feet
     this.ftLotHeight = this.geometry.distance(
       { lat: this.bbox.top, lon: this.bbox.left },
@@ -99,12 +131,13 @@ export class LotComponent {
       { lat: this.bbox.top, lon: this.bbox.right }
     );
 
-    // extent of viewport in pixels with 5% margin all around
+    // extent of viewport in pixels with Npx margin all around
+    const margin = this.params.home.lot.pxViewportMargin;
     const pxViewport = {
-      height: event.newHeight * 0.9,
-      left: event.newWidth * 0.05,
-      top: event.newHeight * 0.05,
-      width: event.newWidth * 0.9
+      height: event.newHeight - margin * 2,
+      left: margin,
+      top: margin,
+      width: event.newWidth - margin * 2
     };
 
     // calculate dimensions of lot
@@ -124,6 +157,25 @@ export class LotComponent {
         pxViewport.top + (pxViewport.height - this.dims.height) / 2;
       this.dims.left = pxViewport.left;
     }
+    this.dims.bottom = this.dims.top + this.dims.height;
+    this.dims.right = this.dims.left + this.dims.width;
+
+    // 👇 no need to overthink this -- Google will center the bbox
+    // in its viewport, which we've done ourselves for the lot lines
+    if (this.map) {
+      const bounds = new google.maps.LatLngBounds(
+        {
+          lat: this.bbox.top,
+          lng: this.bbox.left
+        },
+        {
+          lat: this.bbox.bottom,
+          lng: this.bbox.right
+        }
+      );
+      this.map.fitBounds(bounds);
+      this.map.panToBounds(bounds);
+    }
 
     // 👇 the hard part!
     this.lotLines = this.makeLotLines();
@@ -135,18 +187,14 @@ export class LotComponent {
   }
 
   private isLineReallyShort(length: number): boolean {
-    return length * this.ft2px < 4;
+    return length * this.ft2px < 8;
   }
 
   private isLineStraight(p: number, q: number): boolean {
-    // TODO: parameterize
-    const threshold = 30;
-    const straight =
-      Math.abs(p - q) < threshold || Math.abs(p - q) > 360 - threshold;
-    if (!straight)
-      console.log(`%sLine not straight: ${p} ${q}`, 'color: palegreen');
-    return straight;
+    const threshold = this.params.home.lot.straightLineThreshold;
+    return Math.abs(p - q) < threshold || Math.abs(p - q) > 360 - threshold;
   }
+
   private makeLotLine(): LotLine {
     return { bearing: 0, length: 0, path: [] };
   }
@@ -154,10 +202,12 @@ export class LotComponent {
   private makeLotLines(): LotLine[] {
     const lotLines: LotLine[] = [];
     this.lot.lengths.forEach((lengths, ix) => {
+      const boundary = this.lot.boundaries[ix];
+
       let lotLine = this.makeLotLine();
       lengths.reduce((acc, length, iy) => {
-        const p = this.lot.boundaries[ix][iy];
-        const q = this.lot.boundaries[ix][iy + 1];
+        const p = boundary[iy];
+        const q = boundary[iy + 1];
         const bearing = this.geometry.bearing(p, q);
 
         if (iy === 0) {
@@ -169,11 +219,11 @@ export class LotComponent {
             !this.isLineStraight(bearing, lotLine.bearing) &&
             !this.isLineReallyShort(length)
           ) {
-            this.sortPathClockwise(lotLine.path, this.lot.centers[ix]);
+            // this.sortPathCounterClockwise(lotLine.path, center);
             acc.push(lotLine);
             lotLine = this.makeLotLine();
           }
-          lotLine.bearing = bearing;
+          if (!this.isLineReallyShort(length)) lotLine.bearing = bearing;
           lotLine.length += length;
           if (lotLine.path.length === 0) lotLine.path.push(p);
           lotLine.path.push(q);
@@ -183,7 +233,7 @@ export class LotComponent {
       }, lotLines);
 
       if (lotLine.path.length > 0) {
-        this.sortPathClockwise(lotLine.path, this.lot.centers[ix]);
+        // this.sortPathCounterClockwise(lotLine.path, center);
         lotLines.push(lotLine);
       }
     });
@@ -191,11 +241,11 @@ export class LotComponent {
   }
 
   // 👀 https://stackoverflow.com/questions/6989100/sort-points-in-clockwise-order
-  private sortPathClockwise(points: LatLon[], center: LatLon): void {
+  private sortPathCounterClockwise(points: LatLon[], center: LatLon): void {
     points.sort(
       (a, b) =>
-        (a.lon - center.lon) * (b.lat - center.lat) -
-        (b.lon - center.lon) * (a.lat - center.lat)
+        (b.lon - center.lon) * (a.lat - center.lat) -
+        (a.lon - center.lon) * (b.lat - center.lat)
     );
   }
 }

@@ -11,6 +11,7 @@ export class Params {
   };
 
   geometry = {
+    bezierSmoothing: 0.2,
     margin: -32,
     scales: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5]
   };
@@ -29,6 +30,10 @@ export class Params {
     details: {
       mapTypeId: 'hybrid',
       zoom: 15
+    },
+    lot: {
+      pxViewportMargin: 6,
+      straightLineThreshold: 30
     },
     page: {
       backoff: {
