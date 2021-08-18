@@ -3,7 +3,11 @@
     <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
   </article>
 
-  <svg attr.viewPort="0 0 {{ dims.width }} {{ dims.height }}" class="lot-lines">
+  <svg
+    *ngIf="dims.height && dims.width"
+    attr.viewPort="0 0 {{ dims.width }} {{ dims.height }}"
+    class="lot-lines"
+  >
     <!-- 👇 textPath only works when referenced by href -->
     <defs>
       <path

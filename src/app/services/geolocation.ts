@@ -41,7 +41,7 @@ export class GeolocationService extends Observable<GeolocationPosition> {
                         lon: position.coords.longitude
                       }
                     )
-                  : null,
+                  : position.coords.heading,
               speed: position.coords.speed
             },
             timestamp: position.timestamp

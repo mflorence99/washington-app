@@ -6,19 +6,15 @@
     </h4>
   </header>
 
-  <article *ngIf="api.ready$ | async; else noMap" class="map">
-    <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
+  <article *ngIf="model.details === 'measure'" class="lot">
+    <app-lot-lines [lot]="lot"></app-lot-lines>
   </article>
 
-  <ng-template #noMap>
-    <article class="nomap">Google Maps not currently available</article>
-  </ng-template>
-
-  <article class="lot">
-    <app-lot [lot]="lot"></app-lot>
+  <article *ngIf="model.details === 'assessor'" class="map">
+    <app-lot-satellite [lot]="lot"></app-lot-satellite>
   </article>
 
-  <article class="table assessor">
+  <article *ngIf="model.details === 'assessor'" class="table assessor">
     <table>
       <tbody>
         <tr *ngIf="lot.owner">
@@ -68,7 +64,7 @@
     </table>
   </article>
 
-  <article class="table measure">
+  <article *ngIf="model.details === 'measure'" class="table measure">
     <table>
       <tbody>
         <tr>

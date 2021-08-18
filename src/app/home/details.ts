@@ -2,12 +2,9 @@ import { DESC_BY_USAGE } from '../state/parcels';
 import { DESC_BY_USE } from '../state/parcels';
 import { DetailsType } from '../state/model';
 import { GeometryService } from '../services/geometry';
-import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
 import { ModelState } from '../state/model';
-import { Params } from '../services/params';
 
-import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { HostBinding } from '@angular/core';
@@ -24,18 +21,15 @@ import { ViewEncapsulation } from '@angular/core';
   styleUrls: ['./details.scss'],
   templateUrl: './details.html'
 })
-export class DetailsComponent implements AfterViewInit {
+export class DetailsComponent {
   @Input() lot: Lot;
 
-  mapOptions: google.maps.MapOptions = {};
   orientation: 'landscape' | 'portrait' | 'square' = 'square';
 
   constructor(
-    public api: GoogleService,
     public geometry: GeometryService,
     private mc: ModalController,
-    public model: ModelState,
-    private params: Params
+    public model: ModelState
   ) {
     // correct for earlier version where model.details not set
     if (!this.model.details) this.model.detailsTo('assessor');
@@ -53,19 +47,6 @@ export class DetailsComponent implements AfterViewInit {
     this.mc.dismiss();
   }
 
-  ngAfterViewInit(): void {
-    this.mapOptions = {
-      // 👇 Google uses "lng" when we picked "lon"
-      center: { lat: this.lot.centers[0].lat, lng: this.lot.centers[0].lon },
-      disableDefaultUI: false,
-      fullscreenControl: false,
-      keyboardShortcuts: false,
-      mapTypeControl: false,
-      mapTypeId: this.params.home.details.mapTypeId,
-      zoom: this.params.home.details.zoom
-    };
-  }
-
   resize(event: ResizedEvent): void {
     if (event.newWidth === event.newHeight) this.orientation = 'square';
     else if (event.newWidth > event.newHeight) this.orientation = 'landscape';
@@ -78,9 +59,5 @@ export class DetailsComponent implements AfterViewInit {
 
   useDescription(): string {
     return DESC_BY_USE[this.lot.use];
-  }
-
-  xxx(event): void {
-    console.log(event);
   }
 }

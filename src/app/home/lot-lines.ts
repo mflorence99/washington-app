@@ -24,19 +24,17 @@ interface LotLine {
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
-  selector: 'app-lot',
-  styleUrls: ['./lot.scss'],
-  templateUrl: './lot.html'
+  selector: 'app-lot-lines',
+  styleUrls: ['./lot-lines.scss'],
+  templateUrl: './lot-lines.html'
 })
-export class LotComponent {
+export class LotLinesComponent {
   bbox: Rectangle = {
-    bottom: Number.MAX_SAFE_INTEGER,
-    left: Number.MAX_SAFE_INTEGER,
-    top: Number.MIN_SAFE_INTEGER,
-    right: Number.MIN_SAFE_INTEGER
+    bottom: 0,
+    left: 0,
+    top: 0,
+    right: 0
   };
-
-  center: LatLon;
 
   dims: Rectangle = {
     height: 0,
@@ -69,15 +67,8 @@ export class LotComponent {
     private params: Params
   ) {}
 
-  // 👇 much simplified version of geometry code suitable for small area
-  latlon2xy({ lat, lon }): XY {
-    const x =
-      ((lon - this.bbox.left) * this.dims.width) /
-      (this.bbox.right - this.bbox.left);
-    const y =
-      ((lat - this.bbox.top) * this.dims.height) /
-      (this.bbox.bottom - this.bbox.top);
-    return { x, y };
+  latlon2xy(latlon: LatLon): XY {
+    return this.geometry.latlon2xy(latlon, this.bbox, this.dims);
   }
 
   path(latlons: LatLon[]): string {
@@ -105,21 +96,7 @@ export class LotComponent {
   }
 
   resize(event: ResizedEvent): void {
-    // compute bounding coordinates of lot
-    this.lot.boundaries.forEach((boundary) => {
-      boundary.forEach((point) => {
-        this.bbox.right = Math.max(this.bbox.right, point.lon);
-        this.bbox.top = Math.max(this.bbox.top, point.lat);
-        this.bbox.left = Math.min(this.bbox.left, point.lon);
-        this.bbox.bottom = Math.min(this.bbox.bottom, point.lat);
-      });
-    });
-
-    // ... and its center
-    this.center = {
-      lat: this.bbox.top - (this.bbox.top - this.bbox.bottom) / 2,
-      lon: this.bbox.left + (this.bbox.right - this.bbox.left) / 2
-    };
+    this.bbox = this.geometry.bboxOfLot(this.lot);
 
     // extent of lot in feet
     this.ftLotHeight = this.geometry.distance(

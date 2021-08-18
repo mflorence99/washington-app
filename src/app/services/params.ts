@@ -27,10 +27,6 @@ export class Params {
   };
 
   home = {
-    details: {
-      mapTypeId: 'hybrid',
-      zoom: 15
-    },
     lot: {
       pxViewportMargin: 6,
       straightLineThreshold: 30

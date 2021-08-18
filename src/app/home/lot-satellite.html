@@ -1,0 +1,9 @@
+<figure (resized)="resize($event)" class="overhead">
+  <article *ngIf="api.ready$ | async; else noMap" class="lot-satellite">
+    <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
+  </article>
+
+  <ng-template #noMap>
+    <article class="lot-nomap">Google Maps not currently available</article>
+  </ng-template>
+</figure>

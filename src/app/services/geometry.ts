@@ -5,10 +5,10 @@ import { LOT_BY_ID } from '../state/parcels';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
 import { Params } from './params';
+import { TileContainer } from '../state/tiles';
 import { ViewState } from '../state/view';
 
 import { Injectable } from '@angular/core';
-import { Memoize } from 'typescript-memoize';
 
 import centroid from 'polygon-centroid';
 import pointInPoly from 'point-in-polygon-extended';
@@ -42,6 +42,31 @@ export class GeometryService {
 
   acres2sqft(acres: number): number {
     return acres * 43560;
+  }
+
+  bboxCenter(bbox: Rectangle): LatLon {
+    return {
+      lat: bbox.top - (bbox.top - bbox.bottom) / 2,
+      lon: bbox.left + (bbox.right - bbox.left) / 2
+    };
+  }
+
+  bboxOfLot(lot: Lot): Rectangle {
+    const bbox: Rectangle = {
+      bottom: Number.MAX_SAFE_INTEGER,
+      left: Number.MAX_SAFE_INTEGER,
+      top: Number.MIN_SAFE_INTEGER,
+      right: Number.MIN_SAFE_INTEGER
+    };
+    lot.boundaries.forEach((boundary) => {
+      boundary.forEach((point) => {
+        bbox.right = Math.max(bbox.right, point.lon);
+        bbox.top = Math.max(bbox.top, point.lat);
+        bbox.left = Math.min(bbox.left, point.lon);
+        bbox.bottom = Math.min(bbox.bottom, point.lat);
+      });
+    });
+    return bbox;
   }
 
   // 👀  https://stackoverflow.com/questions/46590154/calculate-bearing-between-2-points-with-javascript
@@ -185,14 +210,17 @@ export class GeometryService {
     return lat;
   }
 
-  latlon2xy({ lat, lon }): XY {
-    const bbox = this.bbox2xy(this.model.mapID);
+  latlon2xy(
+    { lat, lon },
+    bbox: Rectangle = this.model.map.bbox,
+    dims: Rectangle | TileContainer = this.model.tileContainer
+  ): XY {
     const x =
-      ((this.lon2x(lon) - bbox.left) * this.model.tileContainer.width) /
-      (bbox.right - bbox.left);
+      ((this.lon2x(lon) - this.lon2x(bbox.left)) * dims.width) /
+      (this.lon2x(bbox.right) - this.lon2x(bbox.left));
     const y =
-      ((this.lat2y(lat) - bbox.top) * this.model.tileContainer.height) /
-      (bbox.bottom - bbox.top);
+      ((this.lat2y(lat) - this.lat2y(bbox.top)) * dims.height) /
+      (this.lat2y(bbox.bottom) - this.lat2y(bbox.top));
     return { x, y };
   }
 
@@ -337,9 +365,7 @@ export class GeometryService {
     y += dy - oy + xlate.y;
     // find the polygons that define the lots
     const polygons = Array.from(
-      document.querySelectorAll<SVGGeometryElement>(
-        'app-home .lots svg g polygon'
-      )
+      document.querySelectorAll<SVGGeometryElement>('app-lots svg g polygon')
     );
     // 👀 robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
     // we tried them all and pointInPoly.pointInPolyWindingNumber
@@ -427,17 +453,6 @@ export class GeometryService {
 
   y2lat(y: number): number {
     return (Math.atan(Math.exp(y / (180 / Math.PI))) / (Math.PI / 4) - 1) * 90;
-  }
-
-  // 👇 mapID is passed as a parameters simply to defeat memo cache
-  @Memoize()
-  private bbox2xy(_mapID: string): Rectangle {
-    return {
-      bottom: this.lat2y(this.model.map.bbox.bottom),
-      left: this.lon2x(this.model.map.bbox.left),
-      right: this.lon2x(this.model.map.bbox.right),
-      top: this.lat2y(this.model.map.bbox.top)
-    };
   }
 
   // 👀 https://medium.com/@francoisromain/smooth-a-svg-path-with-cubic-bezier-curves-e37b49d46c74

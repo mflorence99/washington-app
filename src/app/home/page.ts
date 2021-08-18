@@ -362,7 +362,7 @@ export class HomePage implements AfterViewInit, OnInit {
     while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
     // 👇 pay attention to globals.scss
     lots.forEach((lot) => {
-      const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
+      const rule = `app-lots svg g polygon[id='${lot.id}'] {
         animation: HIGHLIGHT_LOTS 1s ease-in-out;
         fill: ${stroke};
         fill-opacity: 0;

@@ -57,12 +57,6 @@ app-home {
     top: 0;
   }
 
-  // 👇 this is overridden in page.ts when lot is highlighted
-  .lots svg g polygon {
-    fill: none;
-    stroke: none;
-  }
-
   .main {
     --background: url('/svg/halftone.svg');
   }
@@ -99,6 +93,11 @@ app-home {
     width: min(calc(100% - 2rem), 20rem);
   }
 
+  .spinner {
+    height: 64px;
+    width: 64px;
+  }
+
   .tiles {
     height: 100%;
     pointer-events: none;
@@ -125,17 +124,5 @@ app-home {
       font-size: smaller;
       text-align: center;
     }
-  }
-}
-
-@keyframes HIGHLIGHT_LOTS {
-  0% {
-    fill-opacity: 0;
-  }
-  50% {
-    fill-opacity: 0.25;
-  }
-  100% {
-    fill-opacity: 0;
   }
 }
