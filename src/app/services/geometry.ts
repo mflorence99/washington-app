@@ -1,7 +1,7 @@
 // 👀  https://wiki.openstreetmap.org/wiki/Mercator#JavaScript_.28or_ActionScript.29
 
 import { Lot } from '../state/parcels';
-import { LOTS_BY_ID } from '../state/parcels';
+import { LOT_BY_ID } from '../state/parcels';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
 import { Params } from './params';
@@ -105,7 +105,7 @@ export class GeometryService {
   }
 
   // 👀 https://stackoverflow.com/questions/16282330/find-centerpoint-of-polygon-in-javascript
-  centerize(points: LatLon[]): LatLon {
+  centroid(points: LatLon[]): LatLon {
     const lons = points.map((point) => point.lon);
     const lats = points.map((point) => point.lat);
     const cx = (Math.min(...lons) + Math.max(...lons)) / 2;
@@ -284,7 +284,7 @@ export class GeometryService {
   nearestLotID({ x, y }, lotIDs: string[]): string {
     let lastDistance = Number.MAX_VALUE;
     let nearestLotID = null;
-    const lots = lotIDs.flatMap((lotID) => LOTS_BY_ID[lotID]);
+    const lots = lotIDs.map((lotID) => LOT_BY_ID[lotID]);
     lots.forEach((lot) => {
       const center = this.xyCenterOfLots([lot]);
       const distance = Math.abs(Math.hypot(x - center.x, y - center.y));

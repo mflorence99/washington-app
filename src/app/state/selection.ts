@@ -1,6 +1,6 @@
 import { Lot } from './parcels';
+import { LOT_BY_ID } from './parcels';
 import { LOTS_BY_ADDRESS } from './parcels';
-import { LOTS_BY_ID } from './parcels';
 import { Params } from '../services/params';
 
 import { Computed } from '@ngxs-labs/data/decorators';
@@ -41,7 +41,10 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
       const byAddress = this.isAddress(text);
       if (byAddress) lots = LOTS_BY_ADDRESS[byAddress];
       const byLotID = this.isLotID(text);
-      if (byLotID) lots = LOTS_BY_ID[byLotID];
+      if (byLotID) {
+        const lot = LOT_BY_ID[byLotID];
+        lots = lot ? [lot] : null;
+      }
     }
     this.ctx.setState(patch({ lots: lots ?? [] }));
   }

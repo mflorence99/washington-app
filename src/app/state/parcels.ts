@@ -37,10 +37,10 @@ export const LOTS_BY_ADDRESS: Record<string, Lot[]> = PARCELS.lots.reduce(
   {}
 );
 
-export const LOTS_BY_ID: Record<string, Lot[]> = PARCELS.lots.reduce(
+// 👇 we guarantee that lot IDs are unique
+export const LOT_BY_ID: Record<string, Lot> = PARCELS.lots.reduce(
   (acc, lot) => {
-    if (!acc[lot.id]) acc[lot.id] = [lot];
-    else acc[lot.id].push(lot);
+    acc[lot.id] = lot;
     return acc;
   },
   {}

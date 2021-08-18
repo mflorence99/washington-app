@@ -79,4 +79,8 @@ export class DetailsComponent implements AfterViewInit {
   useDescription(): string {
     return DESC_BY_USE[this.lot.use];
   }
+
+  xxx(event): void {
+    console.log(event);
+  }
 }

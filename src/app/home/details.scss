@@ -9,6 +9,14 @@ app-details {
     height: 100%;
     width: 100%;
 
+    .details-to {
+      // TODO:🌞 hack to match close button
+      bottom: 20px;
+      position: absolute;
+      right: 68px;
+      width: 200px;
+    }
+
     .header {
       grid-area: header;
     }
@@ -43,8 +51,7 @@ app-details {
 
     .table {
       table {
-        td,
-        th {
+        td {
           padding-bottom: 8px;
           padding-right: 8px;
         }
@@ -62,15 +69,8 @@ app-details {
           }
         }
 
-        td:last-child,
-        th:last-child {
+        td:not(:first-child) {
           padding-left: 8px;
-        }
-
-        th {
-          font-weight: bold;
-          text-align: left;
-          text-transform: uppercase;
         }
 
         tr {

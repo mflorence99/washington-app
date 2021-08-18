@@ -5,7 +5,7 @@ import { GeolocationService } from '../services/geolocation';
 import { GeometryService } from '../services/geometry';
 import { InfoComponent } from './info';
 import { Lot } from '../state/parcels';
-import { LOTS_BY_ID } from '../state/parcels';
+import { LOT_BY_ID } from '../state/parcels';
 import { Maps } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
@@ -138,13 +138,12 @@ export class HomePage implements AfterViewInit, OnInit {
     const xy = this.geometry.event2xy(event);
     const lotID = this.geometry.whichLotID(xy);
     if (lotID) {
-      const lots = LOTS_BY_ID[lotID];
-      if (lots) {
-        this.unhighlightLots();
-        this.highlightLots(lots);
+      const lot = LOT_BY_ID[lotID];
+      if (lot) {
+        this.highlightLots([lot]);
         this.smc.createAndPresent({
           component: DetailsComponent,
-          componentProps: { lot: lots[0] },
+          componentProps: { lot },
           swipeToClose: true
         });
       }
@@ -317,7 +316,6 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private handleSelectionSearchFor(action: Object): void {
     if (action['SelectionState.searchFor']) {
-      this.unhighlightLots();
       const lots = this.selection.lots;
       if (lots?.length > 0) {
         const mapIDs = this.geometry.whichMapIDs(
@@ -343,11 +341,9 @@ export class HomePage implements AfterViewInit, OnInit {
   private handleViewScale(action: Object): void {
     if (action['ViewState.scale']) {
       this.setProperties();
+      // 👇 do this because the width of the highlight depends on the scale
       const lots = this.selection.lots;
-      if (lots.length > 0) {
-        this.unhighlightLots();
-        this.highlightLots(lots);
-      }
+      if (lots.length > 0) this.highlightLots(lots);
     }
   }
 
@@ -362,6 +358,8 @@ export class HomePage implements AfterViewInit, OnInit {
     lots: Lot[],
     stroke = this.params.home.page.highlightedLotOutline
   ): void {
+    // first, remove any prior highlight
+    while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
     // 👇 pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-home .lots svg g polygon[id='${lot.id}'] {
@@ -484,9 +482,5 @@ export class HomePage implements AfterViewInit, OnInit {
     style.setProperty('--app-scale', `${view.scale}`);
     style.setProperty('--app-translate-x', `${view.translate[0]}`);
     style.setProperty('--app-translate-y', `${view.translate[1]}`);
-  }
-
-  private unhighlightLots(): void {
-    while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
   }
 }

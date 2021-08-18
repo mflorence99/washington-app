@@ -219,7 +219,6 @@ export class LotComponent {
             !this.isLineStraight(bearing, lotLine.bearing) &&
             !this.isLineReallyShort(length)
           ) {
-            // this.sortPathCounterClockwise(lotLine.path, center);
             acc.push(lotLine);
             lotLine = this.makeLotLine();
           }
@@ -232,20 +231,8 @@ export class LotComponent {
         return acc;
       }, lotLines);
 
-      if (lotLine.path.length > 0) {
-        // this.sortPathCounterClockwise(lotLine.path, center);
-        lotLines.push(lotLine);
-      }
+      if (lotLine.path.length > 0) lotLines.push(lotLine);
     });
     return lotLines;
-  }
-
-  // 👀 https://stackoverflow.com/questions/6989100/sort-points-in-clockwise-order
-  private sortPathCounterClockwise(points: LatLon[], center: LatLon): void {
-    points.sort(
-      (a, b) =>
-        (b.lon - center.lon) * (a.lat - center.lat) -
-        (a.lon - center.lon) * (b.lat - center.lat)
-    );
   }
 }
