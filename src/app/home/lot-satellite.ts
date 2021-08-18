@@ -1,5 +1,6 @@
 import { GeometryService } from '../services/geometry';
 import { GoogleService } from '../services/google';
+import { LatLon } from '../services/geometry';
 import { Lot } from '../state/parcels';
 import { Params } from '../services/params';
 import { Rectangle } from '../services/geometry';
@@ -28,7 +29,19 @@ export class LotSatelliteComponent {
     right: 0
   };
 
-  @Input() lot: Lot;
+  center: LatLon;
+
+  @Input()
+  get lot(): Lot {
+    return this.lotImpl;
+  }
+  // 👇 this avoids the map showing Google HQ first
+  set lot(lot: Lot) {
+    this.lotImpl = lot;
+    this.bbox = this.geometry.bboxOfLot(lot);
+    this.center = this.geometry.bboxCenter(this.bbox);
+    this.mapOptions.center = { lat: this.center.lat, lng: this.center.lon };
+  }
 
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
 
@@ -40,16 +53,17 @@ export class LotSatelliteComponent {
     mapTypeId: 'satellite'
   };
 
+  private lotImpl: Lot;
+
   constructor(
     public api: GoogleService,
     private geometry: GeometryService,
     private params: Params
   ) {}
 
+  // 👇 no need to overthink this -- Google will center the bbox
+  // in its viewport, which we've done ourselves for the lot lines
   resize(_event: ResizedEvent): void {
-    this.bbox = this.geometry.bboxOfLot(this.lot);
-    // 👇 no need to overthink this -- Google will center the bbox
-    // in its viewport, which we've done ourselves for the lot lines
     if (this.map) {
       const bounds = new google.maps.LatLngBounds(
         {

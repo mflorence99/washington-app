@@ -36,6 +36,8 @@ export class LotLinesComponent {
     right: 0
   };
 
+  center: LatLon;
+
   dims: Rectangle = {
     height: 0,
     left: 0,
@@ -47,7 +49,17 @@ export class LotLinesComponent {
   ftLotHeight = 0;
   ftLotWidth = 0;
 
-  @Input() lot: Lot;
+  @Input()
+  get lot(): Lot {
+    return this.lotImpl;
+  }
+  // 👇 this avoids the map showing Google HQ first
+  set lot(lot: Lot) {
+    this.lotImpl = lot;
+    this.bbox = this.geometry.bboxOfLot(lot);
+    this.center = this.geometry.bboxCenter(this.bbox);
+    this.mapOptions.center = { lat: this.center.lat, lng: this.center.lon };
+  }
 
   lotLines: LotLine[] = [];
 
@@ -60,6 +72,8 @@ export class LotLinesComponent {
     mapTypeControl: false,
     mapTypeId: 'terrain'
   };
+
+  private lotImpl: Lot;
 
   constructor(
     public api: GoogleService,
