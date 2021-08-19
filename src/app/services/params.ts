@@ -60,23 +60,7 @@ export class Params {
   };
 
   selection = {
-    aliases: {
-      /* eslint-disable @typescript-eslint/naming-convention */
-      CIRCLE: 'CIR',
-      DRIVE: 'DR',
-      EAST: 'E',
-      HEIGHTS: 'HGTS',
-      IS: 'ISLAND',
-      LANE: 'LN',
-      MOUNTAIN: 'MT',
-      NORTH: 'N',
-      ROAD: 'RD',
-      SOUTH: 'S',
-      STREET: 'STREET',
-      TERRACE: 'TERR',
-      WASH: 'WASHINGTON',
-      WEST: 'W'
-      /* eslint-enable @typescript-eslint/naming-convention */
-    }
+    fuzzySearchMinLength: 3,
+    fuzzySearchOptions: { limit: 100, threshold: -10000 }
   };
 }

@@ -37,7 +37,6 @@ export class RetrySrcDirective implements OnDestroy {
   }
 
   @HostListener('load') imgLoaded(): void {
-    console.log(`%c${this.src} loaded`, 'color: seagreen');
     this.clearTimer();
   }
 

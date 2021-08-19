@@ -9,6 +9,32 @@ app-home {
     width: 100%;
   }
 
+  // 👇 positioning is a hack to put fuzzies below searchbar
+  .fuzzies {
+    background-color: rgba(var(--ion-color-dark-rgb), 0.75);
+    color: var(--ion-color-light);
+    line-height: 150%;
+    max-height: 75%;
+    max-width: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: calc(var(--offset-top) + 60px);
+    width: fit-content;
+
+    .fuzzy-match {
+      cursor: pointer;
+      list-style-type: none;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
   .loading {
     display: grid;
     height: 100%;

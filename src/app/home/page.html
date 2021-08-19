@@ -121,9 +121,19 @@
       clearIcon="close-sharp"
       enterkeyhint="Search"
       inputmode="search"
-      placeholder="Lot # or address"
+      placeholder="Lot #, address, owner or ?"
       searchIcon="search-sharp"
     ></ion-searchbar>
+
+    <nav *ngIf="selection.fuzzies.length > 0" class="fuzzies">
+      <li
+        *ngFor="let match of selection.fuzzies"
+        (tap)="searchFor(match)"
+        class="fuzzy-match"
+      >
+        {{ match }}
+      </li>
+    </nav>
 
     <article *ngIf="!(lotsReady || lotsShowing)" class="loading">
       <ion-spinner color="light" class="spinner" name="lines"></ion-spinner>

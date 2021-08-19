@@ -1,7 +1,9 @@
 import { Lot } from './parcels';
 import { LOT_BY_ID } from './parcels';
 import { LOTS_BY_ADDRESS } from './parcels';
+import { LOTS_BY_OWNER } from './parcels';
 import { Params } from '../services/params';
+import { SEARCH_TARGETS } from './parcels';
 
 import { Computed } from '@ngxs-labs/data/decorators';
 import { DataAction } from '@ngxs-labs/data/decorators';
@@ -13,7 +15,10 @@ import { StateRepository } from '@ngxs-labs/data/decorators';
 
 import { patch } from '@ngxs/store/operators';
 
+import fuzzysort from 'fuzzysort';
+
 export interface SelectionStateModel {
+  fuzzies: string[];
   lots: Lot[];
   text: string;
 }
@@ -23,6 +28,7 @@ export interface SelectionStateModel {
 @State<SelectionStateModel>({
   name: 'selection',
   defaults: {
+    fuzzies: [],
     lots: [],
     text: ''
   }
@@ -36,8 +42,10 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   @DataAction({ insideZone: true })
   searchFor(@Payload('SelectionState.searchFor') text: string): void {
     this.ctx.setState(patch({ text }));
+    let fuzzies;
     let lots;
     if (text) {
+      // look for an exact match on what was typed
       const byAddress = this.isAddress(text);
       if (byAddress) lots = LOTS_BY_ADDRESS[byAddress];
       const byLotID = this.isLotID(text);
@@ -45,11 +53,25 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
         const lot = LOT_BY_ID[byLotID];
         lots = lot ? [lot] : null;
       }
+      const byOwner = this.isOwner(text);
+      if (byOwner) lots = LOTS_BY_OWNER[byOwner];
+      // if no match and at least N characters, give the user some choices
+      if (!lots && text.length >= this.params.selection.fuzzySearchMinLength) {
+        if (byAddress || byOwner) {
+          fuzzies = fuzzysort
+            .go(text, SEARCH_TARGETS, this.params.selection.fuzzySearchOptions)
+            .map((result) => result.target);
+        }
+      }
     }
-    this.ctx.setState(patch({ lots: lots ?? [] }));
+    this.ctx.setState(patch({ fuzzies: fuzzies ?? [], lots: lots ?? [] }));
   }
 
   // accessors
+
+  @Computed() get fuzzies(): string[] {
+    return this.snapshot.fuzzies;
+  }
 
   @Computed() get lots(): Lot[] {
     return this.snapshot.lots;
@@ -62,18 +84,8 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   // private methods
 
   private isAddress(text: string): string {
-    if (!text.includes('-')) {
-      const aliases = this.params.selection.aliases;
-      let normalized = text.toUpperCase();
-      // replace multiple spaces with one
-      normalized = normalized.replace(/\s\s+/g, ' ');
-      const regex = new RegExp(
-        '\\b(' + Object.keys(aliases).join('|') + ')\\b',
-        'gi'
-      );
-      // replace common aliases
-      normalized = normalized.replace(regex, (matched) => aliases[matched]);
-      console.log(normalized);
+    if (!text.includes('-') && /^[\d]+ /.test(text)) {
+      const normalized = text.toUpperCase();
       return normalized;
     } else return null;
   }
@@ -96,6 +108,13 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
       // there can't be any more than 3 parts
       if (parts.length > 3) parts.length = 3;
       return parts.join('-');
+    } else return null;
+  }
+
+  private isOwner(text: string): string {
+    if (!text.includes('-') && /^[A-Z]/i.test(text)) {
+      const normalized = text.toUpperCase();
+      return normalized;
     } else return null;
   }
 }

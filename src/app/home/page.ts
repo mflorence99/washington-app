@@ -130,8 +130,13 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   searchFor(text: string): void {
-    console.log(`%cSearching for ${text}`, 'color: skyblue');
-    this.selection.searchFor(text);
+    if (text === '?') {
+      // TODO:
+      console.error('meta search here');
+    } else {
+      console.log(`%cSearching for ${text}`, 'color: skyblue');
+      this.selection.searchFor(text);
+    }
   }
 
   selectLot(event: HammerInput): void {
@@ -261,7 +266,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private currentPositionOffMap(): void {
     this.stc.createAndPresent({
-      message: 'You are currently outside Washington',
+      message: 'Currently outside map limits',
       duration: this.params.common.toastDuration,
       color: 'light'
     });
@@ -270,7 +275,7 @@ export class HomePage implements AfterViewInit, OnInit {
   private currentPositionOnMap(mapID: string): void {
     const map = MAPS[mapID];
     this.stc.createAndPresent({
-      header: `You are currently in ${map.title}`,
+      header: `Currently on ${map.title} map`,
       message: 'Load the map?',
       duration: this.params.common.toastDuration,
       color: 'light',
@@ -322,7 +327,12 @@ export class HomePage implements AfterViewInit, OnInit {
           this.geometry.latlonCenterOfLots(lots)
         );
         if (!mapIDs.includes(this.model.mapID))
-          this.lotFoundOnMap(lots[0], mapIDs[0]);
+          // 👇 multiple lots may span multiple sub-maps
+          // so load town map
+          this.lotsFoundOnMap(
+            lots,
+            lots.length === 1 ? mapIDs[0] : 'washington'
+          );
         else {
           this.highlightLots(lots);
           this.geometry.centerLotsInViewport(lots);
@@ -430,10 +440,13 @@ export class HomePage implements AfterViewInit, OnInit {
     });
   }
 
-  private lotFoundOnMap(lot: Lot, mapID: string): void {
+  private lotsFoundOnMap(lots: Lot[], mapID: string): void {
     const map = MAPS[mapID];
     this.stc.createAndPresent({
-      header: `Lot ${lot.id} is in ${map.title}`,
+      header:
+        lots.length === 1
+          ? `Lot ${lots[0].id} is on ${map.title} map`
+          : `Lots requested are on ${map.title} map`,
       message: 'Load the map?',
       duration: this.params.common.toastDuration,
       color: 'light',

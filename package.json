@@ -39,6 +39,7 @@
     "angular-resize-event": "^2",
     "angular-svg-icon": "^12",
     "backoff-rxjs": "^6.5.7",
+    "fuzzysort": "^1.1.4",
     "hammerjs": "^2",
     "point-in-polygon": "^1",
     "point-in-polygon-extended": "0.0.1",

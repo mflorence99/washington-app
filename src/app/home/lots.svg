@@ -4,9 +4,18 @@
   attr.viewPort="0 0 {{ tileContainer.width }} {{ tileContainer.height }}"
 >
   <ng-container *ngFor="let lot of lots">
-    <ng-container *ngFor="let boundary of lot.boundaries">
+    <ng-container *ngFor="let boundary of lot.boundaries; let ix = index">
       <g>
-        <polygon [attr.points]="points(boundary)" [id]="lot.id" />
+        <polygon
+          [attr.data-area]="lot.areas[ix]"
+          [attr.data-neighborhood]="lot.neighborhood"
+          [attr.data-taxed]="lot.taxed$"
+          [attr.data-usage]="lot.usage"
+          [attr.data-use]="lot.use"
+          [attr.data-zone]="lot.zone"
+          [attr.points]="points(boundary)"
+          [id]="lot.id"
+        />
       </g>
     </ng-container>
   </ng-container>
