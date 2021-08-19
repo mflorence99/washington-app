@@ -1,0 +1,17 @@
+app-overlay {
+  background-color: var(--ion-color-dark);
+  color: var(--ion-color-light);
+  padding: 1rem;
+
+  .overlay-form {
+    .checkbox {
+      --background: var(--ion-color-medium);
+      --background-checked: var(--ion-color-primary);
+    }
+    .picker {
+      border: 2px dotted var(--ion-color-light);
+      height: 24px;
+      width: 24px;
+    }
+  }
+}

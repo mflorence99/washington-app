@@ -3,6 +3,7 @@ import { LatLon } from '../services/geometry';
 import { Lot } from '../state/parcels';
 import { LOTS } from '../state/parcels';
 import { Map } from '../state/maps';
+import { OverlayState } from '../state/overlay';
 import { TileContainer } from '../state/tiles';
 
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -53,6 +54,10 @@ export class LotsComponent implements OnDestroy, OnInit {
         return `${x},${y}`;
       })
       .join(' ');
+  }
+
+  quantizeArea(area: number): string {
+    return OverlayState.quantizeArea(area);
   }
 
   private mutationCallback(mutations: MutationRecord[]): void {

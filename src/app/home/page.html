@@ -43,6 +43,10 @@
       </ion-buttons>
 
       <ion-buttons *ngIf="trackable" slot="end">
+        <ion-button (tap)="showOverlay()" color="dark" fill="clear"
+          ><ion-icon color="dark" src="svg/highlight.svg"></ion-icon
+        ></ion-button>
+
         <ion-button
           (tap)="showTracker(!model.tracker)"
           color="dark"
@@ -121,7 +125,7 @@
       clearIcon="close-sharp"
       enterkeyhint="Search"
       inputmode="search"
-      placeholder="Lot #, address, owner or ?"
+      placeholder="Lot #, address or owner"
       searchIcon="search-sharp"
     ></ion-searchbar>
 

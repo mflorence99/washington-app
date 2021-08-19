@@ -24,6 +24,8 @@ export interface Lot {
   zone?: string;
 }
 
+export const DESC_BY_NEIGHBORHOOD = PARCELS.descByNeighborhood;
+
 export const DESC_BY_USAGE = PARCELS.descByUsage;
 
 export const DESC_BY_USE = PARCELS.descByUse;

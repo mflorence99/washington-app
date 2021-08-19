@@ -9,6 +9,8 @@ import { LOT_BY_ID } from '../state/parcels';
 import { Maps } from '../state/maps';
 import { MAPS } from '../state/maps';
 import { ModelState } from '../state/model';
+import { OverlayComponent } from './overlay';
+import { OverlayState } from '../state/overlay';
 import { Params } from '../services/params';
 import { SelectionState } from '../state/selection';
 import { SingletonModalService } from '../services/modal';
@@ -63,7 +65,8 @@ export class HomePage implements AfterViewInit, OnInit {
   translating = false;
 
   private checkVersion$ = new Subject<void>();
-  private stylesheet: CSSStyleSheet;
+  private highlightStylesheet: CSSStyleSheet;
+  private overlayStylesheet: CSSStyleSheet;
   private xlate: [number, number];
 
   constructor(
@@ -73,6 +76,7 @@ export class HomePage implements AfterViewInit, OnInit {
     public geometry: GeometryService,
     private http: HttpClient,
     public model: ModelState,
+    public overlay: OverlayState,
     private params: Params,
     public selection: SelectionState,
     private smc: SingletonModalService,
@@ -98,7 +102,9 @@ export class HomePage implements AfterViewInit, OnInit {
     this.handleActions$();
     if (this.model.tracker) this.initializeGeolocation$();
     this.checkVersion();
-    this.createStylesheet();
+    // 👇 we want the highlights to take precedence
+    this.createOverlayStylesheet();
+    this.createHighlightStylesheet();
   }
 
   resize(event: ResizedEvent): void {
@@ -130,13 +136,8 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   searchFor(text: string): void {
-    if (text === '?') {
-      // TODO:
-      console.error('meta search here');
-    } else {
-      console.log(`%cSearching for ${text}`, 'color: skyblue');
-      this.selection.searchFor(text);
-    }
+    console.log(`%cSearching for ${text}`, 'color: skyblue');
+    this.selection.searchFor(text);
   }
 
   selectLot(event: HammerInput): void {
@@ -165,6 +166,13 @@ export class HomePage implements AfterViewInit, OnInit {
 
   showMenu(): void {
     this.menu?.open();
+  }
+
+  showOverlay(): void {
+    this.smc.createAndPresent({
+      component: OverlayComponent,
+      swipeToClose: true
+    });
   }
 
   showTracker(tracker: boolean): void {
@@ -250,10 +258,17 @@ export class HomePage implements AfterViewInit, OnInit {
       .subscribe(() => this.newVersionDetected());
   }
 
-  private createStylesheet(): void {
+  private createHighlightStylesheet(): void {
     const style = document.createElement('style');
     document.head.appendChild(style);
-    this.stylesheet = style.sheet;
+    this.highlightStylesheet = style.sheet;
+  }
+
+  private createOverlayStylesheet(): void {
+    const style = document.createElement('style');
+    document.head.appendChild(style);
+    this.overlayStylesheet = style.sheet;
+    this.overlayLots();
   }
 
   private currentPositionNotAvailable(error: GeolocationPositionError): void {
@@ -300,6 +315,7 @@ export class HomePage implements AfterViewInit, OnInit {
         filter(({ status }) => status === 'SUCCESSFUL')
       )
       .subscribe(({ action }) => {
+        this.handleOverlayUpdate(action);
         this.handleModelSwitchTo(action);
         this.handleViewInitialize(action);
         this.handleSelectionSearchFor(action);
@@ -316,6 +332,12 @@ export class HomePage implements AfterViewInit, OnInit {
       );
       this.initializeView();
       this.setProperties();
+    }
+  }
+
+  private handleOverlayUpdate(action: Object): void {
+    if (action['OverlayState.update']) {
+      this.overlayLots();
     }
   }
 
@@ -369,7 +391,8 @@ export class HomePage implements AfterViewInit, OnInit {
     stroke = this.params.home.page.highlightedLotOutline
   ): void {
     // first, remove any prior highlight
-    while (this.stylesheet.cssRules.length > 0) this.stylesheet.deleteRule(0);
+    while (this.highlightStylesheet.cssRules.length > 0)
+      this.highlightStylesheet.deleteRule(0);
     // 👇 pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-lots svg g polygon[id='${lot.id}'] {
@@ -379,7 +402,7 @@ export class HomePage implements AfterViewInit, OnInit {
         stroke: ${stroke};
         stroke-width: ${4 / this.view.view.scale}
       }`;
-      this.stylesheet.insertRule(rule);
+      this.highlightStylesheet.insertRule(rule);
     });
   }
 
@@ -487,6 +510,25 @@ export class HomePage implements AfterViewInit, OnInit {
         }
       ]
     });
+  }
+
+  private overlayLots(): void {
+    // first, remove any prior overlay
+    while (this.overlayStylesheet.cssRules.length > 0)
+      this.overlayStylesheet.deleteRule(0);
+    // 👇 pay attention to globals.scss
+    this.overlay.properties
+      .filter((property) => property.enabled)
+      .forEach((property) => {
+        const rule = `app-lots svg g polygon[data-${property.attribute}='${
+          property.value
+        }'] {
+          fill: ${property.fill || 'none'};
+          stroke: ${property.stroke || 'none'};
+          stroke-width: ${2 / this.view.view.scale}
+        }`;
+        this.overlayStylesheet.insertRule(rule);
+      });
   }
 
   private setProperties(): void {
