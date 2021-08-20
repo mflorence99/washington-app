@@ -6,11 +6,15 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { HostBinding } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OnInit } from '@angular/core';
+import { ResizedEvent } from 'angular-resize-event';
 import { ViewEncapsulation } from '@angular/core';
 
 import { takeUntil } from 'rxjs/operators';
+
+import Debounce from 'debounce-decorator';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +26,9 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './overlay.html'
 })
 export class OverlayComponent implements OnInit {
+  @HostBinding('class') cssClass: 'landscape' | 'portrait' | 'square' =
+    'square';
+
   overlayForm: FormGroup;
   selectedPicker: FormControl;
 
@@ -43,10 +50,22 @@ export class OverlayComponent implements OnInit {
     this.overlayForm = this.formBuilder.group({
       properties: this.formBuilder.array(groups)
     });
+    // 👇 select the first group with a value
+    const ix = this.overlay.properties.findIndex(
+      (property) => property.fill || property.stroke
+    );
+    if (ix !== -1) {
+      const nm = this.overlay.properties[ix].fill ? 'fill' : 'stroke';
+      this.selectedPicker = groups[ix].get(nm) as FormControl;
+    }
   }
 
   caption(ix: number): string {
     return OverlayState.schema()[ix].caption;
+  }
+
+  @Debounce(250) colorPickerChange(color: string): void {
+    this.selectedPicker?.setValue(color);
   }
 
   dismiss(): void {
@@ -56,6 +75,12 @@ export class OverlayComponent implements OnInit {
   ngOnInit(): void {
     this.populate();
     this.handleValueChanges$();
+  }
+
+  resize(event: ResizedEvent): void {
+    if (event.newWidth === event.newHeight) this.cssClass = 'square';
+    else if (event.newWidth > event.newHeight) this.cssClass = 'landscape';
+    else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
   }
 
   private handleValueChanges$(): void {

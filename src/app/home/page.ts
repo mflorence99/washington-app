@@ -376,6 +376,7 @@ export class HomePage implements AfterViewInit, OnInit {
       // 👇 do this because the width of the highlight depends on the scale
       const lots = this.selection.lots;
       if (lots.length > 0) this.highlightLots(lots);
+      if (this.overlay.isSet) this.overlayLots();
     }
   }
 
@@ -525,7 +526,7 @@ export class HomePage implements AfterViewInit, OnInit {
         }'] {
           fill: ${property.fill || 'none'};
           stroke: ${property.stroke || 'none'};
-          stroke-width: ${2 / this.view.view.scale}
+          stroke-width: ${4 / this.view.view.scale}
         }`;
         this.overlayStylesheet.insertRule(rule);
       });

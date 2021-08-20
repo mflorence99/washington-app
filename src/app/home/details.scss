@@ -18,7 +18,9 @@ app-details {
     }
 
     .header {
+      display: flex;
       grid-area: header;
+      justify-content: space-between;
     }
 
     .footnotes {

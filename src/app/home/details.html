@@ -4,6 +4,11 @@
       {{ lot.id }} &bull; {{ lot.address }}
       <sup *ngIf="model.details === 'measure'">[1]</sup>
     </h4>
+
+    <mark
+      *ngIf="['U', 'V', 'W'].includes(lot.neighborhood) && ['110', '120'].includes(lot.usage)"
+      >VACANT</mark
+    >
   </header>
 
   <article *ngIf="model.details === 'measure'" class="lot">

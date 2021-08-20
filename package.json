@@ -39,6 +39,7 @@
     "angular-resize-event": "^2",
     "angular-svg-icon": "^12",
     "backoff-rxjs": "^6",
+    "debounce-decorator": "^1",
     "fuzzysort": "^1",
     "hammerjs": "^2",
     "ngx-color-picker": "^11",

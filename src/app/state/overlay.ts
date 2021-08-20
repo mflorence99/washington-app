@@ -57,14 +57,18 @@ export class OverlayState extends NgxsDataRepository<OverlayStateModel> {
 
   static schema(): OverlaySchema[] {
     return [
-      { attribute: 'neighborhood', value: 'U', caption: 'Vacant-Highland' },
-      { attribute: 'neighborhood', value: 'W', caption: 'Vacant-LAE' },
-      { attribute: 'neighborhood', value: 'V', caption: 'Vacant-Other' },
-      { attribute: 'area', value: 'quarter', caption: '\u2264 \u00BC acre' },
-      { attribute: 'area', value: 'half', caption: '\u2264 \u00BD acre' },
-      { attribute: 'area', value: 'one', caption: '\u2264 1 acre' },
-      { attribute: 'area', value: 'two', caption: '\u2264 2 acres' },
-      { attribute: 'area', value: 'four', caption: '\u2264 4 acres' }
+      { attribute: 'neighborhood', value: 'W', caption: 'Vacant (Highland)' },
+      { attribute: 'neighborhood', value: 'U', caption: 'Vacant (LAE)' },
+      { attribute: 'neighborhood', value: 'V', caption: 'Vacant (Other)' },
+      {
+        attribute: 'area',
+        value: 'quarter',
+        caption: 'Lots \u2264 \u00BC acre'
+      },
+      { attribute: 'area', value: 'half', caption: 'Lots \u2264 \u00BD acre' },
+      { attribute: 'area', value: 'one', caption: 'Lots \u2264 1 acre' },
+      { attribute: 'area', value: 'two', caption: 'Lots \u2264 2 acres' },
+      { attribute: 'area', value: 'four', caption: 'Lots \u2264 4 acres' }
     ];
   }
 
@@ -79,6 +83,12 @@ export class OverlayState extends NgxsDataRepository<OverlayStateModel> {
   }
 
   // accessors
+
+  @Computed() get isSet(): boolean {
+    return this.properties.some(
+      (property) => property.enabled && (property.fill || property.stroke)
+    );
+  }
 
   @Computed() get properties(): OverlayProperties[] {
     return this.snapshot;

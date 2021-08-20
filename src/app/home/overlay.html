@@ -1,51 +1,64 @@
-<section>
+<section (resized)="resize($event)">
+  <header class="header"><h4>Lot Highlight Overlay</h4></header>
+
   <form
     [formGroup]="overlayForm"
     class="overlay-form"
     novalidate
     spellcheck="false"
   >
+    <div></div>
+    <div></div>
+    <div>Fill</div>
+    <div>Line</div>
+
     <ng-container
       *ngFor="let group of overlayForm.controls.properties['controls']; let ix = index"
+      [formGroup]="group"
     >
-      <div [formGroup]="group" style="display: flex">
-        <ion-label>{{ caption(ix) }}</ion-label>
-        <input type="hidden" formControlName="attribute" />
-        <ion-checkbox
-          class="checkbox"
-          formControlName="enabled"
-          mode="ios"
-        ></ion-checkbox>
-        <div
-          (tap)="selectedPicker = group.get('fill')"
-          [style.background]="group.get('fill').value"
-          class="picker"
-        ></div>
-        <div
-          (tap)="selectedPicker = group.get('stroke')"
-          [style.background]="group.get('stroke').value"
-          class="picker"
-        ></div>
-        <input type="hidden" formControlName="value" />
-      </div>
+      <ion-label class="property-caption">{{ caption(ix) }}</ion-label>
+
+      <ion-checkbox
+        class="property-enabler"
+        formControlName="enabled"
+        mode="ios"
+      ></ion-checkbox>
+
+      <article
+        (tap)="selectedPicker = group.get('fill')"
+        [style.background]="group.get('fill').value"
+        [class.selected]="selectedPicker === group.get('fill')"
+        class="picker-square"
+      ></article>
+
+      <article
+        (tap)="selectedPicker = group.get('stroke')"
+        [style.background]="group.get('stroke').value"
+        [class.selected]="selectedPicker === group.get('stroke')"
+        class="picker-square"
+      ></article>
+
+      <input type="hidden" formControlName="attribute" />
+      <input type="hidden" formControlName="value" />
     </ng-container>
   </form>
 
   <div
     (colorPickerCancel)="selectedPicker?.setValue('')"
-    (colorPickerChange)="selectedPicker?.setValue($event)"
-    [colorPicker]="selectedPicker?.value"
+    (colorPickerChange)="colorPickerChange($event)"
+    [colorPicker]="selectedPicker?.value || '#FFFFFF'"
     [cpCancelButton]="true"
-    [cpCancelButtonText]="'None'"
+    [cpCancelButtonClass]="'button-cancel'"
+    [cpCancelButtonText]="'Clear'"
     [cpDialogDisplay]="'inline'"
     [cpDisableInput]="true"
     [cpFallbackColor]="''"
     [cpToggle]="true"
   ></div>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (tap)="dismiss()" size="small">
-      <ion-icon src="svg/close.svg"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </section>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (tap)="dismiss()" size="small">
+    <ion-icon src="svg/close.svg"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
