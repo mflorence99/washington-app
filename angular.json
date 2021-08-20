@@ -42,6 +42,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "css-element-queries",
+              "debounce-decorator",
               "point-in-polygon",
               "point-in-polygon-extended",
               "robust-point-in-polygon"
