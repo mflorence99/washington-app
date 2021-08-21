@@ -2,6 +2,18 @@
 
 A progressive web app (PWA) that interacts with the source for the printed maps produced by the [sister map-maker project](https://github.com/mflorence99/washington-mapmaker).
 
+- [Washington NH Interactive Parcel Map](#washington-nh-interactive-parcel-map)
+  - [On a laptop](#on-a-laptop)
+  - [On an iPhone or iPad](#on-an-iphone-or-ipad)
+  - [On an Android](#on-an-android)
+  - [Getting Started](#getting-started)
+  - [Exploring lot details](#exploring-lot-details)
+    - [From the assessors' database](#from-the-assessors-database)
+    - [Calculated by the app](#calculated-by-the-app)
+  - [Find a lot](#find-a-lot)
+  - [GPS tracking](#gps-tracking)
+  - [Lot overlay highlighting](#lot-overlay-highlighting)
+
 ## On a laptop
 
 Simply launch the app from [mflorence99.github.io](https://mflorence99.github.io).
