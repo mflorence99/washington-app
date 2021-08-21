@@ -15,7 +15,9 @@ export interface Lot {
   id: string;
   land$: number;
   lengths: number[][];
+  minWidths: number[];
   neighborhood?: string;
+  orientations: number[];
   owner?: string;
   perimeters: number[];
   taxed$: number;

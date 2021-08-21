@@ -38,13 +38,13 @@ export class OverlayComponent implements OnInit {
     private mc: ModalController,
     public overlay: OverlayState
   ) {
-    const groups = OverlayState.schema().map(() =>
+    const groups = OverlayState.schema().map((schema) =>
       this.formBuilder.group({
-        attribute: '',
-        enabled: '',
+        attribute: schema.attribute,
+        enabled: false,
         fill: '',
         stroke: '',
-        value: ''
+        value: schema.value
       })
     );
     this.overlayForm = this.formBuilder.group({

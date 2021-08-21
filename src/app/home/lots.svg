@@ -12,6 +12,7 @@
           [attr.data-taxed]="lot.taxed$"
           [attr.data-usage]="lot.usage"
           [attr.data-use]="lot.use"
+          [attr.data-width]="quantizeWidth(lot.minWidths[ix])"
           [attr.data-zone]="lot.zone"
           [attr.points]="points(boundary)"
           [id]="lot.id"

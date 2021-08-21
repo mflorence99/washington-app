@@ -55,6 +55,12 @@ export class OverlayState extends NgxsDataRepository<OverlayStateModel> {
     return '';
   }
 
+  // 👇 acceptable hack: must match schema below
+  static quantizeWidth(width: number): string {
+    if (width <= 60) return 'sixty';
+    return '';
+  }
+
   static schema(): OverlaySchema[] {
     return [
       { attribute: 'neighborhood', value: 'W', caption: 'Vacant (Highland)' },
@@ -68,7 +74,8 @@ export class OverlayState extends NgxsDataRepository<OverlayStateModel> {
       { attribute: 'area', value: 'half', caption: 'Lots \u2264 \u00BD acre' },
       { attribute: 'area', value: 'one', caption: 'Lots \u2264 1 acre' },
       { attribute: 'area', value: 'two', caption: 'Lots \u2264 2 acres' },
-      { attribute: 'area', value: 'four', caption: 'Lots \u2264 4 acres' }
+      { attribute: 'area', value: 'four', caption: 'Lots \u2264 4 acres' },
+      { attribute: 'width', value: 'sixty', caption: 'Lots \u2264 60ft wide' }
     ];
   }
 

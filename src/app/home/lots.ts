@@ -60,6 +60,10 @@ export class LotsComponent implements OnDestroy, OnInit {
     return OverlayState.quantizeArea(area);
   }
 
+  quantizeWidth(width: number): string {
+    return OverlayState.quantizeWidth(width);
+  }
+
   private mutationCallback(mutations: MutationRecord[]): void {
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes') {

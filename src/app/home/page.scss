@@ -15,14 +15,13 @@ app-home {
     color: var(--ion-color-light);
     line-height: 150%;
     max-height: 75%;
-    max-width: 80%;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0.5rem;
     position: absolute;
     right: 1rem;
     top: calc(var(--offset-top) + 60px);
-    width: fit-content;
+    width: min(calc(100% - 2rem), 20rem);
 
     .fuzzy-match {
       cursor: pointer;

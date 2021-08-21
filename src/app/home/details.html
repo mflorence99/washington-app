@@ -73,7 +73,7 @@
     <table>
       <tbody>
         <tr>
-          <td>Area <sup>[2]</sup></td>
+          <td>Calculated area <sup>[2]</sup></td>
           <td *ngFor="let area of lot.areas">
             {{ area | number: '1.2-2' }} acres <br />
             {{ geometry.acres2sqft(area) | number: '1.0-0' }} sq ft
@@ -88,7 +88,14 @@
         </tr>
 
         <tr>
-          <td>Elevation <sup>[3]</sup></td>
+          <td>Width <sup>[3]</sup></td>
+          <td *ngFor="let minWidth of lot.minWidths">
+            {{ minWidth | number: '1.0-0' }} ft <br />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Elevation at center</td>
           <td *ngFor="let elevation of lot.elevations">
             {{ elevation | number: '1.0-0' }} ft <br />
           </td>
@@ -100,7 +107,7 @@
       <p>
         <sup>[1]</sup> Lot alignment with map is approximate <br />
         <sup>[2]</sup> May not equal assessed acreage <br />
-        <sup>[3]</sup> Elevation at center of lot
+        <sup>[3]</sup> Approx along narrowest axis <br />
       </p>
     </footer>
   </article>
