@@ -145,14 +145,7 @@ export class HomePage implements AfterViewInit, OnInit {
     const lotID = this.geometry.whichLotID(xy);
     if (lotID) {
       const lot = LOT_BY_ID[lotID];
-      if (lot) {
-        this.highlightLots([lot]);
-        this.smc.createAndPresent({
-          component: DetailsComponent,
-          componentProps: { lot },
-          swipeToClose: true
-        });
-      }
+      if (lot) this.selection.select([lot]);
     }
   }
 
@@ -319,6 +312,7 @@ export class HomePage implements AfterViewInit, OnInit {
         this.handleModelSwitchTo(action);
         this.handleViewInitialize(action);
         this.handleSelectionSearchFor(action);
+        this.handleSelectionSelect(action);
         this.handleViewScale(action);
         this.handleViewTranslate(action);
       });
@@ -363,6 +357,18 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
+  private handleSelectionSelect(action: Object): void {
+    if (action['SelectionState.select']) {
+      const lots = this.selection.lots;
+      this.highlightLots(lots);
+      this.smc.createAndPresent({
+        component: DetailsComponent,
+        componentProps: { lot: lots[0] },
+        swipeToClose: true
+      });
+    }
+  }
+
   private handleViewInitialize(action: Object): void {
     if (action['ViewState.initialize']) {
       this.setProperties();
@@ -397,9 +403,6 @@ export class HomePage implements AfterViewInit, OnInit {
     // 👇 pay attention to globals.scss
     lots.forEach((lot) => {
       const rule = `app-lots svg g polygon[id='${lot.id}'] {
-        animation: HIGHLIGHT_LOTS 1s ease-in-out;
-        fill: ${stroke};
-        fill-opacity: 0;
         stroke: ${stroke};
         stroke-width: ${4 / this.view.view.scale}
       }`;
@@ -521,12 +524,12 @@ export class HomePage implements AfterViewInit, OnInit {
     this.overlay.properties
       .filter((property) => property.enabled)
       .forEach((property) => {
+        const fill = property.fill ? `fill: ${property.fill};` : '';
+        const stroke = property.stroke ? `stroke: ${property.stroke};` : '';
         const rule = `app-lots svg g polygon[data-${property.attribute}='${
           property.value
-        }'] {
-          fill: ${property.fill || 'none'};
-          stroke: ${property.stroke || 'none'};
-          stroke-width: ${4 / this.view.view.scale}
+        }'] { ${fill} ${stroke}
+          stroke-width: ${2 / this.view.view.scale}
         }`;
         this.overlayStylesheet.insertRule(rule);
       });

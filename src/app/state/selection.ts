@@ -67,6 +67,11 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
     this.ctx.setState(patch({ fuzzies: fuzzies ?? [], lots: lots ?? [] }));
   }
 
+  @DataAction({ insideZone: true })
+  select(@Payload('SelectionState.select') lots: Lot[]): void {
+    this.ctx.setState({ fuzzies: [], lots, text: '' });
+  }
+
   // accessors
 
   @Computed() get fuzzies(): string[] {
