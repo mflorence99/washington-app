@@ -42,7 +42,7 @@ export const LOT_BY_ID: Record<string, Lot> = LOTS.reduce((acc, lot) => {
 
 export const LOTS_BY_ADDRESS: Record<string, Lot[]> = LOTS.reduce(
   (acc, lot) => {
-    if (lot.address && /^[\d]+ /.test(lot.address)) {
+    if (lot.address) {
       if (!acc[lot.address]) acc[lot.address] = [lot];
       else acc[lot.address].push(lot);
     }

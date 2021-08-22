@@ -8,6 +8,8 @@ import { Params } from './params';
 import { TileContainer } from '../state/tiles';
 import { ViewState } from '../state/view';
 
+import { environment } from '../../environments/environment';
+
 import { Injectable } from '@angular/core';
 
 import centroid from 'polygon-centroid';
@@ -158,11 +160,16 @@ export class GeometryService {
 
   event2xy(event: HammerInput): XY {
     let { x, y } = event.center;
-    const theMap = document.getElementById('theMap').parentElement;
     // TODO: 👇 we only know this emprically from testing with Firefox
-    if (theMap.style.position === 'relative') {
+    if (['Firefox'].includes(environment.ua.browser.name)) {
+      const theMap = document.getElementById('theMap').parentElement;
       x -= theMap.offsetLeft;
       y -= theMap.offsetTop;
+    }
+    // TODO: 👇 we only know this emprically from testing with Safari
+    else if (['Safari'].includes(environment.ua.browser.name)) {
+      x -= 0;
+      y -= 56;
     }
     return { x, y };
   }

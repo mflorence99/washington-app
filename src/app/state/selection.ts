@@ -41,30 +41,32 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
 
   @DataAction({ insideZone: true })
   searchFor(@Payload('SelectionState.searchFor') text: string): void {
-    this.ctx.setState(patch({ text }));
     let fuzzies;
     let lots;
-    if (text) {
-      // look for an exact match on what was typed
-      const byAddress = this.isAddress(text);
-      if (byAddress) lots = LOTS_BY_ADDRESS[byAddress];
-      const byLotID = this.isLotID(text);
-      if (byLotID) {
-        const lot = LOT_BY_ID[byLotID];
+    let searchFor = text;
+    if (searchFor) {
+      searchFor = text.toUpperCase();
+      // 👇 try by lotID first
+      const lotID = this.isLotID(searchFor);
+      if (lotID) {
+        const lot = LOT_BY_ID[lotID];
         lots = lot ? [lot] : null;
-      }
-      const byOwner = this.isOwner(text);
-      if (byOwner) lots = LOTS_BY_OWNER[byOwner];
-      // if no match and at least N characters, give the user some choices
-      if (!lots && text.length >= this.params.selection.fuzzySearchMinLength) {
-        if (byAddress || byOwner) {
-          fuzzies = fuzzysort
-            .go(text, SEARCH_TARGETS, this.params.selection.fuzzySearchOptions)
-            .map((result) => result.target);
-        }
+      } else lots = LOTS_BY_ADDRESS[searchFor] ?? LOTS_BY_OWNER[searchFor];
+      // 👇 if no match and at least N characters, give the user some choices
+      const minLength = this.params.selection.fuzzySearchMinLength;
+      if (!lotID && !lots && searchFor.length >= minLength) {
+        fuzzies = fuzzysort
+          .go(
+            searchFor,
+            SEARCH_TARGETS,
+            this.params.selection.fuzzySearchOptions
+          )
+          .map((result) => result.target);
       }
     }
-    this.ctx.setState(patch({ fuzzies: fuzzies ?? [], lots: lots ?? [] }));
+    this.ctx.setState(
+      patch({ fuzzies: fuzzies ?? [], lots: lots ?? [], text: searchFor })
+    );
   }
 
   @DataAction({ insideZone: true })
@@ -88,18 +90,10 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
 
   // private methods
 
-  private isAddress(text: string): string {
-    if (!text.includes('-') && /^[\d]+ /.test(text)) {
-      const normalized = text.toUpperCase();
-      return normalized;
-    } else return null;
-  }
-
-  private isLotID(text: string): string {
-    if (text.includes('-')) {
-      let normalized = text.toUpperCase();
+  private isLotID(searchFor: string): string {
+    if (searchFor.includes('-')) {
       // replace multiple spaces with none
-      normalized = normalized.replace(/\s\s+/g, '');
+      const normalized = searchFor.replace(/\s\s+/g, '');
       // split on - separator and strip leading zeros
       const parts = normalized.split('-');
       parts[0] = Number(parts[0]).toString();
@@ -113,13 +107,6 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
       // there can't be any more than 3 parts
       if (parts.length > 3) parts.length = 3;
       return parts.join('-');
-    } else return null;
-  }
-
-  private isOwner(text: string): string {
-    if (!text.includes('-') && /^[A-Z]/i.test(text)) {
-      const normalized = text.toUpperCase();
-      return normalized;
     } else return null;
   }
 }

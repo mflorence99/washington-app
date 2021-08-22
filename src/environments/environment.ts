@@ -1,6 +1,8 @@
 import BUILD from '../assets/build.json';
 import PACKAGE from '../../package.json';
 
+import { UAParser } from 'ua-parser-js';
+
 export const environment = {
   production: false,
   package: {
@@ -17,5 +19,6 @@ export const environment = {
   build: {
     id: BUILD.id,
     date: BUILD.date
-  }
+  },
+  ua: UAParser()
 };

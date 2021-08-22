@@ -339,12 +339,15 @@ export class HomePage implements AfterViewInit, OnInit {
     if (action['SelectionState.searchFor']) {
       const lots = this.selection.lots;
       if (lots?.length > 0) {
+        // 👇 if the lots are smaller than 2 acres, we don't want the town map
+        const maxArea = Math.max(...lots.map((lot) => lot.area));
         const mapIDs = this.geometry.whichMapIDs(
           this.geometry.latlonCenterOfLots(lots)
         );
+        if (mapIDs.length > 1 && maxArea < 2) mapIDs.length -= 1;
+        // 👇 if we're not on the map that shows the lot, load it
+        // multiple lots may span multiple sub-maps so load town map
         if (!mapIDs.includes(this.model.mapID))
-          // 👇 multiple lots may span multiple sub-maps
-          // so load town map
           this.lotsFoundOnMap(
             lots,
             lots.length === 1 ? mapIDs[0] : 'washington'
