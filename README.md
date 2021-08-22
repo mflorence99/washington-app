@@ -1,6 +1,6 @@
 # Washington NH Interactive Parcel Map
 
-A progressive web app (PWA) that interacts with the source images for the printed maps produced by the [sister map-maker project](https://github.com/mflorence99/washington-mapmaker).
+A progressive web app (PWA) that interacts with the source images for the printed maps produced by the sister map-maker project [Washington NH Parcel Map](https://github.com/mflorence99/washington-mapmaker).
 
 - [Washington NH Interactive Parcel Map](#washington-nh-interactive-parcel-map)
   - [On a laptop](#on-a-laptop)
