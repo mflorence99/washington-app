@@ -9,12 +9,15 @@ export class SingletonToastService {
   constructor(private tc: ToastController) {}
 
   createAndPresent(options: ToastOptions): void {
-    this.tc.create(options).then((toast: HTMLIonToastElement) => {
-      try {
-        this.lastToast?.dismiss();
-      } catch (ignored) {}
-      toast.present();
-      this.lastToast = toast;
-    });
+    this.tc
+      // 🔻 all toasters slide in from the top
+      .create({ ...options, color: 'light', position: 'middle' })
+      .then((toast: HTMLIonToastElement) => {
+        try {
+          this.lastToast?.dismiss();
+        } catch (ignored) {}
+        toast.present();
+        this.lastToast = toast;
+      });
   }
 }

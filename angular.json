@@ -41,11 +41,14 @@
           },
           "options": {
             "allowedCommonJsDependencies": [
+              "core-js-pure",
               "css-element-queries",
               "debounce-decorator",
               "point-in-polygon",
               "point-in-polygon-extended",
-              "robust-point-in-polygon"
+              "raf",
+              "robust-point-in-polygon",
+              "ua-parser-js"
             ],
             "aot": false,
             "assets": [

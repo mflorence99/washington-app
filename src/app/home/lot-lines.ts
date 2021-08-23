@@ -73,6 +73,10 @@ export class LotLinesComponent {
     mapTypeId: 'terrain'
   };
 
+  @Input() staticMap: boolean;
+  @Input() staticMapHeight: number;
+  @Input() staticMapWidth: number;
+
   private lotImpl: Lot;
 
   constructor(

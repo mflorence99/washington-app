@@ -53,7 +53,24 @@ export class LotSatelliteComponent {
     mapTypeId: 'satellite'
   };
 
+  mapURL = '';
+
+  @Input()
+  get staticMap(): boolean {
+    return this.staticMapImpl;
+  }
+  set staticMap(state: boolean) {
+    this.staticMapImpl = state;
+    if (state) {
+      this.mapURL = `https://maps.googleapis.com/maps/api/staticmap?key=${this.params.google.apiKey}&size=${this.staticMapWidth}x${this.staticMapHeight}&markers=${this.center.lat},${this.center.lon}&visible=${this.bbox.top},${this.bbox.left}|${this.bbox.bottom},${this.bbox.right}&maptype=satellite`;
+    }
+  }
+
+  @Input() staticMapHeight: number;
+  @Input() staticMapWidth: number;
+
   private lotImpl: Lot;
+  private staticMapImpl: boolean;
 
   constructor(
     public api: GoogleService,

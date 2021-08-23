@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class Params {
   common = {
-    toastDuration: 5000
+    toastDuration: 10 * 1000
   };
 
   geolocation = {
@@ -27,6 +27,9 @@ export class Params {
   };
 
   home = {
+    details: {
+      printDelay: 250
+    },
     lot: {
       pxViewportMargin: 6,
       straightLineThreshold: 30

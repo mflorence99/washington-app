@@ -1,7 +1,10 @@
 <figure (resized)="resize($event)" class="dimensions">
-  <article *ngIf="api.ready$ | async" class="lot-context">
-    <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
-  </article>
+  <ng-container *ngIf="!staticMap">
+    <article *ngIf="api.ready$ | async" class="lot-context">
+      <google-map [options]="mapOptions" height="100%" width="100%">
+      </google-map>
+    </article>
+  </ng-container>
 
   <svg
     *ngIf="dims.height && dims.width"

@@ -395,6 +395,18 @@ export class GeometryService {
     // return lots.length > 1 ? this.nearestLotID(xy, lotIDs) : lots[0]?.id;
   }
 
+  whichMapID({ lat, lon }): string {
+    return Object.keys(MAPS).find((mapID) => {
+      const map = MAPS[mapID];
+      const inside =
+        lon >= map.bbox.left &&
+        lon < map.bbox.right &&
+        lat >= map.bbox.bottom &&
+        lat < map.bbox.top;
+      return inside;
+    });
+  }
+
   whichMapIDs({ lat, lon }): string[] {
     return Object.keys(MAPS).filter((mapID) => {
       const map = MAPS[mapID];

@@ -1,9 +1,6 @@
 <section (resized)="resize($event)">
   <header class="header">
-    <h4>
-      {{ lot.id }} &bull; {{ lot.address }}
-      <sup *ngIf="model.details === 'measure'">[1]</sup>
-    </h4>
+    <h4>{{ lot.id }} &bull; {{ lot.address }}</h4>
 
     <mark
       *ngIf="['U', 'V', 'W'].includes(lot.neighborhood) && ['110', '120'].includes(lot.usage)"
@@ -11,15 +8,34 @@
     >
   </header>
 
-  <article *ngIf="model.details === 'measure'" class="lot">
-    <app-lot-lines [lot]="lot"></app-lot-lines>
+  <article
+    *ngIf="model.details === 'assessor' || orientation === 'pdf'"
+    class="map"
+  >
+    <app-lot-satellite
+      [lot]="lot"
+      [staticMapHeight]="staticMapHeight"
+      [staticMapWidth]="staticMapWidth"
+      [staticMap]="staticMap"
+    ></app-lot-satellite>
   </article>
 
-  <article *ngIf="model.details === 'assessor'" class="map">
-    <app-lot-satellite [lot]="lot"></app-lot-satellite>
+  <article
+    *ngIf="model.details === 'measure' || orientation === 'pdf'"
+    class="lot"
+  >
+    <app-lot-lines
+      [lot]="lot"
+      [staticMapHeight]="staticMapHeight"
+      [staticMapWidth]="staticMapWidth"
+      [staticMap]="staticMap"
+    ></app-lot-lines>
   </article>
 
-  <article *ngIf="model.details === 'assessor'" class="table assessor">
+  <article
+    *ngIf="model.details === 'assessor' || orientation === 'pdf'"
+    class="table assessor"
+  >
     <table>
       <tbody>
         <tr *ngIf="lot.owner">
@@ -69,11 +85,14 @@
     </table>
   </article>
 
-  <article *ngIf="model.details === 'measure'" class="table measure">
+  <article
+    *ngIf="model.details === 'measure' || orientation === 'pdf'"
+    class="table measure"
+  >
     <table>
       <tbody>
         <tr>
-          <td>Calculated area <sup>[2]</sup></td>
+          <td>Calculated area</td>
           <td *ngFor="let area of lot.areas">
             {{ area | number: '1.2-2' }} acres <br />
             {{ geometry.acres2sqft(area) | number: '1.0-0' }} sq ft
@@ -88,7 +107,7 @@
         </tr>
 
         <tr>
-          <td>Width <sup>[3]</sup></td>
+          <td>Width</td>
           <td *ngFor="let minWidth of lot.minWidths">
             {{ minWidth | number: '1.0-0' }} ft <br />
           </td>
@@ -105,31 +124,52 @@
 
     <footer class="footnotes">
       <p>
-        <sup>[1]</sup> Lot alignment with map is approximate <br />
-        <sup>[2]</sup> May not equal assessed acreage <br />
-        <sup>[3]</sup> Approx along narrowest axis <br />
+        <strong>For Information Only</strong> All measurements are calculated
+        from lat/lon boundary points and may not match lot survey. Lot alignment
+        with map is approximate.
       </p>
     </footer>
   </article>
 
-  <ion-segment
-    (ionChange)="detailsTo($event.detail.value)"
-    [value]="model.details"
-    color="light"
-    class="details-to"
-    mode="ios"
-  >
-    <ion-segment-button value="assessor">
-      <ion-label>Assessed</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="measure">
-      <ion-label>Calculated</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+  <ng-container *ngIf="orientation !== 'pdf'">
+    <ion-segment
+      (ionChange)="detailsTo($event.detail.value)"
+      [value]="model.details"
+      color="light"
+      class="details-to"
+      mode="ios"
+    >
+      <ion-segment-button value="assessor">
+        <ion-label>Assessed</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="measure">
+        <ion-label>Calculated</ion-label>
+      </ion-segment-button>
+    </ion-segment>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (tap)="dismiss()" color="primary" size="small">
-      <ion-icon src="svg/close.svg"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    <ng-container *ngIf="canPrint(); else justClose">
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button
+          (press)="dismiss()"
+          (tap)="fabList.activated? dismiss() : null"
+          color="primary"
+        >
+          <ion-icon src="svg/more.svg"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list #fabList side="top">
+          <ion-fab-button (tap)="print()" color="secondary">
+            <ion-icon src="svg/print.svg"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+    </ng-container>
+
+    <ng-template #justClose>
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (tap)="dismiss()" color="primary" size="small">
+          <ion-icon src="svg/close.svg"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ng-template>
+  </ng-container>
 </section>

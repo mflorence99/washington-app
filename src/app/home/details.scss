@@ -151,8 +151,42 @@ app-details.square.measure section {
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
 
+  .footnotes {
+    width: 50%;
+  }
+
   .map,
   .table.assessor {
     display: none;
+  }
+}
+// 👇 all the dimensions associated with printing are hacks for the PDF
+
+app-details.pdf {
+  background-color: white;
+  overflow: unset;
+  padding: 2rem;
+
+  section {
+    align-content: start;
+    grid-gap: 2rem;
+    grid-template-areas:
+      'header header'
+      'map lot'
+      'table-assessor table-measure';
+    grid-template-columns: 480px 480px;
+    grid-template-rows: auto 480px auto;
+    overflow: unset;
+
+    .header {
+      h4 {
+        width: 900px;
+      }
+
+      mark {
+        text-align: right;
+        width: 92px;
+      }
+    }
   }
 }
