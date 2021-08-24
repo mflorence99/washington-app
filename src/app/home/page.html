@@ -157,9 +157,7 @@
     </article>
   </ion-content>
 
-  <article [style.width.px]="model.map.cxScale * view.view.scale" class="scale">
-    {{ model.map.ftScale }}'
-  </article>
+  <article [style.width.px]="pxScale()" class="scale">{{ ftScale() }}'</article>
 
   <ion-buttons class="zoom">
     <ion-button

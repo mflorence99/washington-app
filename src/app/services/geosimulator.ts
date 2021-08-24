@@ -46,8 +46,8 @@ export class GeosimulatorService extends Observable<GeolocationPosition> {
             `🔥 Geosimulator simulated loss of GPS signal #${counter}`
           );
           subscriber.error({ code: 2, message: 'unavailable' });
-        } else if (counter === 100) {
-          subscriber.error({ code: 1, message: 'unauthorized' });
+          // } else if (counter === 100) {
+          //   subscriber.error({ code: 1, message: 'unauthorized' });
         } else subscriber.next(position);
         // setup for next point
         counter += 1;

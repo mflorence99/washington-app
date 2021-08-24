@@ -89,6 +89,13 @@ export class HomePage implements AfterViewInit, OnInit {
     this.model.follow(following);
   }
 
+  ftScale(): number {
+    // 👇 display more feet if zoom less than 1
+    return Math.round(
+      this.model.map.ftScale * (1 / Math.min(1, this.view.view.scale))
+    );
+  }
+
   lotsLoaded(): void {
     this.lotsReady = true;
     this.selection.searchFor(this.selection.text);
@@ -105,6 +112,15 @@ export class HomePage implements AfterViewInit, OnInit {
     // 👇 we want the highlights to take precedence
     this.createOverlayStylesheet();
     this.createHighlightStylesheet();
+  }
+
+  pxScale(): number {
+    // 👇 display more feet if zoom less than 1
+    return (
+      this.model.map.cxScale *
+      this.view.view.scale *
+      (1 / Math.min(1, this.view.view.scale))
+    );
   }
 
   resize(event: ResizedEvent): void {
