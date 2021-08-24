@@ -156,7 +156,7 @@ export class LotLinesComponent {
     this.dims.right = this.dims.left + this.dims.width;
 
     // 👇 no need to overthink this -- Google will center the bbox
-    // in its viewport, which we've done ourselves for the lot lines
+    //    in its viewport, which we've done ourselves for the lot lines
     if (this.map) {
       const bounds = new google.maps.LatLngBounds(
         {

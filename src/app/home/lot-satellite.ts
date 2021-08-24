@@ -13,6 +13,8 @@ import { ResizedEvent } from 'angular-resize-event';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
+import { encode } from '@googlemaps/polyline-codec';
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
@@ -35,11 +37,11 @@ export class LotSatelliteComponent {
   get lot(): Lot {
     return this.lotImpl;
   }
-  // 👇 this avoids the map showing Google HQ first
   set lot(lot: Lot) {
     this.lotImpl = lot;
     this.bbox = this.geometry.bboxOfLot(lot);
     this.center = this.geometry.bboxCenter(this.bbox);
+    // 👇 this avoids the map showing Google HQ first
     this.mapOptions.center = { lat: this.center.lat, lng: this.center.lon };
   }
 
@@ -62,7 +64,11 @@ export class LotSatelliteComponent {
   set staticMap(state: boolean) {
     this.staticMapImpl = state;
     if (state) {
-      this.mapURL = `https://maps.googleapis.com/maps/api/staticmap?key=${this.params.google.apiKey}&size=${this.staticMapWidth}x${this.staticMapHeight}&markers=${this.center.lat},${this.center.lon}&visible=${this.bbox.top},${this.bbox.left}|${this.bbox.bottom},${this.bbox.right}&maptype=satellite`;
+      this.mapURL = `https://maps.googleapis.com/maps/api/staticmap?key=${
+        this.params.google.apiKey
+      }&size=${this.staticMapWidth}x${
+        this.staticMapHeight
+      }${this.makePaths().join('')}&maptype=satellite`;
     }
   }
 
@@ -79,7 +85,7 @@ export class LotSatelliteComponent {
   ) {}
 
   // 👇 no need to overthink this -- Google will center the bbox
-  // in its viewport, which we've done ourselves for the lot lines
+  //    in its viewport, which we've done ourselves for the lot lines
   resize(_event: ResizedEvent): void {
     if (this.map) {
       const bounds = new google.maps.LatLngBounds(
@@ -94,6 +100,25 @@ export class LotSatelliteComponent {
       );
       this.map.fitBounds(bounds);
       this.map.panToBounds(bounds);
+      // 👇 overlay the map with the lotlines
+      const lotLines = this.lot.boundaries.map(
+        (latlons) =>
+          new google.maps.Polyline({
+            path: latlons.map(({ lat, lon }) => ({ lat, lng: lon })),
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 3
+          })
+      );
+      lotLines.forEach((lotLine) => lotLine.setMap(this.map.googleMap));
     }
+  }
+
+  // 👇 for the static map
+  private makePaths(): string[] {
+    return this.lot.boundaries.map((latlons) => {
+      const path = latlons.map(({ lat, lon }) => [lat, lon]);
+      return `&path=color:0xFF0000FF|weight:3|enc:${encode(path, 5)}`;
+    });
   }
 }

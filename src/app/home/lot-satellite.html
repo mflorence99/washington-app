@@ -4,9 +4,7 @@
   class="overhead"
 >
   <article *ngIf="api.ready$ | async; else noMap" class="lot-satellite">
-    <google-map [options]="mapOptions" height="100%" width="100%">
-      <map-marker [position]="mapOptions.center"></map-marker>
-    </google-map>
+    <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
   </article>
 
   <ng-template #noMap>
