@@ -244,7 +244,7 @@ export class HomePage implements AfterViewInit, OnInit {
       .pipe(
         takeUntil(merge(this.checkVersion$, this.destroy$)),
         mergeMap(() =>
-          this.http.get<Build>('../assets/build.json', {
+          this.http.get<Build>(`${location.href}assets/build.json`, {
             params: {
               x: Math.random()
             }
