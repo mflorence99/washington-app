@@ -230,9 +230,9 @@ export class HomePage implements AfterViewInit, OnInit {
 
   private checkVersion(): void {
     if (this.swUpdate.isEnabled) this.checkVersionServiceWorker();
-    // 👇 do this as backup anyway as we always enable the service
-    // worker, but can't tell if it failed to load
-    this.checkVersionLegacy();
+    // 👇 for now, this will never be called as we always enable
+    //    the service worker and let it fail if not HTTPS etc
+    else this.checkVersionLegacy();
   }
 
   private checkVersionLegacy(): void {
