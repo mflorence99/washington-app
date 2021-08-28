@@ -13,6 +13,6 @@ npm version $version
 
 git push origin main
 
-ionic build --prod
+ionic build
 
 serverx-angular --app www --deploy aws.json
