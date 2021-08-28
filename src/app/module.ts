@@ -80,9 +80,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     NgxsDataPluginModule.forRoot(),
     LogRocketPluginModule.forRoot(),
     ReactiveFormsModule,
-    ServiceWorkerModule.register('/dev/ngsw-worker.js', {
+    ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: true,
-      registrationStrategy: 'registerImmediately'
+      registrationStrategy: 'registerImmediately',
+      scope: '/dev/'
     })
   ],
 
