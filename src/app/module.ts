@@ -83,7 +83,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: true,
       registrationStrategy: 'registerImmediately',
-      scope: '/'
+      scope: './'
     })
   ],
 
