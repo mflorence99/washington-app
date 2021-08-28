@@ -11,8 +11,8 @@
   ],
   "lang": "en-US",
   "name": "Washington NH Interactive Parcel Map",
-  "scope": "/dev/",
+  "scope": "./",
   "short_name": "Parcel Map",
-  "start_url": "/dev/",
+  "start_url": "./",
   "theme_color": "#ffc40d"
 }
