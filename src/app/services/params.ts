@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+// 👉 all intervals in milliseconds
+
 @Injectable({ providedIn: 'root' })
 export class Params {
   common = {
@@ -32,6 +34,7 @@ export class Params {
     },
     lot: {
       pxViewportMargin: 6,
+      shortLineThreshold: 8, // pixels
       straightLineThreshold: 30
     },
     page: {
@@ -41,9 +44,10 @@ export class Params {
         maxRetries: 5
       },
       // 👇 make sure AFTER service worker check of 30s
-      checkVersionAfter: 60 * 1000, // ms
-      checkVersionInterval: 120 * 1000, // ms
+      checkVersionAfter: 60 * 1000,
+      checkVersionInterval: 120 * 1000,
       highlightedLotOutline: 'var(--ion-color-danger)',
+      searchbarDebounceTime: 1000,
       showLotsDelay: 1000
     },
     retrySrc: {

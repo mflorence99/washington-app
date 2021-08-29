@@ -132,7 +132,7 @@
 
     <ion-searchbar
       (ionChange)="searchFor($event.detail.value)"
-      [debounce]="500"
+      [debounce]="params.home.page.searchbarDebounceTime"
       [value]="selection.text"
       class="searchbar"
       clearIcon="close-sharp"

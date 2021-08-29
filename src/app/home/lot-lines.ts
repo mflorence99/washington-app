@@ -182,7 +182,8 @@ export class LotLinesComponent {
   }
 
   private isLineReallyShort(length: number): boolean {
-    return length * this.ft2px < 8;
+    const threshold = this.params.home.lot.shortLineThreshold;
+    return length * this.ft2px < threshold;
   }
 
   private isLineStraight(p: number, q: number): boolean {

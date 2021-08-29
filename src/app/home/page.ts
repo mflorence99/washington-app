@@ -77,7 +77,7 @@ export class HomePage implements AfterViewInit, OnInit {
     private http: HttpClient,
     public model: ModelState,
     public overlay: OverlayState,
-    private params: Params,
+    public params: Params,
     public selection: SelectionState,
     private smc: SingletonModalService,
     private stc: SingletonToastService,
