@@ -1,4 +1,6 @@
 {
+  "certificateName": "lots.washingtonnh.online",
+  "domainName": "lots.washingtonnh.online",
   "provider": "aws",
   "region": "us-east-1",
   "service": "washington-app",

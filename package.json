@@ -13,6 +13,7 @@
     "build": "ng build",
     "clean:deps": "rm -rf node_modules && rm package-lock.json && npm install",
     "deploy:aws": "./bin/deploy-aws.sh",
+    "deploy:dryrun": "./bin/dryrun-aws.sh",
     "deploy:github": "./bin/deploy-github.sh",
     "hittester": "ts-node --dir bin hittester.ts",
     "ng": "ng",
