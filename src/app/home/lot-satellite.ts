@@ -68,7 +68,7 @@ export class LotSatelliteComponent {
         this.params.google.apiKey
       }&size=${this.staticMapWidth}x${
         this.staticMapHeight
-      }${this.makePaths().join('')}&maptype=satellite`;
+      }${this.makePaths().join('')}&maptype=terrain`;
     }
   }
 
