@@ -21,8 +21,7 @@ app-lot-lines {
     }
 
     .lot-context {
-      // TODO:👇 this is a guess
-      transform: scale(1.55);
+      transform: scale(var(--lotlines-scale));
     }
 
     .lot-lines {

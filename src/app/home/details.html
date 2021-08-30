@@ -24,12 +24,7 @@
     *ngIf="model.details === 'measure' || orientation === 'pdf'"
     class="lot"
   >
-    <app-lot-lines
-      [lot]="lot"
-      [staticMapHeight]="staticMapHeight"
-      [staticMapWidth]="staticMapWidth"
-      [staticMap]="staticMap"
-    ></app-lot-lines>
+    <app-lot-lines [lot]="lot" [lotLinesOnly]="staticMap"></app-lot-lines>
   </article>
 
   <article

@@ -1,5 +1,5 @@
 <figure (resized)="resize($event)" class="dimensions">
-  <ng-container *ngIf="!staticMap">
+  <ng-container *ngIf="!lotLinesOnly">
     <article *ngIf="api.ready$ | async" class="lot-context">
       <google-map [options]="mapOptions" height="100%" width="100%">
       </google-map>
@@ -32,7 +32,7 @@
         </g>
       </ng-container>
 
-      <!-- 👇 annotate the length of each boudary edge -->
+      <!-- 👇 annotate the length of each boudakwry edge -->
       <ng-container *ngFor="let lotLine of lotLines; let ix = index">
         <text class="annotation">
           <textPath

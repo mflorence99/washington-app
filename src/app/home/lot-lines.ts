@@ -63,6 +63,8 @@ export class LotLinesComponent {
 
   lotLines: LotLine[] = [];
 
+  @Input() lotLinesOnly: boolean;
+
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
 
   mapOptions: google.maps.MapOptions = {
@@ -72,10 +74,6 @@ export class LotLinesComponent {
     mapTypeControl: false,
     mapTypeId: 'terrain'
   };
-
-  @Input() staticMap: boolean;
-  @Input() staticMapHeight: number;
-  @Input() staticMapWidth: number;
 
   private lotImpl: Lot;
 
@@ -158,7 +156,7 @@ export class LotLinesComponent {
     // 👇 no need to overthink this -- Google will center the bbox
     //    in its viewport, which we've done ourselves for the lot lines
     if (this.map) {
-      const bounds = new google.maps.LatLngBounds(
+      const nominal = new google.maps.LatLngBounds(
         {
           lat: this.bbox.top,
           lng: this.bbox.left
@@ -168,8 +166,26 @@ export class LotLinesComponent {
           lng: this.bbox.right
         }
       );
-      this.map.fitBounds(bounds);
-      this.map.panToBounds(bounds);
+      this.map.fitBounds(nominal);
+      this.map.panToBounds(nominal);
+
+      // TODO: 😎 just a WAG
+      const zoom = this.map.getZoom();
+      const zoom2scale = {
+        12: '1.6',
+        13: '2.15',
+        14: '2.3',
+        15: '1.3',
+        16: '2.1',
+        17: '1.7',
+        18: '1.9',
+        19: '1',
+        20: '1',
+        21: '1',
+        22: '1'
+      };
+      const style = document.body.style;
+      style.setProperty('--lotlines-scale', zoom2scale[zoom]);
     }
 
     // 👇 the hard part!
