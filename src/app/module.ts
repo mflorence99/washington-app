@@ -82,7 +82,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: true,
-      registrationStrategy: 'registerImmediately'
+      registrationStrategy: 'registerWhenStable:30000'
     })
   ],
 
