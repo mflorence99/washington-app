@@ -1,0 +1,6 @@
+<figure
+  (resized)="lotLines.render($event.newWidth, $event.newHeight)"
+  class="diagram"
+>
+  <app-lot-lines #lotLines [lot]="lot"></app-lot-lines>
+</figure>

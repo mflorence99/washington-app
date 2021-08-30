@@ -1,43 +1,17 @@
 app-lot-lines {
-  background-image: url('../../svg/graph-paper.svg');
-  background-repeat: repeat;
-  background-size: 16px 16px;
-  display: block;
-  height: 100%;
-  width: 100%;
-
-  .dimensions {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-
-    .lot-context,
-    .lot-lines {
-      height: 100%;
-      position: absolute;
-      width: 100%;
+  .lot-lines {
+    .annotation {
+      font-size: smaller;
     }
 
-    .lot-context {
-      transform: scale(var(--lotlines-scale));
+    .boundary {
+      stroke: var(--ion-color-danger);
+      stroke-width: 3;
     }
 
-    .lot-lines {
-      .annotation {
-        font-size: smaller;
-      }
-
-      .boundary {
-        stroke: var(--ion-color-danger);
-        stroke-width: 3;
-      }
-
-      .marker {
-        fill: var(--ion-color-danger-shade);
-        r: 5;
-      }
+    .marker {
+      fill: var(--ion-color-danger-shade);
+      r: 5;
     }
   }
 }

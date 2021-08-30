@@ -12,19 +12,21 @@
     *ngIf="model.details === 'assessor' || orientation === 'pdf'"
     class="map"
   >
-    <app-lot-satellite
+    <app-lot-map
       [lot]="lot"
+      [lotLines]="'overlay'"
+      [mapType]="'satellite'"
       [staticMapHeight]="staticMapHeight"
       [staticMapWidth]="staticMapWidth"
       [staticMap]="staticMap"
-    ></app-lot-satellite>
+    ></app-lot-map>
   </article>
 
   <article
     *ngIf="model.details === 'measure' || orientation === 'pdf'"
     class="lot"
   >
-    <app-lot-lines [lot]="lot" [lotLinesOnly]="staticMap"></app-lot-lines>
+    <app-lot-diagram [lot]="lot"></app-lot-diagram>
   </article>
 
   <article
@@ -120,8 +122,7 @@
     <footer class="footnotes">
       <p>
         <strong>For Information Only</strong> All measurements are calculated
-        from lat/lon boundary points and may not match lot survey. Alignment of
-        lot lines with map is approximate.
+        from lat/lon boundary points and may not match lot survey.
       </p>
     </footer>
   </article>

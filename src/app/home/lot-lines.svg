@@ -1,0 +1,51 @@
+<svg
+  *ngIf="dims.height && dims.width"
+  attr.viewPort="0 0 {{ dims.width }} {{ dims.height }}"
+  class="lot-lines"
+>
+  <!-- 👇 textPath only works when referenced by href -->
+  <defs>
+    <path
+      *ngFor="let lotLine of lotLines; let ix = index"
+      [attr.d]="path(lotLine.path)"
+      [id]="'_textPath_' + ix"
+    />
+  </defs>
+
+  <!-- 👇 draw the boundary lines -->
+  <g attr.transform="translate({{ dims.left }} {{ dims.top }})">
+    <ng-container *ngFor="let boundary of lot.boundaries">
+      <g>
+        <polygon
+          [attr.points]="points(boundary)"
+          attr.fill="rgba(var(--shade-u{{ lot.usage }}), 0.33)"
+          class="boundary"
+        />
+      </g>
+    </ng-container>
+
+    <!-- 👇 annotate the length of each boudakwry edge -->
+    <ng-container *ngFor="let lotLine of lotLines; let ix = index">
+      <text class="annotation">
+        <textPath
+          [attr.href]="'#_textPath_' + ix"
+          text-anchor="middle"
+          startOffset="50%"
+        >
+          <tspan dy="-8">{{ round(lotLine.length) }}</tspan>
+        </textPath>
+      </text>
+
+      <!-- 👇 draw a marker at the boundary vertices -->
+      <ng-container *ngIf="latlon2xy(lotLine.path[0]) as xy">
+        <circle [attr.cx]="xy.x" [attr.cy]="xy.y" class="marker" />
+      </ng-container>
+
+      <ng-container
+        *ngIf="latlon2xy(lotLine.path[lotLine.path.length - 1]) as xy"
+      >
+        <circle [attr.cx]="xy.x" [attr.cy]="xy.y" class="marker" />
+      </ng-container>
+    </ng-container>
+  </g>
+</svg>

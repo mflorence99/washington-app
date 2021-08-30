@@ -19,11 +19,11 @@ import { encode } from '@googlemaps/polyline-codec';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
-  selector: 'app-lot-satellite',
-  styleUrls: ['./lot-satellite.scss'],
-  templateUrl: './lot-satellite.html'
+  selector: 'app-lot-map',
+  styleUrls: ['./lot-map.scss'],
+  templateUrl: './lot-map.html'
 })
-export class LotSatelliteComponent {
+export class LotMapComponent {
   bbox: Rectangle = {
     bottom: 0,
     left: 0,
@@ -45,6 +45,8 @@ export class LotSatelliteComponent {
     this.mapOptions.center = { lat: this.center.lat, lng: this.center.lon };
   }
 
+  @Input() lotLines: 'none' | 'overlay' | 'measure' = 'overlay';
+
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
 
   mapOptions: google.maps.MapOptions = {
@@ -55,6 +57,15 @@ export class LotSatelliteComponent {
     mapTypeId: 'satellite'
   };
 
+  @Input()
+  get mapType(): google.maps.MapTypeId {
+    return this.mapTypeImpl;
+  }
+  set mapType(mapType: google.maps.MapTypeId) {
+    this.mapTypeImpl = mapType;
+    this.mapOptions.mapTypeId = this.mapType;
+  }
+
   mapURL = '';
 
   @Input()
@@ -64,11 +75,10 @@ export class LotSatelliteComponent {
   set staticMap(state: boolean) {
     this.staticMapImpl = state;
     if (state) {
-      this.mapURL = `https://maps.googleapis.com/maps/api/staticmap?key=${
-        this.params.google.apiKey
-      }&size=${this.staticMapWidth}x${
-        this.staticMapHeight
-      }${this.makePaths().join('')}&maptype=terrain`;
+      this.mapURL = `https://maps.googleapis.com/maps/api/staticmap?key=${this.params.google.apiKey}&size=${this.staticMapWidth}x${this.staticMapHeight}&maptype=${this.mapType}`;
+      // 👇 optionally, overlay lot lines
+      if (this.lotLines === 'overlay')
+        this.mapURL += this.makeStaticPaths().join('');
     }
   }
 
@@ -76,6 +86,7 @@ export class LotSatelliteComponent {
   @Input() staticMapWidth: number;
 
   private lotImpl: Lot;
+  private mapTypeImpl: google.maps.MapTypeId;
   private staticMapImpl: boolean;
 
   constructor(
@@ -100,22 +111,27 @@ export class LotSatelliteComponent {
       );
       this.map.fitBounds(bounds);
       this.map.panToBounds(bounds);
-      // 👇 overlay the map with the lotlines
-      const lotLines = this.lot.boundaries.map(
-        (latlons) =>
-          new google.maps.Polyline({
-            path: latlons.map(({ lat, lon }) => ({ lat, lng: lon })),
-            strokeColor: '#FF0000',
-            strokeOpacity: 1.0,
-            strokeWeight: 3
-          })
-      );
-      lotLines.forEach((lotLine) => lotLine.setMap(this.map.googleMap));
+      // 👇 optionally, overlay lot lines
+      if (this.lotLines === 'overlay') this.makePaths();
     }
   }
 
+  // 👇 for the JS map
+  private makePaths(): void {
+    const paths = this.lot.boundaries.map(
+      (latlons) =>
+        new google.maps.Polyline({
+          path: latlons.map(({ lat, lon }) => ({ lat, lng: lon })),
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        })
+    );
+    paths.forEach((path) => path.setMap(this.map.googleMap));
+  }
+
   // 👇 for the static map
-  private makePaths(): string[] {
+  private makeStaticPaths(): string[] {
     return this.lot.boundaries.map((latlons) => {
       const path = latlons.map(({ lat, lon }) => [lat, lon]);
       return `&path=color:0xFF0000FF|weight:3|enc:${encode(path, 5)}`;

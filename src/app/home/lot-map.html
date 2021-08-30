@@ -3,7 +3,7 @@
   (resized)="resize($event)"
   class="overhead"
 >
-  <article *ngIf="api.ready$ | async; else noMap" class="lot-satellite">
+  <article *ngIf="api.ready$ | async; else noMap" class="lot-map">
     <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
   </article>
 

@@ -1,4 +1,4 @@
-app-lot-satellite {
+app-lot-map {
   display: block;
   height: 100%;
   width: 100%;
@@ -10,8 +10,8 @@ app-lot-satellite {
     position: relative;
     width: 100%;
 
-    .lot-nomap,
-    .lot-satellite {
+    .lot-map,
+    .lot-nomap {
       height: 100%;
       position: absolute;
       width: 100%;
@@ -23,7 +23,6 @@ app-lot-satellite {
       display: grid;
       font-size: 3rem;
       font-weight: bold;
-      grid-area: map;
       justify-content: center;
       padding: 1rem;
       text-align: center;

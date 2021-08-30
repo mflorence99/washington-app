@@ -1,5 +1,4 @@
 import { GeometryService } from '../services/geometry';
-import { GoogleService } from '../services/google';
 import { LatLon } from '../services/geometry';
 import { Lot } from '../state/parcels';
 import { Params } from '../services/params';
@@ -7,11 +6,9 @@ import { Rectangle } from '../services/geometry';
 import { XY } from '../services/geometry';
 
 import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
-import { GoogleMap } from '@angular/google-maps';
 import { Input } from '@angular/core';
-import { ResizedEvent } from 'angular-resize-event';
-import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 interface LotLine {
@@ -26,7 +23,7 @@ interface LotLine {
   encapsulation: ViewEncapsulation.None,
   selector: 'app-lot-lines',
   styleUrls: ['./lot-lines.scss'],
-  templateUrl: './lot-lines.html'
+  templateUrl: './lot-lines.svg'
 })
 export class LotLinesComponent {
   bbox: Rectangle = {
@@ -58,27 +55,14 @@ export class LotLinesComponent {
     this.lotImpl = lot;
     this.bbox = this.geometry.bboxOfLot(lot);
     this.center = this.geometry.bboxCenter(this.bbox);
-    this.mapOptions.center = { lat: this.center.lat, lng: this.center.lon };
   }
 
   lotLines: LotLine[] = [];
 
-  @Input() lotLinesOnly: boolean;
-
-  @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
-
-  mapOptions: google.maps.MapOptions = {
-    disableDefaultUI: true,
-    fullscreenControl: false,
-    keyboardShortcuts: false,
-    mapTypeControl: false,
-    mapTypeId: 'terrain'
-  };
-
   private lotImpl: Lot;
 
   constructor(
-    public api: GoogleService,
+    private cdf: ChangeDetectorRef,
     private geometry: GeometryService,
     private params: Params
   ) {}
@@ -111,7 +95,7 @@ export class LotLinesComponent {
       .join(' ');
   }
 
-  resize(event: ResizedEvent): void {
+  render(cx: number, cy: number): void {
     this.bbox = this.geometry.bboxOfLot(this.lot);
 
     // extent of lot in feet
@@ -127,10 +111,10 @@ export class LotLinesComponent {
     // extent of viewport in pixels with Npx margin all around
     const margin = this.params.home.lot.pxViewportMargin;
     const pxViewport = {
-      height: event.newHeight - margin * 2,
+      height: cy - margin * 2,
       left: margin,
       top: margin,
-      width: event.newWidth - margin * 2
+      width: cx - margin * 2
     };
 
     // calculate dimensions of lot
@@ -153,43 +137,9 @@ export class LotLinesComponent {
     this.dims.bottom = this.dims.top + this.dims.height;
     this.dims.right = this.dims.left + this.dims.width;
 
-    // 👇 no need to overthink this -- Google will center the bbox
-    //    in its viewport, which we've done ourselves for the lot lines
-    if (this.map) {
-      const nominal = new google.maps.LatLngBounds(
-        {
-          lat: this.bbox.top,
-          lng: this.bbox.left
-        },
-        {
-          lat: this.bbox.bottom,
-          lng: this.bbox.right
-        }
-      );
-      this.map.fitBounds(nominal);
-      this.map.panToBounds(nominal);
-
-      // TODO: 😎 just a WAG
-      const zoom = this.map.getZoom();
-      const zoom2scale = {
-        12: '1.6',
-        13: '2.15',
-        14: '2.3',
-        15: '1.3',
-        16: '2.1',
-        17: '1.7',
-        18: '1.9',
-        19: '1',
-        20: '1',
-        21: '1',
-        22: '1'
-      };
-      const style = document.body.style;
-      style.setProperty('--lotlines-scale', zoom2scale[zoom]);
-    }
-
     // 👇 the hard part!
     this.lotLines = this.makeLotLines();
+    this.cdf.markForCheck();
   }
 
   // 👇 we don't want the commas that the DecimalPipe introduces
