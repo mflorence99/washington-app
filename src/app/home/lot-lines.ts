@@ -95,7 +95,7 @@ export class LotLinesComponent {
       .join(' ');
   }
 
-  render(cx: number, cy: number): void {
+  render(cxViewport = 0, cyViewport = 0): void {
     this.bbox = this.geometry.bboxOfLot(this.lot);
 
     // extent of lot in feet
@@ -108,17 +108,30 @@ export class LotLinesComponent {
       { lat: this.bbox.top, lon: this.bbox.right }
     );
 
-    // extent of viewport in pixels with Npx margin all around
-    const margin = this.params.home.lot.pxViewportMargin;
-    const pxViewport = {
-      height: cy - margin * 2,
-      left: margin,
-      top: margin,
-      width: cx - margin * 2
-    };
-
-    // calculate dimensions of lot
+    // you'll se why we do this first in a minute
     const arLot = this.ftLotWidth / this.ftLotHeight;
+
+    // 👇 so we either have a real viewport we must center ouselves in
+    //    or just a pretend one, so the SVG can be standalone
+    let pxViewport: Rectangle;
+    if (cxViewport && cyViewport) {
+      const margin = this.params.home.lot.pxViewportMargin;
+      pxViewport = {
+        height: cyViewport - margin * 2,
+        left: margin,
+        top: margin,
+        width: cxViewport - margin * 2
+      };
+    } else {
+      pxViewport = {
+        height: 1000 / arLot,
+        left: 0,
+        top: 0,
+        width: 1000
+      };
+    }
+
+    // center the lot lines inside the viewport
     const arViewport = pxViewport.width / pxViewport.height;
     this.ft2px = pxViewport.width / this.ftLotWidth;
     if (arViewport >= arLot) {

@@ -4,7 +4,19 @@
   class="overhead"
 >
   <article *ngIf="api.ready$ | async; else noMap" class="lot-map">
-    <google-map [options]="mapOptions" height="100%" width="100%"> </google-map>
+    <google-map [options]="mapOptions" height="100%" width="100%">
+      <ng-container [ngSwitch]="lotLinesStyle">
+        <ng-container *ngSwitchCase="'outline'">
+          <map-polyline
+            *ngFor="let outline of outlines"
+            [path]="outline"
+            [options]="outlineOptions"
+          ></map-polyline>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'overlay'"> </ng-container>
+      </ng-container>
+    </google-map>
   </article>
 
   <ng-template #noMap>
@@ -20,3 +32,9 @@
     class="overhead"
   />
 </ng-template>
+
+<app-lot-lines
+  *ngIf="lotLinesStyle === 'measure'"
+  hidden
+  [lot]="lot"
+></app-lot-lines>
