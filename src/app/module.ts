@@ -8,6 +8,7 @@ import { LogRocketPluginModule } from './state/plugins/logrocket';
 import { LotDiagramComponent } from './home/lot-diagram';
 import { LotLinesComponent } from './home/lot-lines';
 import { LotMapComponent } from './home/lot-map';
+import { LotMeasureComponent } from './home/lot-measure';
 import { LotsComponent } from './home/lots';
 import { ModelState } from './state/model';
 import { OverlayComponent } from './home/overlay';
@@ -52,6 +53,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LotDiagramComponent,
     LotLinesComponent,
     LotMapComponent,
+    LotMeasureComponent,
     LotsComponent,
     OverlayComponent,
     RetrySrcDirective,

@@ -14,7 +14,10 @@
           ></map-polyline>
         </ng-container>
 
-        <ng-container *ngSwitchCase="'overlay'"> </ng-container>
+        <ng-container *ngSwitchCase="'measure'">
+          <app-lot-measure [bbox]="bbox" [lot]="lot" [mapType]="mapType">
+          </app-lot-measure>
+        </ng-container>
       </ng-container>
     </google-map>
   </article>
@@ -32,9 +35,3 @@
     class="overhead"
   />
 </ng-template>
-
-<app-lot-lines
-  *ngIf="lotLinesStyle === 'measure'"
-  hidden
-  [lot]="lot"
-></app-lot-lines>

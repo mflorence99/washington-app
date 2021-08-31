@@ -8,6 +8,7 @@ import { XY } from '../services/geometry';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
@@ -26,22 +27,9 @@ interface LotLine {
   templateUrl: './lot-lines.svg'
 })
 export class LotLinesComponent {
-  bbox: Rectangle = {
-    bottom: 0,
-    left: 0,
-    top: 0,
-    right: 0
-  };
-
+  bbox: Rectangle;
   center: LatLon;
-
-  dims: Rectangle = {
-    height: 0,
-    left: 0,
-    top: 0,
-    width: 0
-  };
-
+  dims: Rectangle;
   ft2px = 0;
   ftLotHeight = 0;
   ftLotWidth = 0;
@@ -64,6 +52,7 @@ export class LotLinesComponent {
   constructor(
     private cdf: ChangeDetectorRef,
     private geometry: GeometryService,
+    public host: ElementRef,
     private params: Params
   ) {}
 
@@ -114,8 +103,8 @@ export class LotLinesComponent {
     // 👇 so we either have a real viewport we must center ouselves in
     //    or just a pretend one, so the SVG can be standalone
     let pxViewport: Rectangle;
+    const margin = this.params.home.lot.pxViewportMargin;
     if (cxViewport && cyViewport) {
-      const margin = this.params.home.lot.pxViewportMargin;
       pxViewport = {
         height: cyViewport - margin * 2,
         left: margin,
@@ -124,10 +113,10 @@ export class LotLinesComponent {
       };
     } else {
       pxViewport = {
-        height: 1000 / arLot,
-        left: 0,
-        top: 0,
-        width: 1000
+        height: 1000 / arLot - margin * 2,
+        left: margin,
+        top: margin,
+        width: 1000 - margin * 2
       };
     }
 
@@ -135,24 +124,28 @@ export class LotLinesComponent {
     const arViewport = pxViewport.width / pxViewport.height;
     this.ft2px = pxViewport.width / this.ftLotWidth;
     if (arViewport >= arLot) {
-      this.dims.height = pxViewport.height;
-      this.dims.width = pxViewport.height * arLot;
-      this.dims.top = pxViewport.top;
-      this.dims.left =
-        pxViewport.left + (pxViewport.width - this.dims.width) / 2;
+      this.dims = {
+        height: pxViewport.height,
+        width: pxViewport.height * arLot,
+        top: pxViewport.top,
+        left:
+          pxViewport.left + (pxViewport.width - pxViewport.height * arLot) / 2
+      };
     } else {
-      this.dims.height = pxViewport.width / arLot;
-      this.dims.width = pxViewport.width;
-      this.dims.top =
-        pxViewport.top + (pxViewport.height - this.dims.height) / 2;
-      this.dims.left = pxViewport.left;
+      this.dims = {
+        height: pxViewport.width / arLot,
+        width: pxViewport.width,
+        top:
+          pxViewport.top + (pxViewport.height - pxViewport.width / arLot) / 2,
+        left: pxViewport.left
+      };
     }
     this.dims.bottom = this.dims.top + this.dims.height;
     this.dims.right = this.dims.left + this.dims.width;
 
     // 👇 the hard part!
     this.lotLines = this.makeLotLines();
-    this.cdf.markForCheck();
+    this.cdf.detectChanges();
   }
 
   // 👇 we don't want the commas that the DecimalPipe introduces

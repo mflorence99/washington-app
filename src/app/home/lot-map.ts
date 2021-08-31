@@ -26,8 +26,6 @@ import { encode } from '@googlemaps/polyline-codec';
 export class LotMapComponent {
   bbox: Rectangle;
 
-  bounds: google.maps.LatLngBounds;
-
   center: LatLon;
 
   @Input()
@@ -110,18 +108,18 @@ export class LotMapComponent {
 
   resize(_event: ResizedEvent): void {
     if (this.map) {
-      this.bounds = new google.maps.LatLngBounds(
+      const bounds = new google.maps.LatLngBounds(
         {
-          lat: this.bbox.top,
+          lat: this.bbox.bottom,
           lng: this.bbox.left
         },
         {
-          lat: this.bbox.bottom,
+          lat: this.bbox.top,
           lng: this.bbox.right
         }
       );
-      this.map.fitBounds(this.bounds);
-      this.map.panToBounds(this.bounds);
+      this.map.fitBounds(bounds);
+      this.map.panToBounds(bounds);
     }
   }
 }

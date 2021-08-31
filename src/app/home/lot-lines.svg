@@ -1,5 +1,5 @@
 <svg
-  *ngIf="dims.height && dims.width"
+  *ngIf="dims?.height && dims?.width"
   attr.viewPort="0 0 {{ dims.width }} {{ dims.height }}"
   class="lot-lines"
 >
@@ -30,7 +30,7 @@
         <textPath
           [attr.href]="'#_textPath_' + ix"
           text-anchor="middle"
-          startOffset="50%"
+          startOffset="40%"
         >
           <tspan dy="-8">{{ round(lotLine.length) }}</tspan>
         </textPath>

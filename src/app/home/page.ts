@@ -3,6 +3,7 @@ import { DestroyService } from '../services/destroy';
 import { DetailsComponent } from './details';
 import { GeolocationService } from '../services/geolocation';
 import { GeometryService } from '../services/geometry';
+import { GoogleService } from '../services/google';
 import { InfoComponent } from './info';
 import { Lot } from '../state/parcels';
 import { LOT_BY_ID } from '../state/parcels';
@@ -74,6 +75,7 @@ export class HomePage implements AfterViewInit, OnInit {
     private destroy$: DestroyService,
     private geolocation$: GeolocationService,
     public geometry: GeometryService,
+    private api: GoogleService,
     private http: HttpClient,
     public model: ModelState,
     public overlay: OverlayState,
@@ -83,7 +85,10 @@ export class HomePage implements AfterViewInit, OnInit {
     private stc: SingletonToastService,
     private swUpdate: SwUpdate,
     public view: ViewState
-  ) {}
+  ) {
+    // 👇 let's start loading the Google Maps API
+    this.api.ready$.subscribe();
+  }
 
   followTracker(following: boolean): void {
     this.model.follow(following);

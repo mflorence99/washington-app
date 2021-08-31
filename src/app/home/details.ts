@@ -32,7 +32,6 @@ export class DetailsComponent {
 
   orientation: 'landscape' | 'portrait' | 'square' | 'pdf' = 'square';
 
-  staticMap = false;
   staticMapHeight = 480;
   staticMapWidth = 480;
 
@@ -83,7 +82,6 @@ export class DetailsComponent {
     this.screen.orientation = this.orientation;
     this.screen.height = style.getPropertyValue('--height');
     this.screen.width = style.getPropertyValue('--width');
-    this.staticMap = true;
     // 👇 make the popup look like we want for PDF
     this.orientation = 'pdf';
     style.setProperty('--height', '816px');
@@ -99,7 +97,6 @@ export class DetailsComponent {
           this.orientation = this.screen.orientation as any;
           style.setProperty('--height', this.screen.height);
           style.setProperty('--width', this.screen.width);
-          this.staticMap = false;
         });
     }, this.params.home.details.printDelay);
   }

@@ -78,6 +78,18 @@ app-lots svg g polygon {
   stroke: none;
 }
 
+// 👇 this mess is because in lot-measure we pull the lot lines
+//    out of their host and into Google Maps
+
+google-map app-lot-lines svg text {
+  font-size: 12px !important;
+}
+
+google-map app-lot-lines.hybrid svg text,
+google-map app-lot-lines.satellite svg text {
+  stroke: white;
+}
+
 @keyframes ANIMATE_TRACKER {
   0% {
     r: 10px;

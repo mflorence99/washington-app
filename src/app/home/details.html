@@ -14,19 +14,27 @@
   >
     <app-lot-map
       [lot]="lot"
-      [lotLinesStyle]="'outline'"
-      [mapType]="'terrain'"
+      [lotLinesStyle]="orientation === 'pdf' ? 'outline' : 'measure'"
+      [mapType]="'satellite'"
       [staticMapHeight]="staticMapHeight"
       [staticMapWidth]="staticMapWidth"
-      [staticMap]="staticMap"
+      [staticMap]="orientation === 'pdf'"
     ></app-lot-map>
   </article>
 
+  <article *ngIf="orientation === 'pdf'" class="lot">
+    <app-lot-diagram [lot]="lot"></app-lot-diagram>
+  </article>
+
   <article
-    *ngIf="model.details === 'measure' || orientation === 'pdf'"
+    *ngIf="model.details === 'measure' && orientation !== 'pdf'"
     class="lot"
   >
-    <app-lot-diagram [lot]="lot"></app-lot-diagram>
+    <app-lot-map
+      [lot]="lot"
+      [lotLinesStyle]="'measure'"
+      [mapType]="'roadmap'"
+    ></app-lot-map>
   </article>
 
   <article
