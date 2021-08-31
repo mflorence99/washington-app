@@ -91,8 +91,7 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   // private methods
 
   private isLotID(searchFor: string): string {
-    // 👀 https://stackoverflow.com/questions/8292965/regular-expression-for-number-and-dash
-    if (/^(\d+-?)+\d+/.test(searchFor)) {
+    if (/^[\d]+-[\d+]/.test(searchFor)) {
       // replace multiple spaces with none
       const normalized = searchFor.replace(/\s\s+/g, '');
       // split on - separator and strip leading zeros
