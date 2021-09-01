@@ -25,6 +25,7 @@ app-details {
 
     .footnotes {
       font-size: smaller;
+      max-width: 20rem;
     }
 
     .lot {
@@ -36,6 +37,8 @@ app-details {
     }
 
     .table {
+      padding-bottom: 3rem;
+
       table {
         td {
           padding-bottom: 8px;
@@ -94,7 +97,7 @@ app-details.portrait.assessor section {
     'map'
     'table-assessor';
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
 
   .lot,
   .table.measure {
@@ -135,7 +138,7 @@ app-details.portrait.measure section {
     'lot'
     'table-measure';
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
 
   .map,
   .table.assessor {

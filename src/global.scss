@@ -88,6 +88,14 @@ app-lots svg g polygon {
   stroke: none;
 }
 
+// 👇 not very nice to duplicate this Ionic code to get us a taller
+//    modal with more map space -- except keep phone size at 100%
+@media only screen and (min-width: 768px) and (min-height: 600px) {
+  .tall-modal {
+    --height: 90%;
+  }
+}
+
 @keyframes ANIMATE_TRACKER {
   0% {
     r: 10px;

@@ -389,6 +389,7 @@ export class HomePage implements AfterViewInit, OnInit {
       this.smc.createAndPresent({
         component: DetailsComponent,
         componentProps: { lot: lots[0] },
+        cssClass: ['tall-modal'],
         swipeToClose: true
       });
     }
