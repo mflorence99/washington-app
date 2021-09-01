@@ -32,6 +32,10 @@ export class DetailsComponent {
 
   orientation: 'landscape' | 'portrait' | 'square' | 'pdf' = 'square';
 
+  // 👇 these keep maps in sync as we flip between details type
+  preferredBounds: google.maps.LatLngBounds;
+  preferredZoom: number;
+
   staticMapHeight = this.params.home.details.pdf.mapHeight;
   staticMapWidth = this.params.home.details.pdf.mapWidth;
 

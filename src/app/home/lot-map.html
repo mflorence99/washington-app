@@ -4,7 +4,13 @@
   class="overhead"
 >
   <article *ngIf="api.ready$ | async; else noMap" class="lot-map">
-    <google-map [options]="mapOptions" height="100%" width="100%">
+    <google-map
+      (boundsChanged)="boundsChanged.emit(map.getBounds())"
+      (zoomChanged)="zoomChanged.emit(map.getZoom())"
+      [options]="mapOptions"
+      height="100%"
+      width="100%"
+    >
       <ng-container [ngSwitch]="lotLinesStyle">
         <ng-container *ngSwitchCase="'outline'">
           <map-polyline

@@ -7,8 +7,10 @@ import { Rectangle } from '../services/geometry';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { Input } from '@angular/core';
+import { Output } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
@@ -25,6 +27,8 @@ import { encode } from '@googlemaps/polyline-codec';
 })
 export class LotMapComponent {
   bbox: Rectangle;
+
+  @Output() boundsChanged = new EventEmitter<google.maps.LatLngBounds>();
 
   center: LatLon;
 
@@ -72,6 +76,10 @@ export class LotMapComponent {
 
   outlines: google.maps.LatLngLiteral[][] = [];
 
+  // 👇 these keep maps in sync as we flip between details type
+  @Input() preferredBounds: google.maps.LatLngBounds;
+  @Input() preferredZoom: number;
+
   @Input()
   get staticMap(): boolean {
     return this.staticMapImpl;
@@ -98,6 +106,8 @@ export class LotMapComponent {
   @Input() staticMapHeight: number;
   @Input() staticMapWidth: number;
 
+  @Output() zoomChanged = new EventEmitter<number>();
+
   private lotImpl: Lot;
   private mapTypeImpl: google.maps.MapTypeId;
   private staticMapImpl: boolean;
@@ -120,8 +130,9 @@ export class LotMapComponent {
           lng: this.bbox.right
         }
       );
-      this.map.fitBounds(bounds);
-      this.map.panToBounds(bounds);
+      this.map.fitBounds(this.preferredBounds ?? bounds);
+      this.map.panToBounds(this.preferredBounds ?? bounds);
+      if (this.preferredZoom) this.map.googleMap.setZoom(this.preferredZoom);
     }
   }
 }

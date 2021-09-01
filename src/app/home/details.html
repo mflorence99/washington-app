@@ -13,9 +13,13 @@
     class="map"
   >
     <app-lot-map
+      (boundsChanged)="preferredBounds = $event"
+      (zoomChanged)="preferredZoom = $event"
       [lot]="lot"
       [lotLinesStyle]="orientation === 'pdf' ? 'outline' : 'measure'"
       [mapType]="'satellite'"
+      [preferredBounds]="preferredBounds"
+      [preferredZoom]="preferredZoom"
       [staticMapHeight]="staticMapHeight"
       [staticMapWidth]="staticMapWidth"
       [staticMap]="orientation === 'pdf'"
@@ -31,9 +35,13 @@
     class="lot"
   >
     <app-lot-map
+      (boundsChanged)="preferredBounds = $event"
+      (zoomChanged)="preferredZoom = $event"
       [lot]="lot"
       [lotLinesStyle]="'measure'"
       [mapType]="'roadmap'"
+      [preferredBounds]="preferredBounds"
+      [preferredZoom]="preferredZoom"
     ></app-lot-map>
   </article>
 
