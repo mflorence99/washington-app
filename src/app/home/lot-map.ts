@@ -66,9 +66,8 @@ export class LotMapComponent {
   mapURL = '';
 
   outlineOptions: google.maps.PolylineOptions = {
-    strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
-    strokeWeight: 3
+    strokeColor: this.params.common.lotOutlineColor,
+    strokeWeight: this.params.common.lotOutlineWidth
   };
 
   outlines: google.maps.LatLngLiteral[][] = [];
@@ -83,10 +82,13 @@ export class LotMapComponent {
       this.mapURL = `https://maps.googleapis.com/maps/api/staticmap?key=${this.params.google.apiKey}&size=${this.staticMapWidth}x${this.staticMapHeight}&visible=${this.bbox.top},${this.bbox.left}|${this.bbox.bottom},${this.bbox.right}&maptype=${this.mapType}`;
       // 👇 optionally, overlay lot lines
       if (this.lotLinesStyle === 'outline') {
+        const params = this.params.common;
         this.mapURL += this.outlines
           .map((outline) => {
             const path = outline.map(({ lat, lng }) => [lat, lng]);
-            return `&path=color:0xFF0000FF|weight:3|enc:${encode(path, 5)}`;
+            return `&path=color:${params.lotOutlineColorEncoded}|weight:${
+              params.lotOutlineWidth
+            }|enc:${encode(path, 5)}`;
           })
           .join('');
       }

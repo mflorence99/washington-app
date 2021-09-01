@@ -418,18 +418,16 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  private highlightLots(
-    lots: Lot[],
-    stroke = this.params.home.page.highlightedLotOutline
-  ): void {
+  private highlightLots(lots: Lot[]): void {
     // first, remove any prior highlight
     while (this.highlightStylesheet.cssRules.length > 0)
       this.highlightStylesheet.deleteRule(0);
     // 👇 pay attention to globals.scss
+    const params = this.params.common;
     lots.forEach((lot) => {
       const rule = `app-lots svg g polygon[id='${lot.id}'] {
-        stroke: ${stroke};
-        stroke-width: ${4 / this.view.view.scale}
+        stroke: ${params.lotOutlineColor};
+        stroke-width: ${params.lotOutlineWidth / this.view.view.scale}
       }`;
       this.highlightStylesheet.insertRule(rule);
     });
@@ -566,5 +564,10 @@ export class HomePage implements AfterViewInit, OnInit {
     style.setProperty('--app-scale', `${view.scale}`);
     style.setProperty('--app-translate-x', `${view.translate[0]}`);
     style.setProperty('--app-translate-y', `${view.translate[1]}`);
+    const params = this.params.common;
+    style.setProperty('--lot-marker-color', `${params.lotMarkerColor}`);
+    style.setProperty('--lot-marker-width', `${params.lotMarkerWidth}`);
+    style.setProperty('--lot-outline-color', `${params.lotOutlineColor}`);
+    style.setProperty('--lot-outline-width', `${params.lotOutlineWidth}`);
   }
 }

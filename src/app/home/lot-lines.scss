@@ -5,13 +5,13 @@ app-lot-lines {
     }
 
     .boundary {
-      stroke: var(--ion-color-danger);
-      stroke-width: 3;
+      stroke: var(--lot-outline-color);
+      stroke-width: var(--lot-outline-width);
     }
 
     .marker {
-      fill: var(--ion-color-danger-shade);
-      r: 5;
+      fill: var(--lot-marker-color);
+      r: var(--lot-marker-width);
     }
   }
 }

@@ -5,6 +5,12 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class Params {
   common = {
+    lotMarkerColor: '#e04055',
+    lotMarkerWidth: 5,
+    lotOutlineColor: '#ff4961',
+    // 👇 ugh! for URL of static map
+    lotOutlineColorEncoded: '0xff4961ff',
+    lotOutlineWidth: 3,
     toastDuration: 10 * 1000
   };
 
@@ -55,7 +61,6 @@ export class Params {
       // 👇 checkVersion NOT used if service worker active
       checkVersionAfter: 60 * 1000,
       checkVersionInterval: 120 * 1000,
-      highlightedLotOutline: 'var(--ion-color-danger)',
       searchbarDebounceTime: 1000,
       showLotsDelay: 1000
     },
