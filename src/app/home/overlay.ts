@@ -38,6 +38,18 @@ export class OverlayComponent implements OnInit {
     private mc: ModalController,
     public overlay: OverlayState
   ) {
+    this.#makeOverlayForm();
+  }
+
+  #handleValueChanges$(): void {
+    this.overlayForm.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((overlayForm) => {
+        this.overlay.update(overlayForm.properties);
+      });
+  }
+
+  #makeOverlayForm(): void {
     const groups = OverlayState.schema().map((schema) =>
       this.formBuilder.group({
         attribute: schema.attribute,
@@ -60,6 +72,17 @@ export class OverlayComponent implements OnInit {
     }
   }
 
+  #populate(): void {
+    const values = this.overlay.properties.map((property) => ({
+      attribute: property.attribute,
+      enabled: property.enabled,
+      fill: property.fill,
+      stroke: property.stroke,
+      value: property.value
+    }));
+    this.overlayForm.patchValue({ properties: values });
+  }
+
   caption(ix: number): string {
     return OverlayState.schema()[ix].caption;
   }
@@ -73,32 +96,13 @@ export class OverlayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.populate();
-    this.handleValueChanges$();
+    this.#populate();
+    this.#handleValueChanges$();
   }
 
   resize(event: ResizedEvent): void {
     if (event.newWidth === event.newHeight) this.cssClass = 'square';
     else if (event.newWidth > event.newHeight) this.cssClass = 'landscape';
     else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
-  }
-
-  private handleValueChanges$(): void {
-    this.overlayForm.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((overlayForm) => {
-        this.overlay.update(overlayForm.properties);
-      });
-  }
-
-  private populate(): void {
-    const values = this.overlay.properties.map((property) => ({
-      attribute: property.attribute,
-      enabled: property.enabled,
-      fill: property.fill,
-      stroke: property.stroke,
-      value: property.value
-    }));
-    this.overlayForm.patchValue({ properties: values });
   }
 }

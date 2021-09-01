@@ -24,7 +24,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './tracker.svg'
 })
 export class TrackerComponent {
-  private lastTimestamp = 0;
+  #lastTimestamp = 0;
 
   constructor(
     private destroy$: DestroyService,
@@ -35,10 +35,10 @@ export class TrackerComponent {
     private stc: SingletonToastService,
     public view: ViewState
   ) {
-    this.handleGeoLocation$();
+    this.#handleGeoLocation$();
   }
 
-  private currentPositionLost(error: GeolocationPositionError): void {
+  #currentPositionLost(error: GeolocationPositionError): void {
     this.stc.createAndPresent({
       message: `GPS tracking ${error.message}`,
       duration: this.params.common.toastDuration,
@@ -47,14 +47,14 @@ export class TrackerComponent {
   }
 
   // 👇 the margin makes sure the tracker doesn't get too close to the edge
-  private followTracker(location: XY): void {
+  #followTracker(location: XY): void {
     if (
       !this.geometry.isXYInViewport(location, this.params.home.tracker.margin)
     )
       this.geometry.centerXYInViewport(location);
   }
 
-  private handleGeoLocation$(): void {
+  #handleGeoLocation$(): void {
     const params = this.params.home.tracker.backoff;
     this.geolocation$
       .pipe(
@@ -77,20 +77,20 @@ export class TrackerComponent {
         })
       )
       .subscribe({
-        error: this.handleGeolocationError.bind(this),
-        next: this.handleGeolocationPosition.bind(this)
+        error: this.#handleGeolocationError.bind(this),
+        next: this.#handleGeolocationPosition.bind(this)
       });
   }
 
-  private handleGeolocationError(error: GeolocationPositionError): void {
+  #handleGeolocationError(error: GeolocationPositionError): void {
     // 👇 because shouldRetry has no maxRetries, we should only get here
     // on a PERMISSION_DENIED error
     console.error('🔥 Geolocation handleGeolocationError', error);
-    this.currentPositionLost(error);
+    this.#currentPositionLost(error);
     this.model.track(false);
   }
 
-  private handleGeolocationPosition(position: GeolocationPosition): void {
+  #handleGeolocationPosition(position: GeolocationPosition): void {
     // convert location to position over map
     const latlon = {
       lat: position.coords.latitude,
@@ -99,17 +99,17 @@ export class TrackerComponent {
     const mapIDs = this.geometry.whichMapIDs(latlon);
     const xy = this.geometry.latlon2xy(latlon);
     if (this.model.follower && mapIDs.includes(this.model.mapID))
-      this.followTracker(xy);
+      this.#followTracker(xy);
     // convert accuracy from meters to feet to pixels
     const accuracy =
       (this.geometry.meters2feet(position.coords.accuracy) *
         this.model.map.cxScale) /
       this.model.map.ftScale;
     // what is interval between last reading?
-    const interval = this.lastTimestamp
-      ? position.timestamp - this.lastTimestamp
+    const interval = this.#lastTimestamp
+      ? position.timestamp - this.#lastTimestamp
       : 0;
-    this.lastTimestamp = position.timestamp;
+    this.#lastTimestamp = position.timestamp;
     // TODO: ⚠️ how to control direction of rotation animation?
     const heading = position.coords.heading;
     const headingVisibility = heading != null && !isNaN(heading);

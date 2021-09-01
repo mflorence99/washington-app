@@ -42,6 +42,36 @@ export class GeometryService {
     private view: ViewState
   ) {}
 
+  // 👀 https://medium.com/@francoisromain/smooth-a-svg-path-with-cubic-bezier-curves-e37b49d46c74
+
+  #bezierControlPoint(
+    current: XY,
+    previous: XY,
+    next: XY,
+    reverse = false
+  ): XY {
+    previous = previous ?? current;
+    next = next ?? current;
+    // properties of opposed line
+    const lineProps = this.#bezierLineProps(previous, next);
+    // if is end-control-point, add PI to the angle to go backward
+    const angle = lineProps.angle + (reverse ? Math.PI : 0);
+    const length = lineProps.length * this.params.geometry.bezierSmoothing;
+    // control point position is relative to the current point
+    const x = current.x + Math.cos(angle) * length;
+    const y = current.y + Math.sin(angle) * length;
+    return { x, y };
+  }
+
+  #bezierLineProps(p: XY, q: XY): { angle: number; length: number } {
+    const lx = q.x - p.x;
+    const ly = q.y - p.y;
+    return {
+      angle: Math.atan2(ly, lx),
+      length: Math.sqrt(Math.pow(lx, 2) + Math.pow(ly, 2))
+    };
+  }
+
   acres2sqft(acres: number): number {
     return acres * 43560;
   }
@@ -101,8 +131,8 @@ export class GeometryService {
     const next = ok(ix + 1) ? latlon2xy(latlons[ix + 1]) : undefined;
     const previous = ok(ix - 1) ? latlon2xy(latlons[ix - 1]) : undefined;
     const pprevious = ok(ix - 2) ? latlon2xy(latlons[ix - 2]) : undefined;
-    const start = this.bezierControlPoint(previous, pprevious, current);
-    const end = this.bezierControlPoint(current, previous, next, true);
+    const start = this.#bezierControlPoint(previous, pprevious, current);
+    const end = this.#bezierControlPoint(current, previous, next, true);
     return `C ${start.x},${start.y} ${end.x},${end.y} ${current.x},${current.y}`;
   }
 
@@ -472,35 +502,5 @@ export class GeometryService {
 
   y2lat(y: number): number {
     return (Math.atan(Math.exp(y / (180 / Math.PI))) / (Math.PI / 4) - 1) * 90;
-  }
-
-  // 👀 https://medium.com/@francoisromain/smooth-a-svg-path-with-cubic-bezier-curves-e37b49d46c74
-
-  private bezierControlPoint(
-    current: XY,
-    previous: XY,
-    next: XY,
-    reverse = false
-  ): XY {
-    previous = previous ?? current;
-    next = next ?? current;
-    // properties of opposed line
-    const lineProps = this.bezierLineProps(previous, next);
-    // if is end-control-point, add PI to the angle to go backward
-    const angle = lineProps.angle + (reverse ? Math.PI : 0);
-    const length = lineProps.length * this.params.geometry.bezierSmoothing;
-    // control point position is relative to the current point
-    const x = current.x + Math.cos(angle) * length;
-    const y = current.y + Math.sin(angle) * length;
-    return { x, y };
-  }
-
-  private bezierLineProps(p: XY, q: XY): { angle: number; length: number } {
-    const lx = q.x - p.x;
-    const ly = q.y - p.y;
-    return {
-      angle: Math.atan2(ly, lx),
-      length: Math.sqrt(Math.pow(lx, 2) + Math.pow(ly, 2))
-    };
   }
 }

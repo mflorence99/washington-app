@@ -27,6 +27,8 @@ interface LotLine {
   templateUrl: './lot-lines.svg'
 })
 export class LotLinesComponent {
+  #lot: Lot;
+
   bbox: Rectangle;
   center: LatLon;
   dims: Rectangle;
@@ -36,18 +38,16 @@ export class LotLinesComponent {
 
   @Input()
   get lot(): Lot {
-    return this.lotImpl;
+    return this.#lot;
   }
   // 👇 this avoids the map showing Google HQ first
   set lot(lot: Lot) {
-    this.lotImpl = lot;
+    this.#lot = lot;
     this.bbox = this.geometry.bboxOfLot(lot);
     this.center = this.geometry.bboxCenter(this.bbox);
   }
 
   lotLines: LotLine[] = [];
-
-  private lotImpl: Lot;
 
   constructor(
     private cdf: ChangeDetectorRef,
@@ -55,6 +55,61 @@ export class LotLinesComponent {
     public host: ElementRef,
     private params: Params
   ) {}
+
+  #isLineReallyShort(length: number): boolean {
+    const threshold = this.params.home.lot.shortLineThreshold;
+    return length * this.ft2px < threshold;
+  }
+
+  #isLineStraight(p: number, q: number): boolean {
+    const threshold = this.params.home.lot.straightLineThreshold;
+    return Math.abs(p - q) < threshold || Math.abs(p - q) > 360 - threshold;
+  }
+
+  #makeLotLine(): LotLine {
+    return { bearing: 0, length: 0, path: [] };
+  }
+
+  // 👇 the goal here is to minimize the number of measured lines
+  //    (to reduce vusual clutter) by coalescing "straight enough" and
+  //    "too short" lines
+  #makeLotLines(): LotLine[] {
+    const lotLines: LotLine[] = [];
+    this.lot.lengths.forEach((lengths, ix) => {
+      const boundary = this.lot.boundaries[ix];
+
+      let lotLine = this.#makeLotLine();
+      lengths.reduce((acc, length, iy) => {
+        const p = boundary[iy];
+        const q = boundary[iy + 1];
+        const bearing = this.geometry.bearing(p, q);
+
+        if (iy === 0) {
+          lotLine.bearing = bearing;
+          lotLine.length = length;
+          lotLine.path = [p, q];
+        } else {
+          if (
+            !this.#isLineStraight(bearing, lotLine.bearing) &&
+            !this.#isLineReallyShort(length)
+          ) {
+            acc.push(lotLine);
+            lotLine = this.#makeLotLine();
+          }
+          if (!this.#isLineReallyShort(length)) lotLine.bearing = bearing;
+          lotLine.length += length;
+          // the first line needs a start point, then we just need the end
+          if (lotLine.path.length === 0) lotLine.path.push(p);
+          lotLine.path.push(q);
+        }
+
+        return acc;
+      }, lotLines);
+
+      if (lotLine.path.length > 0) lotLines.push(lotLine);
+    });
+    return lotLines;
+  }
 
   latlon2xy(latlon: LatLon): XY {
     return this.geometry.latlon2xy(latlon, this.bbox, this.dims);
@@ -131,67 +186,12 @@ export class LotLinesComponent {
     this.dims.right = this.dims.left + this.dims.width;
 
     // 👇 the hard part!
-    this.lotLines = this.makeLotLines();
+    this.lotLines = this.#makeLotLines();
     this.cdf.detectChanges();
   }
 
   // 👇 we don't want the commas that the DecimalPipe introduces
   round(value: number): number {
     return Math.round(value);
-  }
-
-  private isLineReallyShort(length: number): boolean {
-    const threshold = this.params.home.lot.shortLineThreshold;
-    return length * this.ft2px < threshold;
-  }
-
-  private isLineStraight(p: number, q: number): boolean {
-    const threshold = this.params.home.lot.straightLineThreshold;
-    return Math.abs(p - q) < threshold || Math.abs(p - q) > 360 - threshold;
-  }
-
-  private makeLotLine(): LotLine {
-    return { bearing: 0, length: 0, path: [] };
-  }
-
-  // 👇 the goal here is to minimize the number of measured lines
-  //    (to reduce vusual clutter) by coalescing "straight enough" and
-  //    "too short" lines
-  private makeLotLines(): LotLine[] {
-    const lotLines: LotLine[] = [];
-    this.lot.lengths.forEach((lengths, ix) => {
-      const boundary = this.lot.boundaries[ix];
-
-      let lotLine = this.makeLotLine();
-      lengths.reduce((acc, length, iy) => {
-        const p = boundary[iy];
-        const q = boundary[iy + 1];
-        const bearing = this.geometry.bearing(p, q);
-
-        if (iy === 0) {
-          lotLine.bearing = bearing;
-          lotLine.length = length;
-          lotLine.path = [p, q];
-        } else {
-          if (
-            !this.isLineStraight(bearing, lotLine.bearing) &&
-            !this.isLineReallyShort(length)
-          ) {
-            acc.push(lotLine);
-            lotLine = this.makeLotLine();
-          }
-          if (!this.isLineReallyShort(length)) lotLine.bearing = bearing;
-          lotLine.length += length;
-          // the first line needs a start point, then we just need the end
-          if (lotLine.path.length === 0) lotLine.path.push(p);
-          lotLine.path.push(q);
-        }
-
-        return acc;
-      }, lotLines);
-
-      if (lotLine.path.length > 0) lotLines.push(lotLine);
-    });
-    return lotLines;
   }
 }

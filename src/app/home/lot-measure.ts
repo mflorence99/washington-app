@@ -77,6 +77,8 @@ const makeCustomOverlay = (
   templateUrl: './lot-measure.html'
 })
 export class LotMeasureComponent implements AfterViewInit, OnDestroy {
+  #customOverlay: google.maps.OverlayView;
+
   @Input() bbox: Rectangle;
   @Input() lot: Lot;
 
@@ -85,12 +87,10 @@ export class LotMeasureComponent implements AfterViewInit, OnDestroy {
 
   @Input() mapType: google.maps.MapTypeId;
 
-  private customOverlay: google.maps.OverlayView;
-
   constructor(private host: ElementRef, private map: GoogleMap) {}
 
   ngAfterViewInit(): void {
-    this.customOverlay = makeCustomOverlay(
+    this.#customOverlay = makeCustomOverlay(
       this.host,
       this.lotLinesComponent,
       this.map,
@@ -99,7 +99,7 @@ export class LotMeasureComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.customOverlay?.setMap(null);
-    this.customOverlay = null;
+    this.#customOverlay?.setMap(null);
+    this.#customOverlay = null;
   }
 }

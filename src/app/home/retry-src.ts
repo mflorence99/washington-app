@@ -12,42 +12,42 @@ import { OnDestroy } from '@angular/core';
   selector: 'img[appRetrySrc]'
 })
 export class RetrySrcDirective implements OnDestroy {
-  private src: string;
-  private timer;
+  #src: string;
+  #timer;
 
   constructor(
     private host: ElementRef<HTMLImageElement>,
     private params: Params
   ) {}
 
+  #clearTimer(): void {
+    if (this.#timer) {
+      clearTimeout(this.#timer);
+      this.#timer = null;
+    }
+  }
+
   @Input()
   set appRetrySrc(value: string) {
-    this.clearTimer();
-    this.src = value;
+    this.#clearTimer();
+    this.#src = value;
     this.host.nativeElement.src = value;
   }
 
   @HostListener('error') imgError(): void {
-    console.log(`%c${this.src} error`, 'color: orchid');
-    this.clearTimer();
-    this.timer = setTimeout(
-      () => (this.host.nativeElement.src = this.src),
+    console.log(`%c${this.#src} error`, 'color: orchid');
+    this.#clearTimer();
+    this.#timer = setTimeout(
+      () => (this.host.nativeElement.src = this.#src),
       this.params.home.retrySrc.interval
     );
   }
 
   @HostListener('load') imgLoaded(): void {
-    this.clearTimer();
+    this.#clearTimer();
   }
 
   ngOnDestroy(): void {
-    this.clearTimer();
-  }
-
-  private clearTimer(): void {
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
+    this.#clearTimer();
   }
 }

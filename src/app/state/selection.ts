@@ -37,6 +37,27 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
   constructor(private params: Params) {
     super();
   }
+
+  #isLotID(searchFor: string): string {
+    if (/^[\d]+-[\d+]/.test(searchFor)) {
+      // replace multiple spaces with none
+      const normalized = searchFor.replace(/\s\s+/g, '');
+      // split on - separator and strip leading zeros
+      const parts = normalized.split('-');
+      parts[0] = Number(parts[0]).toString();
+      parts[1] = Number(parts[1]).toString();
+      // if there's a third component and it's all zero, drop it
+      if (parts.length > 2 && Number(parts[2]) === 0) parts.length = 2;
+      // if there's a third component and it's longer than 2 characters,
+      // just take the last two
+      if (parts.length > 2 && parts[2].length > 2)
+        parts[2] = parts[2].slice(-2);
+      // there can't be any more than 3 parts
+      if (parts.length > 3) parts.length = 3;
+      return parts.join('-');
+    } else return null;
+  }
+
   // actions
 
   @DataAction({ insideZone: true })
@@ -47,7 +68,7 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
     if (searchFor) {
       searchFor = text.toUpperCase();
       // 👇 try by lotID first
-      const lotID = this.isLotID(searchFor);
+      const lotID = this.#isLotID(searchFor);
       if (lotID) {
         const lot = LOT_BY_ID[lotID];
         lots = lot ? [lot] : null;
@@ -86,27 +107,5 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
 
   @Computed() get text(): string {
     return this.snapshot.text;
-  }
-
-  // private methods
-
-  private isLotID(searchFor: string): string {
-    if (/^[\d]+-[\d+]/.test(searchFor)) {
-      // replace multiple spaces with none
-      const normalized = searchFor.replace(/\s\s+/g, '');
-      // split on - separator and strip leading zeros
-      const parts = normalized.split('-');
-      parts[0] = Number(parts[0]).toString();
-      parts[1] = Number(parts[1]).toString();
-      // if there's a third component and it's all zero, drop it
-      if (parts.length > 2 && Number(parts[2]) === 0) parts.length = 2;
-      // if there's a third component and it's longer than 2 characters,
-      // just take the last two
-      if (parts.length > 2 && parts[2].length > 2)
-        parts[2] = parts[2].slice(-2);
-      // there can't be any more than 3 parts
-      if (parts.length > 3) parts.length = 3;
-      return parts.join('-');
-    } else return null;
   }
 }

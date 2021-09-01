@@ -19,12 +19,12 @@ import { ViewEncapsulation } from '@angular/core';
   templateUrl: './tiles.html'
 })
 export class TilesComponent implements OnDestroy, OnInit {
+  #io: IntersectionObserver;
+  #mo: MutationObserver;
+
   @Input() tiles: Tile[] = [];
 
   visibleTiles = new Set();
-
-  private io: IntersectionObserver;
-  private mo: MutationObserver;
 
   constructor(
     private cdf: ChangeDetectorRef,
@@ -32,26 +32,7 @@ export class TilesComponent implements OnDestroy, OnInit {
     private params: Params
   ) {}
 
-  ngOnDestroy(): void {
-    this.io?.disconnect();
-    this.mo?.disconnect();
-  }
-
-  ngOnInit(): void {
-    this.io = new IntersectionObserver(this.intersectionCallback.bind(this), {
-      root: null,
-      rootMargin: `${this.params.home.tiles.intersectionMargin}px`,
-      threshold: 0
-    });
-    this.mo = new MutationObserver(this.mutationCallback.bind(this));
-    this.mo.observe(this.host.nativeElement, {
-      childList: true
-    });
-  }
-
-  private intersectionCallback(
-    intersections: IntersectionObserverEntry[]
-  ): void {
+  #intersectionCallback(intersections: IntersectionObserverEntry[]): void {
     intersections.forEach((intersection) => {
       const src = intersection.target.getAttribute('src');
       if (intersection.isIntersecting) this.visibleTiles.add(src);
@@ -60,16 +41,33 @@ export class TilesComponent implements OnDestroy, OnInit {
     this.cdf.markForCheck();
   }
 
-  private mutationCallback(mutations: MutationRecord[]): void {
+  #mutationCallback(mutations: MutationRecord[]): void {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
         mutation.addedNodes.forEach((node: HTMLElement) =>
-          this.io.observe(node)
+          this.#io.observe(node)
         );
         mutation.removedNodes.forEach((node: HTMLElement) =>
-          this.io.unobserve(node)
+          this.#io.unobserve(node)
         );
       }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.#io?.disconnect();
+    this.#mo?.disconnect();
+  }
+
+  ngOnInit(): void {
+    this.#io = new IntersectionObserver(this.#intersectionCallback.bind(this), {
+      root: null,
+      rootMargin: `${this.params.home.tiles.intersectionMargin}px`,
+      threshold: 0
+    });
+    this.#mo = new MutationObserver(this.#mutationCallback.bind(this));
+    this.#mo.observe(this.host.nativeElement, {
+      childList: true
     });
   }
 }

@@ -15,32 +15,33 @@ import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 
+// 👉 all the MutationObserver trickery is to tell when polygons are loaded
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-lots',
   templateUrl: './lots.svg'
 })
 export class LotsComponent implements OnDestroy, OnInit {
+  #mo: MutationObserver;
+
   lots: Lot[] = LOTS;
 
   @Output() lotsLoaded = new EventEmitter<string>();
+
   @Input() map: Map;
   @Input() mapID: string;
   @Input() tileContainer: TileContainer;
 
-  // 👉 all the MutationObserver trickery is to tell when polygons are loaded
-
-  private mo: MutationObserver;
-
   constructor(private geometry: GeometryService, private host: ElementRef) {}
 
   ngOnDestroy(): void {
-    this.mo?.disconnect();
+    this.#mo?.disconnect();
   }
 
   ngOnInit(): void {
-    this.mo = new MutationObserver(this.mutationCallback.bind(this));
-    this.mo.observe(this.host.nativeElement, {
+    this.#mo = new MutationObserver(this.mutationCallback.bind(this));
+    this.#mo.observe(this.host.nativeElement, {
       attributes: true,
       attributeFilter: ['mapID'],
       subtree: true

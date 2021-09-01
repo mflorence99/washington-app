@@ -4,7 +4,7 @@ import { ToastOptions } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
 export class SingletonToastService {
-  private lastToast: HTMLIonToastElement;
+  #lastToast: HTMLIonToastElement;
 
   constructor(private tc: ToastController) {}
 
@@ -14,10 +14,10 @@ export class SingletonToastService {
       .create({ ...options, color: 'light', position: 'middle' })
       .then((toast: HTMLIonToastElement) => {
         try {
-          this.lastToast?.dismiss();
+          this.#lastToast?.dismiss();
         } catch (ignored) {}
         toast.present();
-        this.lastToast = toast;
+        this.#lastToast = toast;
       });
   }
 }

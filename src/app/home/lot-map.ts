@@ -26,6 +26,10 @@ import { encode } from '@googlemaps/polyline-codec';
   templateUrl: './lot-map.html'
 })
 export class LotMapComponent {
+  #lot: Lot;
+  #mapType: google.maps.MapTypeId;
+  #staticMap: boolean;
+
   bbox: Rectangle;
 
   @Output() boundsChanged = new EventEmitter<google.maps.LatLngBounds>();
@@ -34,10 +38,10 @@ export class LotMapComponent {
 
   @Input()
   get lot(): Lot {
-    return this.lotImpl;
+    return this.#lot;
   }
   set lot(lot: Lot) {
-    this.lotImpl = lot;
+    this.#lot = lot;
     this.bbox = this.geometry.bboxOfLot(lot);
     this.center = this.geometry.bboxCenter(this.bbox);
     // 👇 this avoids the map showing Google HQ first
@@ -60,10 +64,10 @@ export class LotMapComponent {
 
   @Input()
   get mapType(): google.maps.MapTypeId {
-    return this.mapTypeImpl;
+    return this.#mapType;
   }
   set mapType(mapType: google.maps.MapTypeId) {
-    this.mapTypeImpl = mapType;
+    this.#mapType = mapType;
     this.mapOptions.mapTypeId = this.mapType;
   }
 
@@ -82,10 +86,10 @@ export class LotMapComponent {
 
   @Input()
   get staticMap(): boolean {
-    return this.staticMapImpl;
+    return this.#staticMap;
   }
   set staticMap(state: boolean) {
-    this.staticMapImpl = state;
+    this.#staticMap = state;
     if (state) {
       this.mapURL = `https://maps.googleapis.com/maps/api/staticmap?key=${this.params.google.apiKey}&size=${this.staticMapWidth}x${this.staticMapHeight}&visible=${this.bbox.top},${this.bbox.left}|${this.bbox.bottom},${this.bbox.right}&maptype=${this.mapType}`;
       // 👇 optionally, overlay lot lines
@@ -107,10 +111,6 @@ export class LotMapComponent {
   @Input() staticMapWidth: number;
 
   @Output() zoomChanged = new EventEmitter<number>();
-
-  private lotImpl: Lot;
-  private mapTypeImpl: google.maps.MapTypeId;
-  private staticMapImpl: boolean;
 
   constructor(
     public api: GoogleService,

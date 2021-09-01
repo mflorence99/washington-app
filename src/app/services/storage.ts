@@ -15,43 +15,43 @@ import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService implements AsyncStorageEngine {
-  private storage$: Observable<Storage>;
+  #storage$: Observable<Storage>;
 
   constructor(storage: Storage) {
-    this.storage$ = from(storage.create()).pipe(
+    this.#storage$ = from(storage.create()).pipe(
       tap(() => console.log('%cSingleton storage DB created', 'color: orange')),
       shareReplay()
     );
   }
 
   clear(): void {
-    this.storage$
+    this.#storage$
       .pipe(mergeMap((storage) => from(storage.clear())))
       .subscribe();
   }
 
   getItem(key: any): Observable<any> {
-    return this.storage$.pipe(mergeMap((storage) => from(storage.get(key))));
+    return this.#storage$.pipe(mergeMap((storage) => from(storage.get(key))));
   }
 
   key(val: number): Observable<string> {
-    return this.storage$.pipe(
+    return this.#storage$.pipe(
       mergeMap((storage) => from(storage.keys().then((keys) => keys[val])))
     );
   }
 
   length(): Observable<number> {
-    return this.storage$.pipe(mergeMap((storage) => from(storage.length())));
+    return this.#storage$.pipe(mergeMap((storage) => from(storage.length())));
   }
 
   removeItem(key: any): void {
-    this.storage$
+    this.#storage$
       .pipe(mergeMap((storage) => from(storage.remove(key))))
       .subscribe();
   }
 
   setItem(key: any, value: any): void {
-    this.storage$
+    this.#storage$
       .pipe(mergeMap((storage) => from(storage.set(key, value))))
       .subscribe();
   }

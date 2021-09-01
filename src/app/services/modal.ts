@@ -4,17 +4,17 @@ import { ModalOptions } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
 export class SingletonModalService {
-  private lastModal: HTMLIonModalElement;
+  #lastModal: HTMLIonModalElement;
 
   constructor(private mc: ModalController) {}
 
   createAndPresent(options: ModalOptions): void {
     this.mc.create(options).then((modal: HTMLIonModalElement) => {
       try {
-        this.lastModal?.dismiss();
+        this.#lastModal?.dismiss();
       } catch (ignored) {}
       modal.present();
-      this.lastModal = modal;
+      this.#lastModal = modal;
     });
   }
 }
