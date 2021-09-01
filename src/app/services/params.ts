@@ -76,7 +76,12 @@ export class Params {
         initialInterval: 100,
         maxInterval: 1000
       },
-      margin: 64
+      ballAccuracyMax: 48,
+      ballColor: '#428cff',
+      ballColorRGB: '66, 140, 255',
+      ballDisabledColor: '#989aa2',
+      ballRingColor: '#ffffff',
+      viewportMargin: 64
     }
   };
 

@@ -16,7 +16,7 @@ app-tracker {
     .accuracy {
       fill: url('#accuracy');
       // 👇 don't let the accuracy ball get too big
-      r: min(calc(var(--ball-accuracy) * 1px), 48px);
+      r: min(calc(var(--ball-accuracy) * 1px), var(--ball-accuracy-max) * 1px);
     }
 
     .heading {
@@ -32,7 +32,7 @@ app-tracker {
     }
 
     .outer {
-      fill: var(--ion-color-primary-contrast);
+      fill: var(--ball-ring-color);
       r: 13px;
       stroke: var(--ball-color);
     }

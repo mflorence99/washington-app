@@ -31,7 +31,7 @@ export class TrackerComponent {
     private geolocation$: GeolocationService,
     private geometry: GeometryService,
     public model: ModelState,
-    private params: Params,
+    public params: Params,
     private stc: SingletonToastService,
     public view: ViewState
   ) {
@@ -48,14 +48,13 @@ export class TrackerComponent {
 
   // 👇 the margin makes sure the tracker doesn't get too close to the edge
   #followTracker(location: XY): void {
-    if (
-      !this.geometry.isXYInViewport(location, this.params.home.tracker.margin)
-    )
+    const margin = this.params.home.tracker.viewportMargin;
+    if (!this.geometry.isXYInViewport(location, margin))
       this.geometry.centerXYInViewport(location);
   }
 
   #handleGeoLocation$(): void {
-    const params = this.params.home.tracker.backoff;
+    const params = this.params.home.tracker;
     this.geolocation$
       .pipe(
         takeUntil(this.destroy$),
@@ -63,13 +62,13 @@ export class TrackerComponent {
         retryBackoff({
           backoffDelay: (iteration, initialInterval) =>
             Math.pow(1.1, iteration) * initialInterval,
-          initialInterval: params.initialInterval,
-          maxInterval: params.maxInterval,
+          initialInterval: params.backoff.initialInterval,
+          maxInterval: params.backoff.maxInterval,
           resetOnSuccess: true,
           shouldRetry: (error: GeolocationPositionError) => {
             const style = document.body.style;
             style.setProperty('--ball-accuracy', `0`);
-            style.setProperty('--ball-color', 'var(--ion-color-medium');
+            style.setProperty('--ball-color', `${params.ballDisabledColor}`);
             style.setProperty('--ball-heading-visibility', 'hidden');
             // 👇 GeolocationPositionError.PERMISSION_DENIED throws error on iOS
             return error.code !== 1;
@@ -84,7 +83,7 @@ export class TrackerComponent {
 
   #handleGeolocationError(error: GeolocationPositionError): void {
     // 👇 because shouldRetry has no maxRetries, we should only get here
-    // on a PERMISSION_DENIED error
+    //    on a PERMISSION_DENIED error
     console.error('🔥 Geolocation handleGeolocationError', error);
     this.#currentPositionLost(error);
     this.model.track(false);
@@ -114,15 +113,19 @@ export class TrackerComponent {
     const heading = position.coords.heading;
     const headingVisibility = heading != null && !isNaN(heading);
     // set properties and repaint
+    const params = this.params.home.tracker;
     const style = document.body.style;
     style.setProperty('--ball-accuracy', `${accuracy}`);
-    style.setProperty('--ball-color', 'var(--ion-color-primary');
+    style.setProperty('--ball-accuracy-max', `${params.ballAccuracyMax}`);
+    style.setProperty('--ball-color', `${params.ballColor}`);
+    style.setProperty('--ball-color-rgb', `${params.ballColorRGB}`);
     style.setProperty('--ball-heading', `${heading}`);
     style.setProperty(
       '--ball-heading-visibility',
       `${headingVisibility ? 'visible' : 'hidden'}`
     );
     style.setProperty('--ball-interval', `${interval}`);
+    style.setProperty('--ball-ring-color', `${params.ballRingColor}`);
     style.setProperty('--ball-translate-x', `${xy.x}`);
     style.setProperty('--ball-translate-y', `${xy.y}`);
   }
