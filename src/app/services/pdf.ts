@@ -12,6 +12,7 @@ export class PDFService {
       domtoimage
         .toPng(page)
         .then((dataURL) => {
+          // 👇 half-inch margin on 8.5 x 11 landscaoe
           doc.addImage(dataURL, 0.5, 0.5, 10, 7.5);
           doc.save(fileName);
           resolve();

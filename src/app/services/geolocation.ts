@@ -57,7 +57,7 @@ export class GeolocationService extends Observable<GeolocationPosition> {
     });
 
     // 👇 pace locations at a regular interval, as the UI
-    // depends on "motion" to detect position
+    //    depends on "motion" to detect position
     return combineLatest({
       position: this,
       tick: timer(0, params.geolocation.maxIntervalBetweenPositions)

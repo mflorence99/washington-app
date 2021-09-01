@@ -9,8 +9,8 @@ import { NgxsPlugin } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
 // 👇 we're never going to use LogRocket as it's too expensive
-// for this vanity project -- but it made us think about NGXS plugins
-// and even thouigh this logger is a super hack, I like the output better
+//    for this vanity project -- but it made us think about NGXS plugins
+//    and even though this logger is a super hack, I like the output better
 
 // const reduxMiddleware = LogRocket.reduxMiddleware({});
 
@@ -28,7 +28,7 @@ export class LogRocketPlugin implements NgxsPlugin {
 
   handle(state, action, next): any {
     // 👇 action is of class NgxsDataAction, which isn't a real
-    // exported class for some reason
+    //    exported class for some reason
     // 👀  https://github.com/ngxs-labs/data/blob/5e8706bc43d671b05d227d05118ea0aaa821d769/lib/internals/src/utils/action/dynamic-action.ts
     const key = Object.keys(action)[0] ?? action.constructor.name;
     const payload = action[key];

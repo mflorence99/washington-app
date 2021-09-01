@@ -42,36 +42,6 @@ export class GeometryService {
     private view: ViewState
   ) {}
 
-  // 👀 https://medium.com/@francoisromain/smooth-a-svg-path-with-cubic-bezier-curves-e37b49d46c74
-
-  #bezierControlPoint(
-    current: XY,
-    previous: XY,
-    next: XY,
-    reverse = false
-  ): XY {
-    previous = previous ?? current;
-    next = next ?? current;
-    // properties of opposed line
-    const lineProps = this.#bezierLineProps(previous, next);
-    // if is end-control-point, add PI to the angle to go backward
-    const angle = lineProps.angle + (reverse ? Math.PI : 0);
-    const length = lineProps.length * this.params.geometry.bezierSmoothing;
-    // control point position is relative to the current point
-    const x = current.x + Math.cos(angle) * length;
-    const y = current.y + Math.sin(angle) * length;
-    return { x, y };
-  }
-
-  #bezierLineProps(p: XY, q: XY): { angle: number; length: number } {
-    const lx = q.x - p.x;
-    const ly = q.y - p.y;
-    return {
-      angle: Math.atan2(ly, lx),
-      length: Math.sqrt(Math.pow(lx, 2) + Math.pow(ly, 2))
-    };
-  }
-
   acres2sqft(acres: number): number {
     return acres * 43560;
   }
@@ -115,11 +85,12 @@ export class GeometryService {
     const x =
       Math.cos(p.lat) * Math.sin(q.lat) -
       Math.sin(p.lat) * Math.cos(q.lat) * Math.cos(q.lon - p.lon);
-    const bearing = this.radians2degrees(Math.atan2(y, x));
-    return (bearing + 360) % 360;
+    const Θ = this.radians2degrees(Math.atan2(y, x));
+    return (Θ + 360) % 360;
   }
 
   // 👀 https://medium.com/@francoisromain/smooth-a-svg-path-with-cubic-bezier-curves-e37b49d46c74
+
   bezier(
     latlon: LatLon,
     ix: number,
@@ -131,9 +102,32 @@ export class GeometryService {
     const next = ok(ix + 1) ? latlon2xy(latlons[ix + 1]) : undefined;
     const previous = ok(ix - 1) ? latlon2xy(latlons[ix - 1]) : undefined;
     const pprevious = ok(ix - 2) ? latlon2xy(latlons[ix - 2]) : undefined;
-    const start = this.#bezierControlPoint(previous, pprevious, current);
-    const end = this.#bezierControlPoint(current, previous, next, true);
+    const start = this.bezierControlPoint(previous, pprevious, current);
+    const end = this.bezierControlPoint(current, previous, next, true);
     return `C ${start.x},${start.y} ${end.x},${end.y} ${current.x},${current.y}`;
+  }
+
+  bezierControlPoint(current: XY, previous: XY, next: XY, reverse = false): XY {
+    previous = previous ?? current;
+    next = next ?? current;
+    // properties of opposed line
+    const lineProps = this.bezierLineProps(previous, next);
+    // if is end-control-point, add PI to the angle to go backward
+    const angle = lineProps.angle + (reverse ? Math.PI : 0);
+    const length = lineProps.length * this.params.geometry.bezierSmoothing;
+    // control point position is relative to the current point
+    const x = current.x + Math.cos(angle) * length;
+    const y = current.y + Math.sin(angle) * length;
+    return { x, y };
+  }
+
+  bezierLineProps(p: XY, q: XY): { angle: number; length: number } {
+    const lx = q.x - p.x;
+    const ly = q.y - p.y;
+    return {
+      angle: Math.atan2(ly, lx),
+      length: Math.sqrt(Math.pow(lx, 2) + Math.pow(ly, 2))
+    };
   }
 
   centerLotsInViewport(lots: Lot[]): void {
@@ -190,7 +184,7 @@ export class GeometryService {
 
   event2xy(event: HammerInput): XY {
     let { x, y } = event.center;
-    // TODO: 👇 we only know this emprically from testing with Firefox
+    // TODO: 👇 we only know this empirically from testing with Firefox
     if (['Firefox'].includes(environment.ua.browser.name)) {
       const theMap = document.getElementById('theMap').parentElement;
       x -= theMap.offsetLeft;
@@ -242,8 +236,8 @@ export class GeometryService {
 
   lat2y(lat: number): number {
     // 👇 we should do this, but the simplification is MUCH faster
-    // and accurate enough over the area we cover
-    // Math.log(Math.tan((lat / 90 + 1) * (Math.PI / 4))) * (180 / Math.PI);
+    //    and accurate enough over the area we cover
+    //    Math.log(Math.tan((lat / 90 + 1) * (Math.PI / 4))) * (180 / Math.PI);
     return lat;
   }
 
@@ -289,7 +283,7 @@ export class GeometryService {
     const margin = this.params.geometry.margin;
     const scale = this.view.view.scale;
     // 👇 this works because we scale the viewport on its center
-    // [-w, -h]      nominal minimum translate
+    // [-w, -h]      nominal maximum translate
     // cx            the distance of edge from the center
     // cx/scale      the actual distance in unscaled units
     // cx - cx/scale the delta from scaling
@@ -404,7 +398,9 @@ export class GeometryService {
     const polygons = Array.from(
       document.querySelectorAll<SVGGeometryElement>('app-lots svg g polygon')
     );
-    // 👀 robust-point-in-polygon, point-in-polygon and point-in-polygon-extended on GitHub
+    // 👀 robust-point-in-polygon,
+    //    point-in-polygon
+    //    point-in-polygon-extended on GitHub
     // we tried them all and pointInPoly.pointInPolyWindingNumber
     // was the most reliable -- looks like the ray cast algorithm
     // gets confused

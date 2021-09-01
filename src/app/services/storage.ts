@@ -9,9 +9,9 @@ import { shareReplay } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 
 // 👇 we no longer use this, as we simply use the synchronous
-// localStorage-based NgxsStoragePluginModule instead of the
-// problematic asynchronous Ionic StorageModule -- but the code
-// is nifty, so we want to keep it
+//    localStorage-based NgxsStoragePluginModule instead of the
+//    problematic asynchronous Ionic StorageModule -- but the code
+//    is nifty, so we want to keep it
 
 @Injectable({ providedIn: 'root' })
 export class StorageService implements AsyncStorageEngine {

@@ -10,7 +10,7 @@ export class SingletonToastService {
 
   createAndPresent(options: ToastOptions): void {
     this.tc
-      // 🔻 all toasters slide in from the top
+      // 👉 all toasters appear in the middle
       .create({ ...options, color: 'light', position: 'middle' })
       .then((toast: HTMLIonToastElement) => {
         try {

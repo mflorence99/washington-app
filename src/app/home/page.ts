@@ -314,7 +314,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   #initializeGeolocationError(error: GeolocationPositionError): void {
     // 👇 we should only get here on PERMISSION_DENIED or after all
-    // maxRetries hsve been attempted
+    //    maxRetries hsve been attempted
     console.error('🔥 Geolocation showTrackerError', error);
     this.#currentPositionNotAvailable(error);
     this.model.track(false);
@@ -402,6 +402,7 @@ export class HomePage implements AfterViewInit, OnInit {
     while (this.#overlayStylesheet.cssRules.length > 0)
       this.#overlayStylesheet.deleteRule(0);
     // 👇 pay attention to globals.scss
+    const params = this.params.common;
     this.overlay.properties
       .filter((property) => property.enabled)
       .forEach((property) => {
@@ -410,7 +411,7 @@ export class HomePage implements AfterViewInit, OnInit {
         const rule = `app-lots svg g polygon[data-${property.attribute}='${
           property.value
         }'] { ${fill} ${stroke}
-          stroke-width: ${2 / this.view.view.scale}
+          stroke-width: ${params.lotOutlineWidth / this.view.view.scale}
         }`;
         this.#overlayStylesheet.insertRule(rule);
       });
@@ -435,6 +436,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   ftScale(): number {
     // 👇 display more feet if zoom less than 1
+    // TODO: does not look good at 75% -- sclae shows 266 feet
     return Math.round(
       this.model.map.ftScale * (1 / Math.min(1, this.view.view.scale))
     );

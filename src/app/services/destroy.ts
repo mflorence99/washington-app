@@ -14,7 +14,7 @@ export class DestroyService extends Observable<void> implements OnDestroy {
   }
 
   // 👇 because this service is provided in each component that needs it,
-  // it is destroyed when the component is destroyed
+  //    it is destroyed when the component is destroyed
   ngOnDestroy(): void {
     this.#life$.next();
     this.#life$.complete();
