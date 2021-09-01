@@ -30,12 +30,21 @@ export class Params {
 
   home = {
     details: {
+      // 👇 designed to make PDF look good 8.5 x 11 landscape
+      pdf: {
+        headerWidth: 900,
+        mapHeight: 480,
+        mapWidth: 480,
+        markWidth: 92,
+        pageHeight: 816,
+        pageWidth: 1056
+      },
       printDelay: 250
     },
     lot: {
       pxViewportMargin: 6,
       shortLineThreshold: 8, // pixels
-      straightLineThreshold: 30
+      straightLineThreshold: 30 // degrees
     },
     page: {
       backoff: {
@@ -43,7 +52,7 @@ export class Params {
         maxInterval: 1000,
         maxRetries: 5
       },
-      // 👇 make sure AFTER service worker check of 30s
+      // 👇 checkVersion NOT used if service worker active
       checkVersionAfter: 60 * 1000,
       checkVersionInterval: 120 * 1000,
       highlightedLotOutline: 'var(--ion-color-danger)',

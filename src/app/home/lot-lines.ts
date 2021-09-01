@@ -84,7 +84,7 @@ export class LotLinesComponent {
       .join(' ');
   }
 
-  render(cxViewport = 0, cyViewport = 0): void {
+  render(cxViewport: number, cyViewport: number): void {
     this.bbox = this.geometry.bboxOfLot(this.lot);
 
     // extent of lot in feet
@@ -97,30 +97,17 @@ export class LotLinesComponent {
       { lat: this.bbox.top, lon: this.bbox.right }
     );
 
-    // you'll se why we do this first in a minute
-    const arLot = this.ftLotWidth / this.ftLotHeight;
-
-    // 👇 so we either have a real viewport we must center ouselves in
-    //    or just a pretend one, so the SVG can be standalone
-    let pxViewport: Rectangle;
+    // put a margin around the viewport
     const margin = this.params.home.lot.pxViewportMargin;
-    if (cxViewport && cyViewport) {
-      pxViewport = {
-        height: cyViewport - margin * 2,
-        left: margin,
-        top: margin,
-        width: cxViewport - margin * 2
-      };
-    } else {
-      pxViewport = {
-        height: 1000 / arLot - margin * 2,
-        left: margin,
-        top: margin,
-        width: 1000 - margin * 2
-      };
-    }
+    const pxViewport = {
+      height: cyViewport - margin * 2,
+      left: margin,
+      top: margin,
+      width: cxViewport - margin * 2
+    };
 
     // center the lot lines inside the viewport
+    const arLot = this.ftLotWidth / this.ftLotHeight;
     const arViewport = pxViewport.width / pxViewport.height;
     this.ft2px = pxViewport.width / this.ftLotWidth;
     if (arViewport >= arLot) {
@@ -167,6 +154,9 @@ export class LotLinesComponent {
     return { bearing: 0, length: 0, path: [] };
   }
 
+  // 👇 the goal here is to minimize the number of measured lines
+  //    (to reduce vusual clutter) by coalescing "straight enough" and
+  //    "too short" lines
   private makeLotLines(): LotLine[] {
     const lotLines: LotLine[] = [];
     this.lot.lengths.forEach((lengths, ix) => {
@@ -192,6 +182,7 @@ export class LotLinesComponent {
           }
           if (!this.isLineReallyShort(length)) lotLine.bearing = bearing;
           lotLine.length += length;
+          // the first line needs a start point, then we just need the end
           if (lotLine.path.length === 0) lotLine.path.push(p);
           lotLine.path.push(q);
         }

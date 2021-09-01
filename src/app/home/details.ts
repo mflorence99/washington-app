@@ -32,14 +32,8 @@ export class DetailsComponent {
 
   orientation: 'landscape' | 'portrait' | 'square' | 'pdf' = 'square';
 
-  staticMapHeight = 480;
-  staticMapWidth = 480;
-
-  private screen = {
-    height: '',
-    orientation: '',
-    width: ''
-  };
+  staticMapHeight = this.params.home.details.pdf.mapHeight;
+  staticMapWidth = this.params.home.details.pdf.mapWidth;
 
   constructor(
     public geometry: GeometryService,
@@ -76,16 +70,23 @@ export class DetailsComponent {
     this.mc.dismiss();
   }
 
-  // 🔥 experimental
   print(): void {
     const style = this.host.nativeElement.closest('ion-modal').style;
-    this.screen.orientation = this.orientation;
-    this.screen.height = style.getPropertyValue('--height');
-    this.screen.width = style.getPropertyValue('--width');
+    // 👇 height & width are Ionic properties
+    const screen = {
+      height: style.getPropertyValue('--height'),
+      orientation: this.orientation,
+      width: style.getPropertyValue('--width')
+    };
     // 👇 make the popup look like we want for PDF
     this.orientation = 'pdf';
-    style.setProperty('--height', '816px');
-    style.setProperty('--width', '1056px');
+    const params = this.params.home.details.pdf;
+    style.setProperty('--height', `${params.pageHeight}px`);
+    style.setProperty('--width', `${params.pageHeight}px`);
+    style.setProperty('--pdf-map-height', `${params.mapHeight}px`);
+    style.setProperty('--pdf-map-width', `${params.mapHeight}px`);
+    style.setProperty('--pdf-header-width', `${params.headerWidth}px`);
+    style.setProperty('--pdf-mark-width', `${params.markWidth}px`);
     // 👇 once we've settled down, create the PDF
     setTimeout(() => {
       this.pdf
@@ -94,9 +95,9 @@ export class DetailsComponent {
         .catch(console.error)
         .finally(() => {
           // put it all back the way we found it
-          this.orientation = this.screen.orientation as any;
-          style.setProperty('--height', this.screen.height);
-          style.setProperty('--width', this.screen.width);
+          this.orientation = screen.orientation as any;
+          style.setProperty('--height', screen.height);
+          style.setProperty('--width', screen.width);
         });
     }, this.params.home.details.printDelay);
   }

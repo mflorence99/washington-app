@@ -160,7 +160,6 @@ app-details.square.measure section {
     display: none;
   }
 }
-// 👇 all the dimensions associated with printing are hacks for the PDF
 
 app-details.pdf {
   background-color: white;
@@ -174,18 +173,18 @@ app-details.pdf {
       'header header'
       'map lot'
       'table-assessor table-measure';
-    grid-template-columns: 480px 480px;
-    grid-template-rows: auto 480px auto;
+    grid-template-columns: var(--pdf-map-width) var(--pdf-map-width);
+    grid-template-rows: auto var(--pdf-map-height) auto;
     overflow: unset;
 
     .header {
       h4 {
-        width: 900px;
+        width: var(--pdf-header-width);
       }
 
       mark {
         text-align: right;
-        width: 92px;
+        width: var(--pdf-mark-width);
       }
     }
   }

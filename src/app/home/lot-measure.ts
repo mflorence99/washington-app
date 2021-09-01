@@ -73,6 +73,7 @@ const makeCustomOverlay = (
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
   selector: 'app-lot-measure',
+  styleUrls: ['./lot-measure.scss'],
   templateUrl: './lot-measure.html'
 })
 export class LotMeasureComponent implements AfterViewInit, OnDestroy {

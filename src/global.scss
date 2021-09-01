@@ -49,6 +49,11 @@ h6 {
   --ball-translate-x: 0;
   --ball-translate-y: 0;
 
+  --pdf-header-width: 0;
+  --pdf-mark-width: 0;
+  --pdf-map-height: 0;
+  --pdf-map-width: 0;
+
   // land use color shading
   // 👀  https://www.gismanual.com/style/ColorConventions.pdf
   // 👀  also repo washington-mapmaker
@@ -76,18 +81,6 @@ h6 {
 app-lots svg g polygon {
   fill: none;
   stroke: none;
-}
-
-// 👇 this mess is because in lot-measure we pull the lot lines
-//    out of their host and into Google Maps
-
-google-map app-lot-lines svg text {
-  font-size: 12px !important;
-}
-
-google-map app-lot-lines.hybrid svg text,
-google-map app-lot-lines.satellite svg text {
-  stroke: white;
 }
 
 @keyframes ANIMATE_TRACKER {
