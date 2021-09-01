@@ -9,10 +9,10 @@ import { ViewEncapsulation } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
-  selector: 'app-lot-diagram',
-  styleUrls: ['./lot-diagram.scss'],
-  templateUrl: './lot-diagram.html'
+  selector: 'app-lot-blueprint',
+  styleUrls: ['./lot-blueprint.scss'],
+  templateUrl: './lot-blueprint.html'
 })
-export class LotDiagramComponent {
+export class LotBlueprintComponent {
   @Input() lot: Lot;
 }
