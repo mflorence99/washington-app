@@ -14,6 +14,7 @@ import { OverlayComponent } from './overlay';
 import { OverlayState } from '../state/overlay';
 import { Params } from '../services/params';
 import { SelectionState } from '../state/selection';
+import { SingletonAlertService } from '../services/alert';
 import { SingletonModalService } from '../services/modal';
 import { SingletonToastService } from '../services/toast';
 import { ViewState } from '../state/view';
@@ -51,7 +52,7 @@ import { timer } from 'rxjs';
   templateUrl: './page.html'
 })
 export class HomePage implements AfterViewInit, OnInit {
-  #checkVersion$ = new Subject<void>();
+  #checkVersionLegacy$ = new Subject<void>();
   #highlightStylesheet: CSSStyleSheet;
   #overlayStylesheet: CSSStyleSheet;
   #xlate: [number, number];
@@ -81,6 +82,7 @@ export class HomePage implements AfterViewInit, OnInit {
     public overlay: OverlayState,
     public params: Params,
     public selection: SelectionState,
+    private sac: SingletonAlertService,
     private smc: SingletonModalService,
     private stc: SingletonToastService,
     private swUpdate: SwUpdate,
@@ -104,7 +106,7 @@ export class HomePage implements AfterViewInit, OnInit {
       this.params.home.page.checkVersionInterval
     )
       .pipe(
-        takeUntil(merge(this.#checkVersion$, this.destroy$)),
+        takeUntil(merge(this.#checkVersionLegacy$, this.destroy$)),
         mergeMap(() =>
           this.http.get<Build>(`${location.href}/assets/build.json`, {
             params: {
@@ -122,7 +124,7 @@ export class HomePage implements AfterViewInit, OnInit {
   #checkVersionServiceWorker(): void {
     merge(this.swUpdate.available, this.swUpdate.unrecoverable)
       .pipe(
-        takeUntil(merge(this.#checkVersion$, this.destroy$)),
+        takeUntil(this.destroy$),
         catchError(() => of(null)),
         filter((event) => !!event)
       )
@@ -246,7 +248,7 @@ export class HomePage implements AfterViewInit, OnInit {
       this.smc.createAndPresent({
         component: DetailsComponent,
         componentProps: { lot: lots[0] },
-        cssClass: ['tall-modal'],
+        cssClass: ['big-and-tall-modal'],
         swipeToClose: true
       });
     }
@@ -374,14 +376,11 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   #newVersionDetected(): void {
-    this.stc.createAndPresent({
+    this.sac.createAndPresent({
       header: 'New version detected',
       message: 'Reload?',
-      duration: this.params.common.toastDuration,
-      color: 'light',
       buttons: [
         {
-          side: 'end',
           text: 'Now',
           handler: (): void => window.location.reload()
         },
@@ -389,8 +388,8 @@ export class HomePage implements AfterViewInit, OnInit {
           text: 'Later',
           role: 'cancel',
           handler: (): void => {
-            this.#checkVersion$.next();
-            this.#checkVersion$.complete();
+            this.#checkVersionLegacy$.next();
+            this.#checkVersionLegacy$.complete();
           }
         }
       ]

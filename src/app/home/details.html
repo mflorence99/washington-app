@@ -106,7 +106,7 @@
       <tbody>
         <tr>
           <td>Calculated area</td>
-          <td *ngFor="let area of lot.areas">
+          <td *ngFor="let area of lot.areas" nowrap>
             {{ area | number: '1.2-2' }} acres <br />
             {{ geometry.acres2sqft(area) | number: '1.0-0' }} sq ft
           </td>
@@ -114,21 +114,21 @@
 
         <tr>
           <td>Perimeter</td>
-          <td *ngFor="let perimeter of lot.perimeters">
+          <td *ngFor="let perimeter of lot.perimeters" nowrap>
             {{ perimeter | number: '1.0-0' }} ft <br />
           </td>
         </tr>
 
         <tr>
           <td>Width</td>
-          <td *ngFor="let minWidth of lot.minWidths">
+          <td *ngFor="let minWidth of lot.minWidths" nowrap>
             {{ minWidth | number: '1.0-0' }} ft <br />
           </td>
         </tr>
 
         <tr>
           <td>Elevation at center</td>
-          <td *ngFor="let elevation of lot.elevations">
+          <td *ngFor="let elevation of lot.elevations" nowap>
             {{ elevation | number: '1.0-0' }} ft <br />
           </td>
         </tr>
