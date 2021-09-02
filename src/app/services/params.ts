@@ -58,9 +58,6 @@ export class Params {
         maxInterval: 1000,
         maxRetries: 5
       },
-      // 👇 checkVersion NOT used if service worker active
-      checkVersionAfter: 60 * 1000,
-      checkVersionInterval: 120 * 1000,
       searchbarDebounceTime: 1000,
       showLotsDelay: 1000
     },
@@ -88,5 +85,10 @@ export class Params {
   selection = {
     fuzzySearchMinLength: 3,
     fuzzySearchOptions: { limit: 100, threshold: -10000 }
+  };
+
+  version = {
+    checkVersionAfter: 60 * 1000,
+    checkVersionInterval: 120 * 1000
   };
 }

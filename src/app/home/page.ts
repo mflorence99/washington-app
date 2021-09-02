@@ -1,4 +1,3 @@
-import { Build } from '../state/build';
 import { DestroyService } from '../services/destroy';
 import { DetailsComponent } from './details';
 import { GeolocationService } from '../services/geolocation';
@@ -17,9 +16,8 @@ import { SelectionState } from '../state/selection';
 import { SingletonAlertService } from '../services/alert';
 import { SingletonModalService } from '../services/modal';
 import { SingletonToastService } from '../services/toast';
+import { VersionService } from '../services/version';
 import { ViewState } from '../state/view';
-
-import { environment } from '../../environments/environment';
 
 import { Actions } from '@ngxs/store';
 import { AfterViewInit } from '@angular/core';
@@ -28,20 +26,14 @@ import { Components } from '@ionic/core';
 import { HttpClient } from '@angular/common/http';
 import { OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
-import { Subject } from 'rxjs';
 import { SwUpdate } from '@angular/service-worker';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
-import { catchError } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
-import { merge } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 import { retryBackoff } from 'backoff-rxjs';
 import { take } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
-import { timer } from 'rxjs';
 
 @Component({
   // 👇 so that we can manipulate the actual stylesheet in code
@@ -52,7 +44,6 @@ import { timer } from 'rxjs';
   templateUrl: './page.html'
 })
 export class HomePage implements AfterViewInit, OnInit {
-  #checkVersionLegacy$ = new Subject<void>();
   #highlightStylesheet: CSSStyleSheet;
   #overlayStylesheet: CSSStyleSheet;
   #xlate: [number, number];
@@ -86,49 +77,11 @@ export class HomePage implements AfterViewInit, OnInit {
     private smc: SingletonModalService,
     private stc: SingletonToastService,
     private swUpdate: SwUpdate,
+    private version: VersionService,
     public view: ViewState
   ) {
     // 👇 let's start loading the Google Maps API
     this.api.ready$.subscribe();
-  }
-
-  #checkVersion(): void {
-    if (this.swUpdate.isEnabled) this.#checkVersionServiceWorker();
-    // 👇 for now, this will never be called as we always enable
-    //    the service worker and let it fail if not HTTPS etc
-    else this.#checkVersionLegacy();
-  }
-
-  #checkVersionLegacy(): void {
-    // 👇 interval must be MUCH longer than duration of toaster
-    timer(
-      this.params.home.page.checkVersionAfter,
-      this.params.home.page.checkVersionInterval
-    )
-      .pipe(
-        takeUntil(merge(this.#checkVersionLegacy$, this.destroy$)),
-        mergeMap(() =>
-          this.http.get<Build>(`${location.href}/assets/build.json`, {
-            params: {
-              x: Math.random()
-            }
-          })
-        ),
-        catchError(() => of(environment.build))
-      )
-      .subscribe((build: Build) => {
-        if (build.id !== environment.build.id) this.#newVersionDetected();
-      });
-  }
-
-  #checkVersionServiceWorker(): void {
-    merge(this.swUpdate.available, this.swUpdate.unrecoverable)
-      .pipe(
-        takeUntil(this.destroy$),
-        catchError(() => of(null)),
-        filter((event) => !!event)
-      )
-      .subscribe(() => this.#newVersionDetected());
   }
 
   #createHighlightStylesheet(): void {
@@ -375,27 +328,6 @@ export class HomePage implements AfterViewInit, OnInit {
     });
   }
 
-  #newVersionDetected(): void {
-    this.sac.createAndPresent({
-      header: 'New version detected',
-      message: 'Reload?',
-      buttons: [
-        {
-          text: 'Now',
-          handler: (): void => window.location.reload()
-        },
-        {
-          text: 'Later',
-          role: 'cancel',
-          handler: (): void => {
-            this.#checkVersionLegacy$.next();
-            this.#checkVersionLegacy$.complete();
-          }
-        }
-      ]
-    });
-  }
-
   #overlayLots(): void {
     // first, remove any prior overlay
     while (this.#overlayStylesheet.cssRules.length > 0)
@@ -453,7 +385,6 @@ export class HomePage implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.#handleActions$();
     if (this.model.tracker) this.#initializeGeolocation$();
-    this.#checkVersion();
     // 👇 we want the highlights to take precedence
     this.#createOverlayStylesheet();
     this.#createHighlightStylesheet();

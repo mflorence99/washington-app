@@ -85,7 +85,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LogRocketPluginModule.forRoot(),
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: true,
+      enabled: location.hostname !== 'localhost',
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
