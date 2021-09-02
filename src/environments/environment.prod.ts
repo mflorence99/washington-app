@@ -4,7 +4,11 @@ import PACKAGE from '../../package.json';
 import { UAParser } from 'ua-parser-js';
 
 export const environment = {
-  production: true,
+  build: {
+    id: BUILD.id,
+    date: BUILD.date
+  },
+  localhost: false,
   package: {
     author: PACKAGE.author,
     name: PACKAGE.name,
@@ -16,9 +20,6 @@ export const environment = {
     },
     version: PACKAGE.version
   },
-  build: {
-    id: BUILD.id,
-    date: BUILD.date
-  },
+  production: true,
   ua: UAParser()
 };

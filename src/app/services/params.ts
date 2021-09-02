@@ -1,3 +1,5 @@
+import { environment } from '../../environments/environment';
+
 import { Injectable } from '@angular/core';
 
 // 👉 all intervals in milliseconds
@@ -71,6 +73,7 @@ export class Params {
     tracker: {
       backoff: {
         initialInterval: 100,
+
         maxInterval: 1000
       },
       ballAccuracyMax: 48,
@@ -87,8 +90,13 @@ export class Params {
     fuzzySearchOptions: { limit: 100, threshold: -10000 }
   };
 
-  version = {
-    checkVersionAfter: 60 * 1000,
-    checkVersionInterval: 120 * 1000
-  };
+  version = environment.production
+    ? {
+        checkVersionLegacyAfter: 60 * 1000,
+        checkVersionInterval: 120 * 1000
+      }
+    : {
+        checkVersionLegacyAfter: 5 * 1000,
+        checkVersionInterval: 60 * 1000
+      };
 }

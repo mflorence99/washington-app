@@ -18,7 +18,7 @@
     "hittester": "ts-node --dir bin hittester.ts",
     "ng": "ng",
     "postinstall": "ngcc",
-    "serve": "ionic serve --external --consolelogs",
+    "serve": "ionic serve",
     "serve:ssl": "ws -p 8100 --cert .ionic/ssl/cert.pem --key .ionic/ssl/key.pem --https --spa index.html --directory www --log.format dev",
     "tilerator": "ts-node --dir bin tilerator.ts"
   },

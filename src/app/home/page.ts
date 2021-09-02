@@ -399,6 +399,10 @@ export class HomePage implements AfterViewInit, OnInit {
     );
   }
 
+  reload(): void {
+    location.reload();
+  }
+
   resize(event: ResizedEvent): void {
     console.log(
       `%cViewport resized ${event.newWidth}x${event.newHeight}`,

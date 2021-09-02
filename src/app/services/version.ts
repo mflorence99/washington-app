@@ -45,7 +45,7 @@ export class VersionService {
   #checkVersionServiceWorker(): void {
     this.swUpdate.available.subscribe((event: UpdateAvailableEvent) => {
       console.log(
-        '%cNew PWA version detected',
+        '%c...new PWA version detected',
         'color: wheat',
         event.available.hash
       );
@@ -56,23 +56,33 @@ export class VersionService {
   #newVersionDetected(): void {
     this.sac.createAndPresent({
       header: 'New version detected',
-      message: 'Reload?',
+      message: 'Please activate it now',
       buttons: [
         {
-          text: 'Now',
-          handler: (): void => window.location.reload()
-        },
-        {
-          text: 'Later',
-          role: 'cancel',
+          text: 'Activate',
           handler: (): void => {
-            // 👇 once the user says "later" we won't check again in legacy
-            //    mode -- but we must when using service workers, because
-            //    a boommarked PWA may never be restarted
-            this.#checkVersionLegacy$.next();
-            this.#checkVersionLegacy$.complete();
+            if (this.swUpdate.isEnabled)
+              this.swUpdate.activateUpdate().then(() => location.reload());
+            else location.reload();
           }
         }
+        // {
+        //   text: 'Later',
+        //   role: 'cancel',
+        //   handler: (): void => {
+        //     if (!this.swUpdate.isEnabled) {
+        //       // 👇 once the user says "later" we won't check again in legacy
+        //       //    mode -- but we must when using service workers, because
+        //       //    a bookmarked PWA may never be restarted
+        //       this.#checkVersionLegacy$.next();
+        //       this.#checkVersionLegacy$.complete();
+        //       console.log(
+        //         '%cUser declines further legacy version checks',
+        //         'color: orchid'
+        //       );
+        //     }
+        //   }
+        // }
       ]
     });
   }
@@ -83,32 +93,31 @@ export class VersionService {
       this.#checkVersionServiceWorker();
       this.#pollVersionServiceWorker();
     }
-    // 👇 for now, this will never be called as we always enable
-    //    the service worker and let it fail if not HTTPS etc
+    // 👇 for now, this will only be called for localhost as
+    //    any other host activates service workers in module.ts
     else this.#pollVersionLegacy();
   }
 
   #pollVersionLegacy(): void {
-    timer(
-      this.params.version.checkVersionAfter,
-      this.params.version.checkVersionInterval
-    )
+    const params = this.params.version;
+    timer(params.checkVersionLegacyAfter, params.checkVersionInterval)
       .pipe(
         takeUntil(this.#checkVersionLegacy$),
         mergeMap(() =>
-          this.http.get<Build>(`${location.href}/assets/build.json`, {
-            params: {
-              x: Math.random()
-            }
-          })
-        ),
-        catchError(() => of(environment.build))
+          this.http
+            .get<Build>(`assets/build.json`, {
+              params: {
+                x: Math.random()
+              }
+            })
+            .pipe(catchError(() => of(environment.build)))
+        )
       )
       .subscribe((build: Build) => {
         console.log('%cPolling for new legacy version...', 'color: khaki');
         if (build.id !== environment.build.id) {
           console.log(
-            '%cNew legacy version detected',
+            '%c...new legacy version detected',
             'color: tan',
             build.id,
             build.date
@@ -125,7 +134,7 @@ export class VersionService {
     const periodically$ = interval(this.params.version.checkVersionInterval);
     concat(appIsStable$, periodically$).subscribe((): any => {
       console.log('%cPolling for new PWA version...', 'color: moccasin');
-      this.swUpdate.checkForUpdate();
+      this.swUpdate.checkForUpdate().then();
     });
   }
 }

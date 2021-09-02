@@ -22,7 +22,7 @@
 
       <ion-item (tap)="showInfo()" class="menu-item" button lines="full">
         <ion-avatar slot="start">
-          <img src="png/help.png" />
+          <img src="png/info.png" />
         </ion-avatar>
         <ion-label>Legend and Credits</ion-label>
       </ion-item>
@@ -38,6 +38,13 @@
           <img src="png/help.png" />
         </ion-avatar>
         <ion-label>Help</ion-label>
+      </ion-item>
+
+      <ion-item (tap)="reload()" class="menu-item" button lines="full">
+        <ion-avatar slot="start">
+          <img src="png/refresh.png" />
+        </ion-avatar>
+        <ion-label>Reload</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
