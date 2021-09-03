@@ -247,7 +247,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   #initializeGeolocation$(): void {
-    const params = this.params.home.page.backoff;
+    const params = this.params.common.backoff;
     this.geolocation$
       .pipe(
         take(1),
@@ -367,7 +367,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   ftScale(): number {
     // 👇 display more feet if zoom less than 1
-    // TODO: does not look good at 75% -- sclae shows 266 feet
+    // TODO: does not look good at 75% -- sclae shows 267 feet
     return Math.round(
       this.model.map.ftScale * (1 / Math.min(1, this.view.view.scale))
     );
@@ -400,7 +400,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   reload(): void {
-    location.reload();
+    this.version.hardReset();
   }
 
   resize(event: ResizedEvent): void {

@@ -44,7 +44,7 @@ export class VersionService {
   #checkUnrecoverableServiceWorker(): void {
     this.swUpdate.unrecoverable.subscribe((event: UnrecoverableStateEvent) => {
       console.error('🔥 Unrecoverable PWA error', event.reason);
-      this.#hardReset();
+      this.hardReset();
     });
   }
 
@@ -61,17 +61,6 @@ export class VersionService {
     });
   }
 
-  #hardReset(): void {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .getRegistrations()
-        .then((registrations) =>
-          Promise.all(registrations.map((r) => r.unregister()))
-        )
-        .finally(() => location.reload());
-    } else location.reload();
-  }
-
   #newVersionDetected(): void {
     const buttons: AlertButton[] = [
       {
@@ -79,7 +68,7 @@ export class VersionService {
         handler: (): void => {
           if (this.#serviceWorkerCanNotify)
             this.swUpdate.activateUpdate().then(() => location.reload());
-          else this.#hardReset();
+          else this.hardReset();
         }
       }
     ];
@@ -139,7 +128,7 @@ export class VersionService {
             build.id,
             build.date
           );
-          if (this.params.version.autoReload) this.#hardReset();
+          if (this.params.version.autoReload) this.hardReset();
           else this.#newVersionDetected();
         }
       });
@@ -154,5 +143,16 @@ export class VersionService {
       console.log('%cPolling for new PWA version...', 'color: moccasin');
       this.swUpdate.checkForUpdate().then();
     });
+  }
+
+  hardReset(): void {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((registrations) =>
+          Promise.all(registrations.map((r) => r.update()))
+        )
+        .finally(() => location.reload());
+    } else location.reload();
   }
 }

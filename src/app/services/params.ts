@@ -7,6 +7,11 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class Params {
   common = {
+    backoff: {
+      initialInterval: 100,
+      maxInterval: 1000,
+      maxRetries: 5
+    },
     lotMarkerColor: '#e04055',
     lotMarkerWidth: 5,
     lotOutlineColor: '#ff4961',
@@ -55,11 +60,6 @@ export class Params {
       straightLineThreshold: 30 // degrees
     },
     page: {
-      backoff: {
-        initialInterval: 100,
-        maxInterval: 1000,
-        maxRetries: 5
-      },
       searchbarDebounceTime: 1000,
       showLotsDelay: 1000
     },
@@ -71,11 +71,6 @@ export class Params {
       intersectionMargin: 256
     },
     tracker: {
-      backoff: {
-        initialInterval: 100,
-
-        maxInterval: 1000
-      },
       ballAccuracyMax: 48,
       ballColor: '#428cff',
       ballColorRGB: '66, 140, 255',

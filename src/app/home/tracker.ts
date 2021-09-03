@@ -54,7 +54,6 @@ export class TrackerComponent {
   }
 
   #handleGeoLocation$(): void {
-    const params = this.params.home.tracker;
     this.geolocation$
       .pipe(
         takeUntil(this.destroy$),
@@ -62,13 +61,16 @@ export class TrackerComponent {
         retryBackoff({
           backoffDelay: (iteration, initialInterval) =>
             Math.pow(1.1, iteration) * initialInterval,
-          initialInterval: params.backoff.initialInterval,
-          maxInterval: params.backoff.maxInterval,
+          initialInterval: this.params.common.backoff.initialInterval,
+          maxInterval: this.params.common.backoff.maxInterval,
           resetOnSuccess: true,
           shouldRetry: (error: GeolocationPositionError) => {
             const style = document.body.style;
             style.setProperty('--ball-accuracy', `0`);
-            style.setProperty('--ball-color', `${params.ballDisabledColor}`);
+            style.setProperty(
+              '--ball-color',
+              `${this.params.home.tracker.ballDisabledColor}`
+            );
             style.setProperty('--ball-heading-visibility', 'hidden');
             // 👇 GeolocationPositionError.PERMISSION_DENIED throws error on iOS
             return error.code !== 1;
