@@ -8,6 +8,7 @@ import { AlertButton } from '@ionic/angular';
 import { ApplicationRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { SwUpdate } from '@angular/service-worker';
 import { UnrecoverableStateEvent } from '@angular/service-worker';
@@ -25,11 +26,15 @@ import { timer } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class VersionService {
   #checkVersionLegacy$ = new Subject<void>();
+  // 👀 https://stackoverflow.com/questions/51435349
+  // 👉 service worker update notification fails on iOS
+  #serviceWorkerCanNotify = this.swUpdate.isEnabled && !this.platform.is('ios');
 
   constructor(
     private appRef: ApplicationRef,
     private http: HttpClient,
     public params: Params,
+    private platform: Platform,
     private sac: SingletonAlertService,
     private swUpdate: SwUpdate
   ) {
@@ -39,7 +44,7 @@ export class VersionService {
   #checkUnrecoverableServiceWorker(): void {
     this.swUpdate.unrecoverable.subscribe((event: UnrecoverableStateEvent) => {
       console.error('🔥 Unrecoverable PWA error', event.reason);
-      location.reload();
+      this.#hardReset();
     });
   }
 
@@ -56,14 +61,25 @@ export class VersionService {
     });
   }
 
+  #hardReset(): void {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((registrations) =>
+          Promise.all(registrations.map((r) => r.unregister()))
+        )
+        .finally(() => location.reload());
+    } else location.reload();
+  }
+
   #newVersionDetected(): void {
     const buttons: AlertButton[] = [
       {
         text: 'Activate',
         handler: (): void => {
-          if (this.swUpdate.isEnabled)
+          if (this.#serviceWorkerCanNotify)
             this.swUpdate.activateUpdate().then(() => location.reload());
-          else location.reload();
+          else this.#hardReset();
         }
       }
     ];
@@ -72,17 +88,15 @@ export class VersionService {
         text: 'Later',
         role: 'cancel',
         handler: (): void => {
-          if (!this.swUpdate.isEnabled) {
-            // 👇 once the user says "later" we won't check again in legacy
-            //    mode -- but we must when using service workers, because
-            //    a bookmarked PWA may never be restarted
-            this.#checkVersionLegacy$.next();
-            this.#checkVersionLegacy$.complete();
-            console.log(
-              '%cUser declines further legacy version checks',
-              'color: orchid'
-            );
-          }
+          // 👇 once the user says "later" we won't check again in legacy
+          //    mode -- but we must when using service workers, because
+          //    a bookmarked PWA may never be restarted
+          this.#checkVersionLegacy$.next();
+          this.#checkVersionLegacy$.complete();
+          console.log(
+            '%cUser declines further legacy version checks',
+            'color: orchid'
+          );
         }
       });
     }
@@ -94,14 +108,11 @@ export class VersionService {
   }
 
   #pollVersion(): void {
-    if (this.swUpdate.isEnabled) {
+    if (this.#serviceWorkerCanNotify) {
       this.#checkUnrecoverableServiceWorker();
       this.#checkVersionServiceWorker();
       this.#pollVersionServiceWorker();
-    }
-    // 👇 for now, this will only be called for localhost as
-    //    any other host activates service workers in module.ts
-    else this.#pollVersionLegacy();
+    } else this.#pollVersionLegacy();
   }
 
   #pollVersionLegacy(): void {
@@ -128,7 +139,7 @@ export class VersionService {
             build.id,
             build.date
           );
-          if (this.params.version.autoReload) location.reload();
+          if (this.params.version.autoReload) this.#hardReset();
           else this.#newVersionDetected();
         }
       });

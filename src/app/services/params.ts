@@ -101,6 +101,6 @@ export class Params {
         allowReloadPostponement: true,
         autoReload: !environment.localhost,
         checkVersionLegacyAfter: 5 * 1000,
-        checkVersionInterval: 60 * 1000
+        checkVersionInterval: 20 * 1000
       };
 }
