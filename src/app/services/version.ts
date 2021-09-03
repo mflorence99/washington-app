@@ -1,9 +1,10 @@
 import { Build } from '../state/build';
-import { Params } from '../services/params';
-import { SingletonAlertService } from '../services/alert';
+import { Params } from './params';
+import { SingletonAlertService } from './alert';
 
 import { environment } from '../../environments/environment';
 
+import { AlertButton } from '@ionic/angular';
 import { ApplicationRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -38,7 +39,7 @@ export class VersionService {
   #checkUnrecoverableServiceWorker(): void {
     this.swUpdate.unrecoverable.subscribe((event: UnrecoverableStateEvent) => {
       console.error('🔥 Unrecoverable PWA error', event.reason);
-      this.#newVersionDetected();
+      location.reload();
     });
   }
 
@@ -49,41 +50,46 @@ export class VersionService {
         'color: wheat',
         event.available.hash
       );
-      this.#newVersionDetected();
+      if (this.params.version.autoReload)
+        this.swUpdate.activateUpdate().then(() => location.reload());
+      else this.#newVersionDetected();
     });
   }
 
   #newVersionDetected(): void {
+    const buttons: AlertButton[] = [
+      {
+        text: 'Activate',
+        handler: (): void => {
+          if (this.swUpdate.isEnabled)
+            this.swUpdate.activateUpdate().then(() => location.reload());
+          else location.reload();
+        }
+      }
+    ];
+    if (this.params.version.allowReloadPostponement) {
+      buttons.push({
+        text: 'Later',
+        role: 'cancel',
+        handler: (): void => {
+          if (!this.swUpdate.isEnabled) {
+            // 👇 once the user says "later" we won't check again in legacy
+            //    mode -- but we must when using service workers, because
+            //    a bookmarked PWA may never be restarted
+            this.#checkVersionLegacy$.next();
+            this.#checkVersionLegacy$.complete();
+            console.log(
+              '%cUser declines further legacy version checks',
+              'color: orchid'
+            );
+          }
+        }
+      });
+    }
     this.sac.createAndPresent({
       header: 'New version detected',
       message: 'Please activate it now',
-      buttons: [
-        {
-          text: 'Activate',
-          handler: (): void => {
-            if (this.swUpdate.isEnabled)
-              this.swUpdate.activateUpdate().then(() => location.reload());
-            else location.reload();
-          }
-        }
-        // {
-        //   text: 'Later',
-        //   role: 'cancel',
-        //   handler: (): void => {
-        //     if (!this.swUpdate.isEnabled) {
-        //       // 👇 once the user says "later" we won't check again in legacy
-        //       //    mode -- but we must when using service workers, because
-        //       //    a bookmarked PWA may never be restarted
-        //       this.#checkVersionLegacy$.next();
-        //       this.#checkVersionLegacy$.complete();
-        //       console.log(
-        //         '%cUser declines further legacy version checks',
-        //         'color: orchid'
-        //       );
-        //     }
-        //   }
-        // }
-      ]
+      buttons
     });
   }
 
@@ -122,7 +128,8 @@ export class VersionService {
             build.id,
             build.date
           );
-          this.#newVersionDetected();
+          if (this.params.version.autoReload) location.reload();
+          else this.#newVersionDetected();
         }
       });
   }

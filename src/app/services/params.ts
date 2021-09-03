@@ -92,10 +92,14 @@ export class Params {
 
   version = environment.production
     ? {
+        allowReloadPostponement: false,
+        autoReload: true,
         checkVersionLegacyAfter: 60 * 1000,
         checkVersionInterval: 120 * 1000
       }
     : {
+        allowReloadPostponement: true,
+        autoReload: !environment.localhost,
         checkVersionLegacyAfter: 5 * 1000,
         checkVersionInterval: 60 * 1000
       };
