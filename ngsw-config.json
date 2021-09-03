@@ -19,6 +19,14 @@
       }
     },
     {
+      "name": "splash",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/splash/*"]
+      }
+    },
+    {
       "name": "png",
       "installMode": "prefetch",
       "updateMode": "prefetch",

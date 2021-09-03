@@ -59,6 +59,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "src/splash",
+                "output": "splash"
+              },
+              {
+                "glob": "**/*",
                 "input": "src/png",
                 "output": "png"
               },

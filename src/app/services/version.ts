@@ -150,7 +150,11 @@ export class VersionService {
       navigator.serviceWorker
         .getRegistrations()
         .then((registrations) =>
-          Promise.all(registrations.map((r) => r.update()))
+          Promise.all(
+            registrations.map((registration) =>
+              registration.update().then(() => registration.unregister())
+            )
+          )
         )
         .finally(() => location.reload());
     } else location.reload();
