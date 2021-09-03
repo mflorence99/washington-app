@@ -89,7 +89,7 @@ export class Params {
     ? {
         allowReloadPostponement: false,
         autoReload: true,
-        checkVersionLegacyAfter: 60 * 1000,
+        checkVersionLegacyAfter: 10 * 1000,
         checkVersionInterval: 120 * 1000
       }
     : {
