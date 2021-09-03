@@ -6,24 +6,28 @@
   <article *ngIf="api.ready$ | async; else noMap" class="lot-map">
     <google-map
       (boundsChanged)="boundsChanged.emit(map.getBounds())"
+      (maptypeidChanged)="mapType = map.getMapTypeId()"
       (zoomChanged)="zoomChanged.emit(map.getZoom())"
       [options]="mapOptions"
       height="100%"
       width="100%"
     >
-      <ng-container [ngSwitch]="lotLinesStyle">
-        <ng-container *ngSwitchCase="'outline'">
-          <map-polyline
-            *ngFor="let outline of outlines"
-            [path]="outline"
-            [options]="outlineOptions"
-          ></map-polyline>
-        </ng-container>
+      <app-lot-measure [bbox]="bbox" [lot]="lot" [mapType]="mapType">
+      </app-lot-measure>
 
-        <ng-container *ngSwitchCase="'measure'">
-          <app-lot-measure [bbox]="bbox" [lot]="lot" [mapType]="mapType">
-          </app-lot-measure>
-        </ng-container>
+      <ng-container *ngFor="let abutter of abutters()">
+        <map-marker
+          *ngFor="let center of centers(abutter)"
+          [label]="markerLabel(abutter)"
+          [options]="markerOptions"
+          [position]="center"
+        >
+        </map-marker>
+        <map-polyline
+          *ngFor="let outline of outlines(abutter)"
+          [path]="outline"
+          [options]="abutterOptions"
+        ></map-polyline>
       </ng-container>
     </google-map>
   </article>

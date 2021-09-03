@@ -4,6 +4,7 @@ import { PARCELS } from './parcel-data';
 import fuzzysort from 'fuzzysort';
 
 export interface Lot {
+  abutters?: string[];
   address?: string;
   area: number;
   areas: number[];

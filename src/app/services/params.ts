@@ -12,6 +12,7 @@ export class Params {
       maxInterval: 1000,
       maxRetries: 5
     },
+    lotAbutterColor: '#428cff',
     lotMarkerColor: '#e04055',
     lotMarkerWidth: 5,
     lotOutlineColor: '#ff4961',
