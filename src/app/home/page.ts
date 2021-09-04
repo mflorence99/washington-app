@@ -202,7 +202,7 @@ export class HomePage implements AfterViewInit, OnInit {
         component: DetailsComponent,
         componentProps: { lot: lots[0] },
         cssClass: ['big-and-tall-modal'],
-        swipeToClose: true
+        swipeToClose: false
       });
     }
   }
@@ -453,7 +453,7 @@ export class HomePage implements AfterViewInit, OnInit {
   showInfo(): void {
     this.smc.createAndPresent({
       component: InfoComponent,
-      swipeToClose: true
+      swipeToClose: false
     });
     this.menu?.close(true);
   }
@@ -465,7 +465,7 @@ export class HomePage implements AfterViewInit, OnInit {
   showOverlay(): void {
     this.smc.createAndPresent({
       component: OverlayComponent,
-      swipeToClose: true
+      swipeToClose: false
     });
   }
 
