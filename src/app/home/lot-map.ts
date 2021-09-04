@@ -49,6 +49,10 @@ export class LotMapComponent {
   set lot(lot: Lot) {
     this.#lot = lot;
     this.bbox = this.geometry.bboxOfLot(lot);
+    // 👇 this prevents Google HQ showing as map!
+    const { lat, lon } = this.geometry.latlonCenterOfLots([lot]);
+    this.mapOptions.center = { lat, lng: lon };
+    // 👇 build the list of abutters
     this.abutters = (lot.abutters ?? [])
       .filter((id) => !!LOT_BY_ID[id])
       .map((id) => LOT_BY_ID[id]);
