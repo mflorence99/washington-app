@@ -7,6 +7,7 @@ import { Rectangle } from '../services/geometry';
 import { SelectionState } from '../state/selection';
 
 import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
@@ -31,10 +32,11 @@ export class LotMapComponent {
   #mapType: string;
   #staticMap: boolean;
 
-  abutterOptions: google.maps.PolylineOptions = {
-    strokeColor: this.params.common.lotAbutterColor,
-    strokeWeight: this.params.common.lotOutlineWidth
-  };
+  @Output() abutterHighlighted = new EventEmitter<string>();
+
+  abutterOptions: google.maps.PolygonOptions[] = [];
+
+  abutters: Lot[] = [];
 
   bbox: Rectangle;
 
@@ -47,6 +49,16 @@ export class LotMapComponent {
   set lot(lot: Lot) {
     this.#lot = lot;
     this.bbox = this.geometry.bboxOfLot(lot);
+    this.abutters = (lot.abutters ?? [])
+      .filter((id) => !!LOT_BY_ID[id])
+      .map((id) => LOT_BY_ID[id]);
+    this.abutterOptions = this.abutters.map((abutter) => ({
+      id: abutter.id,
+      fillColor: this.params.common.lotAbutterColor,
+      fillOpacity: 0,
+      strokeColor: this.params.common.lotAbutterColor,
+      strokeWeight: this.params.common.lotOutlineWidth
+    }));
   }
 
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
@@ -55,7 +67,7 @@ export class LotMapComponent {
     disableDefaultUI: false,
     fullscreenControl: false,
     keyboardShortcuts: false,
-    mapTypeControl: true
+    mapTypeControl: false
   };
 
   mapURL = '';
@@ -107,16 +119,11 @@ export class LotMapComponent {
 
   constructor(
     public api: GoogleService,
+    private cdf: ChangeDetectorRef,
     private geometry: GeometryService,
     private params: Params,
     public selection: SelectionState
   ) {}
-
-  abutters(): Lot[] {
-    return (this.lot.abutters ?? [])
-      .filter((id) => !!LOT_BY_ID[id])
-      .map((id) => LOT_BY_ID[id]);
-  }
 
   centers(lot: Lot): google.maps.LatLngLiteral[] {
     return lot.centers.map(({ lat, lon }) => ({ lat, lng: lon }));
@@ -128,6 +135,15 @@ export class LotMapComponent {
       fontFamily: 'monospace',
       text: lot.id
     };
+  }
+
+  mouseoverAbutter(abutter: Lot): void {
+    this.abutterOptions.forEach((options: any) => {
+      options.fillOpacity = abutter.id === options.id ? 0.33 : 0;
+    });
+    // 👇 necessary because we can call here externally
+    this.cdf.detectChanges();
+    this.abutterHighlighted.emit(abutter.id);
   }
 
   outlines(lot: Lot): google.maps.LatLngLiteral[][] {
@@ -152,5 +168,13 @@ export class LotMapComponent {
       this.map.panToBounds(this.preferredBounds ?? bounds);
       if (this.preferredZoom) this.map.googleMap.setZoom(this.preferredZoom);
     }
+  }
+
+  trackByAbutter(_, abutter: Lot): string {
+    return abutter.id;
+  }
+
+  trackByIndex(ix: number): string {
+    return `${ix}`;
   }
 }

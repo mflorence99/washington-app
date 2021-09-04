@@ -4,6 +4,7 @@ import { DetailsType } from '../state/model';
 import { GeometryService } from '../services/geometry';
 import { Lot } from '../state/parcels';
 import { LOT_BY_ID } from '../state/parcels';
+import { LotMapComponent } from './lot-map';
 import { ModelState } from '../state/model';
 import { Params } from '../services/params';
 import { PDFService } from '../services/pdf';
@@ -17,6 +18,7 @@ import { Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { ResizedEvent } from 'angular-resize-event';
+import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 // 👇 all the dimensions associated with printing are hacks for the PDF
@@ -30,7 +32,29 @@ import { ViewEncapsulation } from '@angular/core';
   templateUrl: './details.html'
 })
 export class DetailsComponent {
+  #highlightedAbutterID: string;
+
+  get highlightedAbutterID(): string {
+    return this.#highlightedAbutterID;
+  }
+  set highlightedAbutterID(id: string) {
+    this.#highlightedAbutterID = id;
+    setTimeout(() => {
+      const row = this.host.nativeElement.querySelector(
+        '.table.abutters tr.highlighted'
+      );
+      if (row)
+        row.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start'
+        });
+    }, 0);
+  }
+
   @Input() lot: Lot;
+
+  @ViewChild(LotMapComponent, { static: false }) map: LotMapComponent;
 
   orientation: 'landscape' | 'portrait' | 'pdf' = 'portrait';
 
@@ -62,7 +86,8 @@ export class DetailsComponent {
   abutters(): Lot[] {
     return (this.lot.abutters ?? [])
       .filter((id) => !!LOT_BY_ID[id])
-      .map((id) => LOT_BY_ID[id]);
+      .map((id) => LOT_BY_ID[id])
+      .sort((p, q) => p.id.localeCompare(q.id));
   }
 
   canPrint(): boolean {
@@ -81,6 +106,11 @@ export class DetailsComponent {
 
   dismiss(): void {
     this.mc.dismiss();
+  }
+
+  mouseoverAbutter(abutter: Lot): void {
+    this.highlightedAbutterID = abutter.id;
+    this.map?.mouseoverAbutter(abutter);
   }
 
   print(): void {

@@ -37,13 +37,15 @@ app-details {
     }
 
     .table {
+      align-self: start;
       margin-bottom: 3rem;
 
       table {
         td,
         th {
-          padding-bottom: 8px;
+          padding-bottom: 4px;
           padding-right: 8px;
+          padding-top: 4px;
           text-align: left;
         }
 
@@ -55,8 +57,11 @@ app-details {
 
     .table.abutters {
       grid-area: table-abutters;
-      max-height: 160px;
       overflow: auto;
+
+      tr.highlighted {
+        background-color: rgba(var(--ion-color-primary-rgb), 0.33);
+      }
     }
 
     .table.assessor,
@@ -178,6 +183,46 @@ app-details.portrait.measure section {
   }
 }
 
+@media (min-height: 480px) {
+  app-details.landscape.assessor section {
+    grid-template-areas:
+      'header header'
+      'map table-assessor'
+      'map table-abutters';
+    grid-template-columns: 1fr minmax(284px, auto);
+    grid-template-rows: auto auto 1fr;
+
+    .lot,
+    .table.measure {
+      display: none;
+    }
+
+    .table.abutters {
+      display: block;
+      max-height: calc(100% - 4rem);
+    }
+  }
+
+  app-details.landscape.measure section {
+    grid-template-areas:
+      'header header'
+      'lot table-measure'
+      'lot table-abutters';
+    grid-template-columns: 1fr minmax(284px, auto);
+    grid-template-rows: auto auto 1fr;
+
+    .map,
+    .table.assessor {
+      display: none;
+    }
+
+    .table.abutters {
+      display: block;
+      max-height: calc(100% - 4rem);
+    }
+  }
+}
+
 @media (min-width: 640px) {
   app-details.portrait.assessor section {
     grid-template-areas:
@@ -194,6 +239,7 @@ app-details.portrait.measure section {
 
     .table.abutters {
       display: block;
+      max-height: 180px;
     }
   }
 
@@ -202,7 +248,7 @@ app-details.portrait.measure section {
       'header header'
       'lot lot'
       'table-measure table-abutters';
-    grid-template-columns: 1fr qfr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr auto;
 
     .map,
@@ -212,6 +258,7 @@ app-details.portrait.measure section {
 
     .table.abutters {
       display: block;
+      max-height: 180px;
     }
   }
 }

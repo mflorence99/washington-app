@@ -13,10 +13,11 @@
     class="map"
   >
     <app-lot-map
+      (abutterHighlighted)="highlightedAbutterID = $event"
       (boundsChanged)="preferredBounds = $event"
       (zoomChanged)="preferredZoom = $event"
       [lot]="lot"
-      [mapType]="'satellite'"
+      [mapType]="'hybrid'"
       [preferredBounds]="preferredBounds"
       [preferredZoom]="preferredZoom"
       [staticMapHeight]="staticMapHeight"
@@ -34,6 +35,7 @@
     class="lot"
   >
     <app-lot-map
+      (abutterHighlighted)="highlightedAbutterID = $event"
       (boundsChanged)="preferredBounds = $event"
       (zoomChanged)="preferredZoom = $event"
       [lot]="lot"
@@ -147,8 +149,14 @@
   >
     <table>
       <tbody>
-        <tr *ngFor="let abutter of abutters()">
-          <td><a (tap)="selection.select([abutter])">{{ abutter.id }}</a></td>
+        <tr
+          *ngFor="let abutter of abutters()"
+          (mouseover)="mouseoverAbutter(abutter)"
+          [class.highlighted]="highlightedAbutterID === abutter.id"
+        >
+          <td nowrap>
+            <a (tap)="selection.select([abutter])">{{ abutter.id }}</a>
+          </td>
           <td>{{ abutter.owner ?? abutter.address }}</td>
         </tr>
       </tbody>
