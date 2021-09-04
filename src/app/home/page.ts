@@ -412,6 +412,11 @@ export class HomePage implements AfterViewInit, OnInit {
     this.translate(-0, -0, true);
   }
 
+  scaleByWheel(event: WheelEvent): void {
+    if (event.deltaY > 0) this.scaleUp();
+    if (event.deltaY < 0) this.scaleDown();
+  }
+
   scaleDown(): void {
     const ix = this.params.geometry.scales.findIndex(
       (scale) => scale === this.view.view.scale

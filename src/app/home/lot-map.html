@@ -12,9 +12,6 @@
       height="100%"
       width="100%"
     >
-      <app-lot-measure [bbox]="bbox" [lot]="lot" [mapType]="mapType">
-      </app-lot-measure>
-
       <ng-container
         *ngFor="let abutter of abutters; let ix = index; trackBy: trackByAbutter"
       >
@@ -34,6 +31,9 @@
           [options]="abutterOptions[ix]"
         ></map-polygon>
       </ng-container>
+
+      <app-lot-measure [bbox]="bbox" [lot]="lot" [mapType]="mapType">
+      </app-lot-measure>
     </google-map>
   </article>
 
