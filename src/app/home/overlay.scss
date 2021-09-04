@@ -76,11 +76,3 @@ app-overlay.portrait section {
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr 1fr;
 }
-
-app-overlay.square section {
-  grid-template-areas:
-    'header header'
-    'form picker';
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
-}

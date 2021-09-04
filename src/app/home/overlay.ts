@@ -26,8 +26,7 @@ import Debounce from 'debounce-decorator';
   templateUrl: './overlay.html'
 })
 export class OverlayComponent implements OnInit {
-  @HostBinding('class') cssClass: 'landscape' | 'portrait' | 'square' =
-    'square';
+  @HostBinding('class') cssClass: 'landscape' | 'portrait' = 'landscape';
 
   overlayForm: FormGroup;
   selectedPicker: FormControl;
@@ -101,8 +100,7 @@ export class OverlayComponent implements OnInit {
   }
 
   resize(event: ResizedEvent): void {
-    if (event.newWidth === event.newHeight) this.cssClass = 'square';
-    else if (event.newWidth > event.newHeight) this.cssClass = 'landscape';
+    if (event.newWidth >= event.newHeight) this.cssClass = 'landscape';
     else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
   }
 }

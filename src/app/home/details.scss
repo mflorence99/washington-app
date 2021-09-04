@@ -37,14 +37,31 @@ app-details {
     }
 
     .table {
-      padding-bottom: 3rem;
+      margin-bottom: 3rem;
 
       table {
-        td {
+        td,
+        th {
           padding-bottom: 8px;
           padding-right: 8px;
+          text-align: left;
         }
 
+        tr {
+          vertical-align: top;
+        }
+      }
+    }
+
+    .table.abutters {
+      grid-area: table-abutters;
+      max-height: 160px;
+      overflow: auto;
+    }
+
+    .table.assessor,
+    .table.measure {
+      table {
         td:first-child {
           font-weight: bold;
           overflow: hidden;
@@ -61,106 +78,16 @@ app-details {
         td:not(:first-child) {
           padding-left: 8px;
         }
-
-        tr {
-          vertical-align: top;
-        }
-      }
-
-      .table.assessor {
-        grid-area: table-assessor;
-      }
-
-      .table.measure {
-        grid-area: table-measure;
       }
     }
-  }
-}
 
-app-details.landscape.assessor section {
-  grid-template-areas:
-    'header header'
-    'map table-assessor';
-  grid-template-columns: 1fr minmax(284px, auto);
-  grid-template-rows: auto 1fr;
+    .table.assessor {
+      grid-area: table-assessor;
+    }
 
-  .lot,
-  .table.measure {
-    display: none;
-  }
-}
-
-app-details.portrait.assessor section {
-  grid-template-areas:
-    'header'
-    'map'
-    'table-assessor';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-
-  .lot,
-  .table.measure {
-    display: none;
-  }
-}
-
-app-details.square.assessor section {
-  grid-template-areas:
-    'header'
-    'map'
-    'table-assessor';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-
-  .lot,
-  .table.measure {
-    display: none;
-  }
-}
-
-app-details.landscape.measure section {
-  grid-template-areas:
-    'header header'
-    'lot table-measure';
-  grid-template-columns: 1fr minmax(284px, auto);
-  grid-template-rows: auto 1fr;
-
-  .map,
-  .table.assessor {
-    display: none;
-  }
-}
-
-app-details.portrait.measure section {
-  grid-template-areas:
-    'header'
-    'lot'
-    'table-measure';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-
-  .map,
-  .table.assessor {
-    display: none;
-  }
-}
-
-app-details.square.measure section {
-  grid-template-areas:
-    'header'
-    'lot'
-    'table-measure';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-
-  .footnotes {
-    width: 50%;
-  }
-
-  .map,
-  .table.assessor {
-    display: none;
+    .table.measure {
+      grid-area: table-measure;
+    }
   }
 }
 
@@ -189,6 +116,102 @@ app-details.pdf {
         text-align: right;
         width: var(--pdf-mark-width);
       }
+    }
+  }
+}
+
+app-details.landscape.assessor section {
+  grid-template-areas:
+    'header header'
+    'map table-assessor';
+  grid-template-columns: 1fr minmax(284px, auto);
+  grid-template-rows: auto 1fr;
+
+  .lot,
+  .table.abutters,
+  .table.measure {
+    display: none;
+  }
+}
+
+app-details.portrait.assessor section {
+  grid-template-areas:
+    'header'
+    'map'
+    'table-assessor';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  .lot,
+  .table.abutters,
+  .table.measure {
+    display: none;
+  }
+}
+
+app-details.landscape.measure section {
+  grid-template-areas:
+    'header header'
+    'lot table-measure';
+  grid-template-columns: 1fr minmax(284px, auto);
+  grid-template-rows: auto 1fr;
+
+  .map,
+  .table.abutters,
+  .table.assessor {
+    display: none;
+  }
+}
+
+app-details.portrait.measure section {
+  grid-template-areas:
+    'header'
+    'lot'
+    'table-measure';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  .map,
+  .table.abutters,
+  .table.assessor {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  app-details.portrait.assessor section {
+    grid-template-areas:
+      'header header'
+      'map map'
+      'table-assessor table-abutters';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+
+    .lot,
+    .table.measure {
+      display: none;
+    }
+
+    .table.abutters {
+      display: block;
+    }
+  }
+
+  app-details.portrait.measure section {
+    grid-template-areas:
+      'header header'
+      'lot lot'
+      'table-measure table-abutters';
+    grid-template-columns: 1fr qfr;
+    grid-template-rows: auto 1fr auto;
+
+    .map,
+    .table.assessor {
+      display: none;
+    }
+
+    .table.abutters {
+      display: block;
     }
   }
 }

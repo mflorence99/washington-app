@@ -84,9 +84,3 @@ app-info.portrait section {
     display: none;
   }
 }
-
-app-info.square section {
-  grid-template-areas: 'legend credits';
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-}

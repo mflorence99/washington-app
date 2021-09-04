@@ -19,8 +19,7 @@ import { ViewEncapsulation } from '@angular/core';
   templateUrl: './info.html'
 })
 export class InfoComponent {
-  @HostBinding('class') cssClass: 'landscape' | 'portrait' | 'square' =
-    'square';
+  @HostBinding('class') cssClass: 'landscape' | 'portrait' = 'landscape';
 
   env = environment;
 
@@ -31,8 +30,7 @@ export class InfoComponent {
   }
 
   resize(event: ResizedEvent): void {
-    if (event.newWidth === event.newHeight) this.cssClass = 'square';
-    else if (event.newWidth > event.newHeight) this.cssClass = 'landscape';
+    if (event.newWidth >= event.newHeight) this.cssClass = 'landscape';
     else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
   }
 

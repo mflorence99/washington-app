@@ -141,6 +141,20 @@
     </footer>
   </article>
 
+  <article
+    *ngIf="['assessor', 'measure'].includes(model.details) && orientation !== 'pdf'"
+    class="table abutters"
+  >
+    <table>
+      <tbody>
+        <tr *ngFor="let abutter of abutters()">
+          <td><a (tap)="selection.select([abutter])">{{ abutter.id }}</a></td>
+          <td>{{ abutter.owner ?? abutter.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+
   <ng-container *ngIf="orientation !== 'pdf'">
     <ion-segment
       (ionChange)="detailsTo($event.detail.value)"

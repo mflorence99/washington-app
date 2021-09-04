@@ -3,9 +3,11 @@ import { DESC_BY_USE } from '../state/parcels';
 import { DetailsType } from '../state/model';
 import { GeometryService } from '../services/geometry';
 import { Lot } from '../state/parcels';
+import { LOT_BY_ID } from '../state/parcels';
 import { ModelState } from '../state/model';
 import { Params } from '../services/params';
 import { PDFService } from '../services/pdf';
+import { SelectionState } from '../state/selection';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
@@ -30,7 +32,7 @@ import { ViewEncapsulation } from '@angular/core';
 export class DetailsComponent {
   @Input() lot: Lot;
 
-  orientation: 'landscape' | 'portrait' | 'square' | 'pdf' = 'square';
+  orientation: 'landscape' | 'portrait' | 'pdf' = 'portrait';
 
   // 👇 these keep maps in sync as we flip between details type
   preferredBounds: google.maps.LatLngBounds;
@@ -46,7 +48,8 @@ export class DetailsComponent {
     public model: ModelState,
     private params: Params,
     private pdf: PDFService,
-    private platform: Platform
+    private platform: Platform,
+    public selection: SelectionState
   ) {
     // correct for earlier version where model.details not set
     if (!this.model.details) this.model.detailsTo('assessor');
@@ -54,6 +57,12 @@ export class DetailsComponent {
 
   @HostBinding('class') get cssClass(): string {
     return `${this.orientation} ${this.model.details}`;
+  }
+
+  abutters(): Lot[] {
+    return (this.lot.abutters ?? [])
+      .filter((id) => !!LOT_BY_ID[id])
+      .map((id) => LOT_BY_ID[id]);
   }
 
   canPrint(): boolean {
@@ -108,9 +117,8 @@ export class DetailsComponent {
 
   resize(event: ResizedEvent): void {
     if (this.orientation !== 'pdf') {
-      if (event.newWidth === event.newHeight) this.orientation = 'square';
-      else if (event.newWidth > event.newHeight) this.orientation = 'landscape';
-      else if (event.newWidth < event.newHeight) this.orientation = 'portrait';
+      if (event.newWidth > event.newHeight) this.orientation = 'landscape';
+      else if (event.newWidth <= event.newHeight) this.orientation = 'portrait';
     }
   }
 

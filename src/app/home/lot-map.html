@@ -18,6 +18,7 @@
       <ng-container *ngFor="let abutter of abutters()">
         <map-marker
           *ngFor="let center of centers(abutter)"
+          (mapClick)="selection.select([abutter])"
           [label]="markerLabel(abutter)"
           [options]="markerOptions"
           [position]="center"

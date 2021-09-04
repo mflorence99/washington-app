@@ -4,6 +4,7 @@ import { Lot } from '../state/parcels';
 import { LOT_BY_ID } from '../state/parcels';
 import { Params } from '../services/params';
 import { Rectangle } from '../services/geometry';
+import { SelectionState } from '../state/selection';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
@@ -107,7 +108,8 @@ export class LotMapComponent {
   constructor(
     public api: GoogleService,
     private geometry: GeometryService,
-    private params: Params
+    private params: Params,
+    public selection: SelectionState
   ) {}
 
   abutters(): Lot[] {
