@@ -1,3 +1,4 @@
+import { DestroyService } from '../services/destroy';
 import { GeometryService } from '../services/geometry';
 import { GoogleService } from '../services/google';
 import { Lot } from '../state/parcels';
@@ -6,33 +7,36 @@ import { Params } from '../services/params';
 import { Rectangle } from '../services/geometry';
 import { SelectionState } from '../state/selection';
 
+import { Actions } from '@ngxs/store';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { Input } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 import { encode } from '@googlemaps/polyline-codec';
+import { filter } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
+  providers: [DestroyService],
   selector: 'app-lot-map',
   styleUrls: ['./lot-map.scss'],
   templateUrl: './lot-map.html'
 })
-export class LotMapComponent {
+export class LotMapComponent implements OnInit {
   #lot: Lot;
   #mapType: string;
   #staticMap: boolean;
-
-  @Output() abutterHighlighted = new EventEmitter<string>();
 
   abutterOptions: google.maps.PolygonOptions[] = [];
 
@@ -122,12 +126,36 @@ export class LotMapComponent {
   @Output() zoomChanged = new EventEmitter<number>();
 
   constructor(
+    private actions$: Actions,
     public api: GoogleService,
+    private destroy$: DestroyService,
     private cdf: ChangeDetectorRef,
     private geometry: GeometryService,
     private params: Params,
     public selection: SelectionState
   ) {}
+
+  #handleActions$(): void {
+    this.actions$
+      .pipe(
+        takeUntil(this.destroy$),
+        filter(({ status }) => status === 'SUCCESSFUL')
+      )
+      .subscribe(({ action }) => {
+        this.#handleSelectionSelectAbutters(action);
+      });
+  }
+
+  #handleSelectionSelectAbutters(action: Object): void {
+    if (action['SelectionState.selectAbutters']) {
+      this.abutterOptions.forEach((options: any) => {
+        options.fillOpacity = this.selection.isAbutterSelected(options.id)
+          ? 0.33
+          : 0;
+      });
+      this.cdf.detectChanges();
+    }
+  }
 
   centers(lot: Lot): google.maps.LatLngLiteral[] {
     return lot.centers.map(({ lat, lon }) => ({ lat, lng: lon }));
@@ -141,13 +169,8 @@ export class LotMapComponent {
     };
   }
 
-  mouseoverAbutter(abutter: Lot): void {
-    this.abutterOptions.forEach((options: any) => {
-      options.fillOpacity = abutter.id === options.id ? 0.33 : 0;
-    });
-    // 👇 necessary because we can call here externally
-    this.cdf.detectChanges();
-    this.abutterHighlighted.emit(abutter.id);
+  ngOnInit(): void {
+    this.#handleActions$();
   }
 
   outlines(lot: Lot): google.maps.LatLngLiteral[][] {

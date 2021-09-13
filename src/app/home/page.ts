@@ -145,7 +145,7 @@ export class HomePage implements AfterViewInit, OnInit {
         this.#handleModelSwitchTo(action);
         this.#handleViewInitialize(action);
         this.#handleSelectionSearchFor(action);
-        this.#handleSelectionSelect(action);
+        this.#handleSelectionSelectLots(action);
         this.#handleViewScale(action);
         this.#handleViewTranslate(action);
       });
@@ -194,8 +194,8 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  #handleSelectionSelect(action: Object): void {
-    if (action['SelectionState.select']) {
+  #handleSelectionSelectLots(action: Object): void {
+    if (action['SelectionState.selectLots']) {
       const lots = this.selection.lots;
       this.#highlightLots(lots);
       this.smc.createAndPresent({
@@ -446,7 +446,7 @@ export class HomePage implements AfterViewInit, OnInit {
     const lotID = this.geometry.whichLotID(xy);
     if (lotID) {
       const lot = LOT_BY_ID[lotID];
-      if (lot) this.selection.select([lot]);
+      if (lot) this.selection.selectLots([lot]);
     }
   }
 

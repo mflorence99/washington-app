@@ -17,7 +17,7 @@
       >
         <map-marker
           *ngFor="let center of centers(abutter); trackBy: trackByIndex"
-          (mapClick)="selection.select([abutter])"
+          (mapClick)="selection.selectLots([abutter])"
           [label]="markerLabel(abutter)"
           [options]="markerOptions"
           [position]="center"
@@ -25,8 +25,8 @@
         </map-marker>
         <map-polygon
           *ngFor="let outline of outlines(abutter)"
-          (polygonMouseover)="mouseoverAbutter(abutter)"
-          (polygonClick)="selection.select([abutter])"
+          (polygonMouseover)="selection.selectAbutters([abutter])"
+          (polygonClick)="selection.selectLots([abutter])"
           [paths]="outline"
           [options]="abutterOptions[ix]"
         ></map-polygon>

@@ -18,6 +18,7 @@ import { patch } from '@ngxs/store/operators';
 import fuzzysort from 'fuzzysort';
 
 export interface SelectionStateModel {
+  abutters: Lot[];
   fuzzies: string[];
   lots: Lot[];
   text: string;
@@ -28,6 +29,7 @@ export interface SelectionStateModel {
 @State<SelectionStateModel>({
   name: 'selection',
   defaults: {
+    abutters: [],
     fuzzies: [],
     lots: [],
     text: ''
@@ -58,6 +60,18 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
     } else return null;
   }
 
+  // methods
+
+  isAbutterSelected(id: string): boolean {
+    const ids = this.abutters.map((abutter) => abutter.id);
+    return ids.includes(id);
+  }
+
+  isLotSelected(id: string): boolean {
+    const ids = this.lots.map((lot) => lot.id);
+    return ids.includes(id);
+  }
+
   // actions
 
   @DataAction({ insideZone: true })
@@ -85,17 +99,31 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
           .map((result) => result.target);
       }
     }
-    this.ctx.setState(
-      patch({ fuzzies: fuzzies ?? [], lots: lots ?? [], text: searchFor })
-    );
+    this.ctx.setState({
+      abutters: [],
+      fuzzies: fuzzies ?? [],
+      lots: lots ?? [],
+      text: searchFor
+    });
   }
 
   @DataAction({ insideZone: true })
-  select(@Payload('SelectionState.select') lots: Lot[]): void {
-    this.ctx.setState({ fuzzies: [], lots, text: '' });
+  selectAbutters(
+    @Payload('SelectionState.selectAbutters') abutters: Lot[]
+  ): void {
+    this.ctx.setState(patch({ abutters }));
+  }
+
+  @DataAction({ insideZone: true })
+  selectLots(@Payload('SelectionState.selectLots') lots: Lot[]): void {
+    this.ctx.setState({ abutters: [], fuzzies: [], lots, text: '' });
   }
 
   // accessors
+
+  @Computed() get abutters(): Lot[] {
+    return this.snapshot.abutters;
+  }
 
   @Computed() get fuzzies(): string[] {
     return this.snapshot.fuzzies;

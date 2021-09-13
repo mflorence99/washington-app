@@ -1,25 +1,29 @@
 import { DESC_BY_USAGE } from '../state/parcels';
 import { DESC_BY_USE } from '../state/parcels';
+import { DestroyService } from '../services/destroy';
 import { DetailsType } from '../state/model';
 import { GeometryService } from '../services/geometry';
 import { Lot } from '../state/parcels';
 import { LOT_BY_ID } from '../state/parcels';
-import { LotMapComponent } from './lot-map';
 import { ModelState } from '../state/model';
 import { Params } from '../services/params';
 import { PDFService } from '../services/pdf';
 import { SelectionState } from '../state/selection';
 
+import { Actions } from '@ngxs/store';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { HostBinding } from '@angular/core';
 import { Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ResizedEvent } from 'angular-resize-event';
-import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+
+import { filter } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 // 👇 all the dimensions associated with printing are hacks for the PDF
 
@@ -27,34 +31,13 @@ import { ViewEncapsulation } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // 👇 so that we can manipulate the actual stylesheet in code
   encapsulation: ViewEncapsulation.None,
+  providers: [DestroyService],
   selector: 'app-details',
   styleUrls: ['./details.scss'],
   templateUrl: './details.html'
 })
-export class DetailsComponent {
-  #highlightedAbutterID: string;
-
-  get highlightedAbutterID(): string {
-    return this.#highlightedAbutterID;
-  }
-  set highlightedAbutterID(id: string) {
-    this.#highlightedAbutterID = id;
-    setTimeout(() => {
-      const row = this.host.nativeElement.querySelector(
-        '.table.abutters tr.highlighted'
-      );
-      if (row)
-        row.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'start'
-        });
-    }, 0);
-  }
-
+export class DetailsComponent implements OnInit {
   @Input() lot: Lot;
-
-  @ViewChild(LotMapComponent, { static: false }) map: LotMapComponent;
 
   orientation: 'landscape' | 'portrait' | 'pdf' = 'portrait';
 
@@ -66,6 +49,8 @@ export class DetailsComponent {
   staticMapWidth = this.params.home.details.pdf.mapWidth;
 
   constructor(
+    private actions$: Actions,
+    private destroy$: DestroyService,
     public geometry: GeometryService,
     private host: ElementRef,
     private mc: ModalController,
@@ -77,6 +62,36 @@ export class DetailsComponent {
   ) {
     // correct for earlier version where model.details not set
     if (!this.model.details) this.model.detailsTo('assessor');
+  }
+
+  #handleActions$(): void {
+    this.actions$
+      .pipe(
+        takeUntil(this.destroy$),
+        filter(({ status }) => status === 'SUCCESSFUL')
+      )
+      .subscribe(({ action }) => {
+        this.#handleSelectionSelectAbutters(action);
+      });
+  }
+
+  #handleSelectionSelectAbutters(action: Object): void {
+    if (action['SelectionState.selectAbutters']) {
+      // 👇 when the render has settled down, scroll the first
+      //    highlighted row into view
+      setTimeout(() => {
+        const row = this.host.nativeElement.querySelector(
+          '.table.abutters tr.highlighted'
+        );
+        if (row)
+          row.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'start',
+            scrollMode: 'if-needed'
+          });
+      }, 0);
+    }
   }
 
   @HostBinding('class') get cssClass(): string {
@@ -108,9 +123,8 @@ export class DetailsComponent {
     this.mc.dismiss();
   }
 
-  mouseoverAbutter(abutter: Lot): void {
-    this.highlightedAbutterID = abutter.id;
-    this.map?.mouseoverAbutter(abutter);
+  ngOnInit(): void {
+    this.#handleActions$();
   }
 
   print(): void {

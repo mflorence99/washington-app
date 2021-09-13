@@ -13,7 +13,6 @@
     class="map"
   >
     <app-lot-map
-      (abutterHighlighted)="highlightedAbutterID = $event"
       (boundsChanged)="preferredBounds = $event"
       (zoomChanged)="preferredZoom = $event"
       [lot]="lot"
@@ -35,7 +34,6 @@
     class="lot"
   >
     <app-lot-map
-      (abutterHighlighted)="highlightedAbutterID = $event"
       (boundsChanged)="preferredBounds = $event"
       (zoomChanged)="preferredZoom = $event"
       [lot]="lot"
@@ -151,11 +149,11 @@
       <tbody>
         <tr
           *ngFor="let abutter of abutters()"
-          (mouseover)="mouseoverAbutter(abutter)"
-          [class.highlighted]="highlightedAbutterID === abutter.id"
+          (mouseover)="selection.selectAbutters([abutter])"
+          [class.highlighted]="selection.isAbutterSelected(abutter.id)"
         >
           <td nowrap>
-            <a (tap)="selection.select([abutter])">{{ abutter.id }}</a>
+            <a (tap)="selection.selectLots([abutter])">{{ abutter.id }}</a>
           </td>
           <td>{{ abutter.owner ?? abutter.address }}</td>
         </tr>
