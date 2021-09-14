@@ -18,7 +18,8 @@
     "preserveSymlinks": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "target": "es2015"
+    "target": "es2015",
+    "strict": true
   },
   "files": [
     "main.ts",

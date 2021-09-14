@@ -49,22 +49,23 @@ const makeCustomOverlay = (
       panes.overlayLayer.appendChild(lotLines);
       // 👇 different class depending on map type
       const setMapTypeId = (): void => {
-        const mapType = map.googleMap.getMapTypeId();
+        const mapType = map.googleMap?.getMapTypeId();
         lotLines.className = mapType;
       };
-      map.googleMap.addListener('maptypeid_changed', setMapTypeId);
+      map.googleMap?.addListener('maptypeid_changed', setMapTypeId);
       setMapTypeId();
     }
 
     onRemove(): void {
       lotLines.parentNode?.removeChild(lotLines);
-      google.maps.event.clearInstanceListeners(map.googleMap);
+      if (map.googleMap)
+        google.maps.event.clearInstanceListeners(map.googleMap);
     }
   }
 
   // add the overlay to the map
   const overlay = new MeasuredLotLinesOverlay();
-  overlay.setMap(map.googleMap);
+  if (map.googleMap) overlay.setMap(map.googleMap);
   return overlay;
 };
 
@@ -77,25 +78,27 @@ const makeCustomOverlay = (
   templateUrl: './lot-measure.html'
 })
 export class LotMeasureComponent implements AfterViewInit, OnDestroy {
-  #customOverlay: google.maps.OverlayView;
+  #customOverlay: google.maps.OverlayView | null = null;
 
-  @Input() bbox: Rectangle;
-  @Input() lot: Lot;
+  @Input() bbox: Rectangle = new Rectangle();
+  @Input() lot: Lot = new Lot();
 
   @ViewChild(LotLinesComponent, { static: true })
-  lotLinesComponent: LotLinesComponent;
+  lotLinesComponent: LotLinesComponent | null = null;
 
-  @Input() mapType: google.maps.MapTypeId;
+  @Input() mapType: google.maps.MapTypeId | null = null;
 
   constructor(private host: ElementRef, private map: GoogleMap) {}
 
   ngAfterViewInit(): void {
-    this.#customOverlay = makeCustomOverlay(
-      this.host,
-      this.lotLinesComponent,
-      this.map,
-      this.bbox
-    );
+    if (this.lotLinesComponent) {
+      this.#customOverlay = makeCustomOverlay(
+        this.host,
+        this.lotLinesComponent,
+        this.map,
+        this.bbox
+      );
+    }
   }
 
   ngOnDestroy(): void {

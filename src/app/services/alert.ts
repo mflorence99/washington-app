@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SingletonAlertService {
-  #lastAlert: HTMLIonAlertElement;
+  #lastAlert: HTMLIonAlertElement | null = null;
 
   constructor(private tc: AlertController) {}
 

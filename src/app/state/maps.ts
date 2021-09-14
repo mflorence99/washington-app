@@ -17,7 +17,9 @@ export const MAPS: Maps = {
       bottom: 43.155962840085444,
       left: -72.13330520983168,
       right: -72.07375630990587,
-      top: 43.18490951655938
+      top: 43.18490951655938,
+      height: 0,
+      width: 0
     },
     cxScale: 70,
     ftScale: 200,
@@ -30,7 +32,9 @@ export const MAPS: Maps = {
       bottom: 43.18152468166675,
       left: -72.04833282823988,
       right: -72.00861692740452,
-      top: 43.21047135814069
+      top: 43.21047135814069,
+      height: 0,
+      width: 0
     },
     cxScale: 70,
     ftScale: 200,
@@ -43,7 +47,9 @@ export const MAPS: Maps = {
       bottom: 43.12842988954499,
       left: -72.10798515673109,
       right: -72.04846309554708,
-      top: 43.157376566018925
+      top: 43.157376566018925,
+      height: 0,
+      width: 0
     },
     cxScale: 70,
     ftScale: 200,
@@ -56,7 +62,9 @@ export const MAPS: Maps = {
       bottom: 43.15949832123439,
       left: -72.07845939989515,
       right: -72.0387578338856,
-      top: 43.188444997708324
+      top: 43.188444997708324,
+      height: 0,
+      width: 0
     },
     cxScale: 70,
     ftScale: 200,
@@ -69,7 +77,9 @@ export const MAPS: Maps = {
       bottom: 43.133859450309394,
       left: -72.17305139671191,
       right: -72.13335709107513,
-      top: 43.17727946502029
+      top: 43.17727946502029,
+      height: 0,
+      width: 0
     },
     cxScale: 70,
     ftScale: 200,
@@ -82,7 +92,9 @@ export const MAPS: Maps = {
       bottom: 43.11939057768859,
       left: -72.19278587694593,
       right: -71.99452847229723,
-      top: 43.264129324250774
+      top: 43.264129324250774,
+      height: 0,
+      width: 0
     },
     cxScale: 87,
     ftScale: 1000,

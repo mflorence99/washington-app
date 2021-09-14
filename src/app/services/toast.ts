@@ -4,7 +4,7 @@ import { ToastOptions } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
 export class SingletonToastService {
-  #lastToast: HTMLIonToastElement;
+  #lastToast: HTMLIonToastElement | null = null;
 
   constructor(private tc: ToastController) {}
 

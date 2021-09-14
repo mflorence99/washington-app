@@ -28,8 +28,8 @@ import Debounce from 'debounce-decorator';
 export class OverlayComponent implements OnInit {
   @HostBinding('class') cssClass: 'landscape' | 'portrait' = 'landscape';
 
-  overlayForm: FormGroup;
-  selectedPicker: FormControl;
+  overlayForm: FormGroup | null = null;
+  selectedPicker: FormControl | null = null;
 
   constructor(
     private destroy$: DestroyService,
@@ -41,7 +41,7 @@ export class OverlayComponent implements OnInit {
   }
 
   #handleValueChanges$(): void {
-    this.overlayForm.valueChanges
+    this.overlayForm?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((overlayForm) => {
         this.overlay.update(overlayForm.properties);
@@ -79,7 +79,7 @@ export class OverlayComponent implements OnInit {
       stroke: property.stroke,
       value: property.value
     }));
-    this.overlayForm.patchValue({ properties: values });
+    this.overlayForm?.patchValue({ properties: values });
   }
 
   caption(ix: number): string {

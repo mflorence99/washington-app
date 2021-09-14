@@ -14,5 +14,5 @@ import { ViewEncapsulation } from '@angular/core';
   templateUrl: './lot-blueprint.html'
 })
 export class LotBlueprintComponent {
-  @Input() lot: Lot;
+  @Input() lot = new Lot();
 }

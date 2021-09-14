@@ -23,15 +23,15 @@ import { Output } from '@angular/core';
   templateUrl: './lots.svg'
 })
 export class LotsComponent implements OnDestroy, OnInit {
-  #mo: MutationObserver;
+  #mo: MutationObserver | null = null;
 
   lots: Lot[] = LOTS;
 
   @Output() lotsLoaded = new EventEmitter<string>();
 
-  @Input() map: Map;
-  @Input() mapID: string;
-  @Input() tileContainer: TileContainer;
+  @Input() map: Map | null = null;
+  @Input() mapID: string | null = null;
+  @Input() tileContainer: TileContainer | null = null;
 
   constructor(private geometry: GeometryService, private host: ElementRef) {}
 
@@ -70,8 +70,10 @@ export class LotsComponent implements OnDestroy, OnInit {
       if (mutation.type === 'attributes') {
         const target = mutation.target as SVGElement;
         const mapID = target.getAttribute('mapID');
-        console.log(`%cPolygons ready for mapID ${mapID}`, 'color: plum');
-        this.lotsLoaded.emit(mapID);
+        if (mapID) {
+          console.log(`%cPolygons ready for mapID ${mapID}`, 'color: plum');
+          this.lotsLoaded.emit(mapID);
+        }
       }
     });
   }

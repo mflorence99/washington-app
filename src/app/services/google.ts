@@ -14,6 +14,8 @@ import { tap } from 'rxjs/operators';
 
 let authenticated = true;
 
+declare const globalThis: any;
+
 globalThis.gm_authFailure = (): boolean => (authenticated = false);
 
 @Injectable({ providedIn: 'root' })

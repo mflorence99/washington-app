@@ -11,13 +11,13 @@ export class PDFService {
     return new Promise((resolve, reject) => {
       domtoimage
         .toPng(page)
-        .then((dataURL) => {
+        .then((dataURL: string) => {
           // 👇 half-inch margin on 8.5 x 11 landscaoe
           doc.addImage(dataURL, 0.5, 0.5, 10, 7.5);
           doc.save(fileName);
           resolve();
         })
-        .catch((error) => reject(error));
+        .catch((error: any) => reject(error));
     });
   }
 }

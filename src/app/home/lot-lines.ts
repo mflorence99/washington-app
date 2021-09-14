@@ -27,11 +27,11 @@ interface LotLine {
   templateUrl: './lot-lines.svg'
 })
 export class LotLinesComponent {
-  #lot: Lot;
+  #lot: Lot = new Lot();
 
-  bbox: Rectangle;
-  center: LatLon;
-  dims: Rectangle;
+  bbox: Rectangle = new Rectangle();
+  center: LatLon = new LatLon();
+  dims: Rectangle = new Rectangle();
   ft2px = 0;
   ftLotHeight = 0;
   ftLotWidth = 0;
@@ -171,7 +171,9 @@ export class LotLinesComponent {
         width: pxViewport.height * arLot,
         top: pxViewport.top,
         left:
-          pxViewport.left + (pxViewport.width - pxViewport.height * arLot) / 2
+          pxViewport.left + (pxViewport.width - pxViewport.height * arLot) / 2,
+        bottom: 0,
+        right: 0
       };
     } else {
       this.dims = {
@@ -179,7 +181,9 @@ export class LotLinesComponent {
         width: pxViewport.width,
         top:
           pxViewport.top + (pxViewport.height - pxViewport.width / arLot) / 2,
-        left: pxViewport.left
+        left: pxViewport.left,
+        bottom: 0,
+        right: 0
       };
     }
     this.dims.bottom = this.dims.top + this.dims.height;

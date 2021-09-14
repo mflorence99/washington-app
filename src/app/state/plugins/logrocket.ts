@@ -26,7 +26,7 @@ export class LogRocketPlugin implements NgxsPlugin {
 
   // 👇 these colors hacked to look OK in dark mode
 
-  handle(state, action, next): any {
+  handle(state: any, action: any, next: any): any {
     // 👇 action is of class NgxsDataAction, which isn't a real
     //    exported class for some reason
     // 👀  https://github.com/ngxs-labs/data/blob/5e8706bc43d671b05d227d05118ea0aaa821d769/lib/internals/src/utils/action/dynamic-action.ts

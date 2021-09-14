@@ -40,7 +40,7 @@ export class SelectionState extends NgxsDataRepository<SelectionStateModel> {
     super();
   }
 
-  #isLotID(searchFor: string): string {
+  #isLotID(searchFor: string): string | null {
     if (/^[\d]+-[\d+]/.test(searchFor)) {
       // replace multiple spaces with none
       const normalized = searchFor.replace(/\s\s+/g, '');

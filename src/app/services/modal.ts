@@ -4,7 +4,7 @@ import { ModalOptions } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
 export class SingletonModalService {
-  #lastModal: HTMLIonModalElement;
+  #lastModal: HTMLIonModalElement | null = null;
 
   constructor(private mc: ModalController) {}
 

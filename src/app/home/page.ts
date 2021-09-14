@@ -44,9 +44,9 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './page.html'
 })
 export class HomePage implements AfterViewInit, OnInit {
-  #highlightStylesheet: CSSStyleSheet;
-  #overlayStylesheet: CSSStyleSheet;
-  #xlate: [number, number];
+  #highlightStylesheet: CSSStyleSheet | null = null;
+  #overlayStylesheet: CSSStyleSheet | null = null;
+  #xlate: [number, number] = [0, 0];
 
   animating = true;
 
@@ -57,7 +57,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   maps: Maps = MAPS;
 
-  @ViewChild('menu') menu: Components.IonMenu;
+  @ViewChild('menu') menu: Components.IonMenu | null = null;
 
   trackable = 'geolocation' in navigator;
   translating = false;
@@ -151,7 +151,7 @@ export class HomePage implements AfterViewInit, OnInit {
       });
   }
 
-  #handleModelSwitchTo(action: Object): void {
+  #handleModelSwitchTo(action: any): void {
     if (action['ModelState.switchTo']) {
       setTimeout(
         () => (this.lotsShowing = true),
@@ -162,13 +162,13 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  #handleOverlayUpdate(action: Object): void {
+  #handleOverlayUpdate(action: any): void {
     if (action['OverlayState.update']) {
       this.#overlayLots();
     }
   }
 
-  #handleSelectionSearchFor(action: Object): void {
+  #handleSelectionSearchFor(action: any): void {
     if (action['SelectionState.searchFor']) {
       const lots = this.selection.lots;
       if (lots?.length > 0) {
@@ -194,7 +194,7 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  #handleSelectionSelectLots(action: Object): void {
+  #handleSelectionSelectLots(action: any): void {
     if (action['SelectionState.selectLots']) {
       const lots = this.selection.lots;
       this.#highlightLots(lots);
@@ -207,14 +207,14 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  #handleViewInitialize(action: Object): void {
+  #handleViewInitialize(action: any): void {
     if (action['ViewState.initialize']) {
       this.#setProperties();
       if (!this.translating) this.#xlate = this.view.view.translate;
     }
   }
 
-  #handleViewScale(action: Object): void {
+  #handleViewScale(action: any): void {
     if (action['ViewState.scale']) {
       this.#setProperties();
       // 👇 do this because the width of the highlight depends on the scale
@@ -224,7 +224,7 @@ export class HomePage implements AfterViewInit, OnInit {
     }
   }
 
-  #handleViewTranslate(action: Object): void {
+  #handleViewTranslate(action: any): void {
     if (action['ViewState.translate']) {
       this.#setProperties();
       if (!this.translating) this.#xlate = this.view.view.translate;
@@ -233,8 +233,8 @@ export class HomePage implements AfterViewInit, OnInit {
 
   #highlightLots(lots: Lot[]): void {
     // first, remove any prior highlight
-    while (this.#highlightStylesheet.cssRules.length > 0)
-      this.#highlightStylesheet.deleteRule(0);
+    while (this.#highlightStylesheet?.cssRules.length)
+      this.#highlightStylesheet?.deleteRule(0);
     // 👇 pay attention to globals.scss
     const params = this.params.common;
     lots.forEach((lot) => {
@@ -242,7 +242,7 @@ export class HomePage implements AfterViewInit, OnInit {
         stroke: ${params.lotOutlineColor};
         stroke-width: ${params.lotOutlineWidth / this.view.view.scale}
       }`;
-      this.#highlightStylesheet.insertRule(rule);
+      this.#highlightStylesheet?.insertRule(rule);
     });
   }
 
@@ -269,7 +269,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   #initializeGeolocationError(error: GeolocationPositionError): void {
     // 👇 we should only get here on PERMISSION_DENIED or after all
-    //    maxRetries hsve been attempted
+    //    maxRetries have been attempted
     console.error('🔥 Geolocation showTrackerError', error);
     this.#currentPositionNotAvailable(error);
     this.model.track(false);
@@ -330,8 +330,8 @@ export class HomePage implements AfterViewInit, OnInit {
 
   #overlayLots(): void {
     // first, remove any prior overlay
-    while (this.#overlayStylesheet.cssRules.length > 0)
-      this.#overlayStylesheet.deleteRule(0);
+    while (this.#overlayStylesheet?.cssRules.length)
+      this.#overlayStylesheet?.deleteRule(0);
     // 👇 pay attention to globals.scss
     const params = this.params.common;
     this.overlay.properties
@@ -344,7 +344,7 @@ export class HomePage implements AfterViewInit, OnInit {
         }'] { ${fill} ${stroke}
           stroke-width: ${params.lotOutlineWidth / this.view.view.scale}
         }`;
-        this.#overlayStylesheet.insertRule(rule);
+        this.#overlayStylesheet?.insertRule(rule);
       });
   }
 

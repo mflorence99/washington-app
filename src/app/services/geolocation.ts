@@ -16,8 +16,8 @@ import { timer } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class GeolocationService extends Observable<GeolocationPosition> {
   constructor(geometry: GeometryService, params: Params) {
-    let lastPosition = null;
-    let watchPositionID = null;
+    let lastPosition: any = null;
+    let watchPositionID: any = null;
 
     super((subscriber: Subscriber<GeolocationPosition>) => {
       watchPositionID = navigator.geolocation.watchPosition(

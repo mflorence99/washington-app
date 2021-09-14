@@ -19,8 +19,8 @@ import { ViewEncapsulation } from '@angular/core';
   templateUrl: './tiles.html'
 })
 export class TilesComponent implements OnDestroy, OnInit {
-  #io: IntersectionObserver;
-  #mo: MutationObserver;
+  #io: IntersectionObserver | null = null;
+  #mo: MutationObserver | null = null;
 
   @Input() tiles: Tile[] = [];
 
@@ -44,12 +44,8 @@ export class TilesComponent implements OnDestroy, OnInit {
   #mutationCallback(mutations: MutationRecord[]): void {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
-        mutation.addedNodes.forEach((node: HTMLElement) =>
-          this.#io.observe(node)
-        );
-        mutation.removedNodes.forEach((node: HTMLElement) =>
-          this.#io.unobserve(node)
-        );
+        mutation.addedNodes.forEach((node: any) => this.#io?.observe(node));
+        mutation.removedNodes.forEach((node: any) => this.#io?.unobserve(node));
       }
     });
   }

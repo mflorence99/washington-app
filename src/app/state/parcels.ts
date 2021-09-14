@@ -3,43 +3,44 @@ import { PARCELS } from './parcel-data';
 
 import fuzzysort from 'fuzzysort';
 
-export interface Lot {
-  abutters?: string[];
-  address?: string;
-  area: number;
-  areas: number[];
-  boundaries: LatLon[][];
-  building$: number;
-  centers: LatLon[];
-  cu$: number;
-  elevations: number[];
-  id: string;
-  land$: number;
-  lengths: number[][];
-  minWidths: number[];
-  neighborhood?: string;
-  orientations: number[];
-  owner?: string;
-  perimeters: number[];
-  taxed$: number;
-  usage: string;
-  use?: string;
-  zone?: string;
+export class Lot {
+  abutters?: string[] = [];
+  address = '';
+  area = 0;
+  areas: number[] = [];
+  boundaries: LatLon[][] = [];
+  building$ = 0;
+  centers: LatLon[] = [];
+  cu$ = 0;
+  elevations: number[] = [];
+  id = '';
+  land$ = 0;
+  lengths: number[][] = [];
+  minWidths: number[] = [];
+  neighborhood = '';
+  orientations: number[] = [];
+  owner = '';
+  perimeters: number[] = [];
+  taxed$ = 0;
+  usage = '';
+  use = '';
+  zone = '';
 }
 
-export const DESC_BY_NEIGHBORHOOD = PARCELS.descByNeighborhood;
+export const DESC_BY_NEIGHBORHOOD: Record<string, string> =
+  PARCELS.descByNeighborhood;
 
-export const DESC_BY_USAGE = PARCELS.descByUsage;
+export const DESC_BY_USAGE: Record<string, string> = PARCELS.descByUsage;
 
-export const DESC_BY_USE = PARCELS.descByUse;
+export const DESC_BY_USE: Record<string, string> = PARCELS.descByUse;
 
-export const LOTS = PARCELS.lots;
+export const LOTS: Lot[] = PARCELS.lots;
 
 // 👇 we guarantee that lot IDs are unique
 export const LOT_BY_ID: Record<string, Lot> = LOTS.reduce((acc, lot) => {
   acc[lot.id] = lot;
   return acc;
-}, {});
+}, {} as Record<string, Lot>);
 
 export const LOTS_BY_ADDRESS: Record<string, Lot[]> = LOTS.reduce(
   (acc, lot) => {
@@ -49,7 +50,7 @@ export const LOTS_BY_ADDRESS: Record<string, Lot[]> = LOTS.reduce(
     }
     return acc;
   },
-  {}
+  {} as Record<string, Lot[]>
 );
 
 export const ADDRESS_SEARCH_TARGETS = Object.keys(LOTS_BY_ADDRESS)
@@ -62,7 +63,7 @@ export const LOTS_BY_OWNER: Record<string, Lot[]> = LOTS.reduce((acc, lot) => {
     else acc[lot.owner].push(lot);
   }
   return acc;
-}, {});
+}, {} as Record<string, Lot[]>);
 
 export const OWNER_SEARCH_TARGETS = Object.keys(LOTS_BY_OWNER)
   .sort()

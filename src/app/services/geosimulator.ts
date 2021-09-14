@@ -14,8 +14,8 @@ import { shareReplay } from 'rxjs/operators';
 export class GeosimulatorService extends Observable<GeolocationPosition> {
   constructor(geometry: GeometryService, params: Params) {
     let counter = 0;
-    let lastPoint: number[] = null;
-    let loopID = null;
+    let lastPoint: number[] | null = null;
+    let loopID: any = null;
 
     super((subscriber: Subscriber<GeolocationPosition>) => {
       // coordinates of test path

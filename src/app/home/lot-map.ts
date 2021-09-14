@@ -34,15 +34,15 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './lot-map.html'
 })
 export class LotMapComponent implements OnInit {
-  #lot: Lot;
-  #mapType: string;
-  #staticMap: boolean;
+  #lot: Lot = new Lot();
+  #mapType = 'roadmap';
+  #staticMap = false;
 
   abutterOptions: google.maps.PolygonOptions[] = [];
 
   abutters: Lot[] = [];
 
-  bbox: Rectangle;
+  bbox: Rectangle = new Rectangle();
 
   @Output() boundsChanged = new EventEmitter<google.maps.LatLngBounds>();
 
@@ -69,7 +69,7 @@ export class LotMapComponent implements OnInit {
     }));
   }
 
-  @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
+  @ViewChild(GoogleMap, { static: false }) map: GoogleMap | null = null;
 
   mapOptions: google.maps.MapOptions = {
     disableDefaultUI: false,
@@ -96,8 +96,8 @@ export class LotMapComponent implements OnInit {
   }
 
   // 👇 these keep maps in sync as we flip between details type
-  @Input() preferredBounds: google.maps.LatLngBounds;
-  @Input() preferredZoom: number;
+  @Input() preferredBounds: google.maps.LatLngBounds | null = null;
+  @Input() preferredZoom = 0;
 
   @Input()
   get staticMap(): boolean {
@@ -120,8 +120,8 @@ export class LotMapComponent implements OnInit {
     }
   }
 
-  @Input() staticMapHeight: number;
-  @Input() staticMapWidth: number;
+  @Input() staticMapHeight = 0;
+  @Input() staticMapWidth = 0;
 
   @Output() zoomChanged = new EventEmitter<number>();
 
@@ -146,7 +146,7 @@ export class LotMapComponent implements OnInit {
       });
   }
 
-  #handleSelectionSelectAbutters(action: Object): void {
+  #handleSelectionSelectAbutters(action: any): void {
     if (action['SelectionState.selectAbutters']) {
       this.abutterOptions.forEach((options: any) => {
         options.fillOpacity = this.selection.isAbutterSelected(options.id)
@@ -193,11 +193,11 @@ export class LotMapComponent implements OnInit {
       );
       this.map.fitBounds(this.preferredBounds ?? bounds);
       this.map.panToBounds(this.preferredBounds ?? bounds);
-      if (this.preferredZoom) this.map.googleMap.setZoom(this.preferredZoom);
+      if (this.preferredZoom) this.map?.googleMap?.setZoom(this.preferredZoom);
     }
   }
 
-  trackByAbutter(_, abutter: Lot): string {
+  trackByAbutter(_: any, abutter: Lot): string {
     return abutter.id;
   }
 

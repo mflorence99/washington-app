@@ -146,17 +146,16 @@ export class VersionService {
   }
 
   hardReset(): void {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .getRegistrations()
-        .then((registrations) =>
-          Promise.all(
-            registrations.map((registration) =>
-              registration.update().then(() => registration.unregister())
-            )
+    // 👉 we won't launch unless service workers are supported
+    navigator.serviceWorker
+      .getRegistrations()
+      .then((registrations) =>
+        Promise.all(
+          registrations.map((registration) =>
+            registration.update().then(() => registration.unregister())
           )
         )
-        .finally(() => location.reload());
-    } else location.reload();
+      )
+      .finally(() => location.reload());
   }
 }

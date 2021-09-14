@@ -37,13 +37,13 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './details.html'
 })
 export class DetailsComponent implements OnInit {
-  @Input() lot: Lot;
+  @Input() lot = new Lot();
 
   orientation: 'landscape' | 'portrait' | 'pdf' = 'portrait';
 
   // 👇 these keep maps in sync as we flip between details type
-  preferredBounds: google.maps.LatLngBounds;
-  preferredZoom: number;
+  preferredBounds: google.maps.LatLngBounds | null = null;
+  preferredZoom: number | null = null;
 
   staticMapHeight = this.params.home.details.pdf.mapHeight;
   staticMapWidth = this.params.home.details.pdf.mapWidth;
@@ -75,7 +75,7 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  #handleSelectionSelectAbutters(action: Object): void {
+  #handleSelectionSelectAbutters(action: any): void {
     if (action['SelectionState.selectAbutters']) {
       // 👇 when the render has settled down, scroll the first
       //    highlighted row into view

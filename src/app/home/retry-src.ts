@@ -12,8 +12,8 @@ import { OnDestroy } from '@angular/core';
   selector: 'img[appRetrySrc]'
 })
 export class RetrySrcDirective implements OnDestroy {
-  #src: string;
-  #timer;
+  #src = '';
+  #timer: any = null;
 
   constructor(
     private host: ElementRef<HTMLImageElement>,

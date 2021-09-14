@@ -15,23 +15,23 @@ import { Injectable } from '@angular/core';
 import centroid from 'polygon-centroid';
 import pointInPoly from 'point-in-polygon-extended';
 
-export interface LatLon {
-  lat: number;
-  lon: number;
+export class LatLon {
+  lat = 0;
+  lon = 0;
 }
 
-export interface Rectangle {
-  bottom?: number;
-  height?: number;
-  left: number;
-  right?: number;
-  top: number;
-  width?: number;
+export class Rectangle {
+  bottom = 0;
+  height = 0;
+  left = 0;
+  right = 0;
+  top = 0;
+  width = 0;
 }
 
-export interface XY {
-  x: number;
-  y: number;
+export class XY {
+  x = 0;
+  y = 0;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -56,9 +56,11 @@ export class GeometryService {
   bboxOfLot(lot: Lot): Rectangle {
     const bbox: Rectangle = {
       bottom: Number.MAX_SAFE_INTEGER,
+      height: 0,
       left: Number.MAX_SAFE_INTEGER,
       top: Number.MIN_SAFE_INTEGER,
-      right: Number.MIN_SAFE_INTEGER
+      right: Number.MIN_SAFE_INTEGER,
+      width: 0
     };
     lot.boundaries.forEach((boundary) => {
       boundary.forEach((point) => {
@@ -97,17 +99,24 @@ export class GeometryService {
     latlons: LatLon[],
     latlon2xy = this.latlon2xy.bind(this)
   ): string {
-    const ok = (p): boolean => p < latlons.length - 1 && p >= 0;
+    // 👉 ix is always >= 1
+    if (ix < 1) throw new Error();
     const current = latlon2xy(latlon);
+    const previous = latlon2xy(latlons[ix - 1]);
+    const ok = (p: number): boolean => p < latlons.length - 1 && p >= 0;
     const next = ok(ix + 1) ? latlon2xy(latlons[ix + 1]) : undefined;
-    const previous = ok(ix - 1) ? latlon2xy(latlons[ix - 1]) : undefined;
     const pprevious = ok(ix - 2) ? latlon2xy(latlons[ix - 2]) : undefined;
     const start = this.bezierControlPoint(previous, pprevious, current);
     const end = this.bezierControlPoint(current, previous, next, true);
     return `C ${start.x},${start.y} ${end.x},${end.y} ${current.x},${current.y}`;
   }
 
-  bezierControlPoint(current: XY, previous: XY, next: XY, reverse = false): XY {
+  bezierControlPoint(
+    current: XY,
+    previous: XY | undefined,
+    next: XY | undefined,
+    reverse = false
+  ): XY {
     previous = previous ?? current;
     next = next ?? current;
     // properties of opposed line
@@ -144,7 +153,7 @@ export class GeometryService {
     }
   }
 
-  centerXYInViewport({ x, y }): void {
+  centerXYInViewport({ x, y }: XY): void {
     const midPoint = this.xyCenterOfViewport();
     const max = this.maxTranslate();
     const min = this.minTranslate();
@@ -185,20 +194,20 @@ export class GeometryService {
   event2xy(event: HammerInput): XY {
     let { x, y } = event.center;
     // TODO: 👇 we only know this empirically from testing with Firefox
-    if (['Firefox'].includes(environment.ua.browser.name)) {
-      const theMap = document.getElementById('theMap').parentElement;
-      x -= theMap.offsetLeft;
-      y -= theMap.offsetTop;
+    if (['Firefox'].includes(environment.ua.browser.name ?? '')) {
+      const theMap = document.getElementById('theMap')?.parentElement;
+      x -= theMap?.offsetLeft ?? 0;
+      y -= theMap?.offsetTop ?? 0;
     }
     // TODO: 👇 we only know this emprically from testing with Safari
-    else if (['Safari'].includes(environment.ua.browser.name)) {
+    else if (['Safari'].includes(environment.ua.browser.name ?? '')) {
       x -= 0;
       y -= 56;
     }
     return { x, y };
   }
 
-  isXYInViewport({ x, y }, margin = 0): boolean {
+  isXYInViewport({ x, y }: XY, margin = 0): boolean {
     const center = this.xyCenterOfViewport();
     const translate = this.view.view.translate;
     const scale = this.view.view.scale;
@@ -242,7 +251,7 @@ export class GeometryService {
   }
 
   latlon2xy(
-    { lat, lon },
+    { lat, lon }: LatLon,
     bbox: Rectangle = this.model.map.bbox,
     dims: Rectangle | TileContainer = this.model.tileContainer
   ): XY {
@@ -258,7 +267,7 @@ export class GeometryService {
   latlonCenterOfLots(lots: Lot[]): LatLon {
     const centers = lots.flatMap((lot) => lot.centers);
     // return the center of the centers
-    if (centers.length === 0) return null;
+    if (centers.length === 0) throw new Error();
     else if (centers.length === 1) return centers[0];
     else {
       // 👇 because centroid requires XY format
@@ -340,17 +349,19 @@ export class GeometryService {
     return [tl.x, tl.y];
   }
 
-  nearestLotID({ x, y }, lotIDs: string[]): string {
+  nearestLotID({ x, y }: XY, lotIDs: string[]): string | null {
     let lastDistance = Number.MAX_VALUE;
     let nearestLotID = null;
     const lots = lotIDs.map((lotID) => LOT_BY_ID[lotID]);
     lots.forEach((lot) => {
       const center = this.xyCenterOfLots([lot]);
-      const distance = Math.abs(Math.hypot(x - center.x, y - center.y));
-      console.log(`Distance to ${lot.id} is ${distance}`);
-      if (distance < lastDistance) {
-        lastDistance = distance;
-        nearestLotID = lot.id;
+      if (center) {
+        const distance = Math.abs(Math.hypot(x - center.x, y - center.y));
+        console.log(`Distance to ${lot.id} is ${distance}`);
+        if (distance < lastDistance) {
+          lastDistance = distance;
+          nearestLotID = lot.id;
+        }
       }
     });
     return nearestLotID;
@@ -358,19 +369,17 @@ export class GeometryService {
 
   originOfViewport(): XY {
     const theMap = document.getElementById('theMap');
-    if (theMap) {
-      return {
-        x: theMap.parentElement.offsetLeft,
-        y: theMap.parentElement.offsetTop
-      };
-    } else return { x: 0, y: 0 };
+    return {
+      x: theMap?.parentElement?.offsetLeft ?? 0,
+      y: theMap?.parentElement?.offsetTop ?? 0
+    };
   }
 
   radians2degrees(radians: number): number {
     return (radians * 180) / Math.PI;
   }
 
-  whichLotID({ x, y }): string {
+  whichLotID({ x, y }: XY): string | null {
     const center = this.xyCenterOfViewport();
     const origin = this.originOfViewport();
     const translate = this.view.view.translate;
@@ -407,11 +416,11 @@ export class GeometryService {
     // 👇 if trouble, replace "find" with "filter"
     const lot = polygons.find((polygon) => {
       const raw = polygon.getAttribute('points');
-      const points = raw.split(' ').map((p) => p.split(','));
+      const points = raw?.split(' ').map((p) => p.split(','));
       return pointInPoly.pointInPolyWindingNumber([x, y], points);
     });
     if (lot) console.log(`%cFound lot: ${lot.id}`, 'color: gold');
-    return lot?.id;
+    return lot?.id ?? null;
     // 👇 resolve ambiguous matches by finding the nearest
     // const lotIDs = lots.map((p) => p.id);
     // console.log(
@@ -421,19 +430,21 @@ export class GeometryService {
     // return lots.length > 1 ? this.nearestLotID(xy, lotIDs) : lots[0]?.id;
   }
 
-  whichMapID({ lat, lon }): string {
-    return Object.keys(MAPS).find((mapID) => {
-      const map = MAPS[mapID];
-      const inside =
-        lon >= map.bbox.left &&
-        lon < map.bbox.right &&
-        lat >= map.bbox.bottom &&
-        lat < map.bbox.top;
-      return inside;
-    });
+  whichMapID({ lat, lon }: LatLon): string | null {
+    return (
+      Object.keys(MAPS).find((mapID) => {
+        const map = MAPS[mapID];
+        const inside =
+          lon >= map.bbox.left &&
+          lon < map.bbox.right &&
+          lat >= map.bbox.bottom &&
+          lat < map.bbox.top;
+        return inside;
+      }) ?? null
+    );
   }
 
-  whichMapIDs({ lat, lon }): string[] {
+  whichMapIDs({ lat, lon }: LatLon): string[] {
     return Object.keys(MAPS).filter((mapID) => {
       const map = MAPS[mapID];
       const inside =
@@ -449,7 +460,7 @@ export class GeometryService {
     return x;
   }
 
-  xy2latlon({ x, y }): LatLon {
+  xy2latlon({ x, y }: XY): LatLon {
     const lon =
       this.model.map.bbox.left +
       (x / this.model.tileContainer.width) *
@@ -467,7 +478,7 @@ export class GeometryService {
       const polygon = document.getElementById(lot.id);
       if (polygon) {
         const raw = polygon.getAttribute('points');
-        const points = raw.split(' ').map((point) => {
+        const points = raw?.split(' ').map((point) => {
           const [x, y] = point.split(',');
           // 👇 centroid wants points in XY format
           return { x: Number(x), y: Number(y) };
@@ -475,25 +486,19 @@ export class GeometryService {
         acc.push(centroid(points));
       }
       return acc;
-    }, []);
+    }, [] as XY[]);
     // return the center of the centers
-    if (centers.length === 0) return null;
+    if (centers.length === 0) throw new Error();
     else if (centers.length === 1) return centers[0];
     else return centroid(centers);
   }
 
   xyCenterOfViewport(): XY {
     const theMap = document.getElementById('theMap');
-    if (
-      theMap &&
-      theMap.parentElement.offsetWidth &&
-      theMap.parentElement.offsetHeight
-    ) {
-      return {
-        x: theMap.parentElement.offsetWidth / 2,
-        y: theMap.parentElement.offsetHeight / 2
-      };
-    } else return { x: 0, y: 0 };
+    return {
+      x: (theMap?.parentElement?.offsetWidth ?? 0) / 2,
+      y: (theMap?.parentElement?.offsetHeight ?? 0) / 2
+    };
   }
 
   y2lat(y: number): number {
