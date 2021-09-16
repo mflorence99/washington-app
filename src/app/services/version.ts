@@ -149,13 +149,28 @@ export class VersionService {
     // 👉 we won't launch unless service workers are supported
     navigator.serviceWorker
       .getRegistrations()
-      .then((registrations) =>
-        Promise.all(
-          registrations.map((registration) =>
-            registration.update().then(() => registration.unregister())
-          )
-        )
-      )
-      .finally(() => location.reload());
+      .then((registrations) => {
+        console.log('%cUpdating all registrations...', 'color: violet');
+        return Promise.all(
+          registrations.map((registration) => {
+            console.log(`... ${registration.scope}`);
+            return registration.update().then(() => registration.unregister());
+          })
+        );
+      })
+      .then((_) => caches.keys())
+      .then((keys) => {
+        console.log('%cDeleting all caches...', 'color: orchid');
+        return Promise.all(
+          keys.map((key) => {
+            console.log(`... ${key}`);
+            return caches.delete(key);
+          })
+        );
+      })
+      .finally(() => {
+        console.log('%cReloading app', 'color: plum');
+        location.reload();
+      });
   }
 }
