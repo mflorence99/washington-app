@@ -10,7 +10,7 @@
   },
   "author": "Mark Florence",
   "scripts": {
-    "build": "ng build",
+    "build": "ionic build",
     "clean:deps": "rm -rf node_modules && rm package-lock.json && npm install",
     "deploy:aws": "./bin/deploy-aws.sh",
     "deploy:dryrun": "./bin/dryrun-aws.sh",
