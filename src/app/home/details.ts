@@ -76,7 +76,7 @@ export class DetailsComponent implements OnInit {
   }
 
   #handleSelectionSelectAbutters(action: any): void {
-    if (action['SelectionState.selectAbutters']) {
+    if (action['SelectionState.selectAbutters'] != null) {
       // 👇 when the render has settled down, scroll the first
       //    highlighted row into view
       setTimeout(() => {

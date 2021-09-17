@@ -152,7 +152,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   #handleModelSwitchTo(action: any): void {
-    if (action['ModelState.switchTo']) {
+    if (action['ModelState.switchTo'] != null) {
       setTimeout(
         () => (this.lotsShowing = true),
         this.params.home.page.showLotsDelay
@@ -163,15 +163,19 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   #handleOverlayUpdate(action: any): void {
-    if (action['OverlayState.update']) {
+    if (action['OverlayState.update'] != null) {
       this.#overlayLots();
     }
   }
 
   #handleSelectionSearchFor(action: any): void {
-    if (action['SelectionState.searchFor']) {
+    if (action['SelectionState.searchFor'] != null) {
       const lots = this.selection.lots;
-      if (lots?.length > 0) {
+      const text = this.selection.text;
+      if (!text) {
+        // 👇 empty text says we remove highlight
+        this.#unhighlightLots();
+      } else if (lots?.length > 0) {
         // 👇 find all the mapIDs for all the lots
         const mapIDs = lots.reduce((set, lot) => {
           const id = this.geometry.whichMapID(lot.boundaries[0][0]);
@@ -195,7 +199,7 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   #handleSelectionSelectLots(action: any): void {
-    if (action['SelectionState.selectLots']) {
+    if (action['SelectionState.selectLots'] != null) {
       const lots = this.selection.lots;
       this.#highlightLots(lots);
       this.smc.createAndPresent({
@@ -208,14 +212,14 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   #handleViewInitialize(action: any): void {
-    if (action['ViewState.initialize']) {
+    if (action['ViewState.initialize'] != null) {
       this.#setProperties();
       if (!this.translating) this.#xlate = this.view.view.translate;
     }
   }
 
   #handleViewScale(action: any): void {
-    if (action['ViewState.scale']) {
+    if (action['ViewState.scale'] != null) {
       this.#setProperties();
       // 👇 do this because the width of the highlight depends on the scale
       const lots = this.selection.lots;
@@ -225,16 +229,14 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   #handleViewTranslate(action: any): void {
-    if (action['ViewState.translate']) {
+    if (action['ViewState.translate'] != null) {
       this.#setProperties();
       if (!this.translating) this.#xlate = this.view.view.translate;
     }
   }
 
   #highlightLots(lots: Lot[]): void {
-    // first, remove any prior highlight
-    while (this.#highlightStylesheet?.cssRules.length)
-      this.#highlightStylesheet?.deleteRule(0);
+    this.#unhighlightLots();
     // 👇 pay attention to globals.scss
     const params = this.params.common;
     lots.forEach((lot) => {
@@ -359,6 +361,11 @@ export class HomePage implements AfterViewInit, OnInit {
     style.setProperty('--lot-marker-width', `${params.lotMarkerWidth}`);
     style.setProperty('--lot-outline-color', `${params.lotOutlineColor}`);
     style.setProperty('--lot-outline-width', `${params.lotOutlineWidth}`);
+  }
+
+  #unhighlightLots(): void {
+    while (this.#highlightStylesheet?.cssRules.length)
+      this.#highlightStylesheet?.deleteRule(0);
   }
 
   followTracker(following: boolean): void {
