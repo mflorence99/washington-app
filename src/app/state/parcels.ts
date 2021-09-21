@@ -4,6 +4,8 @@ import { PARCELS } from './parcel-data';
 import fuzzysort from 'fuzzysort';
 
 export class Lot {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  _usage?: string = '';
   abutters?: string[] = [];
   address = '';
   area = 0;
