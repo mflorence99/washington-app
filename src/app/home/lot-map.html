@@ -5,9 +5,9 @@
 >
   <article *ngIf="api.ready$ | async; else noMap" class="lot-map">
     <google-map
-      (boundsChanged)="boundsChanged.emit(map.getBounds())"
-      (maptypeidChanged)="mapType = map.getMapTypeId()"
-      (zoomChanged)="zoomChanged.emit(map.getZoom())"
+      (boundsChanged)="boundsChanged.emit(map?.getBounds())"
+      (maptypeidChanged)="mapType = map?.getMapTypeId()"
+      (zoomChanged)="zoomChanged.emit(map?.getZoom())"
       [options]="mapOptions"
       height="100%"
       width="100%"

@@ -13,7 +13,7 @@
     <div>Line</div>
 
     <ng-container
-      *ngFor="let group of overlayForm.controls.properties['controls']; let ix = index"
+      *ngFor="let group of overlayForm?.controls.properties['controls']; let ix = index"
       [formGroup]="group"
     >
       <ion-label class="property-caption">{{ caption(ix) }}</ion-label>

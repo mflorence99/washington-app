@@ -1,7 +1,7 @@
 <svg
-  [attr.width]="tileContainer.width"
-  [attr.height]="tileContainer.height"
-  attr.viewPort="0 0 {{ tileContainer.width }} {{ tileContainer.height }}"
+  [attr.width]="tileContainer?.width"
+  [attr.height]="tileContainer?.height"
+  attr.viewPort="0 0 {{ tileContainer?.width }} {{ tileContainer?.height }}"
 >
   <ng-container *ngFor="let lot of lots">
     <ng-container *ngFor="let boundary of lot.boundaries; let ix = index">
