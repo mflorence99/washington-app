@@ -14,9 +14,9 @@ import { tap } from 'rxjs/operators';
 
 let authenticated = true;
 
-declare const globalThis: any;
+declare const window: any;
 
-globalThis.gm_authFailure = (): boolean => (authenticated = false);
+window.gm_authFailure = (): boolean => (authenticated = false);
 
 @Injectable({ providedIn: 'root' })
 export class GoogleService {

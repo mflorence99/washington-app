@@ -6,7 +6,11 @@
     <title>Washington NH Interactive Parcel Map</title>
 
     <script>
-      if (!('serviceWorker' in navigator)) location.replace('unsupported.html');
+      if (
+        !('serviceWorker' in navigator) ||
+        !('IntersectionObserver' in window) ||
+        !('MutationObserver' in window)
+      )
     </script>
 
     <script
