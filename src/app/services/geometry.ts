@@ -200,7 +200,9 @@ export class GeometryService {
       y -= theMap?.offsetTop ?? 0;
     }
     // TODO: 👇 we only know this emprically from testing with Safari
-    else if (['Safari'].includes(environment.ua.browser.name ?? '')) {
+    else if (
+      ['Mobile Safari', 'Safari'].includes(environment.ua.browser.name ?? '')
+    ) {
       x -= 0;
       y -= 56;
     }
