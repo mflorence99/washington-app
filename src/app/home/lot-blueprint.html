@@ -1,5 +1,5 @@
 <figure
-  (resized)="lotLines.render($event.newWidth, $event.newHeight)"
+  (resized)="lotLines.render($event.newRect.width, $event.newRect.height)"
   class="blueprint"
 >
   <app-lot-lines #lotLines [lot]="lot"></app-lot-lines>

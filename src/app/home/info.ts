@@ -30,8 +30,10 @@ export class InfoComponent {
   }
 
   resize(event: ResizedEvent): void {
-    if (event.newWidth >= event.newHeight) this.cssClass = 'landscape';
-    else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
+    if (event.newRect.width >= event.newRect.height)
+      this.cssClass = 'landscape';
+    else if (event.newRect.width < event.newRect.height)
+      this.cssClass = 'portrait';
   }
 
   usages(): [string, string][] {

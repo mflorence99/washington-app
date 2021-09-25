@@ -412,7 +412,7 @@ export class HomePage implements AfterViewInit, OnInit {
 
   resize(event: ResizedEvent): void {
     console.log(
-      `%cViewport resized ${event.newWidth}x${event.newHeight}`,
+      `%cViewport resized ${event.newRect.width}x${event.newRect.height}`,
       'color: gold'
     );
     // 👇 we leverage the side-effect of properly clamping the translate

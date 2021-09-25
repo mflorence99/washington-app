@@ -41,6 +41,7 @@
           },
           "options": {
             "allowedCommonJsDependencies": [
+              "core-js",
               "core-js-pure",
               "css-element-queries",
               "debounce-decorator",

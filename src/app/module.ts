@@ -23,7 +23,7 @@ import { environment } from '../environments/environment';
 
 import * as Sentry from '@sentry/angular';
 
-import { AngularResizedEventModule } from 'angular-resize-event';
+import { AngularResizeEventModule } from 'angular-resize-event';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -64,7 +64,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   entryComponents: [],
 
   imports: [
-    AngularResizedEventModule,
+    AngularResizeEventModule,
     AngularSvgIconModule.forRoot(),
     BrowserModule,
     ColorPickerModule,
