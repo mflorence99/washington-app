@@ -20,27 +20,27 @@ export type Tiles = Record<string, Tile[]>;
 
 export const TILE_CONTAINERS: TileContainers = {
   "center": {
-    "height": 3700,
+    "height": 3699,
     "width": 5548
   },
   "east": {
-    "height": 3702,
+    "height": 3701,
     "width": 3700
   },
   "highland": {
-    "height": 3698,
+    "height": 3697,
     "width": 5544
   },
   "island": {
-    "height": 3700,
+    "height": 3699,
     "width": 3698
   },
   "lae": {
-    "height": 5548,
+    "height": 5547,
     "width": 3697
   },
   "washington": {
-    "height": 4627,
+    "height": 4626,
     "width": 4620
   }
 };
@@ -147,7 +147,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-0-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 0,
       "y": 3584
@@ -252,7 +252,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-1-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 256,
       "y": 3584
@@ -357,7 +357,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-2-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 512,
       "y": 3584
@@ -462,7 +462,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-3-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 768,
       "y": 3584
@@ -567,7 +567,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-4-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1024,
       "y": 3584
@@ -672,7 +672,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-5-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1280,
       "y": 3584
@@ -777,7 +777,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-6-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1536,
       "y": 3584
@@ -882,7 +882,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-7-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1792,
       "y": 3584
@@ -987,7 +987,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-8-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2048,
       "y": 3584
@@ -1092,7 +1092,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-9-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2304,
       "y": 3584
@@ -1197,7 +1197,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-10-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2560,
       "y": 3584
@@ -1302,7 +1302,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-11-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2816,
       "y": 3584
@@ -1407,7 +1407,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-12-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 3072,
       "y": 3584
@@ -1512,7 +1512,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-13-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 3328,
       "y": 3584
@@ -1617,7 +1617,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-14-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 3584,
       "y": 3584
@@ -1722,7 +1722,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-15-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 3840,
       "y": 3584
@@ -1827,7 +1827,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-16-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 4096,
       "y": 3584
@@ -1932,7 +1932,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-17-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 4352,
       "y": 3584
@@ -2037,7 +2037,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-18-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 4608,
       "y": 3584
@@ -2142,7 +2142,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-19-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 4864,
       "y": 3584
@@ -2247,7 +2247,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-20-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 5120,
       "y": 3584
@@ -2352,7 +2352,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/center/tile-21-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 172,
       "x": 5376,
       "y": 3584
@@ -2459,7 +2459,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-0-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 0,
       "y": 3584
@@ -2564,7 +2564,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-1-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 256,
       "y": 3584
@@ -2669,7 +2669,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-2-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 512,
       "y": 3584
@@ -2774,7 +2774,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-3-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 768,
       "y": 3584
@@ -2879,7 +2879,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-4-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 1024,
       "y": 3584
@@ -2984,7 +2984,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-5-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 1280,
       "y": 3584
@@ -3089,7 +3089,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-6-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 1536,
       "y": 3584
@@ -3194,7 +3194,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-7-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 1792,
       "y": 3584
@@ -3299,7 +3299,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-8-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 2048,
       "y": 3584
@@ -3404,7 +3404,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-9-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 2304,
       "y": 3584
@@ -3509,7 +3509,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-10-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 2560,
       "y": 3584
@@ -3614,7 +3614,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-11-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 2816,
       "y": 3584
@@ -3719,7 +3719,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-12-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 3072,
       "y": 3584
@@ -3824,7 +3824,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-13-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 256,
       "x": 3328,
       "y": 3584
@@ -3929,7 +3929,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/east/tile-14-14.jpeg",
-      "height": 118,
+      "height": 117,
       "width": 116,
       "x": 3584,
       "y": 3584
@@ -4036,7 +4036,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-0-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 0,
       "y": 3584
@@ -4141,7 +4141,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-1-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 256,
       "y": 3584
@@ -4246,7 +4246,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-2-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 512,
       "y": 3584
@@ -4351,7 +4351,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-3-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 768,
       "y": 3584
@@ -4456,7 +4456,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-4-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 1024,
       "y": 3584
@@ -4561,7 +4561,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-5-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 1280,
       "y": 3584
@@ -4666,7 +4666,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-6-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 1536,
       "y": 3584
@@ -4771,7 +4771,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-7-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 1792,
       "y": 3584
@@ -4876,7 +4876,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-8-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 2048,
       "y": 3584
@@ -4981,7 +4981,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-9-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 2304,
       "y": 3584
@@ -5086,7 +5086,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-10-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 2560,
       "y": 3584
@@ -5191,7 +5191,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-11-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 2816,
       "y": 3584
@@ -5296,7 +5296,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-12-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 3072,
       "y": 3584
@@ -5401,7 +5401,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-13-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 3328,
       "y": 3584
@@ -5506,7 +5506,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-14-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 3584,
       "y": 3584
@@ -5611,7 +5611,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-15-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 3840,
       "y": 3584
@@ -5716,7 +5716,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-16-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 4096,
       "y": 3584
@@ -5821,7 +5821,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-17-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 4352,
       "y": 3584
@@ -5926,7 +5926,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-18-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 4608,
       "y": 3584
@@ -6031,7 +6031,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-19-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 4864,
       "y": 3584
@@ -6136,7 +6136,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-20-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 256,
       "x": 5120,
       "y": 3584
@@ -6241,7 +6241,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/highland/tile-21-14.jpeg",
-      "height": 114,
+      "height": 113,
       "width": 168,
       "x": 5376,
       "y": 3584
@@ -6348,7 +6348,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-0-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 0,
       "y": 3584
@@ -6453,7 +6453,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-1-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 256,
       "y": 3584
@@ -6558,7 +6558,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-2-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 512,
       "y": 3584
@@ -6663,7 +6663,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-3-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 768,
       "y": 3584
@@ -6768,7 +6768,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-4-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1024,
       "y": 3584
@@ -6873,7 +6873,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-5-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1280,
       "y": 3584
@@ -6978,7 +6978,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-6-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1536,
       "y": 3584
@@ -7083,7 +7083,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-7-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 1792,
       "y": 3584
@@ -7188,7 +7188,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-8-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2048,
       "y": 3584
@@ -7293,7 +7293,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-9-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2304,
       "y": 3584
@@ -7398,7 +7398,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-10-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2560,
       "y": 3584
@@ -7503,7 +7503,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-11-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 2816,
       "y": 3584
@@ -7608,7 +7608,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-12-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 3072,
       "y": 3584
@@ -7713,7 +7713,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-13-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 256,
       "x": 3328,
       "y": 3584
@@ -7818,7 +7818,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/island/tile-14-14.jpeg",
-      "height": 116,
+      "height": 115,
       "width": 114,
       "x": 3584,
       "y": 3584
@@ -7974,7 +7974,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-0-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 0,
       "y": 5376
@@ -8128,7 +8128,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-1-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 256,
       "y": 5376
@@ -8282,7 +8282,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-2-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 512,
       "y": 5376
@@ -8436,7 +8436,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-3-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 768,
       "y": 5376
@@ -8590,7 +8590,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-4-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 1024,
       "y": 5376
@@ -8744,7 +8744,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-5-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 1280,
       "y": 5376
@@ -8898,7 +8898,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-6-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 1536,
       "y": 5376
@@ -9052,7 +9052,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-7-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 1792,
       "y": 5376
@@ -9206,7 +9206,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-8-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 2048,
       "y": 5376
@@ -9360,7 +9360,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-9-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 2304,
       "y": 5376
@@ -9514,7 +9514,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-10-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 2560,
       "y": 5376
@@ -9668,7 +9668,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-11-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 2816,
       "y": 5376
@@ -9822,7 +9822,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-12-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 3072,
       "y": 5376
@@ -9976,7 +9976,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-13-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 256,
       "x": 3328,
       "y": 5376
@@ -10130,7 +10130,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/lae/tile-14-21.jpeg",
-      "height": 172,
+      "height": 171,
       "width": 113,
       "x": 3584,
       "y": 5376
@@ -10265,7 +10265,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-0-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 0,
       "y": 4608
@@ -10398,7 +10398,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-1-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 256,
       "y": 4608
@@ -10531,7 +10531,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-2-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 512,
       "y": 4608
@@ -10664,7 +10664,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-3-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 768,
       "y": 4608
@@ -10797,7 +10797,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-4-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 1024,
       "y": 4608
@@ -10930,7 +10930,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-5-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 1280,
       "y": 4608
@@ -11063,7 +11063,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-6-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 1536,
       "y": 4608
@@ -11196,7 +11196,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-7-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 1792,
       "y": 4608
@@ -11329,7 +11329,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-8-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 2048,
       "y": 4608
@@ -11462,7 +11462,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-9-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 2304,
       "y": 4608
@@ -11595,7 +11595,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-10-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 2560,
       "y": 4608
@@ -11728,7 +11728,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-11-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 2816,
       "y": 4608
@@ -11861,7 +11861,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-12-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 3072,
       "y": 4608
@@ -11994,7 +11994,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-13-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 3328,
       "y": 4608
@@ -12127,7 +12127,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-14-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 3584,
       "y": 4608
@@ -12260,7 +12260,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-15-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 3840,
       "y": 4608
@@ -12393,7 +12393,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-16-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 4096,
       "y": 4608
@@ -12526,7 +12526,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-17-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 256,
       "x": 4352,
       "y": 4608
@@ -12659,7 +12659,7 @@ export const TILES: Tiles = {
     },
     {
       "fileName": "assets/washington/tile-18-18.jpeg",
-      "height": 19,
+      "height": 18,
       "width": 12,
       "x": 4608,
       "y": 4608

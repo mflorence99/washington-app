@@ -16,11 +16,7 @@
   <g attr.transform="translate({{ dims.left }} {{ dims.top }})">
     <ng-container *ngFor="let boundary of lot.boundaries">
       <g>
-        <polygon
-          [attr.points]="points(boundary)"
-          attr.fill="rgba(var(--shade-u{{ lot.usage }}), 0.33)"
-          class="boundary"
-        />
+        <polygon [attr.points]="points(boundary)" class="boundary" />
       </g>
     </ng-container>
 
