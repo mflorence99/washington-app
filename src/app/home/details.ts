@@ -161,10 +161,8 @@ export class DetailsComponent implements OnInit {
 
   resize(event: ResizedEvent): void {
     if (this.orientation !== 'pdf') {
-      if (event.newRect.width > event.newRect.height)
-        this.orientation = 'landscape';
-      else if (event.newRect.width <= event.newRect.height)
-        this.orientation = 'portrait';
+      if (event.newWidth > event.newHeight) this.orientation = 'landscape';
+      else if (event.newWidth <= event.newHeight) this.orientation = 'portrait';
     }
   }
 

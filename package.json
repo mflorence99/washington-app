@@ -39,7 +39,7 @@
     "@ngxs/store": "^3",
     "@sentry/angular": "^6",
     "@sentry/tracing": "^6",
-    "angular-resize-event": "^3",
+    "angular-resize-event": "^2",
     "angular-svg-icon": "^12",
     "backoff-rxjs": "^6",
     "debounce-decorator": "^1",

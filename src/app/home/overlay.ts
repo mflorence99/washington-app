@@ -100,9 +100,7 @@ export class OverlayComponent implements OnInit {
   }
 
   resize(event: ResizedEvent): void {
-    if (event.newRect.width >= event.newRect.height)
-      this.cssClass = 'landscape';
-    else if (event.newRect.width < event.newRect.height)
-      this.cssClass = 'portrait';
+    if (event.newWidth >= event.newHeight) this.cssClass = 'landscape';
+    else if (event.newWidth < event.newHeight) this.cssClass = 'portrait';
   }
 }
