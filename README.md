@@ -16,13 +16,13 @@ A progressive web app (PWA) that interacts with the source images for the printe
 
 ## On a laptop
 
-Simply launch the app from [mflorence99.github.io](https://mflorence99.github.io).
+Simply launch the app from [lots.washingtonnh.online](https://lots.washingtonnh.online).
 
 > If we get any serious usage, we may have to move tha app to a for-fee host. It is very suited to AWS Lambda, for example.
 
 ## On an iPhone or iPad
 
-1. Go to the site in Safari by entering mflorence99.github.io in the location bar.
+1. Go to the site in Safari by entering lots.washingtonnh.online in the location bar.
 2. The app should load quickly after the splash screen through your WiFi.
 3. Tap the **Bookmark** icon at the bottom of the screen (it resembles a box with an upward-pointing arrow).
 4. Tap **Add to Home Screen**. You have to swipe the bottom row of icons (copy, print, add bookmark etc) a little way to find that button.
