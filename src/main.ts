@@ -16,18 +16,11 @@ console.table(environment.ua);
 Sentry.init({
   dsn: 'https://c4cd041a16584464b8c0f6b2c984b516@o918490.ingest.sentry.io/5861734',
   integrations: [
-    // Registers and configures the Tracing integration,
-    // which automatically instruments your application to monitor its
-    // performance, including custom Angular routing instrumentation
     new Integrations.BrowserTracing({
-      tracingOrigins: ['localhost', 'https://mflorence99.github.io'],
+      tracingOrigins: ['localhost', 'https://lots.washingtonnh.online'],
       routingInstrumentation: Sentry.routingInstrumentation
     })
   ],
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
   tracesSampleRate: 1.0
 });
 
