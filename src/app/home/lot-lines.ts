@@ -71,7 +71,7 @@ export class LotLinesComponent {
   }
 
   // 👇 the goal here is to minimize the number of measured lines
-  //    (to reduce vusual clutter) by coalescing "straight enough" and
+  //    (to reduce visual clutter) by coalescing "straight enough" and
   //    "too short" lines
   #makeLotLines(): LotLine[] {
     const lotLines: LotLine[] = [];
