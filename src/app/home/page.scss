@@ -96,6 +96,7 @@ app-home {
     border-style: solid;
     border-width: 0 1px 1px 1px;
     bottom: 1rem;
+    color: var(--ion-color-light);
     font-size: smaller;
     left: 1rem;
     position: absolute;
@@ -139,6 +140,7 @@ app-home {
     background-color: rgba(var(--ion-color-dark-rgb), 0.75);
     border: 1px solid var(--ion-color-light);
     bottom: 1rem;
+    color: var(--ion-color-light);
     display: grid;
     grid-template-columns: 3rem;
     grid-template-rows: 3rem 3rem;
