@@ -51,7 +51,7 @@ export class HomePage implements AfterViewInit, OnInit {
   animating = true;
 
   // 👇 constructing the polygons for the lots takes a long time
-  // and we don't need them right away
+  //    and we don't need them right away
   lotsReady = false;
   lotsShowing = false;
 
