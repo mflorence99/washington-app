@@ -1,10 +1,7 @@
 {
   "background_color": "#ffffff",
-  "categories": [
-    "government",
-    "navigation"
-  ],
-  "description": "An interactive map of all the lots in Washington NH, based in the printed maps available at Town Hall.",
+  "categories": ["government", "navigation"],
+  "description": "An interactive map of all the lots in Washington NH, based on the printed maps available at Town Hall.",
   "display": "standalone",
   "icons": [
     {
