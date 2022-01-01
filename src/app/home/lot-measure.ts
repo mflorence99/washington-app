@@ -30,17 +30,20 @@ const makeCustomOverlay = (
   class MeasuredLotLinesOverlay extends google.maps.OverlayView {
     draw(): void {
       const projection = this.getProjection();
-      const ne = projection.fromLatLngToDivPixel(bounds.getNorthEast());
-      const sw = projection.fromLatLngToDivPixel(bounds.getSouthWest());
-      lotLines.style.position = 'absolute';
-      lotLines.style.left = `${sw.x}px`;
-      lotLines.style.top = `${ne.y}px`;
-      lotLines.style.width = `${ne.x - sw.x}px`;
-      lotLines.style.height = `${sw.y - ne.y}px`;
-      // 👇 rebuild the SVG of the lot lines, resetting the viewport
-      lotLinesComponent.render(ne.x - sw.x, sw.y - ne.y);
-      lotLines.firstChild.setAttribute?.('width', `${ne.x - sw.x}px`);
-      lotLines.firstChild.setAttribute?.('height', `${sw.y - ne.y}px`);
+      // 🐛 undefined is not an object (evaluating 'g.fromLatLngToDivPixel')
+      if (projection) {
+        const ne = projection.fromLatLngToDivPixel(bounds.getNorthEast());
+        const sw = projection.fromLatLngToDivPixel(bounds.getSouthWest());
+        lotLines.style.position = 'absolute';
+        lotLines.style.left = `${sw.x}px`;
+        lotLines.style.top = `${ne.y}px`;
+        lotLines.style.width = `${ne.x - sw.x}px`;
+        lotLines.style.height = `${sw.y - ne.y}px`;
+        // 👇 rebuild the SVG of the lot lines, resetting the viewport
+        lotLinesComponent.render(ne.x - sw.x, sw.y - ne.y);
+        lotLines.firstChild.setAttribute?.('width', `${ne.x - sw.x}px`);
+        lotLines.firstChild.setAttribute?.('height', `${sw.y - ne.y}px`);
+      }
     }
 
     onAdd(): void {
